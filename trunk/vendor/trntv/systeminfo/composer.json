@@ -1,0 +1,14 @@
+{
+    "name": "trntv/systeminfo",
+    "description": "Simple system information helper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Eugene Terentev",
+            "email": "eugene@terentev.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "trntv\\systeminfo\\": "src/" }
+    }
+}
