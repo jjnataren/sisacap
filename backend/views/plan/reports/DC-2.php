@@ -512,7 +512,7 @@ use backend\models\Catalogo; ?>
 			$a_fin =  str_split(strtoupper(''.date("Ymd", strtotime(($model->VIGENCIA_FIN!==null)?$model->VIGENCIA_FIN:'1910-01-01'))));
 			$a_inicio =  str_split(strtoupper(''.date("Ymd", strtotime(($model->VIGENCIA_INICIO!==null)?$model->VIGENCIA_INICIO:'1910-01-01'))));
 			//$a_AGREGO =  str_split(strtoupper(''.date("Ymd", strtotime(($model->!==null)?$model->VIGENCIA_FIN:'1910-01-01'))));
-			$a_fein =   str_split(strtoupper(''.date("Ymd", strtotime(($model->FECHA_INFORME!==null)?$model->FECHA_INFORME:'1910-01-01'))));
+			$a_fein =   str_split(strtoupper(''.date("Ymd", strtotime(($model->FECHA_INFO!==null)?$model->FECHA_INFO:'1910-01-01'))));
 				
 
 			
