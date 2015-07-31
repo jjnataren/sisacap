@@ -182,23 +182,31 @@ class CursoController extends Controller
     	if ($model->save()) {
     		
     		Yii::$app->session->setFlash('alert', [
-    		'options'=>['class'=>'alert-success'],
-    		'body'=>Yii::t('frontend', 'Curso creado correctamente ')
-    		]);Yii:
-    		
+    				'options'=>['class'=>'alert-success'],
+    				'body'=> '<i class="fa fa-check"></i> Se ha creado el curso correctamente.',
+    		]);
     		
     		Indicadores::setIndicadorPlan($planModel);
     		
     		return $this->redirect(['plan/dashboard', 'id' => $planModel->ID_PLAN]);
-    	} 
+    	}else{
+    		
+    		Yii::$app->session->setFlash('alert', [
+    				'options'=>['class'=>'alert-danger'],
+    				'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha ocurrido un error, por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
+    		]);
+    		
     	}
-    	else {
+    	
+    	
+    	}
+    	
     			return $this->render('create_by_plan', [
     					'model' => $model,
     					'dataProvider'=>$dataProvider,
     					'searchModel'=>$searchModel
     					]);
-    	}
+    	
     }    
     
    
@@ -251,9 +259,6 @@ class CursoController extends Controller
     		
     		if ($curso->save()) {
     	
-    		
-    		
-    		
     		Yii::$app->session->setFlash('alert', [
     		'options'=>['class'=>'alert-success'],
     		'body'=> '<i class="fa fa-check"></i> Curso actualizado correctamente.',
@@ -262,14 +267,24 @@ class CursoController extends Controller
     		Indicadores::setIndicadorPlan($planModel);
     		
     		return $this->redirect(['plan/dashboard', 'id' => $planModel->ID_PLAN]);
+    		}else{
+    				
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-danger'],
+    					'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha ocurrido un error, por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
+    			]);
+    			
     		}
-    	} else {
+    	} 
+    	
+    	
+    	
     		return $this->render('_form_by_update', [
     				'model' => $curso,
     				'dataProvider'=>$dataProvider,
     				'searchModel'=>$searchModel
     				]);
-    	}
+    	
     }
     
     
