@@ -292,9 +292,9 @@ public static function setIndicadorPlan($plan){
 		
 		$indicadorInicio->ACTIVO = 1;
 			
-		$indicadorInicio->TITULO = 'Plan ID'. $plan->ID_PLAN.'iniciara en 5 días ';
+		$indicadorInicio->TITULO = ' El plan '. $plan->ALIAS.' iniciara en 5 días ';
 			
-		$indicadorInicio->DATA = 'El plan'. $plan->ALIAS.'iniciara en 10 días. La empresa deberá crear cursos para impartilos en durante su  plan';
+		$indicadorInicio->DATA = 'Plan ID '. $plan->ID_PLAN.' : '.'  La empresa deberá crear cursos para impartilos durante su plan';
 		
 		$indicadorInicio->FECHA_CREACION = date("Y-m-d H:i:s");
 			
@@ -331,7 +331,7 @@ public static function setIndicadorPlan($plan){
 		$indicadorFin->ACTIVO = 1;
 		
 		//"Curso ID ".$curso->ID_CURSO. ' por iniciar';
-		$indicadorFin->TITULO = 'Plan '. $plan->ALIAS. 'concluirá en 15 dias';
+		$indicadorFin->TITULO = ' El Plan '. $plan->ALIAS . ' concluirá en 15 dias';
 		
 		$indicadorFin->DATA = 'Las empresas deberán mantener a disposición de la Secretaría, la siguiente información:
      	El formato DC-2 “Elaboración del plan y programas de capacitación, adiestramiento y productividad”;
