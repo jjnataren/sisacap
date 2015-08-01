@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'NUMERO_INTEGRANTES',
             'FECHA_CONSTITUCION',
             'FECHA_ELABORACION',
+			'FECHA_AGREGO',
             'ACTIVO',
         ],
     ]) ?>
