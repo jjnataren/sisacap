@@ -516,7 +516,7 @@ use backend\models\Catalogo; ?>
 				
 
 			
-			$modelEst = $model->iDESTABLECIMIENTOs;
+			$modelEst = $model->planEstablecimientos;
 			
 			$establecimientos = count($model->iDESTABLECIMIENTOs);
 			
@@ -1610,20 +1610,19 @@ use backend\models\Catalogo; ?>
 		
 			<tr class="Tabla53">
 				<td style="text-align:left;width:1.623cm; " class="Tabla5_A29">
-					<p class="P15">
-						<span class="T31">  </span> </p>
+					<p class="P15"><span class="T31">&nbsp;</span></p>
 				</td>
 				<td style="text-align:left;width:11.035cm; " class="Tabla5_B29">
 					<p class="P17">
-						<span class="T31">    </span> </p>
+						<span class="T31">&nbsp;</span></p>
 				</td>
 				<td style="text-align:left;width:3.5cm; " class="Tabla5_C29">
 					<p class="P15">
-						<span class="T31">    </span> </p>
+						<span class="T31">&nbsp;</span></p>
 				</td>
 				<td style="text-align:left;width:3.776cm; " class="Tabla5_D29">
 					<p class="P15">
-						<span class="T31">    </span> </p>
+						<span class="T31">&nbsp;</span></p>
 				</td>
 			</tr>
 		</table><p class="P45"> </p><p class="P43">
