@@ -115,8 +115,17 @@ if ($model->GIRO_PRINCIPAL === 66666){
 		 'value'=>isset($model->SGS_TIPOS[ $model->ESQUEMA_SEGURIDAD_SOCIAL ])? $model->SGS_TIPOS[$model->ESQUEMA_SEGURIDAD_SOCIAL]: 'no establecido'
 		],
 			'NSS',
-			'NUMERO_TRABAJADORES',
-			'FECHA_INICIO_OPERACIONES'
+				
+				[
+				'attribute'=>'NUMERO_TRABAJADORES',
+				'type'=>'html',
+				'value'=>isset($model->NUMERO_TRABAJADORES) ? $model->NUMERO_TRABAJADORES : '',
+				],
+			  [
+			'attribute'=>'FECHA_INICIO_OPERACIONES',
+			'type'=>'html',
+			'value'=>isset($model->FECHA_INICIO_OPERACIONES) ? $model->FECHA_INICIO_OPERACIONES : '',
+			],
 ],
     ]) ?>
     </div>
@@ -141,13 +150,13 @@ if ($model->GIRO_PRINCIPAL === 66666){
 			[
             'attribute'=>'ENTIDAD_FEDERATIVA',
 			'type'=>'raw',
-			'value'=>isset($entidadFederativa) ? $entidadFederativa->NOMBRE : 'no establecido',
+			'value'=>isset($entidadFederativa) ? $entidadFederativa->NOMBRE : '<i>no establecido</i>',
 			],
             //'LOCALIDAD',            
            [
 			'attribute'=>'MUNICIPIO_DELEGACION',
 			'type'=>'raw',
-			'value'=>isset($municipioDelegacion) ? $municipioDelegacion->NOMBRE : 'no establecido',
+			'value'=>isset($municipioDelegacion) ? $municipioDelegacion->NOMBRE : '<i>no establecido</i>',
 			],
 
 		[
