@@ -20,6 +20,10 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
 $this->title = 'Actualizar Curso: Id ' . ' ' . $model->ID_CURSO;
 
 
+$this->params['breadcrumbs'][] = ['label' => 'Comision Id '.$model->iDPLAN->ID_COMISION , 'url' => ['comision-mixta-cap/dashboard','id'=>$model->iDPLAN->ID_COMISION]];
+$this->params['breadcrumbs'][] = ['label' => 'Plan Id '.$model->ID_PLAN , 'url' => ['plan/dashboard','id'=>$model->ID_PLAN]];
+$this->params['breadcrumbs'][] = $this->title;
+
 /* @var $this yii\web\View */
 /* @var $model backend\models\Curso */
 /* @var $form yii\widgets\ActiveForm */
