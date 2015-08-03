@@ -70,11 +70,6 @@ class Curso extends \yii\db\ActiveRecord
   	];
    }
     
-   
-   
-   
-   
-   
    /*
 
     /**
@@ -84,6 +79,50 @@ class Curso extends \yii\db\ActiveRecord
     {
         return 'tbl_curso';
     }
+    
+      
+    
+    /**
+     * Own validation
+     * @param unknown $attribute
+     * @param unknown $params
+     */
+    public function  validateVigenciaInicioPlan($attribute, $params){
+    
+    	$v_inicio = new \DateTime($this->$attribute);
+    
+    	$v_fin = new \DateTime($this->iDPLAN->VIGENCIA_INICIO);
+    
+    
+    	if ($v_inicio < $v_fin){
+    		$this->addError($attribute, 'La fecha de inicio del curso debe ser mayor de la fecha de inicio del plan [' .$v_fin->format('d/m/Y') .' ]' );
+    
+    	}
+    
+    
+    }
+    
+    
+    /**
+     * Own validation
+     * @param unknown $attribute
+     * @param unknown $params
+     */
+    public function  validateVigenciaFinPlan($attribute, $params){
+    
+    	$v_inicio = new \DateTime($this->$attribute);
+    
+    	$v_fin = new \DateTime($this->iDPLAN->VIGENCIA_FIN);
+    
+    
+    	if ($v_inicio > $v_fin){
+    		$this->addError($attribute, 'La fecha de fin del curso debe ser  menor a la  fecha de fin del plan  [' .$v_fin->format('d/m/Y') .' ]' );
+    
+    	}
+    
+    
+    }
+    
     
     
     /**
@@ -157,10 +196,9 @@ class Curso extends \yii\db\ActiveRecord
             /*own validations*/
             ['FECHA_INICIO', 'validateVigencia','params'=>['max'=>730]],
         	['FECHA_INICIO', 'validateVigenciaInic','params'=>['max'=>0]],
+        	['FECHA_INICIO', 'validateVigenciaInicioPlan','params'=>['max'=>0]],
+        	['FECHA_TERMINO', 'validateVigenciaFinPlan','params'=>['max'=>0]],
             
-            
-            /*own validations*/
-             
             
         ];
     }
