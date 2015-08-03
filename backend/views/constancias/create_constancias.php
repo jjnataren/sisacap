@@ -64,20 +64,16 @@ $itemsDocumentos = [1=>'Titulo',2=>'Certificado',3=>'Diploma',4=>'Otro'];
 11=>'6',12=>'6.5',13=>'7',14=>'7.5',15=>'8',16=>'8.5',17=>'9',18=>'9.5',19=>'10'];
 */
 
-
 $tabs= [];
 
-
-
-
-foreach ($model->iDPLAN->iDESTABLECIMIENTOs as $establecimiento){
+foreach ($model->iDPLAN->planEstablecimientos as $establecimiento){
 	
 	
 	$tabs[]=[
 			'label' =>'<i class="fa fa-university">
-							 </i> ID ' .$establecimiento->iDESTABLECIMIENTO->ID_EMPRESA .'- ' . $establecimiento->iDESTABLECIMIENTO->NOMBRE_COMERCIAL .'',
+							 </i> ID ' .$establecimiento->ID_EMPRESA .'- ' . $establecimiento->NOMBRE_COMERCIAL .'',
 			
-            'url' => ['/constancias/createbycourse', 'id'=>$model->ID_CURSO, 'id_est'=>$establecimiento->iDESTABLECIMIENTO->ID_EMPRESA, '#'=>'constancias'],
+            'url' => ['/constancias/createbycourse', 'id'=>$model->ID_CURSO, 'id_est'=>$establecimiento->ID_EMPRESA, '#'=>'constancias'],
             'linkOptions' => [],
         ]; 
 	
