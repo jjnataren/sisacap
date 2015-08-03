@@ -33,28 +33,54 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 ?>
 				<!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <div class="col-md-3 col-xs-6">
+                    
+                        
+                         <div class="col-md-3 col-xs-6 col-sm-6">
+					            <div class="small-box bg-aqua">
+					                <div class="inner">
+					                    <h3>
+					                      <?php  echo count($model->listaConstancias);?>
+					                    </h3>
+					                    <p>
+					                        <?= Yii::t('backend', 'Constancias en el reporte') ?>
+					                    </p>
+					                </div>
+					                <div class="icon">
+					                    <i class="fa fa-file-pdf-o"></i>
+					                </div>
+					                  <div class="small-box-footer">
+					                    Constancias listas para enviar <i class="fa fa-arrow-circle-right"></i>
+					                </div>
+					              
+					            </div>
+					        </div>         
+					        
+                        
+                       <div class="col-md-3 col-xs-6">
                             <!-- small box -->
-                            <div class="small-box bg-aqua">
+                            <div class="small-box bg-yellow">
                                 <div class="inner">
                                     <h3>
-                                      <i class="fa  fa-file-pdf-o"></i>
+                                    <i class="fa  fa-file-pdf-o"></i>
+                                    
+                                        <?= '';//count(Constancia::findBySql("select * from tbl_constancia where ID_EMPRESA = $model->ID_EMPRESA AND ACTIVO = 1")->all()); 
                                         
+                                        
+                                        ?>
                                     </h3>
-                                     <p>
-                                  <?= Yii::t('backend', 'Constancias incluidas en el reporte') ?>
+                                    <p>
+                                        Constancias en revisión
                                     </p>
-                                   
-                                    <?php  echo count($model->listaConstancias);?>
                                 </div>
                                 <div class="icon">
-                                    <i class="ion ion-bag"></i>
+                                    <i class="ion ion-person-add"></i>
                                 </div>
                                 <a class="small-box-footer" href="#">
-                                  DC-4  More info <i class="fa fa-arrow-circle-right"></i>
+                                 Constancias  por incluir en el reporte<i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div><!-- ./col -->
+                        
                         <div class="col-md-3 col-xs-6">
                             <!-- small box -->
                             <div class="small-box bg-blue">
@@ -79,30 +105,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                                 </a>
                             </div>
                         </div><!-- ./col -->
-                        <div class="col-md-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-yellow">
-                                <div class="inner">
-                                    <h3>
-                                    <i class="fa  fa-file-pdf-o"></i>
-                                    
-                                        <?= '';//count(Constancia::findBySql("select * from tbl_constancia where ID_EMPRESA = $model->ID_EMPRESA AND ACTIVO = 1")->all()); 
-                                        
-                                        
-                                        ?>
-                                    </h3>
-                                    <p>
-                                        Constancias en revisión
-                                    </p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-person-add"></i>
-                                </div>
-                                <a class="small-box-footer" href="#">
-                                   DC-3 More info <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
+                        
                         <div class="col-md-3 col-xs-6">
                             <!-- small box -->
                             <div class="small-box bg-red">

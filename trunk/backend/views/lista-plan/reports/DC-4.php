@@ -1,5 +1,9 @@
 <?php
-use backend\models\Catalogo; ?>
+use backend\models\Catalogo;
+
+$this->title = 'Reporte Id '.$model->ID_LISTA.'   DC4 parte 1 ';
+
+?>
 <head profile="http://dublincore.org/documents/dcmi-terms/">
 		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
 		<title xml:lang="en-US">- no title specified</title>
