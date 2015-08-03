@@ -30,6 +30,16 @@ $this->params['breadcrumbs'][] = ['label' => 'Reporte constancias ID '.$model->I
 
 $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json' }});", View::POS_END, 'my-options');
 
+
+$constanciasItems = Constancia::findBySql('select * from tbl_constancia where ID_TRABAJADOR in (select ID_TRABAJADOR from tbl_trabajador where (ID_EMPRESA IN (SELECT ID_ESTABLECIMIENTO FROM tbl_lista_establecimiento where ID_LISTA = '.$model->ID_LISTA.') OR ID_EMPRESA = '.EmpresaUsuario::getMyCompany()->ID_EMPRESA.' ) AND ACTIVO = 1)
+								AND ID_CONSTANCIA NOT IN (select ID_CONSTANCIA from tbl_lista_constancia where ID_LISTA = '.$model->ID_LISTA.') AND ESTATUS > 1;')->all();
+	
+
+$tConstanciasBox = count($model->iDCONSTANCIAs);
+ 
+$tPaquetesBox = floor( $tConstanciasBox / 30 );
+
+
 ?>
 				<!-- Small boxes (Stat box) -->
                     <div class="row">
@@ -48,83 +58,77 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 					                <div class="icon">
 					                    <i class="fa fa-file-pdf-o"></i>
 					                </div>
-					                  <div class="small-box-footer">
+					                  <a href="#" class="small-box-footer">
 					                    Constancias listas para enviar <i class="fa fa-arrow-circle-right"></i>
-					                </div>
+					                </a>
 					              
 					            </div>
 					        </div>         
 					        
+                            <div class="col-md-3 col-xs-6 col-sm-6">
+					            <div class="small-box bg-yellow">
+					                <div class="inner">
+					                    <h3>
+					                      <?php  echo count($constanciasItems);?>
+					                    </h3>
+					                    <p>
+					                        <?= Yii::t('backend', 'Constancias en revisión') ?>
+					                    </p>
+					                </div>
+					                <div class="icon">
+					                    <i class="fa fa-file-pdf-o"></i>
+					                </div>
+					                   <a href="#" class="small-box-footer">
+                               			 <strong> Constancias  por incluir en el reporte <i class="fa fa-arrow-circle-right"></i></strong>
+                            		    </a>
+					              
+					            </div>
+					        </div>     
                         
-                       <div class="col-md-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-yellow">
-                                <div class="inner">
-                                    <h3>
-                                    <i class="fa  fa-file-pdf-o"></i>
-                                    
-                                        <?= '';//count(Constancia::findBySql("select * from tbl_constancia where ID_EMPRESA = $model->ID_EMPRESA AND ACTIVO = 1")->all()); 
-                                        
-                                        
-                                        ?>
-                                    </h3>
-                                    <p>
-                                        Constancias en revisión
-                                    </p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-person-add"></i>
-                                </div>
-                                <a class="small-box-footer" href="#">
-                                 Constancias  por incluir en el reporte<i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
                         
-                        <div class="col-md-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-blue">
-                                <div class="inner">
-                                    <h3>
-                                      <i class="fa fa-university"></i>
-                                                <?= '';//count (Plan::findBySql("select * from tbl_plan  where ID_COMISION IN (select ID_COMISION_MIXTA from tbl_comision_mixta_cap where ID_EMPRESA =$model->ID_EMPRESA AND ACTIVO = 1 ) AND ACTIVO = 1")->all()); ?>
-                                    </h3>
-                                    <p>
-                                        Establecimientos
-                                        	
-                                    </p>
-                                    <?php  echo count($model->listaEstablecimientos);?>
-                                    	
-                                  
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-stats-bars"></i>
-                                </div>
-                                <a class="small-box-footer" href="#">
-                                 DC-4   More info <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
+                               <div class="col-md-3 col-xs-6 col-sm-6">
+					            <div class="small-box bg-blue">
+					                <div class="inner">
+					                    <h3>
+					                      <?php  echo count($model->iDESTABLECIMIENTOs);?>
+					                    </h3>
+					                    <p>
+					                        <?= Yii::t('backend', 'Establecimientos') ?>
+					                    </p>
+					                </div>
+					                <div class="icon">
+					                    <i class="fa fa-university"></i>
+					                </div>
+					                   <a class="small-box-footer" href="#">
+                               			  Establecimientos considerados <i class="fa fa-arrow-circle-right"></i>
+                            		    </a>
+					              
+					            </div>
+					        </div>     
                         
-                        <div class="col-md-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-red">
-                                <div class="inner">
-                                    <h3>
-                                         <i class="glyphicon glyphicon-list-alt"></i>
-                                    </h3>
-                                    <p>
-                                        Listas de constancias enviados
-                                    </p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-pie-graph"></i>
-                                </div>
-                                <a class="small-box-footer" href="#">
-                                    DC-4 More info <i class="fa fa-arrow-circle-right"></i>
+       					
+       					  <div class="col-md-3 col-xs-6 col-sm-6">
+					            <div class="small-box bg-red">
+					                <div class="inner">
+					                    <h3>
+					                      <?= $tPaquetesBox;?>
+					                    </h3>
+					                    <p>
+					                        <?= Yii::t('backend', '   Paquetes de constancias') ?>
+					                    </p>
+					                </div>
+					                <div class="icon">
+					                     <i class="glyphicon glyphicon-list-alt"></i>
+					                </div>
+					                    <a class="small-box-footer" href="#">
+                                   Paquetes listos	<i class="fa fa-arrow-circle-right"></i>
                                 </a>
-                            </div>
-                        </div><!-- ./col -->
+					              
+					            </div>
+					        </div>     
+                        
+                        
+                 
                     </div><!-- /.row -->
 <div class="row">
 	<div class="col-sm-12 col-md-6 col-xs-12">
@@ -567,7 +571,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 
 
  <h4 class="page-header">
-          Constancias emitidas 
+          Constancias emitidas en los establecimientos
    		<small>Estas constancias pueden ser presentadas en el reporte</small>
    </h4>     
     
@@ -587,39 +591,37 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                                 </div><!-- /.box-header -->
                                 <div class="box-body table-responsive" >
                                 
-                                	<table id="dataTable1" class="table" cellspacing="0"  width="100%">
-							<thead>
-							
-							
-							<tr>
-									
-									<td colspan="6"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
-									<td colspan="4"><i class="fa fa-user"></i> Datos trabajador</td>
-									
-									<th></th>
-							</tr>
-							
-							
-								<tr>
-									<th>Id</th>
-									<th>Curso</th>
-									<th>Obtención</th>
-									<th>Tipo</th>
-									<th>Estatus</th>
-									<th><?=Yii::t('backend', 'Fecha emisión')?></th>
-									<th><?=Yii::t('backend', 'Establecimiento')?></th>
-									<th><?=Yii::t('backend', 'Nombre ');?></th>									
-									<th><?=Yii::t('backend', 'CURP')?></th>
-									<th><?=Yii::t('backend', 'Ocupación')?></th>
-									<th></th>
-																											
-								</tr>
-							</thead>
+                                	<table id="dataTable1" class="table" >
+											<thead>
+											
+											
+											<tr>
+													
+													<td colspan="6"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
+													<td colspan="4"><i class="fa fa-user"></i> Datos trabajador</td>
+													
+													<th></th>
+											</tr>
+											
+											
+												<tr>
+													<th>Id</th>
+													<th>Curso</th>
+													<th>Obtención</th>
+													<th>Tipo</th>
+													<th>Estatus</th>
+													<th><?=Yii::t('backend', 'Fecha emisión')?></th>
+													<th><?=Yii::t('backend', 'Establecimiento')?></th>
+													<th><?=Yii::t('backend', 'Nombre ');?></th>									
+													<th><?=Yii::t('backend', 'CURP')?></th>
+													<th><?=Yii::t('backend', 'Ocupación')?></th>
+													<th></th>
+																															
+												</tr>
+											</thead>
 							<tbody>
 							<?php $i = 0; 
 							
-							$constanciasItems = Constancia::findBySql('select * from tbl_constancia where ID_TRABAJADOR in (select ID_TRABAJADOR from tbl_trabajador where (ID_EMPRESA IN (SELECT ID_ESTABLECIMIENTO FROM tbl_lista_establecimiento where ID_LISTA = '.$model->ID_LISTA.') OR ID_EMPRESA = '.EmpresaUsuario::getMyCompany()->ID_EMPRESA.' ) AND ACTIVO = 1) 
-								AND ID_CONSTANCIA NOT IN (select ID_CONSTANCIA from tbl_lista_constancia where ID_LISTA = '.$model->ID_LISTA.') AND ESTATUS > 1;')->all();
 							
 							foreach ($constanciasItems as $constancia) :?>
 							<?php $worker = $constancia->iDTRABAJADOR;?>
@@ -793,8 +795,8 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
     
     
   <h4 class="page-header">
-     Reportes disponibles
-   		<small>Estos reportes agruparan  paquetes de constancias</small>
+    Información de  paquetes de constancias  disponibles
+   		<small>Estos paquetes  agruparan a las constancias de los trabajadores</small>
   </h4>     
     
     
@@ -805,7 +807,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 		<div class="box box-primary">
                 <div class="box-header">
                    <i class="glyphicon glyphicon-list-alt"></i>
-                    <h3 class="box-title"><?= Yii::t('backend', 'Reportes') ?></h3>
+                    <h3 class="box-title"><?= Yii::t('backend', 'Paquetes de constancias') ?></h3>
                
                <div class="box-tools pull-right">
             <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
