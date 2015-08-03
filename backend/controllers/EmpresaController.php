@@ -340,13 +340,22 @@ class EmpresaController extends Controller
         	$tmpdate = \DateTime::createFromFormat('d/m/Y', $model->FECHA_INICIO_OPERACIONES);
         	$model->FECHA_INICIO_OPERACIONES =( $tmpdate === false)? null : $tmpdate ->format('Y-m-d') ;
         	if ($model->save()){
-        }
-            return $this->redirect(['view', 'id' => $model->ID_EMPRESA]);
-        } else {
+
+        		
+        		Yii::$app->session->setFlash('alert', [
+        				'options'=>['class'=>'alert-success'],
+        		
+        				'body'=> '<i class="fa fa-check"></i> Empresa  creada correctamente.',
+        		]);
+        		
+        		return $this->redirect(['view', 'id' => $model->ID_EMPRESA]);
+      		  }
+        
+        }   
+            
             return $this->render('create', [
                 'model' => $model,
             ]);
-        }
     }
 
     
@@ -379,11 +388,8 @@ class EmpresaController extends Controller
 	    	
 	    } 	
     	
-    	
-	    
-	    
+   	    
    		return $this->redirect(['manage', 'id' => $id]);
-    	
     	
     }
     
@@ -418,18 +424,26 @@ class EmpresaController extends Controller
     		
     		IF( $establishment_model->save()) {
     			
-    	}
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-success'],
+    					 
+    					'body'=> '<i class="fa fa-check"></i> Establecimiento creado correctamente.',
+    			]);
+    			
+
+    			return $this->redirect(['viewbystablishment', 'id' => $establishment_model->ID_EMPRESA]);
+		    			
+		    }
     		
     		
     		
-    		return $this->redirect(['viewbystablishment', 'id' => $establishment_model->ID_EMPRESA]);
     		
-    	} else {
+    	} 
     		
     		return $this->render('create_establishment', [
     				'model' => $establishment_model,
     				]);
-    	}
+
     }
     
     
@@ -453,13 +467,20 @@ class EmpresaController extends Controller
         	$model->FECHA_INICIO_OPERACIONES =( $tmpdate === false)? null : $tmpdate ->format('Y-m-d') ;
         	if   ( $model->save()) {
         		
+        		Yii::$app->session->setFlash('alert', [
+        				'options'=>['class'=>'alert-success'],
+        		
+        				'body'=> '<i class="fa fa-check"></i> Empresa actualizada correctamente.',
+        		]);
+        		
+        		return $this->redirect(['view', 'id' => $model->ID_EMPRESA]);
         	}
-            return $this->redirect(['view', 'id' => $model->ID_EMPRESA]);
-        }else {
+
+
+        }
             return $this->render('update', [
                 'model' => $model,
             ]);
-        }
     }
     
     /**
@@ -477,15 +498,24 @@ class EmpresaController extends Controller
     		$tmpdate = \DateTime::createFromFormat('d/m/Y', $empresa->FECHA_INICIO_OPERACIONES);
     		$empresa->FECHA_INICIO_OPERACIONES = $tmpdate->format('Y-m-d') ;
     		
+    		if ($model->save()) {
+    			
+    			
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-success'],
+    					 
+    					'body'=> '<i class="fa fa-check"></i> Establecimiento actualizado correctamente.',
+    			]);
+    			
+    			return $this->redirect(['view', 'id' => $model->ID_EMPRESA]);
+    		}
+    		
     	}
     	
-    	if ($model->save()) {
-    		return $this->redirect(['view', 'id' => $model->ID_EMPRESA]);
-    	} else {
+   
     		return $this->render('update_by_establishment', [
     				'model' => $model,
     				]);
-    	}
     }
     
     /**
