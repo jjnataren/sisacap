@@ -411,7 +411,7 @@ class ListaPlanController extends Controller
  
     	$this->layout = '//_print';
     	
-    	return $this->renderPartial('reports/DC-4',['model'=>$model, 'constancia'=>$model->iDCONSTANCIAs[0]]);
+    	return $this->renderPartial('reports/DC-4',['model'=>$model, ]);
     	
     	
     	//return $this->render('reports/DC-4',['model'=>$model]);
