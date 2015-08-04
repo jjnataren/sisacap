@@ -254,9 +254,9 @@ public static function setIndicadorPlan($plan){
 			
 				$modelIndicador->FECHA_FIN_VIGENCIA = $fechaInicio->modify('+5 day')->format('Y-m-d');
 			
-				$modelIndicador->TITULO = "Curso ID ".$curso->ID_CURSO. ' por iniciar';
+				$modelIndicador->TITULO = "El curso " . $curso->NOMBRE . ' Iniciará en 5 días';
 			
-				$modelIndicador->DATA = "El curso: <br /> ".$curso->NOMBRE.' esta por iniciar, debe preparar a los trabajadores que recibiran el curso.';
+				$modelIndicador->DATA = "El curso ID  ".$curso->ID_CURSO. ': <br /> ' .'Deberá preparar a los trabajadores que recibirán el curso.';
 			
 				$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
 			
