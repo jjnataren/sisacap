@@ -182,7 +182,7 @@ class PlanController extends Controller
     
     			$model->save();
     			
-    			Indicadores::setIndicadoresPlan($model);
+    			Indicadores::setIndicadorPlan($model);
     			 
     
     			break;
