@@ -17,16 +17,17 @@ $this->registerJs("$('#help_popup_boton').popover('hide');", View::POS_END, 'non
 use Openbuildings\Swiftmailer\CssInlinerPlugin;
 
 
-$this->params['breadcrumbs'][] = ['label' => 'Comisión ID '.$model->iDCURSO->iDPLAN->ID_COMISION, 'url'=>['comision-mixta-cap/dashboard', 'id'=>$model->iDCURSO->iDPLAN->ID_COMISION]];
-$this->params['breadcrumbs'][] = ['label' => 'Plan ID '.$model->iDCURSO->ID_PLAN, 'url'=>['plan/dashboard', 'id'=>$model->iDCURSO->ID_PLAN]];
-$this->params['breadcrumbs'][] = ['label' => 'Plan ID ']
+$this->params['breadcrumbs'][] = ['label' => 'Comisión Id '.$model->iDCURSO->iDPLAN->ID_COMISION, 'url'=>['comision-mixta-cap/dashboard', 'id'=>$model->iDCURSO->iDPLAN->ID_COMISION]];
+$this->params['breadcrumbs'][] = ['label' => 'Plan Id '.$model->iDCURSO->ID_PLAN, 'url'=>['plan/dashboard', 'id'=>$model->iDCURSO->ID_PLAN]];
+$this->params['breadcrumbs'][] = ['label' => 'Curso Id '.$model->ID_CURSO ,'url'=>'constancias/creaatebycourse','id'=>$model->ID_CURSO  ];
+$this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTANCIA ];
 
 ?>
 
 
 
 
-<div class="callout callout-info">
+<div class="callout callout-warning">
 	<h4><i class="fa fa-info-circle"></i> Resumen de la Constancia</h4>
 	<p>- Esta es solo una previsualización de la constancia, puede imprimir el comprobante o el formato DC-3 <br />
 		- Puede editar los parametros de la constancia
@@ -50,7 +51,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Plan ID ']
                         <div class="col-md-12">
                             <h2 class="page-header">
                                 <i class="fa fa-globe"></i> <?= strtoupper( $model->iDCURSO->iDPLAN->iDCOMISION->iDEMPRESA->NOMBRE_RAZON_SOCIAL); ?>
-                                <small class="pull-right">Fecha de emisión: <?= $model->FECHA_EMISION_CERTIFICADO?: '<i>no establecido</i>' ?> </small>
+                                <small class="pull-right">Fecha de emisión: <?=($model->FECHA_EMISION_CERTIFICADO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->FECHA_EMISION_CERTIFICADO)) ;?> </small>
                                 
                             </h2>
                         </div><!-- /.col -->
@@ -79,7 +80,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Plan ID ']
                         <div class="col-sm-4 invoice-col">
                             <b>Constancia Id <?= $model->ID_CONSTANCIA;?></b><br>
                             <br />
-                            <b>Fecha creación :</b> <?= $model->FECHA_CREACION; ?><br>
+                            <b>Fecha creación :</b> <?=($model->FECHA_CREACION === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->FECHA_CREACION)) ;?><br>
                            
                         </div><!-- /.col -->
                     </div><!-- /.row -->

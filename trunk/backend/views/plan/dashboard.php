@@ -255,6 +255,7 @@ $planItems[]= 	[
 		         <th>RFC</th>		         
 		         <th>NSS</th>
 		         <th>Domicilio</th>
+		         <th></th>
 	         </tr>
          </thead>
          
