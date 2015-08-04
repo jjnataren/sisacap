@@ -181,6 +181,9 @@ class PlanController extends Controller
     			
     
     			$model->save();
+    			
+    			Indicadores::setIndicadoresComision($model);
+    			 
     
     			break;
     		case 2:
