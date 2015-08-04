@@ -294,7 +294,7 @@ public static function setIndicadorPlan($plan){
 			
 		$indicadorInicio->TITULO = ' El plan '. $plan->ALIAS.' iniciara en 5 días ';
 			
-		$indicadorInicio->DATA = 'Plan ID '. $plan->ID_PLAN.' : '.'  La empresa deberá crear cursos para impartilos durante su plan';
+		$indicadorInicio->DATA = 'Plan ID '. $plan->ID_PLAN.'  '.'<br />  La empresa deberá crear cursos para impartilos durante su plan';
 		
 		$indicadorInicio->FECHA_CREACION = date("Y-m-d H:i:s");
 			
