@@ -275,7 +275,7 @@ use backend\models\Plan;
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">
-                            <?php echo 'Usted tiene estas notificaciones'?>
+                            <?php echo 'Notificaciones de comisión'?>
                         </li>
                         <li>
                             <!-- inner menu: contains the actual data -->
@@ -293,7 +293,7 @@ use backend\models\Plan;
                             </ul>
                         </li>
                         <li class="footer">
-                            <?= Html::a(Yii::t('backend', 'View all'), ['/indicador-comision/index-by-company']) ?>
+                            <?= Html::a(Yii::t('backend', 'ver todas'), ['/indicador-comision/index-by-company']) ?>
                            
                         </li>
                     </ul>
@@ -330,7 +330,7 @@ use backend\models\Plan;
                             </ul>
                         </li>
                         <li class="footer">
-                            <?= Html::a(Yii::t('backend', 'View all'), ['/indicador-plan/index-by-company']) ?>
+                            <?= Html::a(Yii::t('backend', 'ver todas'), ['/indicador-plan/index-by-company']) ?>
                            
                         </li>
                     </ul>
