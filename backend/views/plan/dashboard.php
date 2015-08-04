@@ -855,7 +855,7 @@ $planItems[]= 	[
 							<tr>
 							<th>Id</th>
 							<th>Alias</th>
-							<th>Fecha elaboración</th>
+							<th>Fecha elaboración informe</th>
 							<th>Estatus</th>
 							<th>Constancias Hombres</th>
 							<th>Constancias Mujeres</th>
@@ -869,7 +869,7 @@ $planItems[]= 	[
 							<tr>
 							<td><?=$lista->ID_LISTA;        ?></td>
 								<td><?=$lista->ALIAS;               ?></td>
-								<td><?=$lista->FECHA_ELABORACION; ?></td>
+								  <td><?=($lista->FECHA_ELABORACION === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($lista->FECHA_ELABORACION)) ;?></td>
 								<td><span class="label label-warning"><?= $lista->getStatus(); ?></span></td>
 								<td><?=$lista->CONSTANCIAS_HOMBRES; ?></td>
 								<td><?=$lista->CONSTANCIAS_MUJERES; ?></td>

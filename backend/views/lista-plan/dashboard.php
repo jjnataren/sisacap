@@ -133,7 +133,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 <div class="row">
 	<div class="col-sm-12 col-md-6 col-xs-12">
 	
-		<div class="box box-primary">
+		<div class="box box-success">
                 <div class="box-header">
                    <i class="glyphicon glyphicon-list-alt"></i>
                     <h3 class="box-title"><?= Yii::t('backend', 'Detalles del reporte de constancias emitidas') ?></h3>
@@ -168,15 +168,16 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
                         <dd><?= $model->LUGAR_INFORME; ?></dd>
                         
                         <dt><?= Yii::t('backend', 'Fecha elaboración informe') ?></dt>
-                        <dd><?= $model->FECHA_INFORME?></dd>
+                         <dd><?=($model->FECHA_INFORME === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->FECHA_INFORME)) ;?></dd>
+               
                         
                         <dt></dt>
                			<dd>&nbsp;</dd>
                         
                        
-                        <dt><i><?= Yii::t('backend', 'Agregado desde') ?></i></dt>
-                        <dd><?= $model->FECHA_AGREGO?></dd>
-                      
+                        <dt><i><?= Yii::t('backend', 'Creado desde') ?></i></dt>
+                       <dd><?=($model->FECHA_AGREGO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->FECHA_AGREGO)) ;?></dd>
+                 
                                            
                         <dt><i><?= Yii::t('backend', 'Estatus') ?></i></dt>
                         <dd><span class="label label-success"><?= $model->getStatus(); ?></span></dd>
@@ -204,7 +205,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 	
 	
 <div class="col-md-6 col-xs-12 col-sm-12">
-            <div class="box box-primary">
+            <div class="box box-success">
                 <div class="box-header">
                       <i class="fa fa-university"></i>
                     <h2 class="box-title"><?= Yii::t('backend', 'Establecimientos') ?> <small>dondé fuerón emitidas las constancias.</small></h2>
@@ -288,7 +289,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 
 	<div class="col-md-6 col-xs-12 col-sm-12">
 	
-		<div class="box box-primary">
+		<div class="box box-default">
                 <div class="box-header">
                    <i class="fa fa-calendar"></i>
 		                    <h3 class="box-title"><?= Yii::t('backend', 'Detalles del plan') ?></h3>
@@ -301,38 +302,36 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <dl class="dl-horizontal">
-                          <dt><?= Yii::t('backend', 'Id') ?></dt>
+                           <dt><?= Yii::t('backend', 'Id') ?></dt>
                         <dd><?= $model->iDPLAN->ID_PLAN ?></dd>
 
                         <dt><?= Yii::t('backend', 'Alias') ?></dt>
                         <dd><?= $model->iDPLAN->ALIAS ?></dd>
                         
-                           <dt><?= Yii::t('backend', 'Descripción') ?></dt>
+                          <dt><?= Yii::t('backend', 'Descripción') ?></dt>
                         <dd><?= $model->iDPLAN->DESCRIPCION_PLAN ?></dd>
-                        
-                        
-                         <dt><?= Yii::t('backend', 'N° etapas del plan') ?></dt>
+                                                                        
+                         <dt><?= Yii::t('backend', 'Etapas del plan') ?></dt>
                         <dd><?= $model->iDPLAN->NUMERO_ETAPAS ?></dd>
                         
                          <dt><?= Yii::t('backend', 'Vigencia de inicio') ?></dt>
-                        <dd><?= $model->iDPLAN->VIGENCIA_INICIO ?></dd>
+                           <dd><?=($model->iDPLAN->VIGENCIA_INICIO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->iDPLAN->VIGENCIA_INICIO)) ;?></dd>
                         
-                         <dt><?= Yii::t('backend', 'Vigencia término') ?></dt>
-                        <dd><?= $model->iDPLAN->VIGENCIA_FIN ?></dd>
+                         <dt><?= Yii::t('backend', 'Vigencia termino') ?></dt>
+                         <dd><?=($model->iDPLAN->VIGENCIA_FIN === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->iDPLAN->VIGENCIA_FIN)) ;?></dd>
+                              
+                              
+                             
+                      	<dt>&nbsp;</dt>
+                       	<dd>&nbsp;</dd> 
+                       	                     
+                        <dt><i><?= Yii::t('backend', 'Agregado desde') ?></i></dt>
+                         <dd><?=($model->iDPLAN->FECHA_AGREGO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y h:i A",strtotime($model->iDPLAN->FECHA_AGREGO)) ;?></dd>
+                     
                         
-                        
-                        <dt><i><?= Yii::t('backend', 'Fecha elaboración del informe') ?></i></dt>
-                        <dd><?= $model->iDPLAN->FECHA_INFO ?></dd> 
-                        
-                        <dt><?= Yii::t('backend', 'Lugar elaboración del informe') ?></dt>
-                        <dd><?= $model->iDPLAN->LUGAR_INFORME ?></dd> 
-                        
-                        <dt><i><?= Yii::t('backend', 'Creado desde') ?></i></dt>
-                        <dd><?= $model->iDPLAN->FECHA_AGREGO?></dd> 
-                        
-                        
-                        <dt><i><?= Yii::t('backend', 'Estatus') ?></i></dt>
-                        <dd><span class="label label-success"><?= $model->getStatus(); ?></span></dd>
+                          <dt><i><?= Yii::t('backend', 'Estatus') ?></i></dt>
+                        <dd><span class="label label-success"><?= $model->iDPLAN->getStatus(); ?></span></dd>
+                         
                         
                     </dl>
                 </div><!-- /.box-body -->
@@ -500,7 +499,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 			    	
 			    	 <h3 class="box-title">   
 							
-							<?= Yii::t('backend', 'Cursos') ?><small>   impartidos del plan</small> 
+							<?= Yii::t('backend', 'Cursos') ?><small>   impartidos en el  plan de capacitación y adiestramiento</small> 
 							
 							
 							
@@ -534,9 +533,11 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 					
 									 <td><?= $curso->NOMBRE ?></td>
 										               
-			                         <td><?= $curso->FECHA_INICIO ?></td>
+			                         <td><?=($curso->FECHA_INICIO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($curso->FECHA_INICIO)) ;?></td>
 			                          
-								     <td><?= $curso->FECHA_TERMINO ?></td>
+								        <td><?=($curso->FECHA_TERMINO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($curso->FECHA_TERMINO)) ;?></td>
+			                          
+								
 										
 								
 									   	<td><?php 
@@ -720,11 +721,12 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 									<th>Obtención</th>
 									<th>Tipo</th>
 									
-									<th><?=Yii::t('backend', 'Establecimiento')?></th>
+								
 									<th><?=Yii::t('backend', 'Nombre')?></th>									
 									<th><?=Yii::t('backend', 'A. paterno')?></th>
 									<th><?=Yii::t('backend', 'CURP')?></th>
 									<th><?=Yii::t('backend', 'Ocupación')?></th>
+									<th><?=Yii::t('backend', 'Establecimiento')?></th>
 							
 									<th></th>
 																											
@@ -744,8 +746,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 									<td><?= $constancia->FECHA_EMISION_CERTIFICADO?></td>
 									<td><?= isset(Constancia::getAllMetodosType()[$constancia->METODO_OBTENCION])?Constancia::getAllMetodosType()[$constancia->METODO_OBTENCION] : '<i class"text text-muted">no asignado</i>' ?></td>	
 									<td><?= isset(Constancia::getAllContanciasType()[$constancia->TIPO_CONSTANCIA])?Constancia::getAllContanciasType()[$constancia->TIPO_CONSTANCIA] : '<i class"text text-muted">no asignado</i>'; ?></td>
-									<td><?= $constancia->iDTRABAJADOR->iDEMPRESA->NOMBRE_RAZON_SOCIAL;?></td>
-									
+																	
 									<td><?= $constancia->iDTRABAJADOR->NOMBRE;?></td>
 									<td><?= $constancia->iDTRABAJADOR->APP;?></td>
 									<td><?= $constancia->iDTRABAJADOR->CURP;?></td>
@@ -753,7 +754,8 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 									<?php $ocupacionEspecifica = Catalogo::findOne($constancia->iDTRABAJADOR->OCUPACION_ESPECIFICA);?>
 									<?= isset($ocupacionEspecifica)?$ocupacionEspecifica->NOMBRE: '<i class="text text-muted">no establecido</i>';?>
 									</td>
-							
+										<td><?= $constancia->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
+									
 									<td>
 									
 										<?= Html::a('<i class="fa fa-file-pdf-o"></i>', ['lista-plan/report-pdf-part2','id'=>$model->ID_LISTA,'id_const'=>$constancia->ID_CONSTANCIA], 
