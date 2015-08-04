@@ -63,8 +63,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Plan ID ']
                                 <strong><?=$model->iDCURSO->NOMBRE; ?></strong><br>
                                 <i class="text text-muted"><?=$model->iDCURSO->DESCRIPCION; ?></i><br />
                                 Duración (hrs): <?=$model->iDCURSO->DURACION_HORAS; ?><br />
-                                Instructor: <?= strtoupper($model->iDCURSO->iDINSTRUCTOR->NOMBRE. ' '. $model->iDCURSO->iDINSTRUCTOR->APP. ' '.$model->iDCURSO->iDINSTRUCTOR->APM ); ?><br />
-                                Entidad emisora: <?= $model->iDCURSO->iDINSTRUCTOR->NOMBRE_AGENTE_EXTERNO;?>
+                                Instructor: <?=  (isset($model->iDCURSO->iDINSTRUCTOR)) ? strtoupper($model->iDCURSO->iDINSTRUCTOR->NOMBRE. ' '. $model->iDCURSO->iDINSTRUCTOR->APP. ' '.$model->iDCURSO->iDINSTRUCTOR->APM ) : '<i>no establecido</i>'; ?><br />
+                                Entidad emisora: <?=(isset($model->iDCURSO->iDINSTRUCTOR)) ? $model->iDCURSO->iDINSTRUCTOR->NOMBRE_AGENTE_EXTERNO : '<i>no establecido</i>'; ?>
                             </address>
                         </div><!-- /.col -->
                         <div class="col-sm-4 invoice-col">
@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Plan ID ']
                             </address>
                         </div><!-- /.col -->
                         <div class="col-sm-4 invoice-col">
-                            <b>Constancia #<?= $model->ID_CONSTANCIA;?></b><br>
+                            <b>Constancia Id <?= $model->ID_CONSTANCIA;?></b><br>
                             <br />
                             <b>Fecha creación :</b> <?= $model->FECHA_CREACION; ?><br>
                            
