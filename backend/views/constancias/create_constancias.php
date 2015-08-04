@@ -138,10 +138,13 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
                         <dd><?= $model->DESCRIPCION?></dd>
 
                         <dt><?= Yii::t('backend', 'Fecha de inicio') ?></dt>
-                        <dd><?= $model->FECHA_INICIO ?></dd>
+                        <dd><?=($model->FECHA_INICIO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->FECHA_INICIO)) ;?></dd>
+                     
+                
                         
                         <dt><?= Yii::t('backend', 'Fecha de termino') ?></dt>
-                        <dd><?= $model->FECHA_TERMINO ?></dd>
+                         <dd><?=($model->FECHA_TERMINO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->FECHA_TERMINO)) ;?></dd>
+                  
                         
                         <dt><?= Yii::t('backend', 'Duracion horas') ?></dt>
                         <dd><?= $model->DURACION_HORAS?></dd>
@@ -169,10 +172,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
   
   				<dl class="dl-horizontal">
                        
-                        
-                    
-                        
-                            <dt><?= Yii::t('backend', 'Alias') ?></dt>
+                        <dt><?= Yii::t('backend', 'Alias') ?></dt>
                         <dd><?= $model->iDPLAN->ALIAS ?></dd>
                         
                         
@@ -180,20 +180,32 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
                             <dd><?= $model->iDPLAN->DESCRIPCION_PLAN ?></dd>
                         
                             <dt><?= Yii::t('backend', 'Vigencia inicio') ?></dt>
-                        <dd><?= $model->iDPLAN->VIGENCIA_INICIO ?></dd>
+                            <dd><?=($model->iDPLAN->VIGENCIA_INICIO=== null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->iDPLAN->VIGENCIA_INICIO)) ;?></dd>
+                  
                         
                             <dt><?= Yii::t('backend', 'Vigencia fin') ?></dt>
-                        <dd><?= $model->iDPLAN->VIGENCIA_FIN ?></dd>
+                            <dd><?=($model->iDPLAN->VIGENCIA_FIN=== null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->iDPLAN->VIGENCIA_FIN)) ;?></dd>
                                                                      
-                            <dt><?= Yii::t('backend', 'N° etapas') ?></dt>
+                            <dt><?= Yii::t('backend', 'No. etapas') ?></dt>
                         <dd><?= $model->iDPLAN->NUMERO_ETAPAS ?></dd>
                         
-                            <dt><?= Yii::t('backend', 'N° total hombres') ?></dt>
+                            <dt><?= Yii::t('backend', 'No. hombres') ?></dt>
                         <dd><?= $model->iDPLAN->TOTAL_HOMBRES ?></dd>
                      
-                                <dt><?= Yii::t('backend', 'N° total mujeres') ?></dt>
+                                <dt><?= Yii::t('backend', 'No. mujeres') ?></dt>
                         <dd><?= $model->iDPLAN->TOTAL_MUJERES ?></dd>
                      
+                     
+                     	  <dt>Puestos trabajador   <span class="label label-info"><?= count($model->iDPLAN->iDPUESTOs) ?></span></dt>
+                                        <dd>
+                                        <ul>
+	                                        <?php 
+	                                        foreach ($model->iDPLAN->iDPUESTOs as $puesto)                                        	
+	                    						echo '<li>'. $puesto->NOMBRE_PUESTO .'</li>';      
+	                    						                                  
+	                                        ?>
+                                        </ul>
+                          </dd>
              
                    </dl>
   		     
@@ -201,15 +213,70 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
              
         
   </div><!-- /.box-body -->
+  
+      <div class= "box-footer">
+				          
+		                <?= Html::a('<i class="fa fa-arrow-circle-right"></i>  Ir al plan', ['plan/dashboard', 'id' => $model->ID_PLAN], ['class' => 'btn btn-primary']) ?>
+    	</div>
 </div><!-- /.box -->
 
 </div>
+
+  <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                      <i class="fa fa-university"></i>
+                    <h2 class="box-title"><?= Yii::t('backend', 'Establecimientos ') ?> <small>donde se impartira el curso</small></h2>
+                    
+                    <div class="box-tools pull-right">
+            <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
+            <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
+          </div><!-- /.box-tools -->
+                    
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                   
+                <div class="box-body table-responsive">
+         <table class="table table-hover" >
+         
+         <thead> 
+	         <tr>
+		         <th>No.</th>
+		         <th>Nombre comercial</th>  
+		         <th>RFC</th>		         
+		         <th>NSS</th>
+		         <th>Domicilio</th>
+	         </tr>
+         </thead>
+         
+         <tbody>
+         	
+         	<?php $i = 0; foreach ($model->iDPLAN->planEstablecimientos as $establecimiento){?>
+         	<tr>
+         		<td><?= ++$i?></td>
+         		<td><?= $establecimiento->NOMBRE_COMERCIAL?></td>
+         		<td><?= $establecimiento->RFC ?></td>
+         		<td><?= $establecimiento->NSS ?></td>
+         		<td><?= $establecimiento->CALLE .$establecimiento->NUMERO_INTERIOR .$establecimiento->NUMERO_EXTERIOR  ?></td>
+         	  
+         	
+         	</tr>
+         	
+         	
+         	<?php }?>
+         </tbody>
+        
+        </table>
+        </div>
+        
+                </div><!-- /.box-body -->
+                
+                
+            </div>
+        </div>   
+
 </div>
 
-<div class="row">
-
-
-</div>
 
  			<h4 class="page-header">
           Constancias de los trabajadores
