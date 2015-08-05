@@ -181,10 +181,8 @@ class PlanController extends Controller
     			
     
     			$model->save();
-    			
-    			Indicadores::setIndicadorPlan($model);
-    			 
     
+    			Indicadores::setIndicadorPlan($model);
     			break;
     		case 2:
     			break;
@@ -202,7 +200,8 @@ class PlanController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreatebycomision($id){
+    public function actionCreatebycomision($id)
+    {
     	
     	$model = EmpresaUsuario::getMyCompany();
     	
@@ -210,7 +209,7 @@ class PlanController extends Controller
     	
     	if ($comisionModel === null || !($comisionModel->ID_EMPRESA === $model->ID_EMPRESA) ) throw new NotFoundHttpException('The requested page does not exist.');
     	
-		if($comisionModel->getCurrentStatus() < ComisionMixtaCap::STATUS_VALIDADA){
+if($comisionModel->getCurrentStatus() < ComisionMixtaCap::STATUS_VALIDADA){
     		    		
     	Yii::$app->session->setFlash('alert', [
     	'options'=>['class'=>'alert-warning'],
@@ -261,24 +260,14 @@ class PlanController extends Controller
 			]);
 			
 			Indicadores::setIndicadorPlan($planModel);
-			
-			return $this->redirect(['comision-mixta-cap/dashboard', 'id' => $id]);
 		
-		}else{
-			
-			Yii::$app->session->setFlash('alert', [
-					'options'=>['class'=>'alert-danger'],
-					'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha ocurrido un error, por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
-			]);
-			
 		}			
 		
-		
+			return $this->redirect(['comision-mixta-cap/dashboard', 'id' => $id]);
 
 		
 		
-		}
-		
+		} 
 			
 			$empresa = $model->iDEMPRESA;
 			$query = $empresa->getEmpresas();
@@ -683,8 +672,8 @@ class PlanController extends Controller
     		$tmpdate = \DateTime::createFromFormat('d/m/Y', $plan->VIGENCIA_INICIO);
     		$plan->VIGENCIA_INICIO = ($tmpdate == false)? null :  $tmpdate->format('Y-m-d') ;
     		
-    		$tmpdate2 = \DateTime::createFromFormat('d/m/Y', $plan->VIGENCIA_FIN);
-    		$plan->VIGENCIA_FIN = ($tmpdate2 === false )? null : $tmpdate2->format('Y-m-d') ;
+    		$tmpdate = \DateTime::createFromFormat('d/m/Y', $plan->VIGENCIA_FIN);
+    		$plan->VIGENCIA_FIN = ($tmpdate === false )? null : $tmpdate->format('Y-m-d') ;
     		
     		$tmpdate = \DateTime::createFromFormat('d/m/Y', $plan->FECHA_INFO);
     		$plan->FECHA_INFO = ($tmpdate ===false)?null :$tmpdate->format('Y-m-d') ;
@@ -707,21 +696,8 @@ class PlanController extends Controller
     		
     		return $this->redirect(['plan/dashboard', 'id' => $plan->ID_PLAN]);
     		
-    		}else{
-    			
-    			Yii::$app->session->setFlash('alert', [
-    					'options'=>['class'=>'alert-danger'],
-    					'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha ocurrido un error, por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
-    			]);
-    			
     		}
-    		
-    		
-    		
     	}
-    	
-    	
-    	
     	
     	$empresa = $model->iDEMPRESA;
     	$query = $empresa->getEmpresas();
