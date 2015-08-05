@@ -10,7 +10,6 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use backend\models\search\IndicadorComisionSearch;
 use backend\models\EmpresaUsuario;
-use yii\data\ActiveDataProvider;
 
 /**
  * IndicadorConstanciaController implements the CRUD actions for IndicadorConstancia model.
@@ -39,21 +38,7 @@ class IndicadorConstanciaController extends Controller
     	 
     	$companyModel = EmpresaUsuario::getMyCompany();
     	$searchModel = new IndicadorConstanciaSearch();
-    	
-    	$query = IndicadorConstancia::findBySql('select * from tbl_indicador_constancia where id_constancia in 
-                            		(select id_constancia from tbl_constancia where id_trabajador in 
-                             			(select id_trabajador from tbl_trabajador where id_empresa in 
-                            				(select id_empresa from tbl_empresa where id_empresa_padre = '.EmpresaUsuario::getMyCompany()->ID_EMPRESA.' OR id_empresa = '.EmpresaUsuario::getMyCompany()->ID_EMPRESA.'  and ACTIVO=1) 
-                            			AND ACTIVO=1)
-                            		AND ACTIVO=1)
-                             	  AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia
-    											 ');
-    	
-    	$dataProvider = new ActiveDataProvider([
-    			'query' => $query,
-    	]);
-    	
-    	
+    	$dataProvider = $searchModel->searchByCompany(Yii::$app->request->queryParams, $companyModel->ID_EMPRESA);
     
     	return $this->render('index_by_company', [
     			'searchModel' => $searchModel,
