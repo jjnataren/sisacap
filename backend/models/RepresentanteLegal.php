@@ -45,7 +45,7 @@ class RepresentanteLegal extends \yii\db\ActiveRecord
             [['RFC'], 'string', 'max' => 13],
             [['DOMICILIO', 'CORREO_ELECTRONICO'], 'string', 'max' => 300],
             [['NSS'], 'string', 'max' => 20],
-        	[['CORREO_ELECTRONICO'], 'email',]
+            [['CORREO_ELECTRONICO'], 'email',]
         ];
     }
 
