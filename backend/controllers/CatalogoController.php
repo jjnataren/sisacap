@@ -25,6 +25,184 @@ class CatalogoController extends Controller
             ],
         ];
     }
+    
+    
+    
+    //aqui empieza  ocupaciones 
+    public function actionOcupaciones()
+    {
+    	$searchModel = new CatalogoSearch();
+    	 
+    	$dataProvider = $searchModel->searchByCategoria(Yii::$app->request->queryParams,Catalogo::CATEGORIA_OCUPACION);
+    	 
+    	return $this->render('ocupaciones/index.php', [
+    			'searchModel' => $searchModel,
+    			'dataProvider' => $dataProvider,
+    			]);
+    }
+    
+    public function actionOcupacionesActualizar($id)
+    {
+    	$model = $this->findModelByCategory($id,Catalogo::CATEGORIA_OCUPACION);
+    
+    	if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    		return $this->redirect(['ocupaciones-ver','id'=>$id]);
+    	} else {
+    		return $this->render('ocupaciones/update.php', [
+    				'model' => $model,
+    				]);
+    	}
+    }
+    
+    public function actionOcupacionesVer($id)
+    {
+    	return $this->render('ocupaciones/view.php', [
+    			'model' => $this->findModelByCategory($id,Catalogo::CATEGORIA_OCUPACION),
+    			]);
+    }
+    
+    public function actionOcupacionesBorrar($id)
+    {
+    	$this->findModelByCategory($id,Catalogo::CATEGORIA_OCUPACION)->delete();
+    
+    	return $this->redirect(['ocupaciones']);
+    
+    }
+    
+    public function actionOcupacionesCrear()
+    {
+    	$model = new Catalogo();
+    	$model->ACTIVO = 1;
+    	$model->CATEGORIA = Catalogo::CATEGORIA_OCUPACION;
+    
+    
+    	if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    		return $this->redirect(['ocupaciones-ver', 'id' => $model->ID_ELEMENTO]);
+    	} else {
+    		return $this->render('ocupaciones/create.php', [
+    				'model' => $model,
+    				]);
+    	}
+    }
+    
+    
+    //aqui empieca el catalogo de giros 
+    public function actionGiro()
+    {
+    	$searchModel = new CatalogoSearch();
+    
+    	$dataProvider = $searchModel->searchByCategoria(Yii::$app->request->queryParams,Catalogo::CATEGORIA_GIRO);
+    
+    	return $this->render('giro/index.php', [
+    			'searchModel' => $searchModel,
+    			'dataProvider' => $dataProvider,
+    			]);
+    }
+    
+    public function actionGiroActualizar($id)
+    {
+    	$model = $this->findModelByCategory($id,Catalogo::CATEGORIA_GIRO);
+    
+    	if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    		return $this->redirect(['giro-ver','id'=>$id]);
+    	} else {
+    		return $this->render('giro/update.php', [
+    				'model' => $model,
+    				]);
+    	}
+    }
+    
+    public function actionGiroVer($id)
+    {
+    	return $this->render('giro/view.php', [
+    			'model' => $this->findModelByCategory($id,Catalogo::CATEGORIA_GIRO),
+    			]);
+    }
+    
+    public function actionGiroBorrar($id)
+    {
+    	$this->findModelByCategory($id,Catalogo::CATEGORIA_GIRO)->delete();
+    
+    	return $this->redirect(['giro']);
+    
+    }
+    
+    public function actionGiroCrear()
+    {
+    	$model = new Catalogo();
+    	$model->ACTIVO = 1;
+    	$model->CATEGORIA = Catalogo::CATEGORIA_GIRO;
+    
+    
+    	if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    		return $this->redirect(['giro-ver', 'id' => $model->ID_ELEMENTO]);
+    	} else {
+    		return $this->render('giro/create.php', [
+    				'model' => $model,
+    				]);
+    	}
+    }
+    
+    
+    
+//aqui empieza el catalogo ntcl
+
+    public function actionNtcl()
+    {
+    	$searchModel = new CatalogoSearch();
+    
+    	$dataProvider = $searchModel->searchByCategoria(Yii::$app->request->queryParams,Catalogo::CATEGORIA_NTCL);
+    
+    	return $this->render('ntcl/index.php', [
+    			'searchModel' => $searchModel,
+    			'dataProvider' => $dataProvider,
+    			]);
+    }
+    
+    public function actionNtclActualizar($id)
+    {
+    	$model = $this->findModelByCategory($id,Catalogo::CATEGORIA_NTCL);
+    
+    	if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    		return $this->redirect(['ntcl-ver','id'=>$id]);
+    	} else {
+    		return $this->render('ntcl/update.php', [
+    				'model' => $model,
+    				]);
+    	}
+    }
+    
+    public function actionNtclVer($id)
+    {
+    	return $this->render('ocupaciones/view.php', [
+    			'model' => $this->findModelByCategory($id,Catalogo::CATEGORIA_NTCL),
+    			]);
+    }
+    
+    public function actionNtclBorrar($id)
+    {
+    	$this->findModelByCategory($id,Catalogo::CATEGORIA_NTCL)->delete();
+    
+    	return $this->redirect(['ntcl']);
+    
+    }
+    
+    public function actionNtclCrear()
+    {
+    	$model = new Catalogo();
+    	$model->ACTIVO = 1;
+    	$model->CATEGORIA = Catalogo::CATEGORIA_NTCL;
+    
+    
+    	if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    		return $this->redirect(['tcln-ver', 'id' => $model->ID_ELEMENTO]);
+    	} else {
+    		return $this->render('ntcl/create.php', [
+    				'model' => $model,
+    				]);
+    	}
+    }
+    
 
     /**
      * Lists entidades federativas .
@@ -41,6 +219,7 @@ class CatalogoController extends Controller
     			'dataProvider' => $dataProvider,
     	]);
     }
+    
     
     
     /**
