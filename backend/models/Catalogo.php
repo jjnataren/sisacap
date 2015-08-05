@@ -24,6 +24,17 @@ class Catalogo extends \yii\db\ActiveRecord
 	
 	const CATEGORIA_ENTIDADES_FEDERATIVAS = 1;
 	const CATEGORIA_MUNICIPIOS = 2;
+	const CATEGORIA_OCUPACION= 5;
+	const CATEGORIA_GIRO=4;
+	const CATEGORIA_AREA_TEMATI=6;
+	const CATEGORIA_NTCL=7;
+	const CATEGORIA_COMITE=8;
+	const CATEGORIA_SECTOR=9;
+
+	const CATEGORIA_OCU=10;
+	
+	
+	
 	
 	/**
 	 * properties helpers
