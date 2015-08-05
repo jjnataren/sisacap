@@ -35,7 +35,27 @@ class Curso extends \yii\db\ActiveRecord
 	
 	//$itemsModalidad = [1=>'Presencial',2=>'En linea',3=>'Mixta'];
 
+	public function validateVigencia($attribute, $params){
 	
+		$tmp_inicio = new \DateTime($this->$attribute);
+	
+		$tmp_fin = new \DateTime($this->FECHA_TERMINO);
+	
+		$days_of_dif = date_diff($tmp_inicio, $tmp_fin);
+			
+		$total_days = $days_of_dif->format('%a');
+			
+		$total_days = intval($total_days);
+	
+		$max_days = intval(isset($params['max']) ? $params['max'] : '0');
+	
+		if ($total_days > $max_days){
+			$this->addError($attribute, 'La vigencia debe ser hasta  dos años');
+			$this->addError('FECHA_TERMINO', 'La vigencia debe ser hasta dos años');
+				
+		}
+	
+	}	
 	
     const  mod_presencial = 1;
     const  mod_online = 2 ;
@@ -70,6 +90,8 @@ class Curso extends \yii\db\ActiveRecord
   	];
    }
     
+   
+   
    /*
 
     /**
@@ -79,6 +101,7 @@ class Curso extends \yii\db\ActiveRecord
     {
         return 'tbl_curso';
     }
+
     
       
     
@@ -195,7 +218,6 @@ class Curso extends \yii\db\ActiveRecord
             
             /*own validations*/
             ['FECHA_INICIO', 'validateVigencia','params'=>['max'=>730]],
-        	['FECHA_INICIO', 'validateVigenciaInic','params'=>['max'=>0]],
         	['FECHA_INICIO', 'validateVigenciaInicioPlan','params'=>['max'=>0]],
         	['FECHA_TERMINO', 'validateVigenciaFinPlan','params'=>['max'=>0]],
             
