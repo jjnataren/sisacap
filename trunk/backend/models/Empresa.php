@@ -148,7 +148,7 @@ class Empresa extends \yii\db\ActiveRecord
             [['NOMBRE_CONTACTO'], 'string', 'max' => 250],
             [['FAX'], 'string', 'max' => 50],
             [['PICTURE'], 'string', 'max' => 2048],
-        	[['CORREO_ELECTRONICO'], 'email',]
+            [['CORREO_ELECTRONICO'], 'email',]
         ];
     }
 
