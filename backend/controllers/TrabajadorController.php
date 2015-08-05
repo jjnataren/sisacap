@@ -331,15 +331,7 @@ class TrabajadorController extends Controller
     					$worker->CORREO_ELECTRONICO = $line[8];
     					$worker->TELEFONO = $line[9];
     					$worker->PUESTO = $line[10];
-    					
-    					
-    					//$worker->OCUPACION_ESPECIFICA = $line[11];
-    					
-    					//$catalogo = Catalogo::findOne(['CLAVE'=>$line[11], 'CATEGORIA'=>Catalogo::CATEGORIA_MUNICIPIOS]);
-    					
-    					//$worker->OCUPACION_ESPECIFICA = $catalogo->ID_ELEMENTO;
-    					
-    					
+    					$worker->OCUPACION_ESPECIFICA = $line[11];
     					//$worker->SEXO = $line[11];
     					$worker->ACTIVO = 1;
     					
@@ -652,36 +644,18 @@ class TrabajadorController extends Controller
     		
     		$trabajadorModel->FECHA_AGREGO = date('Y-m-d H:i');
     		
-    	 if ($trabajadorModel->save()) {
+    	 IF ($trabajadorModel->save()) {
     		
     		return $this->redirect(['viewbycompany', 'id' => $trabajadorModel->ID_TRABAJADOR]);
-    	}else{
-    		
-    		
-    		Yii::$app->session->setFlash('alert', [
-    				'options'=>['class'=>'alert-danger'],
-    				'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha ocurrido un error, por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
-    		]);
-    		
-    		return $this->render('create_by_company', [
-    				'model' => $trabajadorModel,
-    		]);
-    		
-    		
     	}
-    	
-    	
-    	
     	} 
     	
     	else {
-    		
-    		
+
     		Yii::$app->session->setFlash('alert', [
-    				'options'=>['class'=>'alert-danger'],
-    				'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha ocurrido un error, por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
+    		'options'=>['class'=>'alert-danger'],
+    		'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha ocurrido un error, por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
     		]);
-    		
     		return $this->render('create_by_company', [
     				'model' => $trabajadorModel,
     				]);
@@ -745,28 +719,25 @@ class TrabajadorController extends Controller
     		
     		    		
     		return $this->redirect(['viewbystablishment', 'id' => $trabajadorModel->ID_TRABAJADOR]);
+    		}else{
     		
-    	}else{
     		
+    			
     		
-    		Yii::$app->session->setFlash('alert', [
-    				'options'=>['class'=>'alert-danger'],
-    				'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha ocurrido un error, por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
-    		]);
-    		
-    		return $this->render('create_by_company', [
-    				'model' => $trabajadorModel,
-    		]);
+    			Yii::$app->session->setFlash('alert', [
+    			'options'=>['class'=>'alert-danger'],
+    			'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha ocurrido un error, por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
+    			]);
+    			
+    			return $this->render('create_by_company', [
+    					'model' => $trabajadorModel,
+    					]);
     	}
-    	
-    	
-    	
     	} else {
-    		
 
     		Yii::$app->session->setFlash('alert', [
-    				'options'=>['class'=>'alert-danger'],
-    				'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha ocurrido un error, por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
+    		'options'=>['class'=>'alert-danger'],
+    		'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha ocurrido un error, por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
     		]);
     		
     		return $this->render('create_by_company', [
