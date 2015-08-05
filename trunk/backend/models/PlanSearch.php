@@ -19,7 +19,7 @@ class PlanSearch extends Plan
     {
         return [
             [['ID_PLAN', 'ID_COMISION',  'TOTAL_HOMBRES', 'TOTAL_MUJERES', 'NUMERO_ETAPAS', 'NUMERO_CONSTANCIAS_EXPEDIDAS', 'ESTATUS', 'MODALIDAD_CAPACITACION', 'ACTIVO', 'MODALIDAD', 'OBJETIVO1', 'OBJETIVO2', 'OBJETIVO3', 'OBJETIVO4', 'OBJETIVO5'], 'integer'],
-            [['ALIAS', 'VIGENCIA_INICIO', 'VIGENCIA_FIN'], 'safe'],
+            [['ALIAS', 'VIGENCIA_INICIO', 'VIGENCIA_FIN','FECHA_INFO'], 'safe'],
         ];
     }
 
@@ -73,6 +73,7 @@ class PlanSearch extends Plan
             'OBJETIVO3' => $this->OBJETIVO3,
             'OBJETIVO4' => $this->OBJETIVO4,
             'OBJETIVO5' => $this->OBJETIVO5,
+        		'FECHA_INFO' => $this->FECHA_INFO,
         ]);
 
         $query->andFilterWhere(['like', 'ALIAS', $this->ALIAS]);
@@ -121,6 +122,7 @@ class PlanSearch extends Plan
     			'OBJETIVO3' => $this->OBJETIVO3,
     			'OBJETIVO4' => $this->OBJETIVO4,
     			'OBJETIVO5' => $this->OBJETIVO5,
+    			'FECHA_INFO' => $this->FECHA_INFO,
     			]);
     
     	return $dataProvider;
