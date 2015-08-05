@@ -77,10 +77,6 @@ foreach ($model->iDPLAN->planEstablecimientos as $establecimiento){
             'linkOptions' => [],
         ]; 
 	
-	
-	
-	
-	
 }
 
 
@@ -291,8 +287,6 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 	<div class="col-md-12 col-sm-12 col-xs-12">
 	
 		<div class="nav-tabs-custom">
-		
-
 		
 		<?php echo Nav::widget([
 		    'items' => $tabs,
