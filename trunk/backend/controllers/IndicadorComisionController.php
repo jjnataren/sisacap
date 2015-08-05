@@ -51,19 +51,15 @@ class IndicadorComisionController extends Controller
     {
     	$searchModel = new IndicadorComisionSearch();
     	//$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-    	
-    	
     	$query = IndicadorComision::findBySql('select * from tbl_indicador_comision where id_comision in
     	                            		(select id_comision_mixta from tbl_comision_mixta_cap where id_empresa = '.EmpresaUsuario::getMyCompany()->ID_EMPRESA.' and ACTIVO=1) AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia  ');
-    	
-    	
-    	 	                
-    	
+    	 
+    	 
+    	 
+    	 
     	$dataProvider = new ActiveDataProvider([
     			'query' => $query,
-    	]);
-    	 
-    
+    			]);
     	return $this->render('index_by_company', [
     			'searchModel' => $searchModel,
     			'dataProvider' => $dataProvider,
