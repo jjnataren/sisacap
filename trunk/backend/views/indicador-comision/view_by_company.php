@@ -14,6 +14,7 @@ $this->title = 'Notificación: Constitución de la comisión ';
 $this->params['breadcrumbs'][] = ['label' => 'Indicador Comisions', 'url' => ['index-by-company']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="indicador-comision-view">
 
 
 
@@ -22,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="box box-info">
                 <div class="box-header">
                    <i class="fa fa-bell"></i>
-                    <h3 class="box-title"><?= Yii::t('backend', ' Detalles') ?> <small>de la notificación</small></h3>
+                    <h3 class="box-title"><?= Yii::t('backend', ' Detalles de la notificación') ?> </h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <dl class="dl-horizontal">
@@ -32,7 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         
                             <dt><?= Yii::t('backend', 'Titulo') ?></dt>
                               <dd><?=$model->TITULO ?></dd>
-                              
+                               <dt><?= Yii::t('backend', 'Clave') ?></dt>
+                    
+                        <dd><?= $model->CLAVE ?></dd>
                             
                             
                                 <dd><?=$model->DATA ?></dd>
