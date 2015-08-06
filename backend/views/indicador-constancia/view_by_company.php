@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Notificaciones constancias', 'url'
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-    <h1><?= Html::encode($model->TITULO) ?></h1>
+
 
     	
     	
@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="box box-primary">
                 <div class="box-header">
                    <i class="fa fa-bell"></i>
-                    <h3 class="box-title"><?= Yii::t('backend', ' Detalles de ') ?> <small> la notificación.</small></h3>
+                    <h3 class="box-title"><?= Yii::t('backend', ' Detalles de la notificación.') ?></h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <dl class="dl-horizontal">
@@ -35,6 +35,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         
                             <dt><?= Yii::t('backend', 'Titulo') ?></dt>
                               <dd><?= $model->TITULO ?></dd>
+                               <dt><?= Yii::t('backend', 'Clave') ?></dt>
+                              <dd><?= $model->CLAVE ?></dd>
                               
                                  
                                 
@@ -46,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                  <?=$model->DATA?></p>
            
  
-				
+				</div>
 				
 					 <div class="box-footer">
 					 
@@ -63,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		
 					 
          &nbsp;			
-  </div>
+  
 				
 </div>
                             
@@ -86,19 +88,31 @@ $this->params['breadcrumbs'][] = $this->title;
                          <dt><?= Yii::t('backend','Tipo de constancia') ?> </dt>
                            <dd><?= $model->iDCONSTANCIA->TIPO_CONSTANCIA?> </dd>
                            
+                           
+                           
+                           <dt><?= Yii::t('backend','Fecha de creación') ?> </dt>
+                           <dd><?= $model->FECHA_CREACION?> </dd>
+                           
+                           
                               <dt><?= Yii::t('backend', 'Trabajador') ?> </dt>                 
-                        <dd><?= $model->iDCONSTANCIA->iDTRABAJADOR->NOMBRE?> </dd>
+                        <dd><?= $model->iDCONSTANCIA->iDTRABAJADOR->NOMBRE. $model->iDCONSTANCIA->iDTRABAJADOR->APP.  $model->iDCONSTANCIA->iDTRABAJADOR->APM?> </dd>	
+                        	
+                            <dt><?= Yii::t('backend', 'RFC') ?> </dt>                 
+                        <dd><?= $model->iDCONSTANCIA->iDTRABAJADOR->RFC?> </dd>	
                         
                            
                            <dt><?= Yii::t('backend','Curso	') ?></dt>
                            <dd><?= $model->iDCONSTANCIA->iDCURSO->NOMBRE ?>  </dd>
+                           
+                             <dt><?= Yii::t('backend','Termino de curso') ?></dt>
+                           <dd><?= $model->iDCONSTANCIA->iDCURSO->FECHA_TERMINO ?>  </dd>
                            
                            <dt><?= Yii::t('backend','Plan	') ?></dt>
                            <dd><?= $model->iDCONSTANCIA->iDCURSO->iDPLAN->ALIAS?>  </dd>
                            	  
                          
                             
-                           
+                </div>           
                                        						
 					 <div class="box-footer">
 <?= Html::a('<i class="fa fa-cogs"></i>	Administrar ', ['constancias/dashboard', 'id' => $model->ID_CONSTANCIA], ['class' => 'btn btn-primary']) ?>
@@ -107,11 +121,11 @@ $this->params['breadcrumbs'][] = $this->title;
 				</div>
 
          &nbsp;			
-  </div>
+
 				
 </div>
                             
-   </dl>
+ 
  </div><!-- /.box-body -->
       
  
