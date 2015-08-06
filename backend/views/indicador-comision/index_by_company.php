@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="indicador-plan-index">
 <h4>Informe de notificaciones de la comisión mixta de capacitación, adiestramiento y productividad</h4>
+   <bt>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
    
@@ -23,23 +24,26 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         
         'columns' => [
-       
+            ['class' => 'yii\grid\SerialColumn'],
 
             'ID_COMISION',
-        		
     		
     		[
     		'attribute'=>'ID_COMISION',
     		'label'=>'ALIAS',
-    		'content'=>function($data){    
-    		
+    		'content'=>function($data){
+    			 
     			return $data->iDCOMISION->ALIAS;
     			 
-    			},    		
+    			},
+    		
     		],
     		
             'DESCRIPCION',
             'DATA',
+        
+    		
+    		
             // 'ID_ALERTA',
             // 'FECHA_CREACION',
             // 'FECHA_INICIO_VIGENCIA',
