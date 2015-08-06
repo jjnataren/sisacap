@@ -81,7 +81,7 @@ use backend\models\Plan;
             				$totalPlans++;
             				
             				$planItems[] =  [
-            				'label'=>'ID '.$plan->ID_PLAN.' '.$plan->ALIAS,
+            				'label'=>substr(  'ID '.$plan->ID_PLAN.' '.$plan->ALIAS, 0, 50 ),
             				'icon'=>'<i class="fa fa-calendar"></i>',
             				'url'=>['/plan/dashboard', 'id'=>$plan->ID_PLAN]
             				//'options'=>['class'=>'treeview'],
@@ -92,7 +92,7 @@ use backend\models\Plan;
             			
             			$planesCreated[] = [
             				
-            			'label'=>''.$comisionKey,
+            			'label'=>substr(''.$comisionKey,0,17),
             			'badge'=>count($planItems),
             			'icon'=>'<i class="glyphicon glyphicon-copyright-mark"></i>',
             			'options'=>['class'=>'treeview'],
@@ -167,7 +167,7 @@ use backend\models\Plan;
 					foreach ($companyByUser->iDEMPRESA->comisionMixtaCaps as $comision){
 						
 						$establishmentsCreated[] =  [
-												'label'=>'ID '.$comision->ID_COMISION_MIXTA.' '.$comision->ALIAS,
+												'label'=> substr( 'ID '.$comision->ID_COMISION_MIXTA.' '.$comision->ALIAS, 0,50),
 												'icon'=>'<i class="glyphicon glyphicon-copyright-mark"></i>',
 												'url'=>['/comision-mixta-cap/dashboard', 'id'=>$comision->ID_COMISION_MIXTA]
 												//'options'=>['class'=>'treeview'],

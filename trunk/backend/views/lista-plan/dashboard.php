@@ -58,7 +58,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 					                <div class="icon">
 					                    <i class="fa fa-file-pdf-o"></i>
 					                </div>
-					                  <a href="#" class="small-box-footer">
+					                  <a href="#anchor_constancias_incluidas" class="small-box-footer">
 					                    Constancias listas para enviar <i class="fa fa-arrow-circle-right"></i>
 					                </a>
 					              
@@ -680,7 +680,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
     </div>
     
     
-    <h4 class="page-header">
+    <h4 class="page-header" id="anchor_constancias_incluidas">
           Constancias incluidas
    		<small>Estas constancias estan incluidas en el reporte</small>
    </h4>     
@@ -743,7 +743,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 								<tr>
 									<td><?= $constancia->ID_CONSTANCIA; ?></td>
 									<td><?= $constancia->iDCURSO->NOMBRE;?></td>
-									<td><?= $constancia->FECHA_EMISION_CERTIFICADO?></td>
+									<td><?=($constancia->FECHA_EMISION_CERTIFICADO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($constancia->FECHA_EMISION_CERTIFICADO)) ;?></td>
 									<td><?= isset(Constancia::getAllMetodosType()[$constancia->METODO_OBTENCION])?Constancia::getAllMetodosType()[$constancia->METODO_OBTENCION] : '<i class"text text-muted">no asignado</i>' ?></td>	
 									<td><?= isset(Constancia::getAllContanciasType()[$constancia->TIPO_CONSTANCIA])?Constancia::getAllContanciasType()[$constancia->TIPO_CONSTANCIA] : '<i class"text text-muted">no asignado</i>'; ?></td>
 																	
