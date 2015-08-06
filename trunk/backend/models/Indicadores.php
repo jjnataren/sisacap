@@ -62,6 +62,8 @@ public static function  setIndicadoresComision($comisionMixta){
 			
 			$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
 			
+			$modelIndicador->CLAVE ="COM0002";
+			
 			$modelIndicador->ID_COMISION  = $comisionMixta->ID_COMISION_MIXTA;
 			
 			$modelIndicador->save();
@@ -98,7 +100,7 @@ public static function  setIndicadoresComision($comisionMixta){
 					el Formato DC-1 INFORME SOBRE LA CONSTITUCIÓN DE LA COMISIÓN MIXTA DE CAPACITACIÓN, ADIESTRAMIENTO Y PRODUCTIVIDAD.   "	;
 				
 			$modelIndicador->DATA = "Es necesario generar el reporte DC-1 y adjuntarlo a la comisión mixta de capacitación.";
-				
+			$modelIndicador->CLAVE="COM0001";	
 			$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
 				
 			$modelIndicador->ID_COMISION  = $comisionMixta->ID_COMISION_MIXTA;
@@ -154,7 +156,7 @@ public static function setIndicadorPlan($plan){
 			
 			$indicadorInformeAnual->DATA = 'La empresas deberán mantener a disposición de la Secretaría, la información sobre las actividades  realizadas durante el último año,  por lo que será necesario realizarla a la brevedad.  ';
 					
-					
+			$indicadorInformeAnual->CLAVE="PLAN0003";		
 					
 			
 			$indicadorInformeAnual->FECHA_CREACION = $inicio->format('Y-m-d');
@@ -194,6 +196,8 @@ public static function setIndicadorPlan($plan){
 			$modelIndicador->FECHA_FIN_VIGENCIA = $fechaInfo->modify('+10 day')->format('Y-m-d');
 		
 			$modelIndicador->TITULO = "Debe constituir su plan ";
+			
+			$modelIndicador->CLAVE="PLAN0002";
 		
 			$modelIndicador->DATA = "Es necesario generar el reporte DC-2 y adjuntarlo al plan.";
 		
@@ -227,6 +231,8 @@ public static function setIndicadorPlan($plan){
 			$modelIndicador->FECHA_FIN_VIGENCIA = $fechaTerminoCurso->modify('+7 day')->format('Y-m-d');
 		
 			$modelIndicador->TITULO = "Curso ID ".$curso->ID_CURSO. ' por terminar';
+			
+			$modelIndicador->CLAVE="CUR0002";
 		
 			$modelIndicador->DATA = "El curso: <br /> ".$curso->NOMBRE.'esta por concluir debe enviar las constancias 15 dias antes a los  trabajadores.';
 		
@@ -257,7 +263,7 @@ public static function setIndicadorPlan($plan){
 				$modelIndicador->TITULO = "El curso " . $curso->NOMBRE . ' Iniciará en 5 días';
 			
 				$modelIndicador->DATA = "El curso ID  ".$curso->ID_CURSO. ': <br /> ' .'Deberá preparar a los trabajadores que recibirán el curso.';
-			
+				$modelIndicador->CLAVE="CUR0002";
 				$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
 			
 				$modelIndicador->ID_PLAN  = $plan->ID_PLAN;
@@ -297,7 +303,7 @@ public static function setIndicadorPlan($plan){
 		$indicadorInicio->DATA = 'Plan ID '. $plan->ID_PLAN.'  '.'<br />  La empresa deberá crear cursos para impartilos durante su plan';
 		
 		$indicadorInicio->FECHA_CREACION = date("Y-m-d H:i:s");
-			
+		$indicadorInicio->CLAVE="PLAN0001";
 		$indicadorInicio->ID_PLAN = $plan->ID_PLAN;
 			
 		$indicadorInicio->ID_USUARIO = $companyModel->ID_USUARIO;
@@ -338,7 +344,7 @@ public static function setIndicadorPlan($plan){
 				';
 			
 		$indicadorFin->FECHA_CREACION = date("Y-m-d H:i:s");
-			
+		$indicadorFin->CLAVE="PLAN0004";	
 		$indicadorFin->ID_PLAN = $plan->ID_PLAN;
 			
 		$indicadorFin->ID_USUARIO = $companyModel->ID_USUARIO;
@@ -407,7 +413,7 @@ public static function setIndicadorConstancia($constancia){
 				
 				$indicador->FECHA_CREACION = date("Y-m-d H:i:s");
 				
-				$indicador->CLAVE = 'CON0001';
+				$indicador->CLAVE = "CON0001";
 				
 				$indicador->FECHA_INICIO_VIGENCIA = $fechaInicio->modify('+3 day')->format('Y-m-d');
 				
