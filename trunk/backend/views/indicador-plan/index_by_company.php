@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="indicador-plan-index">
 <h4>Informe  notificaciones de los planes y programas</h4>
-   
+   <bt>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
    

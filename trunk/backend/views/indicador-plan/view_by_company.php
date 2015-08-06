@@ -21,13 +21,16 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="box box-info">
                 <div class="box-header">
                    <i class="fa fa-bell"></i>
-                    <h3 class="box-title"><?= Yii::t('backend', ' Detalles ') ?> <small>de la notificación.</small></h3>
+                    <h3 class="box-title"><?= Yii::t('backend', ' Detalles de la notificación.') ?> </h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <dl class="dl-horizontal">
                         <dt><?= Yii::t('backend', 'Titulo') ?></dt>
                     
                         <dd><?= $model->TITULO ?></dd>
+                         <dt><?= Yii::t('backend', 'Clave') ?></dt>
+                    
+                        <dd><?= $model->CLAVE ?></dd>
                                 
                                  </dl>
                                  
@@ -100,7 +103,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                  
                                  
                                <dt><?= Yii::t('backend', 'Fecha elaboración informe') ?></dt>
-                                 <dd><?= $model->iDPLAN->FECHA_INFO ?></dd>
+
+                                 <dd><?=($model->iDPLAN->FECHA_INFO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->iDPLAN->FECHA_INFO)) ;?></dd>
+                            
                                        				
                                        				
                                        				
