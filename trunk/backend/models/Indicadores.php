@@ -157,7 +157,7 @@ public static function setIndicadorPlan($plan){
 					
 					
 			
-			$indicadorInformeAnual->FECHA_CREACION = date("Y-m-d H:i:s");
+			$indicadorInformeAnual->FECHA_CREACION = $inicio->format('Y-m-d');
 			
 			$indicadorInformeAnual->ID_PLAN = $plan->ID_PLAN;
 			
@@ -406,6 +406,8 @@ public static function setIndicadorConstancia($constancia){
 						copia de las constancias de competencias o de habilidades laborales expedidas a sus trabajadores durante el último año';
 				
 				$indicador->FECHA_CREACION = date("Y-m-d H:i:s");
+				
+				$indicador->CLAVE = 'CON0001';
 				
 				$indicador->FECHA_INICIO_VIGENCIA = $fechaInicio->modify('+3 day')->format('Y-m-d');
 				
