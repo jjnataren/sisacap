@@ -159,6 +159,32 @@ $planItems[]= 	[
                 </a>
             </div>
        </div>  
+       
+       
+        <div class="col-md-3 col-xs-6 col-sm-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>
+                       <?php 
+							
+							echo count($model->listaPlans);
+                        
+                        // todo: change after #5146 will be implemented ?>
+                    </h3>
+                    <p>
+                        <?= Yii::t('backend', 'Constancias') ?>
+                    </p>
+                </div>
+                <div class="icon">
+                    <i class="glyphicon glyphicon-list-alt"></i>
+                </div>
+                  <a class="small-box-footer" href="#anchor_cons">
+                  Reportre de constancias DC-4 <i class="fa fa-arrow-circle-right"></i>
+                </a>
+              
+            </div>
+        </div>  
         
 </div>
 
@@ -813,7 +839,10 @@ $planItems[]= 	[
   </div>
 </div>
  
-     
+     <h4 class="page-header" id="anchor_cons">
+ 
+ </h4>     
+  
 <div class="row">
 	<div class="col-md-12 col-xs-12 col-sm-12">
 		 <div class="box box-info" id="controls">
