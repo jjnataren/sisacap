@@ -36,15 +36,14 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                                         <?=  count(ComisionMixtaCap::findBySql('select * from tbl_comision_mixta_cap where id_empresa ='.$model->ID_EMPRESA.' AND activo = 1')->all()); ?>
                                     </h3>
                                     <p>
-                                  
-                                    
+                                                                     
                                         Comisiones activas en la organización
                                     </p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
                                 </div>
-                                <a class="small-box-footer" href="#">
+                                <a class="small-box-footer" href="#anchor_comision">
                                   DC-1  More info <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
@@ -65,7 +64,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                                 <div class="icon">
                                     <i class="ion ion-stats-bars"></i>
                                 </div>
-                                <a class="small-box-footer" href="#">
+                                <a class="small-box-footer" href="#anchor_plan">
                                  DC-2   More info <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
@@ -89,7 +88,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                                 <div class="icon">
                                     <i class="ion ion-person-add"></i>
                                 </div>
-                                <a class="small-box-footer" href="#">
+                                <a class="small-box-footer" href="#anchor_constancia1">
                                    DC-3 More info <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
@@ -108,7 +107,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                                 <div class="icon">
                                     <i class="ion ion-pie-graph"></i>
                                 </div>
-                                <a class="small-box-footer" href="#">
+                                <a class="small-box-footer" href="#anchor_constancia">
                                     DC-4 More info <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
@@ -116,8 +115,8 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                     </div><!-- /.row -->
 
                     
-          <h4 class="page-header">
-          Comisiones
+          <h4 class="page-header" id="anchor_comision">
+          
                         <small>Comisiones mixtas de capacitación y adiestramiento</small>
           </h4>          
                     
@@ -251,7 +250,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                         </div>
                     </div>
                     
-  <h4 class="page-header">
+  <h4 class="page-header" id="anchor_plan">
           Planes 
    		<small>Planes y programas de capacitación, adiestramiento y productividad</small>
    </h4>                     
@@ -446,7 +445,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                     
                     </div>
                     
- <h4 class="page-header">
+ <h4 class="page-header" id="anchor_constancia">
           Constancias 
    		<small>Constancias emitidas a los trabajadores</small>
    </h4>     
@@ -540,13 +539,15 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                         
                       </div>  
                         
-                        
+                         <h4 class="page-header" id="anchor_constancia1">
+       
+   </h4> 
                       <div class="row">  
                         
                        <div class="col-md-12 col-xs-12 col-sm-12">
                             <!-- AREA CHART -->
                             <div class="box box-primary">
-                                <div class="box-header">
+                                <div class="box-header" >
                                     <h3 class="box-title">Constancias [emitidas/en proceso] por plan de capacitación</h3>
                                      <div class="box-tools pull-right">
             <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
