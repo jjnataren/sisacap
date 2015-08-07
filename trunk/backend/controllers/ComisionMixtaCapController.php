@@ -74,6 +74,8 @@ class ComisionMixtaCapController extends Controller
 				
 				$model->save();
 				
+				Indicadores::setIndicadoresComision($model); 
+				
 			break;	
 			case 2:	
 			break;
@@ -100,7 +102,8 @@ class ComisionMixtaCapController extends Controller
 	
 				$model->DOCUMENTO_PROBATORIO = NULL;
 				$model->save();
-	
+				
+				Indicadores::setIndicadoresComision($model);
 				break;
 			case 2:
 				break;
