@@ -78,7 +78,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 					                <div class="icon">
 					                    <i class="fa fa-file-pdf-o"></i>
 					                </div>
-					                   <a href="#" class="small-box-footer">
+					                   <a href="#anchor_constancias_por_incluir" class="small-box-footer">
                                			 <strong> Constancias  por incluir en el reporte <i class="fa fa-arrow-circle-right"></i></strong>
                             		    </a>
 					              
@@ -120,7 +120,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 					                <div class="icon">
 					                     <i class="glyphicon glyphicon-list-alt"></i>
 					                </div>
-					                    <a class="small-box-footer" href="#">
+					                    <a class="small-box-footer" href="#anchor_paquetes">
                                    Paquetes listos	<i class="fa fa-arrow-circle-right"></i>
                                 </a>
 					              
@@ -571,7 +571,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 
 
 
- <h4 class="page-header">
+ <h4 class="page-header" id="anchor_constancias_por_incluir">
           Constancias emitidas en los establecimientos
    		<small>Estas constancias pueden ser presentadas en el reporte</small>
    </h4>     
@@ -796,7 +796,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
     </div>    
     
     
-  <h4 class="page-header">
+  <h4 class="page-header" id="anchor_paquetes">
     Información de  paquetes de constancias  disponibles
    		<small>Estos paquetes  agruparan a las constancias de los trabajadores</small>
   </h4>     
