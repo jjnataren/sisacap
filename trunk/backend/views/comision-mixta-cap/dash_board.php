@@ -71,9 +71,9 @@ $planItems[]= 	[
                 <div class="icon">
                     <i class="fa fa-university"></i>
                 </div>
-                <div class="small-box-footer">
-                   Regidos por la comisión
-                </div>
+                <a class="small-box-footer" href="#">
+                   Regidos por la comisión <i class="fa fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>
         
@@ -108,9 +108,9 @@ $planItems[]= 	[
                 <div class="icon">
                     <i class="fa fa-users"></i>
                 </div>
-                <div class="small-box-footer">
-                   Relacionados a la comisión
-                </div>
+               <a class="small-box-footer" href="#anchor_trabajadores">
+                   Relacionados a la comisión <i class="fa fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>  
       
@@ -132,9 +132,9 @@ $planItems[]= 	[
                 <div class="icon">
                     <i class="fa fa-calendar"></i>
                 </div>
-                <div class="small-box-footer">
-                  Creados en esta comisión
-                </div>
+                <a class="small-box-footer" href="#anchor_planes">
+                  Creados en esta comisión <i class="fa fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>    
    </div>
@@ -426,11 +426,15 @@ $planItems[]= 	[
         </div>  
      </div>        
        </div>
+       <h4 class="page-header" id="anchor_trabajadores">
+          Trabajadores en la comisión
+   		
+   </h4>   
       <div class="row"> 
        
             <div class="col-md-6  col-sm-12 col-xs-12">
             <div class="box box-primary">
-                <div class="box-header">
+                <div class="box-header" >
                   <i class="fa fa-users "></i>
                     <h2 class="box-title"><?= Yii::t('backend', 'Trabajadores') ?><small> que están relacionados en esta comisión </small></h2>
                 <div class="box-tools pull-right">
@@ -564,7 +568,10 @@ $planItems[]= 	[
         
   </div>  
         
-
+<h4 class="page-header" id="anchor_planes">
+          
+   		Planes
+   </h4> 
    <div class="row">
         
  		<div class="col-md-12 col-xs-12">
