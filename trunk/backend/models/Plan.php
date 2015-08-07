@@ -85,26 +85,19 @@ class Plan extends \yii\db\ActiveRecord
 			$this->addError('VIGENCIA_FIN', 'La vigencia debe ser hasta dos años');
 	
 		}
-	
+	  
 	}
 	
-	public function  validateVigenciaInic($attrib, $param){
+	public function  validateVigenciaInic($attribute, $params){
 	
-		$v_inicio = new \DateTime($this->$attrib);
+		$v_inicio = new \DateTime($this->$attribute);
 	
 		$v_fin = new \DateTime($this->VIGENCIA_FIN);
 	
-		$days_of_dif = date_diff($v_inicio, $v_fin);
-			
-		$total_days = $days_of_dif->format('%a');
-			
-		$total_days = intval($total_days);
 	
-		$max_days = intval(isset($params['max']) ? $params['max'] : '0');
-	
-		if ($total_days < $max_days){
+		if ($v_inicio > $v_fin){
 			$this->addError($attribute, 'La vigencia inicio debe ser menor a la vigencia fin');
-			$this->addError('VIGENCIA_FIN', 'La vigencia fin debe ser mayor');
+			$this->addError('VIGENCIA_FIN', 'La vigencia fin debe ser mayor a la fecha de vigencia de inicio');
 	
 		}
 	
@@ -129,8 +122,7 @@ class Plan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-        [['TOTAL_HOMBRES','ALIAS','LUGAR_INFORME', 'VIGENCIA_INICIO', 'VIGENCIA_FIN','FECHA_INFO','TOTAL_MUJERES', 'NUMERO_ETAPAS', 'MODALIDAD_CAPACITACION', 'OBJETIVO1', 'OBJETIVO2', 'OBJETIVO3', 'OBJETIVO4', 'OBJETIVO5', 'ID_EMPRESA', 'TIPO_PLAN'], 'required','message' =>'El dato es obligatorio'],
-        
+       		[['TOTAL_HOMBRES','ALIAS','LUGAR_INFORME', 'VIGENCIA_INICIO', 'VIGENCIA_FIN','FECHA_INFO','TOTAL_MUJERES', 'NUMERO_ETAPAS', 'MODALIDAD_CAPACITACION', 'OBJETIVO1', 'OBJETIVO2', 'OBJETIVO3', 'OBJETIVO4', 'OBJETIVO5', 'ID_EMPRESA', 'TIPO_PLAN'], 'required','message' =>'El dato es obligatorio'],
             [['ID_COMISION', 'TOTAL_HOMBRES', 'TOTAL_MUJERES', 'NUMERO_ETAPAS', 'NUMERO_CONSTANCIAS_EXPEDIDAS', 'ESTATUS', 'MODALIDAD_CAPACITACION', 'ACTIVO', 'MODALIDAD', 'OBJETIVO1', 'OBJETIVO2', 'OBJETIVO3', 'OBJETIVO4', 'OBJETIVO5', 'ID_EMPRESA', 'TIPO_PLAN'], 'integer'],
             [['VIGENCIA_INICIO', 'VIGENCIA_FIN', 'FECHA_CONSTITUCION', 'FECHA_AGREGO', 'FECHA_INFO'], 'safe'],
             [['ALIAS'], 'string', 'max' => 50],
@@ -138,10 +130,10 @@ class Plan extends \yii\db\ActiveRecord
             [['NOMBRE_DOC_APROBATORIO'], 'string', 'max' => 300],
             [['LUGAR_INFORME'], 'string', 'max' => 300],
             [['DESCRIPCION_PLAN'], 'string', 'max' => 200],
+        		
             /*own validations*/
-            ['VIGENCIA_INICIO', 'validateVigencia','params'=>['max'=>730]],
-             
-            ['VIGENCIA_INICIO', 'validateVigenciaInic','params'=>['max'=>730]],
+            ['VIGENCIA_INICIO', 'validateVigencia','params'=>['max'=>730]],             
+            ['VIGENCIA_INICIO', 'validateVigenciaInic','params'=>['max'=>0]],
              
         ];
     }
