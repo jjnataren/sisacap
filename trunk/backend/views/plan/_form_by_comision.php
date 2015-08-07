@@ -17,6 +17,8 @@ use yii\grid\GridView;
 
 $id_empresa = $model->iDCOMISION->ID_EMPRESA;
 
+$entidadFederativa = Catalogo::findOne(['ID_ELEMENTO'=>$model->ENTIDAD_FEDERATIVA,'CATEGORIA'=>1,'ACTIVO'=>1]);
+$municipioDelegacion = Catalogo::findOne(['ID_ELEMENTO'=>$model->MUNICIPIO_DELEGACION,'CATEGORIA'=>2,'ACTIVO'=>1]);
 $dataListOcupacion=ArrayHelper::map(PuestoEmpresa::findBySql('SELECT ID_PUESTO,NOMBRE_PUESTO,ID_EMPRESA
 FROM tbl_puesto_empresa where activo=1 AND ID_EMPRESA = '.$id_empresa)->all(), 'ID_PUESTO', 'NOMBRE_PUESTO');
 
@@ -329,9 +331,19 @@ Es requerido evaluar el objetivo del plan. Dando [clic] la flecha. Seleccione de
 										            'ID_EMPRESA',
 										            'NOMBRE_CENTRO_TRABAJO',
 										            'RFC',
-                                                     'MUNICIPIO_DELEGACION',
+                                                    
+														[
+														'attribute'=> 'ENTIDAD_FEDERATIVA',
+														'type'=>'raw',
+														'value'=>isset($entidadFederativa) ? $entidadFederativa->NOMBRE : 'no establecido',
+														],
+														[
+														'attribute'=>'MUNICIPIO_DELEGACION',
+														'type'=>'raw',
+														'value'=>isset($municipioDelegacion) ? $municipioDelegacion->NOMBRE : 'no establecido',
+														],
                                                        
-										            'ENTIDAD_FEDERATIVA',
+										           
 										           
 										            // 'TELEFONO',
 										            // 'CORREO_ELECTRONICO',
