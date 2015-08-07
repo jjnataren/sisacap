@@ -393,19 +393,19 @@ use backend\models\Plan;
                             <p>
                                 <?php Yii::$app->user->identity->username ?>
                                 <small>
-                                    <?= Yii::t('backend', 'Member since {0, date, short}', Yii::$app->user->identity->created_at) ?>
+                                    <?= Yii::t('backend', 'Miembro desde {0, date, short}', Yii::$app->user->identity->created_at) ?>
                                 </small>
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <?= Html::a(Yii::t('backend', 'Profile'), ['/sign-in/profile'], ['class'=>'btn btn-default btn-flat']) ?>
+                                <?= Html::a(Yii::t('backend', 'Perfil'), ['/sign-in/profile'], ['class'=>'btn btn-default btn-flat']) ?>
                             </div>
                             <div class="pull-left">
-                                <?= Html::a(Yii::t('backend', 'Account'), ['/sign-in/account'], ['class'=>'btn btn-default btn-flat']) ?>
+                                <?= Html::a(Yii::t('backend', 'Mi cuenta'), ['/sign-in/account'], ['class'=>'btn btn-default btn-flat']) ?>
                             </div>
                             <div class="pull-right">
-                                <?= Html::a(Yii::t('backend', 'Logout'), ['/sign-in/logout'], ['class'=>'btn btn-default btn-flat']) ?>
+                                <?= Html::a(Yii::t('backend', 'Salir'), ['/sign-in/logout'], ['class'=>'btn btn-default btn-flat']) ?>
                             </div>
                         </li>
                     </ul>
