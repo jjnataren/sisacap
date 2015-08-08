@@ -184,7 +184,7 @@ public static function setIndicadorPlan($plan){
 		/**
 		 * Regla para validar que se debe constituir EL PLAN 
 		*/
-		if ($plan->getStatus() < Plan::STATUS_CONCLUIDO && $fechaInfo !== false){
+		if ($plan->getCurrentStatus() < Plan::STATUS_VALIDADO && $fechaInfo !== false){
 				
 				
 			$modelIndicador = new IndicadorPlan();

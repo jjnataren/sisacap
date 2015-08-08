@@ -254,7 +254,27 @@ class Plan extends \yii\db\ActiveRecord
         return $this->hasMany(TrabajadorCurso::className(), ['ID_PLAN' => 'ID_PLAN']);
     }
     
+   
+    /**
+     * returns  plan's status of particular model
+     */
+    public function  getCurrentStatus(){
     
+    
+    	if(! $this->isVigente())
+    		return Plan::STATUS_CONCLUIDO;
+    
+    
+    	if ($this->DOCUMENTO_APROBATORIO === null) return Plan::STATUS_CREADO;
+    	else return Plan::STATUS_VALIDADO;
+    
+    }
+    
+    
+    
+    /**
+     * returns  plan's status of particular model
+     */
     public function  getStatus(){
     
     	 
