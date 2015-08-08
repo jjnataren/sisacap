@@ -171,10 +171,10 @@ class PlanController extends Controller
     			$file = UploadedFile::getInstanceByName('DOCUMENTO_APROBATORIO');
     			$fileReturn = Yii::$app->fileStorage->save($file);
     			
-    			Yii::$app->session->setFlash('alert', [
-    			'options'=>['class'=>'alert-warning'],
-    			'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>La constitución del plan conforme al formato DC-2 ,ha sido autentifido como adjunto. <a href=\'#\' class=\'alert-link\'></a>',
-    			]);
+    		/*	Yii::$app->session->setFlash('alert', [
+    			'options'=>['class'=>'alert-success'],
+    			'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'> </a>',
+    			]);*/
     
     			$model->DOCUMENTO_APROBATORIO = $fileReturn->url;
     			$model->NOMBRE_DOC_APROBATORIO = $file->name;

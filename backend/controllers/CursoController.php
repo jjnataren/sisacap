@@ -145,11 +145,11 @@ class CursoController extends Controller
     	
     	if ($planModel === null || !($planModel->iDCOMISION->ID_EMPRESA===$companyUsuarioModel->ID_EMPRESA)) throw new NotFoundHttpException('The requested page does not exist.');
     	
-    	if($planModel->isVigente() < Plan::STATUS_CONCLUIDO){
+    	if($planModel->getCurrentStatus() >= Plan::STATUS_CONCLUIDO){
     	
     		Yii::$app->session->setFlash('alert', [
     		'options'=>['class'=>'alert-warning'],
-    		'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>El plan no esta vigente. <a href=\'#\' class=\'alert-link\'></a>',
+    		'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>El plan ha finalizado, no es posible realizar esta acción. <a href=\'#\' class=\'alert-link\'></a>',
     		]);
     		return $this->redirect(['plan/dashboard', 'id' => $id_plan]);
     	}
