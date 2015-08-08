@@ -34,8 +34,6 @@ $this->params['breadcrumbs'][] = ['label' => 'Comisión ID '.$model->ID_COMISION
 $this->params['breadcrumbs'][] = ['label' => 'Plan ID '.$model->ID_PLAN, 'url'=>['', 'id'=>$model->ID_PLAN]];
 
 
-
-
 /**
  * Items for menu tabs of PLANS
  * 
@@ -93,9 +91,9 @@ $planItems[]= 	[
                 <div class="icon">
                     <i class="fa fa-laptop"></i>
                 </div>
-                  <a class="small-box-footer" href="#anchor_curso">
-                   Agregados a este plan <i class="fa fa-arrow-circle-right"></i>
-                </a>
+                  <div class="small-box-footer">
+                   Agregados a este plan
+                </div>
               
             </div>
         </div>         
@@ -118,9 +116,9 @@ $planItems[]= 	[
                 <div class="icon">
                       <i class="fa fa-university"></i>
                 </div>
-                 <a class="small-box-footer" href="#anchor_estables">
-                  Relacionados a este plan <i class="fa fa-arrow-circle-right"></i>
-                </a>
+                 <div class="small-box-footer">
+                  Relacionados a este plan
+                </div>
             </div>
         </div>
  
@@ -154,14 +152,13 @@ $planItems[]= 	[
                 <div class="icon">
                     <i class="fa fa-users"></i>
                 </div>
-                  <a class="small-box-footer" href="#anchor_trabajador">
-                   Relacionados a este plan <i class="fa fa-arrow-circle-right"></i>
-                </a>
+                  <div class="small-box-footer">
+                   Relacionados a este plan
+                </div>
             </div>
        </div>  
-       
-       
-        <div class="col-md-3 col-xs-6 col-sm-6">
+        
+                <div class="col-md-3 col-xs-6 col-sm-6">
             <!-- small box -->
             <div class="small-box bg-aqua">
                 <div class="inner">
@@ -216,7 +213,7 @@ $planItems[]= 	[
                          <dt><?= Yii::t('backend', 'Etapas del plan') ?></dt>
                         <dd><?= $model->NUMERO_ETAPAS ?></dd>
                         
-                                          <dt><?= Yii::t('backend', 'Vigencia de inicio') ?></dt>
+                         <dt><?= Yii::t('backend', 'Vigencia de inicio') ?></dt>
                            <dd><?=($model->VIGENCIA_INICIO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->VIGENCIA_INICIO)) ;?></dd>
                         
                          <dt><?= Yii::t('backend', 'Vigencia termino') ?></dt>
@@ -281,19 +278,20 @@ $planItems[]= 	[
 		         <th>RFC</th>		         
 		         <th>NSS</th>
 		         <th>Domicilio</th>
+		         <th></th>
 	         </tr>
          </thead>
          
          <tbody>
          	
-         	<?php $i = 0; foreach ($model->iDESTABLECIMIENTOs as $establecimiento){?>
+         	<?php $i = 0; foreach ($model->planEstablecimientos as $establecimiento){?>
          	<tr>
          		<td><?= ++$i?></td>
-         		<td><?= $establecimiento->iDESTABLECIMIENTO->NOMBRE_COMERCIAL?></td>
-         		<td><?= $establecimiento->iDESTABLECIMIENTO->RFC ?></td>
-         		<td><?= $establecimiento->iDESTABLECIMIENTO->NSS ?></td>
-         		<td><?= $establecimiento->iDESTABLECIMIENTO->CALLE .$establecimiento->iDESTABLECIMIENTO->NUMERO_INTERIOR .$establecimiento->iDESTABLECIMIENTO->NUMERO_EXTERIOR  ?></td>
-         	    <td><?= Html::a('<i class="fa  fa-trash-o"></i>', ['deleteestablecimiento','id'=> $model->ID_PLAN,'id_establecimiento'=>$establecimiento->iDESTABLECIMIENTO->ID_EMPRESA],
+         		<td><?= $establecimiento->NOMBRE_COMERCIAL?></td>
+         		<td><?= $establecimiento->RFC ?></td>
+         		<td><?= $establecimiento->NSS ?></td>
+         		<td><?= $establecimiento->CALLE .$establecimiento->NUMERO_INTERIOR .$establecimiento->NUMERO_EXTERIOR  ?></td>
+         	    <td><?= Html::a('<i class="fa  fa-trash-o"></i>', ['deleteestablecimiento','id'=> $model->ID_PLAN,'id_establecimiento'=>$establecimiento->ID_EMPRESA],
          	    		                                
          	    		                                                     
          				['class' => 'btn btn-danger',  'data' => ['confirm' => '¿Realmente quiere borrar este puesto?',
@@ -345,22 +343,21 @@ $planItems[]= 	[
                         <dt><?= Yii::t('backend', 'Alias') ?></dt>
                         <dd><?= $model->iDCOMISION->ALIAS ?></dd>
                         
-                   
+                   		<dt><?= Yii::t('backend', 'Descripción') ?></dt>
+                        <dd><?= $model->iDCOMISION->DESCRIPCION ?></dd>
+                        
 
                         <dt><?= Yii::t('backend', 'Fecha elaboración') ?></dt>
-                        <dd><?= $model->iDCOMISION->FECHA_ELABORACION ?></dd>
+                        <dd><?=($model->iDCOMISION->FECHA_ELABORACION  === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->iDCOMISION->FECHA_ELABORACION)) ;?></dd>
+                   
                         
-                         <dt><?= Yii::t('backend', 'Fecha constitucion') ?></dt>
-                        <dd><?= $model->iDCOMISION->FECHA_CONSTITUCION ?></dd>
+                        
+                         <dt><?= Yii::t('backend', 'Fecha constitución') ?></dt>
+                         <dd><?=($model->iDCOMISION->FECHA_CONSTITUCION  === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->iDCOMISION->FECHA_CONSTITUCION)) ;?></dd>
+                  
                         
                          <dt><?= Yii::t('backend', 'Numero integrantes') ?></dt>
                         <dd><?= $model->iDCOMISION->NUMERO_INTEGRANTES ?></dd>
-                        
-                         <dt><?= Yii::t('backend', 'Descripción') ?></dt>
-                        <dd><?= $model->iDCOMISION->DESCRIPCION ?></dd>
-                        
-                         <dt><?= Yii::t('backend', 'Creada desde') ?></dt>
-                        <dd><?= $model->iDCOMISION->FECHA_AGREGO ?></dd>
                         
                         
                        <dt><i><?= Yii::t('backend', 'Estatus') ?></i></dt>
@@ -384,7 +381,7 @@ $planItems[]= 	[
             <div class="box box-primary">
                 <div class="box-header">
                    <i class="fa fa-check-square"></i>
-                    <h2 class="box-title"><?= Yii::t('backend', 'Documento probatorio') ?><br /><small>foramto DC2 en archivo (.pdf) firmado por el representante legal de la empresa </small></h2>
+                    <h2 class="box-title"><?= Yii::t('backend', 'Documento probatorio') ?><br /><small>foramto DC2 en archivo <strong>.pdf</strong> firmado por el representante legal de la empresa </small></h2>
                
                <div class="box-tools pull-right">
             <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
@@ -454,7 +451,7 @@ $planItems[]= 	[
        
       </div>
 	
-	<h4 class="page-header" id="anchor_trabajador">
+	<h4 class="page-header">
      Información de los trabajadores que serán considerados en este plan
    		<small>Puestos de trabajo que considera este plan y detalle de los trabajadores</small>
    </h4>     
@@ -490,7 +487,7 @@ $planItems[]= 	[
          
          <tbody>
          	
-         	<?php $i = 0; foreach ($model->iDPUESTOs as $puestoEmpresa){?>
+         	<?php $i = 0; foreach ($model->iDPUESTOs as $puestoEmpresa){ $i++;?>
          	<tr>
          		<td><?= $puestoEmpresa->CLAVE_PUESTO;?></td>
          		<td><?= $puestoEmpresa->NOMBRE_PUESTO ?></td>
@@ -515,6 +512,10 @@ $planItems[]= 	[
             <a href="#" class="btn btn-default" data-toggle="modal" data-target="#mod_puestos" id="userButton">
             <i class="fa fa-plus"></i>&nbsp;<?= Yii::t('backend', 'Agregar')?>
             </a>
+            
+            <?php if(!$i):?>
+            	&nbsp;&nbsp;<span class='text text-warning'><i class='fa fa-info-circle'></i> Ningún puesto de trabajo seleccionado</span>
+            <?php endif;?>
             <?php }else echo "<h4 class='text text-success'><i class='fa fa-info-circle'></i> Todos los puestos de trabajo seran considerados en este plan</h4>"?>
                   </div>
             </div>
@@ -570,12 +571,12 @@ $planItems[]= 	[
 			         </tr>
 		         </thead>
 		          <tbody>
-		         	<?php $u = 0; foreach ($model->iDESTABLECIMIENTOs as $establecimiento){?>
+		         	<?php $u = 0; foreach ($model->planEstablecimientos as $establecimiento){?>
 		         	<tr>
-		         		<td><?= $establecimiento->iDESTABLECIMIENTO->ID_EMPRESA;?></td>
-		         		<td><?= $establecimiento->iDESTABLECIMIENTO->NOMBRE_COMERCIAL;?></td>
+		         		<td><?= $establecimiento->ID_EMPRESA;?></td>
+		         		<td><?= $establecimiento->NOMBRE_COMERCIAL;?></td>
 		         		<td><?php 
-		         			echo    count ($establecimiento->iDESTABLECIMIENTO->trabajadors);
+		         			echo    count ($establecimiento->trabajadors);
 			         		?>
 		         		</td>
 		            	</tr>
@@ -650,13 +651,13 @@ $planItems[]= 	[
 			        </table>
 			         <br />
 			         
-			   <?php  foreach ($model->iDESTABLECIMIENTOs as $establecimiento):?>
+			   <?php  foreach ($model->planEstablecimientos as $establecimiento):?>
 			   
 			    <table class="table table-hover table-bordered" >
 		            <thead> 
 		            <tr> 
-		            	<th colspan="6"  style="text-align: left;" ><i class="fa fa-university"></i>Establecimiento ID <?=$establecimiento->iDESTABLECIMIENTO->ID_EMPRESA ?> - 
-		            	<?= $establecimiento->iDESTABLECIMIENTO->NOMBRE_COMERCIAL?></th>
+		            	<th colspan="6"  style="text-align: left;" ><i class="fa fa-university"></i>Establecimiento ID <?=$establecimiento->ID_EMPRESA ?> - 
+		            	<?= $establecimiento->NOMBRE_COMERCIAL?></th>
 		            </tr>
 			         <tr>
 			          <th>Id</th>  
@@ -673,12 +674,12 @@ $planItems[]= 	[
 
 			          if (!$model->TIPO_PLAN){
 			          	$trabajadors = Trabajador::findBySql('select * from tbl_trabajador where puesto IN 
-																(select ID_PUESTO from tbl_plan_puesto where id_plan = :id_plan and activo = 1) AND ID_EMPRESA = :id_empresa',[':id_empresa'=>$establecimiento->iDESTABLECIMIENTO->ID_EMPRESA, ':id_plan'=>$model->ID_PLAN])->all();
+																(select ID_PUESTO from tbl_plan_puesto where id_plan = :id_plan and activo = 1) AND ID_EMPRESA = :id_empresa',[':id_empresa'=>$establecimiento->ID_EMPRESA, ':id_plan'=>$model->ID_PLAN])->all();
 			          }else{
 			          
 			          		$trabajadors = Trabajador::findBySql('select * from tbl_trabajador where puesto IN 
 																(select ID_PUESTO from tbl_puesto_empresa WHERE ID_EMPRESA = :id_empresa_padre) 
-															  AND ID_EMPRESA = :id_empresa',[':id_empresa'=>$establecimiento->iDESTABLECIMIENTO->ID_EMPRESA, ':id_empresa_padre'=>$model->iDCOMISION->ID_EMPRESA])->all();
+															  AND ID_EMPRESA = :id_empresa',[':id_empresa'=>$establecimiento->ID_EMPRESA, ':id_empresa_padre'=>$model->iDCOMISION->ID_EMPRESA])->all();
 			         	} 
 			          ?>
 			          <?php foreach ($trabajadors as $myTrabajador): ?>
@@ -712,7 +713,7 @@ $planItems[]= 	[
        
 
   
- <h4 class="page-header" id="anchor_curso">
+ <h4 class="page-header">
      Información de los cursos que se brindaran a  los trabajadores
    		<small>Capacitación que podran recibir los trabajadores dentro de la empresa</small>
  </h4>     
@@ -737,7 +738,7 @@ $planItems[]= 	[
 			    	
 			    	 <h3 class="box-title">   
 							
-							<?= Yii::t('backend', 'Cursos') ?><small> que se  impartirán  en  este plan</small> 
+							<?= Yii::t('backend', 'Cursos') ?><small> que seran  impartidos  en  este plan</small> 
 							
 							
 							
@@ -773,9 +774,11 @@ $planItems[]= 	[
 					
 									 <td><?= $curso->NOMBRE ?></td>
 										               
-			                         <td><?= $curso->FECHA_INICIO ?></td>
+			                            <td><?=($curso->FECHA_INICIO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($curso->FECHA_INICIO)) ;?></td>
+			                    
 			                          
-								     <td><?= $curso->FECHA_TERMINO ?></td>
+								     <td><?=($curso->FECHA_TERMINO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($curso->FECHA_TERMINO)) ;?></td>
+			      
 										
 									 <td><?php
 										
@@ -838,11 +841,16 @@ $planItems[]= 	[
 			</div>
   </div>
 </div>
- 
-     <h4 class="page-header" id="anchor_cons">
- 
+
+
+  
+ <h4 class="page-header">
+     	Resumen de los reportes DC4 que seran  emitidos a la STPS
+   		<small>Reporte de constancias emitidas a  los trabajadores</small>
  </h4>     
   
+        
+     
 <div class="row">
 	<div class="col-md-12 col-xs-12 col-sm-12">
 		 <div class="box box-info" id="controls">
@@ -886,7 +894,7 @@ $planItems[]= 	[
 							<td><?=$lista->ID_LISTA;        ?></td>
 								<td><?=$lista->ALIAS;               ?></td>
 								  <td><?=($lista->FECHA_ELABORACION === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($lista->FECHA_ELABORACION)) ;?></td>
-								<td><?=$lista->ESTATUS;?></td>
+								<td><span class="label label-warning"><?= $lista->getStatus(); ?></span></td>
 								<td><?=$lista->CONSTANCIAS_HOMBRES; ?></td>
 								<td><?=$lista->CONSTANCIAS_MUJERES; ?></td>
 								<td><?=$lista->CONSTANCIAS_HOMBRES + $lista->CONSTANCIAS_MUJERES; ?></td>
