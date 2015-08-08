@@ -38,9 +38,10 @@ use yii\bootstrap\NavBar;
             	['label' => Yii::t('frontend', 'Constancias'), 'url' => ['/constancias/index']],
                 ['label' => Yii::t('frontend', 'Articulos'), 'url' => ['/article/index']],
                 ['label' => Yii::t('frontend', 'Contactos'), 'url' => ['/site/contact']],
+            	['label' => Yii::t('frontend', 'Acceso'), 'url' => ['/backend']],
               //  ['label' => Yii::t('frontend', 'Signup'), 'url' => ['/user/sign-in/signup'], 'visible'=>Yii::$app->user->isGuest],
-              //  ['label' => Yii::t('frontend', 'Login'), 'url' => ['/user/sign-in/login'], 'visible'=>Yii::$app->user->isGuest],
-                [
+             //   ['label' => Yii::t('frontend', 'Login'), 'url' => ['/user/sign-in/login'], 'visible'=>Yii::$app->user->isGuest],
+            /*    [
                     'label' => Yii::$app->user->isGuest ? '' : Yii::$app->user->identity->getPublicIdentity(),
                     'visible'=>!Yii::$app->user->isGuest,
                     'items'=>[
@@ -63,7 +64,7 @@ use yii\bootstrap\NavBar;
                             'linkOptions' => ['data-method' => 'post']
                         ]
                     ]
-                ],
+                ],*/
              /* [
                     'label'=>Yii::t('frontend', 'Language'),
                     'items'=>array_map(function($code){
