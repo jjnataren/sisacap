@@ -18,6 +18,13 @@ use backend\models\Indicadores;
  */
 class CursoController extends Controller
 {
+	
+	
+	public function beforeAction($action) {
+		$this->enableCsrfValidation = false;
+		return parent::beforeAction($action);
+	}
+	
     public function behaviors()
     {
         return [

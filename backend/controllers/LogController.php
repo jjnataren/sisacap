@@ -15,6 +15,12 @@ use yii\filters\VerbFilter;
  */
 class LogController extends Controller
 {
+	
+	public function beforeAction($action) {
+		$this->enableCsrfValidation = false;
+		return parent::beforeAction($action);
+	}
+	
     public function behaviors()
     {
         return [
