@@ -9,7 +9,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use backend\models\EmpresaUsuario;
-use yii\data\ActiveDataProvider;
 
 /**
  * IndicadorPlanController implements the CRUD actions for IndicadorPlan model.
@@ -53,17 +52,7 @@ class IndicadorPlanController extends Controller
     	
     	$companyModel = EmpresaUsuario::getMyCompany();
     	$searchModel = new IndicadorPlanSearch();
-    	
-    	 
-    	$query = IndicadorPlan::findBySql('select * from tbl_indicador_plan where id_plan in 
-                            		(select id_plan from tbl_plan where id_comision in 
-                             		(select id_comision_mixta from tbl_comision_mixta_cap where id_empresa = '.$companyModel->ID_EMPRESA.' and ACTIVO=1) AND ACTIVO=1) '
-                             		.' AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia
-    											 ');
-    	 
-    	$dataProvider = new ActiveDataProvider([
-    			'query' => $query,
-    	]);
+    	$dataProvider = $searchModel->searchByCompany(Yii::$app->request->queryParams, $companyModel->ID_EMPRESA);
     
     	return $this->render('index_by_company', [
     			'searchModel' => $searchModel,
