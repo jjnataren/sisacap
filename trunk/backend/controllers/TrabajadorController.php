@@ -731,8 +731,6 @@ class TrabajadorController extends Controller
    
     	$trabajadorModel->ID_EMPRESA = $id;
     	
-    	
-    	
     	$trabajadorModel->ACTIVO = 1;
     	
     	$trabajadorModel->FECHA_AGREGO = date("Y-m-d H:i:s");
@@ -746,6 +744,12 @@ class TrabajadorController extends Controller
     	if( $trabajadorModel->save()) {
     		
     		    		
+    		Yii::$app->session->setFlash('alert', [
+    				'options'=>['class'=>'alert-success'],
+    				'body'=> '<i class="fa fa-check fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Se ha creado el trabajador correctamente</a>',
+    		]);
+    		 
+    		
     		return $this->redirect(['viewbystablishment', 'id' => $trabajadorModel->ID_TRABAJADOR]);
     		
     	}else{
@@ -753,17 +757,14 @@ class TrabajadorController extends Controller
     		
     		Yii::$app->session->setFlash('alert', [
     				'options'=>['class'=>'alert-danger'],
-    				'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha ocurrido un error, por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
+    				'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha ocurrido un error, por favor revise los campos </a>',
     		]);
     		
     		
     	}
     	
     	
-    	
     	} 
-    	
-    		
     		return $this->render('create_by_company', [
     				'model' => $trabajadorModel,
     				]);
