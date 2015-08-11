@@ -16,7 +16,11 @@ use backend\models\EmpresaUsuario;
 class PuestoEmpresaController extends Controller
 {
 	
-
+	public function beforeAction($action) {
+		$this->enableCsrfValidation = false;
+		return parent::beforeAction($action);
+	}
+	
 	
     public function behaviors()
     {
