@@ -26,7 +26,6 @@ use backend\models\Plan;
             $companyByUser = new EmpresaUsuario();
             
             $totalPlans = 0;
-            $totalCourses = 0;
           
             $planesCreated[] = [
             	
@@ -208,11 +207,7 @@ use backend\models\Plan;
 								//'items'=>$empresaItemsMenu
 								];
 								
-								$totalCourses++;
-								
 							}
-							
-							if (count($courses) > 1)
 							
 							$activePlans[]  = [
 								
@@ -710,7 +705,7 @@ use backend\models\Plan;
             		'icon'=>'<span class="fa-stack fa-lg">
  							 <i class="fa fa-square-o fa-stack-2x"></i>
   							 <i class="fa fa-laptop fa-stack-1x"></i>
-							 </span>',			 'badge'=>$totalCourses,
+							 </span>',
             									 'options'=>['class'=>'treeview'],
             									 'items'=> $activePlans
             		],
@@ -721,9 +716,13 @@ use backend\models\Plan;
                 		'options'=>['class'=>'treeview'],
                 		'visible'=>Yii::$app->user->can('administrator'),
                 		'items'=>[
-                				['label'=>Yii::t('backend', 'Entidades federativas'), 'url'=>['/catalogo/entidades-federativas'], 'icon'=>'<i class="fa fa-file-o"></i>'],
-                				['label'=>Yii::t('backend', 'Municipios'), 'url'=>['/catalogo/municipios'], 'icon'=>'<i class="fa fa-table"></i>'],
-                		
+                				['label'=>Yii::t('backend', 'Entidades federativas'), 'url'=>['/catalogo/entidades-federativas'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+                				['label'=>Yii::t('backend', 'Municipios'), 'url'=>['/catalogo/municipios'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+                		        ['label'=>Yii::t('backend', 'Ocupaciones'), 'url'=>['/catalogo/ocupaciones'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+								['label'=>Yii::t('backend', 'Giros'), 'url'=>['/catalogo/giro'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+								['label'=>Yii::t('backend', 'NTCL'), 'url'=>['/catalogo/ntcl'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+								['label'=>Yii::t('backend', 'Area tematica'), 'url'=>['/catalogo/area'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+
                 		]
                 		],
                 		
