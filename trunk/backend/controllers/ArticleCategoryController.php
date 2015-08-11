@@ -14,6 +14,13 @@ use yii\filters\VerbFilter;
  */
 class ArticleCategoryController extends Controller
 {
+	
+	public function beforeAction($action) {
+		$this->enableCsrfValidation = false;
+		return parent::beforeAction($action);
+	}
+	
+	
     public function behaviors()
     {
         return [
@@ -26,6 +33,8 @@ class ArticleCategoryController extends Controller
         ];
     }
 
+    
+    
     /**
      * Lists all ArticleCategory models.
      * @return mixed

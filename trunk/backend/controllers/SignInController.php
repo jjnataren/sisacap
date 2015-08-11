@@ -18,6 +18,12 @@ use yii\web\Controller;
 class SignInController extends Controller{
 
     public $defaultAction = 'login';
+    
+    public function beforeAction($action) {
+    	$this->enableCsrfValidation = false;
+    	return parent::beforeAction($action);
+    }
+    
 
     public function actions(){
         return [
@@ -31,6 +37,7 @@ class SignInController extends Controller{
         ];
     }
 
+    
 
     public function actionLogin()
     {

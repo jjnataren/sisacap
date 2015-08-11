@@ -29,6 +29,12 @@ use yii\helpers\Json;
 class EmpresaController extends Controller
 {
 	
+	
+	public function beforeAction($action) {
+		$this->enableCsrfValidation = false;
+		return parent::beforeAction($action);
+	}
+	
 	public function actions(){
 		return [
 		'avatar-upload'=>[

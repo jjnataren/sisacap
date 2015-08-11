@@ -19,6 +19,13 @@ use yii\web\HttpException;
  */
 class CacheController extends Controller
 {
+	
+	public function beforeAction($action) {
+		$this->enableCsrfValidation = false;
+		return parent::beforeAction($action);
+	}
+	
+	
     /**
      * @return string
      */

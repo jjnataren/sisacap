@@ -15,6 +15,13 @@ use backend\models\EmpresaUsuario;
  */
 class RepresentanteLegalController extends Controller
 {
+	
+	
+	public function beforeAction($action) {
+		$this->enableCsrfValidation = false;
+		return parent::beforeAction($action);
+	}
+	
     public function behaviors()
     {
         return [
