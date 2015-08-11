@@ -91,10 +91,10 @@ $planItems[]= 	[
                 <div class="icon">
                     <i class="fa fa-laptop"></i>
                 </div>
-                  <div class="small-box-footer">
-                   Agregados a este plan
-                </div>
-              
+                 <a href="#anchor_curso" class="small-box-footer">
+                               			 <strong>   Agregados a este plan <i class="fa fa-arrow-circle-right"></i></strong>
+                            		    </a>
+                  
             </div>
         </div>         
         
@@ -116,9 +116,10 @@ $planItems[]= 	[
                 <div class="icon">
                       <i class="fa fa-university"></i>
                 </div>
-                 <div class="small-box-footer">
-                  Relacionados a este plan
-                </div>
+                     <a href="#anchor_establecimientos" class="small-box-footer">
+                               			 <strong>    Relacionados a este plan <i class="fa fa-arrow-circle-right"></i></strong>
+                            		    </a>
+                 
             </div>
         </div>
  
@@ -152,9 +153,10 @@ $planItems[]= 	[
                 <div class="icon">
                     <i class="fa fa-users"></i>
                 </div>
-                  <div class="small-box-footer">
-                   Relacionados a este plan
-                </div>
+                 <a href="#anchor_trabajadores" class="small-box-footer">
+                               			 <strong>    Relacionados a este plan <i class="fa fa-arrow-circle-right"></i></strong>
+                            		    </a>
+                  
             </div>
        </div>  
         
@@ -185,7 +187,9 @@ $planItems[]= 	[
         
 </div>
 
-
+  <h4 class="page-header" id="anchor_establecimientos">
+        </h4>
+        
 <div class="row">
          <div class="col-md-6 col-xs-12 col-sm-12">
             <div class="box box-primary">
@@ -252,8 +256,7 @@ $planItems[]= 	[
             </div>
         </div>      
         
-        
-        
+      
         <div class="col-md-6 col-sm-12 col-xs-12">
             <div class="box box-primary">
                 <div class="box-header">
@@ -451,7 +454,7 @@ $planItems[]= 	[
        
       </div>
 	
-	<h4 class="page-header">
+	<h4 class="page-header" id="anchor_trabajadores">
      Información de los trabajadores que serán considerados en este plan
    		<small>Puestos de trabajo que considera este plan y detalle de los trabajadores</small>
    </h4>     
@@ -713,7 +716,7 @@ $planItems[]= 	[
        
 
   
- <h4 class="page-header">
+ <h4 class="page-header" id="anchor_curso">
      Información de los cursos que se brindaran a  los trabajadores
    		<small>Capacitación que podran recibir los trabajadores dentro de la empresa</small>
  </h4>     
@@ -844,7 +847,7 @@ $planItems[]= 	[
 
 
   
- <h4 class="page-header">
+ <h4 class="page-header" id="anchor_cons">
      	Resumen de los reportes DC4 que seran  emitidos a la STPS
    		<small>Reporte de constancias emitidas a  los trabajadores</small>
  </h4>     
