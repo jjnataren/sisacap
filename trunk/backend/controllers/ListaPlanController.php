@@ -27,6 +27,12 @@ class ListaPlanController extends Controller
 {
 	
 	
+	public function beforeAction($action) {
+		$this->enableCsrfValidation = false;
+		return parent::beforeAction($action);
+	}
+	
+	
 	protected  $no_constancias = 20; 
 	
   /*  public function behaviors()
