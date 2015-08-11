@@ -756,25 +756,18 @@ class TrabajadorController extends Controller
     				'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha ocurrido un error, por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
     		]);
     		
-    		return $this->render('create_by_company', [
-    				'model' => $trabajadorModel,
-    		]);
+    		
     	}
     	
     	
     	
-    	} else {
-    		
-
-    		Yii::$app->session->setFlash('alert', [
-    				'options'=>['class'=>'alert-danger'],
-    				'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha ocurrido un error, por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
-    		]);
+    	} 
+    	
     		
     		return $this->render('create_by_company', [
     				'model' => $trabajadorModel,
     				]);
-    	}
+    	
     }
     
     
