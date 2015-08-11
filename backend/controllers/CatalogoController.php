@@ -26,6 +26,63 @@ class CatalogoController extends Controller
         ];
     }
     
+    //aqui empieza catalogo area tematica
+
+    public function actionArea()
+    {
+    	$searchModel = new CatalogoSearch();
+    
+    	$dataProvider = $searchModel->searchByCategoria(Yii::$app->request->queryParams,Catalogo::CATEGORIA_AREA_TEMATI);
+    
+    	return $this->render('area/index.php', [
+    			'searchModel' => $searchModel,
+    			'dataProvider' => $dataProvider,
+    			]);
+    }
+    
+    public function actionAreaActualizar($id)
+    {
+    	$model = $this->findModelByCategory($id,Catalogo::CATEGORIA_AREA_TEMATI);
+    
+    	if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    		return $this->redirect(['area-ver','id'=>$id]);
+    	} else {
+    		return $this->render('area/update.php', [
+    				'model' => $model,
+    				]);
+    	}
+    }
+    
+    public function actionAreaVer($id)
+    {
+    	return $this->render('area/view.php', [
+    			'model' => $this->findModelByCategory($id,Catalogo::CATEGORIA_AREA_TEMATI),
+    			]);
+    }
+    
+    public function actionAreaBorrar($id)
+    {
+    	$this->findModelByCategory($id,Catalogo::CATEGORIA_AREA_TEMATI)->delete();
+    
+    	return $this->redirect(['area']);
+    
+    }
+    
+    public function actionAreaCrear()
+    {
+    	$model = new Catalogo();
+    	$model->ACTIVO = 1;
+    	$model->CATEGORIA = Catalogo::CATEGORIA_AREA_TEMATI;
+    
+    
+    	if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    		return $this->redirect(['area-ver', 'id' => $model->ID_ELEMENTO]);
+    	} else {
+    		return $this->render('area/create.php', [
+    				'model' => $model,
+    				]);
+    	}
+    }
     
     
     //aqui empieza  ocupaciones 
@@ -174,7 +231,7 @@ class CatalogoController extends Controller
     
     public function actionNtclVer($id)
     {
-    	return $this->render('ocupaciones/view.php', [
+    	return $this->render('ntcl/view.php', [
     			'model' => $this->findModelByCategory($id,Catalogo::CATEGORIA_NTCL),
     			]);
     }
@@ -195,7 +252,7 @@ class CatalogoController extends Controller
     
     
     	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		return $this->redirect(['tcln-ver', 'id' => $model->ID_ELEMENTO]);
+    		return $this->redirect(['ntcl-ver', 'id' => $model->ID_ELEMENTO]);
     	} else {
     		return $this->render('ntcl/create.php', [
     				'model' => $model,
