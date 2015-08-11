@@ -29,7 +29,7 @@ class ListaPlanController extends Controller
 	
 	protected  $no_constancias = 20; 
 	
-    public function behaviors()
+  /*  public function behaviors()
     {
         return [
             'verbs' => [
@@ -39,7 +39,7 @@ class ListaPlanController extends Controller
                 ],
             ],
         ];
-    }
+    }*/
 
     /**
      * Lists all ListaPlan models.

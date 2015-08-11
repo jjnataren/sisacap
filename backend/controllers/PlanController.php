@@ -26,6 +26,8 @@ use backend\models\Indicadores;
  */
 class PlanController extends Controller
 {
+	
+	/*
     public function behaviors()
     {
         return [
@@ -36,7 +38,7 @@ class PlanController extends Controller
                 ],
             ],
         ];
-    }
+    }*/
 
     /**
      * Lists all Plan models.
