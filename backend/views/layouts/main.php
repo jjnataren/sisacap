@@ -26,6 +26,7 @@ use backend\models\Plan;
             $companyByUser = new EmpresaUsuario();
             
             $totalPlans = 0;
+            $totalCourses = 0;
           
             $planesCreated[] = [
             	
@@ -207,7 +208,11 @@ use backend\models\Plan;
 								//'items'=>$empresaItemsMenu
 								];
 								
+								$totalCourses++;
+								
 							}
+							
+							if (count($courses) > 1)
 							
 							$activePlans[]  = [
 								
@@ -705,7 +710,7 @@ use backend\models\Plan;
             		'icon'=>'<span class="fa-stack fa-lg">
  							 <i class="fa fa-square-o fa-stack-2x"></i>
   							 <i class="fa fa-laptop fa-stack-1x"></i>
-							 </span>',
+							 </span>',			 'badge'=>$totalCourses,
             									 'options'=>['class'=>'treeview'],
             									 'items'=> $activePlans
             		],
