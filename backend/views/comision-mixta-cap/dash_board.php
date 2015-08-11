@@ -71,7 +71,7 @@ $planItems[]= 	[
                 <div class="icon">
                     <i class="fa fa-university"></i>
                 </div>
-                <a class="small-box-footer" href="#">
+                <a class="small-box-footer" href="#estab">
                    Regidos por la comisión <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -136,10 +136,14 @@ $planItems[]= 	[
                   Creados en esta comisión <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
-        </div>    
+        </div>  
+        
+          
+          
    </div>
-        
-        
+        	
+     <h4 class="page-header" id="estab">
+        </h4>   
 
   <div class="row">
 		<div class="col-md-6 col-xs-12">
