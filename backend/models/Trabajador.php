@@ -133,7 +133,7 @@ class Trabajador extends \yii\db\ActiveRecord
             [['NTCL'], 'string', 'max'=>250],
             [['LUGAR_RESIDENCIA', 'OTRO_OCUPACION'], 'string', 'max' => 200],
             [['RFC'], 'unique'],
-            //[['DOCUMENTO_PROBATORIO'],'required'],
+            [['NOMBRE', 'RFC'],'required'],
             
         ];
     }
@@ -151,7 +151,7 @@ class Trabajador extends \yii\db\ActiveRecord
             'NOMBRE' => 'Nombre (s)',
             'APP' => 'Apellido paterno',
             'APM' => 'Apellido materno',
-            'CURP' => 'Clave única de registro de población ',
+            'CURP' => 'Clave única de registro de población (CURP) ',
             'RFC' => 'Registro federal de contribuyentes (RFC)',
             'NSS' => 'Número de seguridad social (NSS)',
             'DOMICILIO' => 'Domicilio',
