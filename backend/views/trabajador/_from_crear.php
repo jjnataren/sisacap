@@ -22,7 +22,8 @@ $this->registerJs("$('#help_popup_documento').popover('hide');", View::POS_END, 
 $this->registerJs("$('#help_popup_rol').popover('hide');", View::POS_END, 'my-options4');
 $this->registerJs("$('#help_popup_puesto').popover('hide');", View::POS_END, 'my-options5');
 $this->registerJs("$('#help_popup_ocupacion').popover('hide');", View::POS_END, 'my-options6');
-
+$this->registerJs("$('#help_popup_sector').popover('hide');", View::POS_END, 'my-options7');
+$this->registerJs("$('#help_popup_ntcl').popover('hide');", View::POS_END, 'my-options8');
 
 $dataListEntidad=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>1,'ACTIVO'=>1]), 'ID_ELEMENTO', 'NOMBRE');
 $dataListMunicipios=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>2,'ACTIVO'=>1, 'ELEMENTO_PADRE'=>$model->ENTIDAD_FEDERATIVA]), 'ID_ELEMENTO', 'NOMBRE');
@@ -165,7 +166,55 @@ $this->registerJs("$('#drop_ocup').change(function(){
     
      </div>
      </div>
+     
+     
+      
+            <div class="panel">
+                <div class="panel-heading text-primary">
+                    
+                    <h3 class="panel-title"><?= Yii::t('backend', 'Norma tecnica de competencia laboral') ?></h3>
+                </div>
+                <div class="panel-body">
+                
+                 <div class="row">
+	     <div class=" col-xs-12 col-sm-12 col-md-10">
+	     
+	     
+    <?= $form->field($model, 'SECTOR')->dropDownList($dataListSectores,['prompt'=>'-- Seleccione  --','id' => 'cat-sector-id']) ?>
+    
+  </div>
+   <div class=" col-xs-12 col-sm-12 col-md-2">
+		     <br />
+				<button id="help_popup_sector" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Sector al cual pertenece  la norma técnica de competencia laboral en la que se encuentra  certificado el trabajador.. ') ?>"><i class="fa fa-question-circle"></i>
+			</button>	   
+		</div>
+  </div>
+      <div class="row">
+	     <div class=" col-xs-12 col-sm-12 col-md-10">
+	     
+	     
+      <?= $form->field($model, 'NTCL')->widget(DepDrop::classname(), [
+    'options' => ['id' => 'ntcl-sub-id'],
+    'data'=>$dataListMunicipios,
+    'pluginOptions' => [ 'depends' => ['cat-sector-id'],
+        'placeholder' => 'Seleccione ...',		
+        'url' => Url::to(['trabajador/get-normas'])
+    ]
+]); ?>
+</div>
+ <div class=" col-xs-12 col-sm-12 col-md-2">
+		     <br />
+				<button id="help_popup_ntcl" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Si el trabajador se encuentra certificado por alguna de estas normas técnicas de competencia laboral, debe especificarla aquí.. ') ?>"><i class="fa fa-question-circle"></i>
+			</button>	   
+		</div>
+</div>
+
+</div>
+
+</div>
      </div>
+     
+     
      <div class="col-md-6 col-xs-12">
             <div class="panel">
                 <div class="panel-heading text-primary">
@@ -214,21 +263,12 @@ $this->registerJs("$('#drop_ocup').change(function(){
     </div> 	   
     
        
-     <?= $form->field($model, 'SECTOR')->dropDownList($dataListSectores,['prompt'=>'-- Seleccione  --','id' => 'cat-sector-id']) ?>
-    
-  
-      
-      <?= $form->field($model, 'NTCL')->widget(DepDrop::classname(), [
-    'options' => ['id' => 'ntcl-sub-id'],
-    'data'=>$dataListMunicipios,
-    'pluginOptions' => [ 'depends' => ['cat-sector-id'],
-        'placeholder' => 'Seleccione ...',		
-        'url' => Url::to(['trabajador/get-normas'])
-    ]
-]); ?>
+     
   </div>
    </div>
    </div>
+   
+
     
 	 <div class="col-md-6 col-xs-12">
             <div class="panel">
