@@ -65,7 +65,6 @@ $itemsAct = [1=>'Activo',0=>'No activo'];
 		<div class="col-xs-12 col-md-7">
     <?= $form->field($model, 'CORREO_ELECTRONICO')->textInput(['maxlength' => 300]) ?>
     
-    <?= $form->field($model, 'ACTIVO')->dropDownList($itemsAct,['prompt'=>'-- Seleccione  --','id' => 'tex-sex']) ?>
     </div>
 		</div>
 
@@ -81,7 +80,7 @@ $itemsAct = [1=>'Activo',0=>'No activo'];
 </div>
 
     <div class="panel-footer">
-								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Aqui puedes actualizar los datos del representante legale de tu empresa,Es importante que todos los campos esten llenos con sus datos correctos. Presiona el boton [Guardar] y acontinuaci�n se guardaran los datos del representante legal') ?>"><i class="fa fa-question-circle"></i>
+								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Aqui puedes actualizar los datos del representante legale de tu empresa, es importante que todos los campos esten llenos con sus datos correctos. Presiona el boton [Guardar] y acontinuación se guardaran los datos del representante legal') ?>"><i class="fa fa-question-circle"></i>
 						</button>
 						&nbsp;
 						
