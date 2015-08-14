@@ -44,6 +44,16 @@ from tbl_cat_catalogo tcc where categoria=5 AND ELEMENTO_PADRE IS NOT NULL
 
 $datalistPuesto = ArrayHelper::map(PuestoEmpresa::findAll(['ID_EMPRESA'=>($model->iDEMPRESA->ID_EMPRESA_PADRE!==null)?$model->iDEMPRESA->ID_EMPRESA_PADRE:$model->iDEMPRESA->ID_EMPRESA]), 'ID_PUESTO', 'NOMBRE_PUESTO');
 
+if (isset($model->SECTOR)){
+$dataListNormas=ArrayHelper::map(Catalogo::findBySql('select tcc.ID_ELEMENTO, CONCAT(tcc.CLAVE,\' - \' , tcc.NOMBRE) AS NOMBRE, (select NOMBRE FROM tbl_cat_catalogo where tcc.ELEMENTO_PADRE = ID_ELEMENTO) PADRE
+						from tbl_cat_catalogo tcc where categoria=7 AND tcc.ELEMENTO_PADRE IN (select id_elemento from tbl_cat_catalogo where elemento_padre = :id_sector AND categoria = 8)
+ 						',[':id_sector'=>$model->SECTOR])->all(), 'ID_ELEMENTO', 'NOMBRE','PADRE');
+ 						
+}else {
+	
+	$dataListNormas = array();
+	
+}
 
 $itemsSex = [1=>'MUJER',2=>'HOMBRE'];
 $itemsGrado = [0=>'Ninguno',1=>'Primaria',2=>'Secundaria',3=>'Bachillerato',4=>'Carrera tecnica',5=>'Licenciatura',6=>'Especialidad',7=>'Maestría',8=>'Doctorado'];
@@ -210,18 +220,7 @@ $this->registerJs("$('#drop_ocup').change(function(){
 			</button>	   
 		</div>
     </div> 	
-  <?= $form->field($model, 'SECTOR')->dropDownList($dataListSectores,['prompt'=>'-- Seleccione  --','id' => 'cat-sector-id']) ?>
-    
-  
-      
-      <?= $form->field($model, 'NTCL')->widget(DepDrop::classname(), [
-    'options' => ['id' => 'ntcl-sub-id'],
-    'data'=>$dataListMunicipios,
-    'pluginOptions' => [ 'depends' => ['cat-sector-id'],
-        'placeholder' => 'Seleccione ...',		
-        'url' => Url::to(['trabajador/get-normas'])
-    ]
-]); ?>
+
   </div>
    </div>
    </div>
@@ -273,7 +272,31 @@ $this->registerJs("$('#drop_ocup').change(function(){
    </div>
    
   
+    <div class="col-md-6 col-xs-12">
+            <div class="panel">
+                <div class="panel-heading text-primary">
+                    
+                    <h3 class="panel-title"><?= Yii::t('backend', 'Norma técnica de competencia laboral') ?></h3>
+                </div>
+                <div class="panel-body">	
+                
+                	
+   <?= $form->field($model, 'SECTOR')->dropDownList($dataListSectores,['prompt'=>'-- Seleccione  --','id' => 'cat-sector-id']) ?>
     
+  
+      
+      <?= $form->field($model, 'NTCL')->widget(DepDrop::classname(), [
+    'options' => ['id' => 'ntcl-sub-id'],
+    'data'=>$dataListNormas,
+    'pluginOptions' => [ 'depends' => ['cat-sector-id'],
+        'placeholder' => 'Seleccione ...',		
+        'url' => Url::to(['trabajador/get-normas'])
+    ]
+]); ?>
+   </div>
+   </div>
+   </div>
+   
 
 
 
