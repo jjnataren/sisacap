@@ -116,11 +116,7 @@ if ($model->GIRO_PRINCIPAL === 66666){
 		],
 			'NSS',
 				
-				[
-				'attribute'=>'NUMERO_TRABAJADORES',
-				'type'=>'html',
-				'value'=>isset($model->NUMERO_TRABAJADORES) ? $model->NUMERO_TRABAJADORES : '',
-				],
+				
 			  [
 			'attribute'=>'FECHA_INICIO_OPERACIONES',
 			'type'=>'html',
