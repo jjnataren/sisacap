@@ -19,6 +19,13 @@ $config = [
         ]
     ],
     'components'=>[
+    		'formatter' => [
+    				'dateFormat' => 'dd/MM/yyyy',
+    				'nullDisplay'=> 'no establecido'
+    			//	'decimalSeparator' => ',',
+    			//	'thousandSeparator' => ' ',
+    			//	'currencyCode' => 'EUR',
+    		],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
