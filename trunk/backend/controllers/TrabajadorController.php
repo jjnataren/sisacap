@@ -1112,15 +1112,15 @@ class TrabajadorController extends Controller
     
     	if ($model->delete()){
     		 
-    		Yii::$app->session->setFlash('alert', [
-    		'options'=>['class'=>'alert-success'],
-    		'body'=>Yii::t('frontend', 'Se ha eliminado el trabajador correctamente')
-    		]);
+    			Yii::$app->session->setFlash('alert', [
+    	 			'options'=>['class'=>'alert-success'],
+    	 			'body'=> '<i class="fa fa-check fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Se ha eliminado  el trabajador correctamente</a>',
+    	 	]);
     	}else{
     
-    		Yii::$app->session->setFlash('alert', [
+    			Yii::$app->session->setFlash('alert', [
     		'options'=>['class'=>'alert-warning'],
-    		'body'=>Yii::t('frontend', 'No se pudo  eliminar el trabajador')
+    		'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>No se ha podido eliminar el trabajador <a href=\'#\' class=\'alert-link\'></a>',
     		]);
     	}
     	return $this->redirect(['indexestablishment','id_establishment'=>$establishment]);
