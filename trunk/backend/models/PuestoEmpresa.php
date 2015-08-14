@@ -33,7 +33,9 @@ class PuestoEmpresa extends \yii\db\ActiveRecord
     {
         return [
             [['CLAVE_PUESTO', 'ID_EMPRESA', 'ACTIVO'], 'integer'],
-            [['NOMBRE_PUESTO', 'DESCRIPCION_PUESTO'], 'string', 'max' => 100]
+            [['NOMBRE_PUESTO', 'DESCRIPCION_PUESTO'], 'string', 'max' => 100],
+        	[['CLAVE_PUESTO', 'ID_EMPRESA'], 'unique', 'targetAttribute' => ['CLAVE_PUESTO', 'ID_EMPRESA'],'message' =>'Ya existe un puesto con la clave especificaada']
+        		
         ];
     }
 
