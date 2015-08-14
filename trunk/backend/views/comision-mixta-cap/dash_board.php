@@ -185,7 +185,8 @@ $planItems[]= 	[
                         <dd></dd>                                        
                                            
                         <dt><i><?= Yii::t('backend', 'Creado desde') ?></i></dt>
-                        <dd><?= $model->FECHA_AGREGO ?></dd>
+                   <dd><?=($model->FECHA_AGREGO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y h:m:i",strtotime($model->FECHA_AGREGO)) ;?></dd>
+                   
                         
                         <dt><i><?= Yii::t('backend', 'Estatus') ?></i></dt>
                         <dd><span class="label label-success"><?= $model->getStatus(); ?></span></dd>
