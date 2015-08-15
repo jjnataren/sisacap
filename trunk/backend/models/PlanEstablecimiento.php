@@ -11,8 +11,10 @@ use Yii;
  * @property integer $ID_ESTABLECIMIENTO
  * @property integer $ACTIVO
  *
+ * @property ListaEstablecimiento[] $listaEstablecimientos
+ * @property ListaPlan[] $iDLISTAs
+ * @property ComisionEstablecimiento $iDESTABLECIMIENTO
  * @property Plan $iDPLAN
- * @property Establecimiento $iDESTABLECIMIENTO
  */
 class PlanEstablecimiento extends \yii\db\ActiveRecord
 {
@@ -50,9 +52,17 @@ class PlanEstablecimiento extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIDPLAN()
+    public function getListaEstablecimientos()
     {
-        return $this->hasOne(Plan::className(), ['ID_PLAN' => 'ID_PLAN']);
+        return $this->hasMany(ListaEstablecimiento::className(), ['ID_ESTABLECIMIENTO' => 'ID_ESTABLECIMIENTO']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIDLISTAs()
+    {
+        return $this->hasMany(ListaPlan::className(), ['ID_LISTA' => 'ID_LISTA'])->viaTable('tbl_lista_establecimiento', ['ID_ESTABLECIMIENTO' => 'ID_ESTABLECIMIENTO']);
     }
 
     /**
@@ -60,6 +70,14 @@ class PlanEstablecimiento extends \yii\db\ActiveRecord
      */
     public function getIDESTABLECIMIENTO()
     {
-        return $this->hasOne(Establecimiento::className(), ['ID_ESTABLECIMIENTO' => 'ID_ESTABLECIMIENTO']);
+        return $this->hasOne(ComisionEstablecimiento::className(), ['ID_ESTABLECIMIENTO' => 'ID_ESTABLECIMIENTO']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIDPLAN()
+    {
+        return $this->hasOne(Plan::className(), ['ID_PLAN' => 'ID_PLAN']);
     }
 }
