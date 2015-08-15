@@ -518,7 +518,7 @@ use backend\models\Catalogo; ?>
 			
 			$modelEst = $model->planEstablecimientos;
 			
-			$establecimientos = count($model->iDESTABLECIMIENTOs);
+			$establecimientos = count($model->planEstablecimientos);
 			
 			$a_establecimientos = str_split(strtoupper(''.$establecimientos));
 			
@@ -1562,23 +1562,23 @@ use backend\models\Catalogo; ?>
 						
 						if (isset($modelEst[$i])){
 								
-							$entidad =  Catalogo::findOne(['CATEGORIA'=>1, 'ID_ELEMENTO'=>$modelEst[$i]->iDESTABLECIMIENTO->ENTIDAD_FEDERATIVA]);
+							$entidad =  Catalogo::findOne(['CATEGORIA'=>1, 'ID_ELEMENTO'=>$modelEst[$i]->ENTIDAD_FEDERATIVA]);
 						
-							$municipio =  Catalogo::findOne(['CATEGORIA'=>2, 'ID_ELEMENTO'=>$modelEst[$i]->iDESTABLECIMIENTO->MUNICIPIO_DELEGACION]);
+							$municipio =  Catalogo::findOne(['CATEGORIA'=>2, 'ID_ELEMENTO'=>$modelEst[$i]->MUNICIPIO_DELEGACION]);
 						
-							echo ''.strtoupper($modelEst[$i]->iDESTABLECIMIENTO->NOMBRE_CENTRO_TRABAJO) . ' ';
-							echo (strlen(trim($modelEst[$i]->iDESTABLECIMIENTO->NOMBRE_CENTRO_TRABAJO)) > 0) ?  ': ' : ' ';
+							echo ''.strtoupper($modelEst[$i]->NOMBRE_CENTRO_TRABAJO) . ' ';
+							echo (strlen(trim($modelEst[$i]->NOMBRE_CENTRO_TRABAJO)) > 0) ?  ': ' : ' ';
 							echo 'Calle '; 
-							echo (strlen(trim($modelEst[$i]->iDESTABLECIMIENTO->CALLE)) > 0) ?  $modelEst[$i]->iDESTABLECIMIENTO->CALLE : 'S/N ';
+							echo (strlen(trim($modelEst[$i]->CALLE)) > 0) ?  $modelEst[$i]->CALLE : 'S/N ';
 
 							echo ', No Ext ';
-							echo  (strlen(trim($modelEst[$i]->iDESTABLECIMIENTO->NUMERO_EXTERIOR)) > 0) ? $modelEst[$i]->iDESTABLECIMIENTO->NUMERO_EXTERIOR :  'S/N';
+							echo  (strlen(trim($modelEst[$i]->NUMERO_EXTERIOR)) > 0) ? $modelEst[$i]->NUMERO_EXTERIOR :  'S/N';
 							echo ',  No Int ';
-							echo (strlen(trim($modelEst[$i]->iDESTABLECIMIENTO->NUMERO_INTERIOR )) > 0) ? $modelEst[$i]->iDESTABLECIMIENTO->NUMERO_INTERIOR : 'S/N';
+							echo (strlen(trim($modelEst[$i]->NUMERO_INTERIOR )) > 0) ? $modelEst[$i]->NUMERO_INTERIOR : 'S/N';
 							echo ', C.P. ';
-							echo (strlen(trim($modelEst[$i]->iDESTABLECIMIENTO->CODIGO_POSTAL )) > 0) ? $modelEst[$i]->iDESTABLECIMIENTO->CODIGO_POSTAL : 'S/N';
+							echo (strlen(trim($modelEst[$i]->CODIGO_POSTAL )) > 0) ? $modelEst[$i]->CODIGO_POSTAL : 'S/N';
 							echo ', Col.'; 
-							echo (strlen(trim($modelEst[$i]->iDESTABLECIMIENTO->COLONIA)) > 0) ? $modelEst[$i]->iDESTABLECIMIENTO->COLONIA : 'S/N';
+							echo (strlen(trim($modelEst[$i]->COLONIA)) > 0) ? $modelEst[$i]->COLONIA : 'S/N';
 							echo ', Edo. ';
 							echo  ($entidad !== null)?$entidad->NOMBRE : 'S/N';
 							echo ', Mpio/Del. ';
@@ -1596,12 +1596,12 @@ use backend\models\Catalogo; ?>
 				<td style="text-align:left;width:3.5cm; " class="Tabla5_C3">
 						<span class="T28"><?php
 						if (isset($modelEst[$i]))
-							echo $modelEst[$i]->iDESTABLECIMIENTO->RFC;?></span>
+							echo $modelEst[$i]->RFC;?></span>
 				</td>
 				<td style="text-align:left;width:3.776cm; " class="Tabla5_D3">
 						<span class="T28"><?php
 						if (isset($modelEst[$i]))
-							echo $modelEst[$i]->iDESTABLECIMIENTO->NSS;?></span>
+							echo $modelEst[$i]->NSS;?></span>
 				</td>
 			</tr>
 			<?php }?>
