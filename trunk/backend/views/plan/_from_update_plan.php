@@ -232,7 +232,7 @@ $itemsModalidad=[1=>'Plan y programas específicos de la empresa',
   <div class="panel-body">	
   <div class=" col-xs-12 col-sm-12 col-md-8">
     <div class="panel-body">	
-     <?= $form->field($model, ' MODALIDAD_CAPACITACION')->radioList($itemsModalidad)->label(false) ?>
+     <?= $form->field($model, 'MODALIDAD_CAPACITACION')->radioList($itemsModalidad)->label(false) ?>
        </div>
        </div>
          </div>
