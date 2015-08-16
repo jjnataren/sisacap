@@ -50,8 +50,8 @@ from tbl_cat_catalogo tcc where categoria=5 AND ELEMENTO_PADRE IS NOT NULL
  ')->all(), 'ID_ELEMENTO', 'NOMBRE','PADRE');
  
 if($model->iDPLAN->TIPO_PLAN){
-$datalistPuesto = ArrayHelper::map(PuestoEmpresa::findAll(['ID_EMPRESA'=>($model->iDPLAN->iDCOMISION->ID_EMPRESA!==null)?$model->iDPLAN->iDCOMISION->ID_EMPRESA:$model->iDPLAN->iDCOMISION->ID_EMPRESA]), 'ID_PUESTO', 'NOMBRE_PUESTO');
-}{
+	$datalistPuesto = ArrayHelper::map(PuestoEmpresa::findAll(['ID_EMPRESA'=>$model->iDPLAN->iDCOMISION->ID_EMPRESA]), 'ID_PUESTO', 'NOMBRE_PUESTO');
+}else{
 	
 	$datalistPuesto = ArrayHelper::map(PuestoEmpresa::findBySql('select * from tbl_puesto_empresa where id_puesto in (select id_puesto from tbl_plan_puesto where id_plan = :id_plan)', [':id_plan'=>$model->ID_PLAN])->all(), 'ID_PUESTO', 'NOMBRE_PUESTO');	
 	
@@ -195,10 +195,18 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
                      	  <dt>Puestos trabajador   <span class="label label-info"><?= count($model->iDPLAN->iDPUESTOs) ?></span></dt>
                                         <dd>
                                         <ul>
+                                        
+                                        
+                                        
 	                                        <?php 
+	                                        
+	                                        if (!$model->iDPLAN->TIPO_PLAN){
 	                                        foreach ($model->iDPLAN->iDPUESTOs as $puesto)                                        	
 	                    						echo '<li>'. $puesto->NOMBRE_PUESTO .'</li>';      
-	                    						                                  
+	                                        }else{
+	                                        	
+	                                        	echo '<li>Todos los puestos de trabajo considerados</li>';
+	                                        }                  
 	                                        ?>
                                         </ul>
                           </dd>

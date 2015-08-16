@@ -519,7 +519,7 @@ use backend\models\EmpresaUsuario;
 					<p class="P26_1">&nbsp;</p>
 					<p class="P18">
 						
-						<span class="T28"><?= $model->iDCURSO->NOMBRE?> </span>
+						<span class="T28"><?= $model->iDCURSO->NOMBRE?></span>
 					</p>
 				</td>
 			</tr>

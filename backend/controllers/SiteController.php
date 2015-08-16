@@ -10,10 +10,7 @@ class SiteController extends \yii\web\Controller
 {
 	
 	
-	public function beforeAction($action) {
-		$this->enableCsrfValidation = false;
-		return parent::beforeAction($action);
-	}
+
 	
     /**
      * @inheritdoc
@@ -41,6 +38,7 @@ class SiteController extends \yii\web\Controller
     public function beforeAction($action)
     {
         $this->layout = Yii::$app->user->isGuest ? '_base' : 'main';
+        $this->enableCsrfValidation = false;
         return parent::beforeAction($action);
     }
 }
