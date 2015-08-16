@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use backend\models\Catalogo;
+use backend\models\RepresentanteLegal;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\EmpresaSearch */
@@ -35,8 +36,19 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             
-    		//'ID_EMPRESA',
-            'ID_REPRESENTANTE_LEGAL',
+    		'ID_EMPRESA',
+        		[
+        		'attribute'=>'ID_REPRESENTANTE_LEGAL',
+        		'label'=>'Representante legal',
+        		'content'=>function($data){
+        		
+        			//$tmpModel = PuestoEmpresa::findOne(['ID_PUESTO'=>$data->PUESTO, 'ACTIVO'=>1]);
+        		
+        			return isset($data->iDREPRESENTANTELEGAL)?$data->iDREPRESENTANTELEGAL->NOMBRE.' '.$data->iDREPRESENTANTELEGAL->APP : 'no establecido';
+        		
+        		},
+        		'filter'=>ArrayHelper::map(RepresentanteLegal::findAll([ 'ACTIVO'=>1]), 'ID_REPRESENTANTE_LEGAL','NOMBRE','APP'),
+        		],
             'NOMBRE_RAZON_SOCIAL',
             'RFC',
             'NSS',
@@ -59,14 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
     		],
             // 'LOCALIDAD',
             // 'TELEFONO',
-            [
-             'attribute'=>'MUNICIPIO_DELEGACION',
-             'content'=>function ($data){
-    			$tmModel = Catalogo::findOne(['ID_ELEMENTO'=>$data->MUNICIPIO_DELEGACION ,'CATEGORIA'=>2, 'ACTIVO'=>1]);
-    			return isset($tmModel) ? $tmModel-> NOMBRE: $data-> MUNICIPIO_DELEGACION;
-    		},
-    		'filter'=>ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>2, 'ACTIVO'=>1]), 'ID_ELEMENTO','NOMBRE'),
-             ],
+         
              [
              'attribute'=>'GIRO_PRINCIPAL',
              'content'=>function ($data){
