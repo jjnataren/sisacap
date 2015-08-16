@@ -43,17 +43,20 @@ class EmpresaSearch extends Empresa
     {
         $query = Empresa::find();
 
+        
+        $query->where(['ID_EMPRESA_PADRE' => null]);
+        
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
         $this->load($params);
 
-        if (!$this->validate()) {
+      /*  if (!$this->validate()) {
             // uncomment the following line if you do not want to any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
-        }
+        }*/
 
         $query->andFilterWhere([
             'ID_EMPRESA' => $this->ID_EMPRESA,
@@ -62,6 +65,7 @@ class EmpresaSearch extends Empresa
             'NUMERO_TRABAJADORES' => $this->NUMERO_TRABAJADORES,
             'CODIGO_POSTAL' => $this->CODIGO_POSTAL,
             'ACTIVO' => $this->ACTIVO,
+        	
         ]);
 
         $query->andFilterWhere(['like', 'NOMBRE_RAZON_SOCIAL', $this->NOMBRE_RAZON_SOCIAL])

@@ -345,6 +345,8 @@ class EmpresaController extends Controller
         if ($model->load(Yii::$app->request->post())){
         	$tmpdate = \DateTime::createFromFormat('d/m/Y', $model->FECHA_INICIO_OPERACIONES);
         	$model->FECHA_INICIO_OPERACIONES =( $tmpdate === false)? null : $tmpdate ->format('Y-m-d') ;
+        	$model->ACTIVO = 1;
+        	
         	if ($model->save()){
 
         		
@@ -601,18 +603,13 @@ class EmpresaController extends Controller
     		
     		$searchModel = new UserSearch();
     		
-    		$query = User::findBySql('select * from tbl_user where role <> 10');
+    		//$query = User::findBySql('select * from tbl_user where role = 5');  
     		
-    		$dataProvider = new ActiveDataProvider([
-    				'query' => $query,
-    		]);
-    		
+    		$dataProvider = $searchModel->searchNotAssigned(Yii::$app->request->queryParams);
     		
     		 
     		$searchModel_lr = new RepresentanteLegalSearch();
     		$dataProvider_lr = $searchModel_lr->search(Yii::$app->request->queryParams);
-    		
-    		
     		
     		return $this->render('manage', [
     				'model' => $model,
@@ -636,7 +633,7 @@ class EmpresaController extends Controller
     {
     	
     	
-    	$model = EmpresaUsuario::findOne($id, $id_user); 
+    	$model = EmpresaUsuario::findOne(['ID_EMPRESA'=>$id, 'ID_USUARIO'=>$id_user]); 
     	
     	if ($model === null) 
     		throw new NotFoundHttpException('The requested page does not exist.');
@@ -645,7 +642,7 @@ class EmpresaController extends Controller
     
     	Yii::$app->session->setFlash('alert', [
     	'options'=>['class'=>'alert-success'],
-    	'body'=>Yii::t('frontend', 'Usuario agregado correctamente')
+    	'body'=>Yii::t('frontend', 'Usuario desasignado correctamente')
     	]);
     	
     	
