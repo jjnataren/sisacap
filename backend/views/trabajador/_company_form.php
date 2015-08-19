@@ -173,53 +173,7 @@ $this->registerJs("$('#drop_ocup').change(function(){
     
      </div>
      </div>
-      <div class="panel">
-                <div class="panel-heading text-primary">
-                    
-                    <h3 class="panel-title"><?= Yii::t('backend', 'Norma tecnica de competencia laboral') ?></h3>
-                </div>
-                <div class="panel-body">
-                
-                 <div class="row">
-	     <div class=" col-xs-12 col-sm-12 col-md-10">
-	     
-	     
-    <?= $form->field($model, 'SECTOR')->dropDownList($dataListSectores,['prompt'=>'-- Seleccione  --','id' => 'cat-sector-id']) ?>
-    
-  </div>
-   <div class=" col-xs-12 col-sm-12 col-md-2">
-		     <br />
-				<button id="help_popup_sector" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Sector al cual pertenece  la norma técnica de competencia laboral en la que se encuentra  certificado el trabajador.. ') ?>"><i class="fa fa-question-circle"></i>
-			</button>	   
-		</div>
-  </div>
-      <div class="row">
-	     <div class=" col-xs-12 col-sm-12 col-md-10">
-	     
-	     
-      <?= $form->field($model, 'NTCL')->widget(DepDrop::classname(), [
-    'options' => ['id' => 'ntcl-sub-id'],
-    'data'=>$dataListMunicipios,
-    'pluginOptions' => [ 'depends' => ['cat-sector-id'],
-        'placeholder' => 'Seleccione ...',		
-        'url' => Url::to(['trabajador/get-normas'])
-    ]
-]); ?>
-</div>
- <div class=" col-xs-12 col-sm-12 col-md-2">
-		     <br />
-				<button id="help_popup_ntcl" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Si el trabajador se encuentra certificado por alguna de estas normas técnicas de competencia laboral, debe especificarla aquí.. ') ?>"><i class="fa fa-question-circle"></i>
-			</button>	   
-		</div>
-</div>
-
-</div>
-
-</div>
      </div>
-     
-     
-     
      <div class="col-md-6 col-xs-12">
             <div class="panel">
                 <div class="panel-heading text-primary">
@@ -318,6 +272,29 @@ $this->registerJs("$('#drop_ocup').change(function(){
    </div>
    
   
+    <div class="col-md-6 col-xs-12">
+            <div class="panel">
+                <div class="panel-heading text-primary">
+                    
+                    <h3 class="panel-title"><?= Yii::t('backend', 'Norma técnica de competencia laboral') ?></h3>
+                </div>
+                <div class="panel-body">	
+                
+                	
+   <?= $form->field($model, 'SECTOR')->dropDownList($dataListSectores,['prompt'=>'-- Seleccione  --','id' => 'cat-sector-id']) ?>
+    
+  
+      
+      <?= $form->field($model, 'NTCL')->widget(DepDrop::classname(), [
+    'options' => ['id' => 'ntcl-sub-id'],
+    'data'=>$dataListNormas,
+    'pluginOptions' => [ 'depends' => ['cat-sector-id'],
+        'placeholder' => 'Seleccione ...',		
+        'url' => Url::to(['trabajador/get-normas'])
+    ]
+]); ?>
+   </div>
+   </div>
    </div>
    
 
