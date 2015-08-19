@@ -227,20 +227,29 @@ class TrabajadorController extends Controller
     						$worker = new Trabajador();
     							
     							
-    						$worker->ROL = $line[0];
-    						$worker->NOMBRE = $line[1];
-    						$worker->APP = $line[2];
-    						$worker->APM = $line[3];
+    						//$worker->ROL = $line[0];
+    						$worker->NOMBRE = $line[0];
+    						$worker->APP = $line[1];
+    						$worker->APM = $line[2];
     							
-    						$worker->CURP = $line[4];
-    						$worker->RFC = $line[5];
-    						$worker->NSS = $line[6];
-    						$worker->DOMICILIO = $line[7];
-    						$worker->CORREO_ELECTRONICO = $line[8];
-    						$worker->TELEFONO = $line[9];
-    						$worker->PUESTO = $line[10];
-    						$worker->OCUPACION_ESPECIFICA = $line[11];
-    						//$worker->SEXO = $line[11];
+    						$worker->CURP = $line[3];
+    						$worker->RFC = $line[4];
+    						$worker->NSS = $line[5];
+    						
+    						$worker->CORREO_ELECTRONICO = $line[6];
+    						$worker->TELEFONO = $line[7];
+    						$worker->PUESTO = $line[8];
+    						$worker->OCUPACION_ESPECIFICA = $line[9];
+    						$worker->SEXO = $line[10];
+    						$worker->ENTIDAD_FEDERATIVA = $line[11];
+    						$worker->MUNICIPIO_DELEGACION = $line[12];
+    						$worker->LUGAR_RESIDENCIA = $line[13];
+    						$worker->GRADO_ESTUDIO = $line[14];
+    						$worker->INSTITUCION_EDUCATIVA = $line[15];
+    						$worker->FECHA_EMISION_CERTIFICADO = $line[16];
+    						$worker->DOCUMENTO_PROBATORIO = $line[17];
+    						$worker->OTRO_OCUPACION = $line[18];
+    						
     						$worker->ACTIVO = 1;
     							
     						$worker->validate();
@@ -326,19 +335,27 @@ class TrabajadorController extends Controller
     						
     						$worker = new Trabajador();
     					
-    					
-    					$worker->ROL = $line[0];
-    					$worker->NOMBRE = $line[1];
-    					$worker->APP = $line[2];
-    					$worker->APM = $line[3];
-    					
-    					$worker->CURP = $line[4];
-    					$worker->RFC = $line[5];
-    					$worker->NSS = $line[6];
-    					$worker->DOMICILIO = $line[7];
-    					$worker->CORREO_ELECTRONICO = $line[8];
-    					$worker->TELEFONO = $line[9];
-    					$worker->PUESTO = $line[10];
+    						$worker->NOMBRE = $line[0];
+    						$worker->APP = $line[1];
+    						$worker->APM = $line[2];
+    							
+    						$worker->CURP = $line[3];
+    						$worker->RFC = $line[4];
+    						$worker->NSS = $line[5];
+    						
+    						$worker->CORREO_ELECTRONICO = $line[6];
+    						$worker->TELEFONO = $line[7];
+    						$worker->PUESTO = $line[8];
+    						$worker->OCUPACION_ESPECIFICA = $line[9];
+    						$worker->SEXO = $line[10];
+    						$worker->ENTIDAD_FEDERATIVA = $line[11];
+    						$worker->MUNICIPIO_DELEGACION = $line[12];
+    						$worker->LUGAR_RESIDENCIA = $line[13];
+    						$worker->GRADO_ESTUDIO = $line[14];
+    						$worker->INSTITUCION_EDUCATIVA = $line[15];
+    						$worker->FECHA_EMISION_CERTIFICADO = $line[16];
+    						$worker->DOCUMENTO_PROBATORIO = $line[17];
+    						$worker->OTRO_OCUPACION = $line[18];
     					
     					
     					//$worker->OCUPACION_ESPECIFICA = $line[11];
