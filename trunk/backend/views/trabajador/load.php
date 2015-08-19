@@ -136,15 +136,26 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 							<thead>
 								<tr >
 									<th>#</th>
-									<th><?=Yii::t('backend', 'Full Name')?></th>									
+									<th><?=Yii::t('backend', 'Nombre')?></th>	
+									<th><?=Yii::t('backend', 'APP')?></th>	
+									<th><?=Yii::t('backend', 'APM')?></th>									
 									<th><?=Yii::t('backend', 'CURP')?></th>
 									<th><?=Yii::t('backend', 'RFC')?></th>
 									<th><?=Yii::t('backend', 'NSS')?></th>
-									<th><?=Yii::t('backend', 'Domicilio')?></th>
 									<th><?=Yii::t('backend', 'Correo electronico')?></th>
 									<th><?=Yii::t('backend', 'Telefono')?></th>
 									<th><?=Yii::t('backend', 'Puesto')?></th>
-									<th><?=Yii::t('backend', 'Ocupación')?></th>									
+									<th><?=Yii::t('backend', 'Ocupación espacifica')?></th>
+									<th><?=Yii::t('backend', 'Sexo')?></th>									
+									<th><?=Yii::t('backend', 'Entidad Federativa')?></th>
+									<th><?=Yii::t('backend', 'Municipio')?></th>	
+									<th><?=Yii::t('backend', 'Lugar de recidencia')?></th>
+									<th><?=Yii::t('backend', 'Grado de estudios')?></th>			
+									<th><?=Yii::t('backend', 'Institución eduativa')?></th>	
+									<th><?=Yii::t('backend', 'Fecha de emición de certificado')?></th>
+									<th><?=Yii::t('backend', 'Documento probatorio')?></th>		
+									<th><?=Yii::t('backend', 'Otro puesto')?></th>		
+												
 								</tr>
 							</thead>
 							<tbody>
@@ -161,21 +172,26 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 						
 								<tr >
 									<td class="<?= $rowClass ?>"><?= $i+1?></td>
-									<td><?= $worker->NOMBRE.' '.$worker->APP.' '.$worker->APM  ?>
-										<?=$form->field($worker, "[$i]NOMBRE" )->hiddenInput()->label(false)?>
-										<?=$form->field($worker, "[$i]APP" )->hiddenInput()->label(false)   ?>
-										<?=$form->field($worker, "[$i]APM" )->hiddenInput()->label(false)   ?>
-										
-									</td>
 									
+									<td><?=$form->field($worker, "[$i]NOMBRE" )->textInput()->label(false)?></td>
+									<td><?=$form->field($worker, "[$i]APP" )->textInput()->label(false)   ?></td>
+									<td><?=$form->field($worker, "[$i]APM" )->textInput()->label(false)   ?></td>
 									<td><?=$form->field($worker, "[$i]CURP" )->textInput()->label(false)   ?></td>
 									<td><?=$form->field($worker, "[$i]RFC")->textInput()->label(false)   ?></td>
 									<td><?=$form->field($worker, "[$i]NSS")->textInput()->label(false)   ?></td>
-									<td><?=$form->field($worker, "[$i]DOMICILIO")->textInput()->label(false)   ?></td>
 									<td><?=$form->field($worker, "[$i]CORREO_ELECTRONICO")->textInput()->label(false)   ?></td>
 									<td><?=$form->field($worker, "[$i]TELEFONO")->textInput()->label(false)   ?></td>
 									<td><?=$form->field($worker, "[$i]PUESTO")->textInput()->label(false)   ?></td>
-									<td><?=$form->field($worker, "[$i]OCUPACION_ESPECIFICA")->textInput()->label(false)   ?></td>
+									<td><?=$form->field($worker, "[$i]OCUPACION_ESPECIFICA")->textInput()->label(false)?></td>
+									<td><?=$form->field($worker, "[$i]SEXO")->textInput()->label(false)   ?></td>
+									<td><?=$form->field($worker, "[$i]ENTIDAD_FEDERATIVA")->textInput()->label(false)   ?></td>
+									<td><?=$form->field($worker, "[$i]MUNICIPIO_DELEGACION")->textInput()->label(false)   ?></td>
+									<td><?=$form->field($worker, "[$i]LUGAR_RESIDENCIA")->textInput()->label(false)   ?></td>
+									<td><?=$form->field($worker, "[$i]GRADO_ESTUDIO")->textInput()->label(false)   ?></td>
+									<td><?=$form->field($worker, "[$i]INSTITUCION_EDUCATIVA")->textInput()->label(false)   ?></td>
+									<td><?=$form->field($worker, "[$i]FECHA_EMISION_CERTIFICADO")->textInput()->label(false)   ?></td>
+									<td><?=$form->field($worker, "[$i]DOCUMENTO_PROBATORIO")->textInput()->label(false)   ?></td>
+									<td><?=$form->field($worker, "[$i]OTRO_OCUPACION")->textInput()->label(false)   ?></td>
 									
 								</tr>	
 								
