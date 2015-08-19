@@ -99,7 +99,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 					                <div class="icon">
 					                    <i class="fa fa-university"></i>
 					                </div>
-					                   <a class="small-box-footer" href="#">
+					                   <a class="small-box-footer" href="#estable">
                                			  Establecimientos considerados <i class="fa fa-arrow-circle-right"></i>
                             		    </a>
 					              
@@ -129,8 +129,11 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
                         
                         
                  
+                 
                     </div><!-- /.row -->
-<div class="row">
+<h4 class="page-header" id="estable">
+        </h4>
+                    <div class="row">
 	<div class="col-sm-12 col-md-6 col-xs-12">
 	
 		<div class="box box-success">
