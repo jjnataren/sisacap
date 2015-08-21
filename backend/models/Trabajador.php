@@ -67,7 +67,7 @@ class Trabajador extends \yii\db\ActiveRecord
 	const GRADO_MAESTRIA=7;
 	const GRADO_DOC=8;
 	
-	public $GRADO_TIPO= [
+	public $GRADO_TIPO = [
 	
 	self::GRADO_NINGUNO=>'NINGUNO',
 	self::GRADO_PRIMARIA=>'PRIMARIA',
@@ -127,7 +127,7 @@ class Trabajador extends \yii\db\ActiveRecord
             [['RFC'], 'unique','message' =>'Ya existe un trabajador con este RFC'],
             [['CORREO_ELECTRONICO'], 'email','message' =>'Formato invalido para este correo electronico'],
             [['NSS'], 'string', 'max' => 20],
-            [['DOMICILIO', 'CORREO_ELECTRONICO', 'OCUPACION_ESPECIFICA'], 'string', 'max' => 300],
+            [['DOMICILIO', 'CORREO_ELECTRONICO'], 'string', 'max' => 300],
             [['SEXO'], 'string', 'max' => 1],
             [['SECTOR'], 'string','max'=> 250],
             [['NTCL'], 'string', 'max'=>250],
