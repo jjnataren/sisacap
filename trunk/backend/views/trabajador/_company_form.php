@@ -22,6 +22,7 @@ $this->registerJs("$('#help_popup_documento').popover('hide');", View::POS_END, 
 $this->registerJs("$('#help_popup_rol').popover('hide');", View::POS_END, 'my-options4');
 $this->registerJs("$('#help_popup_puesto').popover('hide');", View::POS_END, 'my-options5');
 $this->registerJs("$('#help_popup_ocupacion').popover('hide');", View::POS_END, 'my-options6');
+
 $dataListNTCL=ArrayHelper::map(Catalogo::findBySql('select tcc.ID_ELEMENTO, tcc.NOMBRE, (select NOMBRE FROM tbl_cat_catalogo where tcc.ELEMENTO_PADRE = ID_ELEMENTO) PADRE
 from tbl_cat_catalogo tcc where categoria=7 AND tcc.ELEMENTO_PADRE IN (select id_elemento from tbl_cat_catalogo where elemento_padre = 2630 AND categoria = 8)
  ')->all(), 'ID_ELEMENTO', 'NOMBRE','PADRE');
