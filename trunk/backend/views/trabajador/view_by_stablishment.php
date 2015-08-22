@@ -8,12 +8,12 @@ use backend\models\Catalogo;
 /* @var $model backend\models\Trabajador */
 
 
-$this->title = $model->NOMBRE;
+$this->title = 'Trabajador Id ' .$model->ID_TRABAJADOR;
 $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
-  								<i class="fa fa-users fa-lg  fa-stack-1x"></i>
+  								<i class="fa fa-child fa-lg  fa-stack-1x"></i>
 							   </span>';
-$this->params['breadcrumbs'][] = ['label' => 'Trabajador', 'url' => ['indexestablishment','id_establishment'=>$model->ID_EMPRESA]];
+$this->params['breadcrumbs'][] = ['label' => 'Establecimiento ID '.$model->ID_EMPRESA.' Trabajadores', 'url' => ['indexestablishment','id_establishment'=>$model->ID_EMPRESA]];
 $this->params['breadcrumbs'][] = $this->title;
 $entidadFederativa = Catalogo::findOne(['ID_ELEMENTO'=>$model->ENTIDAD_FEDERATIVA,'CATEGORIA'=>1,'ACTIVO'=>1]);
 $municipioDelegacion = Catalogo::findOne(['ID_ELEMENTO'=>$model->MUNICIPIO_DELEGACION,'CATEGORIA'=>2,'ACTIVO'=>1]);
