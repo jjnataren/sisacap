@@ -196,8 +196,10 @@ $config = [
             'controllers'=>['trabajador'],
             'allow' => true,
             'roles' => ['manager'],
-            'actions'=>['indexcompany', 'indexestablishment', 'deletebystablish', 'updatebystablish', 'viewbystablishment',
-            'updatebyuser', 'viewbycompany','createworkerbyestablishment', 'create-from-const-company', 'deletebyuser']
+            'actions'=>['indexcompany', 'indexestablishment', 'deletebystablish', 'updatebystablish', 'viewbystablishment','load',
+            'updatebyuser', 'viewbycompany','createworkerbyestablishment', 'create-from-const-company', 'deletebyuser', 'loadbyestablishment', 'saveallbyestablishment', 
+            'saveall'		
+            ]
             ],
             
             [
