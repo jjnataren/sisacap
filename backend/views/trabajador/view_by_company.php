@@ -9,12 +9,12 @@ use backend\models\PuestoEmpresa;
 /* @var $model backend\models\Trabajador */
 
 
-$this->title = ' ' . ' ' . $model->NOMBRE.' '. $model->APP;
+$this->title = 'Trabajador Id ' . $model->ID_TRABAJADOR;
 $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
-  								<i class="fa fa-users fa-lg fa-stack-1x"></i>
+  								<i class="fa fa-child fa-lg fa-stack-1x"></i>
 							   </span>';
-$this->params['breadcrumbs'][] = ['label' => 'Trabajador', 'url' => ['indexcompany']];
+$this->params['breadcrumbs'][] = ['label' => 'Mi empresa, Trabajadores', 'url' => ['indexcompany']];
 $this->params['breadcrumbs'][] = $this->title;
 
 $PUESTO = PuestoEmpresa::findOne(['ID_PUESTO'=>$model->PUESTO,'ACTIVO'=>1]);
