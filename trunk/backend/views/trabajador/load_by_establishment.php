@@ -4,6 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\web\View;
 use backend\models\FileForm;
+use yii\helpers\ArrayHelper;
+use backend\models\PuestoEmpresa;
+use backend\models\Catalogo;
+use kartik\widgets\DepDrop;
+use yii\helpers\Url;
+use backend\models\Trabajador;
+use yii\base\Object;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Trabajador */
@@ -21,15 +28,23 @@ $this->params ['breadcrumbs'] [] = $this->title;
 $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options-button');
 $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json' }});", View::POS_END, 'my-options');
 
+$datalistPuesto = ArrayHelper::map(PuestoEmpresa::findAll(['ID_EMPRESA'=>$model->ID_EMPRESA]), 'ID_PUESTO', 'NOMBRE_PUESTO');
+
+$itemsSex = [1=>'MUJER',2=>'HOMBRE'];
 
 
+$dataListOcupacion=ArrayHelper::map(Catalogo::findBySql('select tcc.ID_ELEMENTO, tcc.NOMBRE, (select NOMBRE FROM tbl_cat_catalogo where tcc.ELEMENTO_PADRE = ID_ELEMENTO) PADRE
+from tbl_cat_catalogo tcc where categoria=5 AND ELEMENTO_PADRE IS NOT NULL
+ ')->all(), 'ID_ELEMENTO', 'NOMBRE','PADRE');
+
+$dataListEntidad=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>1,'ACTIVO'=>1]), 'ID_ELEMENTO', 'NOMBRE');
 ?>
 
 <div class="trabajador-form">
 
 	
 
-	 <?php $form = ActiveForm::begin([ 'options'=>['layout' => 'horizontal', 'enctype'=>'multipart/form-data', 'id'=>'form1']]); ?>
+	 <?php $form = ActiveForm::begin([ 'options'=>['layout' => 'horizontal', 'enctype'=>'multipart/form-data', 'id'=>'form1', 'action' => ['trabajador/load']]]); ?>
 	
 		<div class="col-xs-12 col-sm-12 col-md-5">
 				
@@ -73,7 +88,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 					<div class="panel-heading">
 						<h3><i class="fa fa-eye"></i>
 						
-						 <?= Yii::t('backend', 'Hoja de vida de sus registros') ?><small> <?= Yii::t('backend', '  Por favor consulte sus datos y confirme') ?></small> </h3>
+						 <?= Yii::t('backend', 'Resumen de sus registros') ?><small> <?= Yii::t('backend', ' Por favor revise su información y confirme') ?></small> </h3>
 						
 					</div>
 					<div class="panel-body">
@@ -102,6 +117,10 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 		  						<td >Registros correctos</td>
 		  						<td class="success"><?= $success?:0 ?></td>
 		  					</tr>
+		  					<tr>
+		  						<td >Total</td>
+		  						<td class="info"><?= count($workers)?></td>
+		  					</tr>
 		  				</table>
 		  				
 		  					<?php }							
@@ -118,16 +137,17 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 		<?php if (isset($workers)){ ?>	
 		
 		 <?php $form = ActiveForm::begin([ 'options'=>['layout' => 'horizontal',  'id'=>'form2'],
-											'action' => ['trabajador/saveallbyestablishment', 'id'=>$model->ID_EMPRESA],	]); ?>
+											'action' => ['trabajador/saveallbyestablishment', 'id'=>$model->ID_EMPRESA],		]); ?>
 		 
 			<div class=" col-xs-12 col-sm-12 col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3><i class="fa fa-table"></i>
 						
+							
+						 <?= Yii::t('backend', 'Resultado de la importación') ?><small>&nbsp;<?= Yii::t('backend', 'Por favor revise su información') ?></small> </h3>
 						
-						 <?= Yii::t('backend', 'Users preview') ?><small>&nbsp;<?= Yii::t('backend', 'Please check your records in order to validate your data') ?></small> </h3>
-						
+			
 					</div>
 					<div class="panel-body table-responsive">		
 					
@@ -137,8 +157,6 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 								<tr >
 									<th>#</th>
 									<th><?=Yii::t('backend', 'Nombre')?></th>	
-									<th><?=Yii::t('backend', 'APP')?></th>	
-									<th><?=Yii::t('backend', 'APM')?></th>									
 									<th><?=Yii::t('backend', 'CURP')?></th>
 									<th><?=Yii::t('backend', 'RFC')?></th>
 									<th><?=Yii::t('backend', 'NSS')?></th>
@@ -152,9 +170,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 									<th><?=Yii::t('backend', 'Lugar de recidencia')?></th>
 									<th><?=Yii::t('backend', 'Grado de estudios')?></th>			
 									<th><?=Yii::t('backend', 'Institución eduativa')?></th>	
-									<th><?=Yii::t('backend', 'Fecha de emición de certificado')?></th>
 									<th><?=Yii::t('backend', 'Documento probatorio')?></th>		
-									<th><?=Yii::t('backend', 'Otro puesto')?></th>		
 												
 								</tr>
 							</thead>
@@ -173,25 +189,50 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 								<tr >
 									<td class="<?= $rowClass ?>"><?= $i+1?></td>
 									
-									<td><?=$form->field($worker, "[$i]NOMBRE" )->textInput()->label(false)?></td>
-									<td><?=$form->field($worker, "[$i]APP" )->textInput()->label(false)   ?></td>
-									<td><?=$form->field($worker, "[$i]APM" )->textInput()->label(false)   ?></td>
+									<td><?= $worker->NOMBRE.' '.$worker->APP.' '.$worker->APM ?>
+									
+										<?=$form->field($worker, "[$i]NOMBRE" )->hiddenInput()->label(false)?>
+										<?=$form->field($worker, "[$i]APP" )->hiddenInput()->label(false)   ?>
+										<?=$form->field($worker, "[$i]APM" )->hiddenInput()->label(false)   ?>
+									</td>
 									<td><?=$form->field($worker, "[$i]CURP" )->textInput()->label(false)   ?></td>
 									<td><?=$form->field($worker, "[$i]RFC")->textInput()->label(false)   ?></td>
 									<td><?=$form->field($worker, "[$i]NSS")->textInput()->label(false)   ?></td>
 									<td><?=$form->field($worker, "[$i]CORREO_ELECTRONICO")->textInput()->label(false)   ?></td>
 									<td><?=$form->field($worker, "[$i]TELEFONO")->textInput()->label(false)   ?></td>
-									<td><?=$form->field($worker, "[$i]PUESTO")->textInput()->label(false)   ?></td>
-									<td><?=$form->field($worker, "[$i]OCUPACION_ESPECIFICA")->textInput()->label(false)?></td>
-									<td><?=$form->field($worker, "[$i]SEXO")->textInput()->label(false)   ?></td>
-									<td><?=$form->field($worker, "[$i]ENTIDAD_FEDERATIVA")->textInput()->label(false)   ?></td>
-									<td><?=$form->field($worker, "[$i]MUNICIPIO_DELEGACION")->textInput()->label(false)   ?></td>
+									<td> <?= $form->field($worker, "[$i]PUESTO")->dropDownList($datalistPuesto,['prompt'=>'-- No establecido  --','ID_PUESTO' => 'NOMBRE_PUESTO'])->label(false); ?></td>
+									<td><?= $form->field($worker, "[$i]OCUPACION_ESPECIFICA")->dropDownList($dataListOcupacion,['prompt'=>'-- No establecido  --','ID_ELEMENTO' => 'NOMBRE','id'=>'drop_ocup'])->label(false); ?>  </td>
+								    <td><?= $form->field($worker, "[$i]SEXO")->dropDownList($itemsSex,['prompt'=>'-- No establecido  --','id' => 'tex-sex'])->label(false); ?></td>
+									<td> <?= $form->field($worker, "[$i]ENTIDAD_FEDERATIVA")->dropDownList($dataListEntidad,['prompt'=>'-- No establecido  --','id' => 'cat-entidad_'.$i])->label(false); ?></td>
+									<td>
+									
+									<?php  
+									
+									if ($worker->MUNICIPIO_DELEGACION){
+										$dataListMunicipios=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>Catalogo::CATEGORIA_MUNICIPIOS,'ACTIVO'=>1, 'ELEMENTO_PADRE'=>$worker->ENTIDAD_FEDERATIVA]), 'ID_ELEMENTO', 'NOMBRE');
+									}else 
+										$dataListMunicipios = array();
+									?>
+									 <?= $form->field($worker, "[$i]MUNICIPIO_DELEGACION")->widget(DepDrop::classname(), [
+									    'options' => ['id' => 'subcat-id_'.$i],
+									    'data'=>$dataListMunicipios,
+									 		
+									    'pluginOptions' => [ 'depends' => ['cat-entidad_'.$i],
+									        'placeholder' => 'Seleccione ...',		
+									        'url' => Url::to(['empresa/getmunicipios'])
+									    ]
+									])->label(false); ?></td>
 									<td><?=$form->field($worker, "[$i]LUGAR_RESIDENCIA")->textInput()->label(false)   ?></td>
-									<td><?=$form->field($worker, "[$i]GRADO_ESTUDIO")->textInput()->label(false)   ?></td>
-									<td><?=$form->field($worker, "[$i]INSTITUCION_EDUCATIVA")->textInput()->label(false)   ?></td>
-									<td><?=$form->field($worker, "[$i]FECHA_EMISION_CERTIFICADO")->textInput()->label(false)   ?></td>
-									<td><?=$form->field($worker, "[$i]DOCUMENTO_PROBATORIO")->textInput()->label(false)   ?></td>
-									<td><?=$form->field($worker, "[$i]OTRO_OCUPACION")->textInput()->label(false)   ?></td>
+									<td><?php  $trabajador = new Trabajador();?>
+									<?= $form->field($worker, "[$i]GRADO_ESTUDIO")->dropDownList($trabajador->GRADO_TIPO,['prompt'=>'-- No establecido  --','id' => 'grado_tipo'.$i])->label(false); ?>
+									</td>
+									
+									<td>
+											<?= $form->field($worker, "[$i]INSTITUCION_EDUCATIVA")->dropDownList($trabajador->INST_TIPO,['prompt'=>'-- No establecido  --','id' => 'inst_tipo'.$i])->label(false); ?>
+									</td>
+									<td>
+										<?= $form->field($worker, "[$i]DOCUMENTO_PROBATORIO")->dropDownList($trabajador->DOC_TIPO,['prompt'=>'-- No establecido  --','id' => 'inst_tipo'.$i])->label(false); ?>
+									</td>
 									
 								</tr>	
 								
@@ -201,7 +242,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 							</tbody>
 							<tfoot>
 								<tr>
-									<td colspan="11"></td>
+									<td colspan="16"></td>
 								</tr>
 							</tfoot>
 						</table>					
@@ -210,7 +251,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 								<button id="helppop2" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', '1.- Elija el archivo y presione el boton [Preview] 2.- Revise los registros 3.- Seleccione [Cargar] para guardar los trabajadores') ?>"><i class="fa fa-question-circle"></i>
 								</button>
 						       
-						        <?= Html::submitButton('<i class="fa fa-floppy-o"></i>' .'&nbsp;'.Yii::t('backend', 'Load'), ['class' => 'btn btn-success', 'name'=>'proccess' ]) ?>   
+						        <?= Html::submitButton('<i class="fa fa-floppy-o"></i>' .'&nbsp;'.Yii::t('backend', 'Guardar'), ['class' => 'btn btn-success', 'name'=>'proccess' ]) ?>   
 						</div>
 					</div>
 				</div>

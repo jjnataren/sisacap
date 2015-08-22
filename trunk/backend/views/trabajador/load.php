@@ -145,7 +145,7 @@ $dataListEntidad=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>1,'ACTIVO'=>1]
 						<h3><i class="fa fa-table"></i>
 						
 						
-						 <?= Yii::t('backend', 'Users preview') ?><small>&nbsp;<?= Yii::t('backend', 'Please check your records in order to validate your data') ?></small> </h3>
+						 <?= Yii::t('backend', 'Resultado de la importación') ?><small>&nbsp;<?= Yii::t('backend', 'Por favor revise su información') ?></small> </h3>
 						
 					</div>
 					<div class="panel-body table-responsive">		
@@ -250,7 +250,7 @@ $dataListEntidad=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>1,'ACTIVO'=>1]
 								<button id="helppop2" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', '1.- Elija el archivo y presione el boton [Preview] 2.- Revise los registros 3.- Seleccione [Cargar] para guardar los trabajadores') ?>"><i class="fa fa-question-circle"></i>
 								</button>
 						       
-						        <?= Html::submitButton('<i class="fa fa-floppy-o"></i>' .'&nbsp;'.Yii::t('backend', 'Load'), ['class' => 'btn btn-success', 'name'=>'proccess' ]) ?>   
+						        <?= Html::submitButton('<i class="fa fa-floppy-o"></i>' .'&nbsp;'.Yii::t('backend', 'Guardar'), ['class' => 'btn btn-success', 'name'=>'proccess' ]) ?>   
 						</div>
 					</div>
 				</div>
