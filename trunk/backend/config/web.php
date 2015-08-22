@@ -197,7 +197,7 @@ $config = [
             'allow' => true,
             'roles' => ['manager'],
             'actions'=>['indexcompany', 'indexestablishment', 'deletebystablish', 'updatebystablish', 'viewbystablishment',
-            'updatebyuser', 'viewbycompany','createworkerbyestablishment', 'create-from-const-company']
+            'updatebyuser', 'viewbycompany','createworkerbyestablishment', 'create-from-const-company', 'deletebyuser']
             ],
             
             [
@@ -234,11 +234,11 @@ $config = [
             'controllers'=>['user','page','key-storage','file-manager','file-storage','system-information','log','cache',],
             'allow' => false,
             ],
-           
+           /*
             [
                 'allow' => true,
                 'roles' => ['manager'],
-            ]
+            ]*/
         ]
     ]
 ];
