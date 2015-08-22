@@ -133,7 +133,12 @@ class Trabajador extends \yii\db\ActiveRecord
             [['NTCL'], 'string', 'max'=>250],
             [['LUGAR_RESIDENCIA', 'OTRO_OCUPACION'], 'string', 'max' => 200],
             [['RFC'], 'unique'],
-            [['NOMBRE', 'RFC'],'required'],
+            [[ 'RFC'],'required','message' =>'Este campo es requerido'],
+        	[['NOMBRE', 'RFC'],'required','message' =>'El nombre del trabajador es requerido'],
+        	[['RFC'], 'match', 
+        	  'pattern'=>'/^([A-Z&Ññ]{3}|[A-Z][AEIOU][A-Z]{2})\d{2}((01|03|05|07|08|10|12)(0[1-9]|[12]\d|3[01])|02(0[1-9]|[12]\d)|(04|06|09|11)(0[1-9]|[12]\d|30))([A-Z0-9]{2}[0-9A])?$/',
+        	  'message' =>'Este no parece ser un RFC valido'	
+        	],
             
         ];
     }
