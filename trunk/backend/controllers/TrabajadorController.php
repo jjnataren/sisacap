@@ -20,11 +20,15 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use backend\models\PuestoEmpresa;
 
+
 /**
  * TrabajadorController implements the CRUD actions for Trabajador model.
  */
 class TrabajadorController extends Controller
 {
+	
+
+	const  HEADER_DOC='NOMBRE(S)APELLIDO PATERNOAPELLIDO MATERNOCURPRFCNSSCORREO ELECTRONICOTELEFONOPUESTOCLAVE DE OCUPACION ESPECIFICASEXOENTIDAD FEDERATIVAMUNICIPIO O DELEGACIONLUGAR DE RESIDENCIAGRADO DE ESTUDIOSINSTITUCION EDUCATIVAFECHA EMISION DE CERTIFICADODOCUMENTO PROBATORIO';
 	
 	
 	public function beforeAction($action) {
@@ -224,38 +228,83 @@ class TrabajadorController extends Controller
     						//$worker = Trabajador::find(['RFC'=>$line[5], 'ID_EMPRESA'=>$id_company, 'NSS'=>$line[6]]);
     
     						//if ($worker === null)
-    
     						$worker = new Trabajador();
     							
-    							
-    						//$worker->ROL = $line[0];
     						$worker->NOMBRE = $line[0];
     						$worker->APP = $line[1];
     						$worker->APM = $line[2];
-    							
     						$worker->CURP = $line[3];
     						$worker->RFC = $line[4];
     						$worker->NSS = $line[5];
     						
     						$worker->CORREO_ELECTRONICO = $line[6];
     						$worker->TELEFONO = $line[7];
-    						$worker->PUESTO = $line[8];
-    						$worker->OCUPACION_ESPECIFICA = $line[9];
+    						
+    						$tmp_puesto = PuestoEmpresa::findOne(['CLAVE_PUESTO'=> $line[8], 'ID_EMPRESA'=>$model->ID_EMPRESA ]);
+    						$worker->PUESTO = isset($tmp_puesto) ? $tmp_puesto->ID_PUESTO: null ;
+    						
+    						$tmp_ocupacion = Catalogo::findOne(['CLAVE'=>$line[9],  'CATEGORIA'=>Catalogo::CATEGORIA_OCUPACION]);
+    						$worker->OCUPACION_ESPECIFICA = isset($tmp_ocupacion)?$tmp_ocupacion->ID_ELEMENTO : null;
+    						
     						$worker->SEXO = $line[10];
-    						$worker->ENTIDAD_FEDERATIVA = $line[11];
-    						$worker->MUNICIPIO_DELEGACION = $line[12];
+    						
+    						$tmp_federativa = Catalogo::findOne(['CLAVE'=>$line[11],  'CATEGORIA'=>Catalogo::CATEGORIA_ENTIDADES_FEDERATIVAS]);
+    						$worker->ENTIDAD_FEDERATIVA = isset($tmp_federativa)?$tmp_federativa->ID_ELEMENTO : null;
+    						
+    						
+    						
+    						$tmp_municipio = Catalogo::findOne(['CLAVE'=>$line[12],  'CATEGORIA'=>Catalogo::CATEGORIA_MUNICIPIOS, 'ELEMENTO_PADRE'=>$worker->ENTIDAD_FEDERATIVA]);
+    						$worker->MUNICIPIO_DELEGACION =  isset($tmp_municipio)?$tmp_municipio->ID_ELEMENTO : null;
+    						
+    						
     						$worker->LUGAR_RESIDENCIA = $line[13];
     						$worker->GRADO_ESTUDIO = $line[14];
     						$worker->INSTITUCION_EDUCATIVA = $line[15];
     						$worker->FECHA_EMISION_CERTIFICADO = $line[16];
     						$worker->DOCUMENTO_PROBATORIO = $line[17];
-    						$worker->OTRO_OCUPACION = $line[18];
-    						
+    					//	$worker->OTRO_OCUPACION = $line[18];
+    							
+    							
+    						//$worker->OCUPACION_ESPECIFICA = $line[11];
+    							
+    						//$catalogo = Catalogo::findOne(['CLAVE'=>$line[11], 'CATEGORIA'=>Catalogo::CATEGORIA_MUNICIPIOS]);
+    							
+    						//$worker->OCUPACION_ESPECIFICA = $catalogo->ID_ELEMENTO;
+    							
+    							
+    						//$worker->SEXO = $line[11];
     						$worker->ACTIVO = 1;
     							
-    						$worker->validate();
+    					if ( !$worker->validate() ){
+    						
+    						Yii::$app->session->setFlash('alert', [
+    								'options'=>['class'=>'alert-danger'],
+    								'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'> Existen errores en sus registros por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
+    						]);
+    						
+    					}
     							
     						$workers[] = $worker;
+    					}else{
+    						
+    						$columnas = count($line);
+    						
+    						if ($columnas !== 18  || (strtoupper( trim($line[0]).trim($line[1]).trim($line[2]).trim($line[3]).trim($line[4]).trim($line[5]).trim($line[6]).
+    								trim($line[7]).trim($line[8]).trim($line[9]).trim($line[10]).trim($line[11]).trim($line[12]).trim($line[13]).trim($line[14]).trim($line[15]).trim($line[16]).
+    								trim($line[17]) ) !== self::HEADER_DOC )) {
+    							
+    						
+    							Yii::$app->session->setFlash('alert', [
+    									'options'=>['class'=>'alert-danger'],
+    									'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'> Arvhivo no valido, por favor revise el formato.<a href=\'#\' class=\'alert-link\'>'.$columnas.'</a>',
+    							]);
+    								
+    							
+    							break; 
+    							
+    					
+    						}
+    						
     					}
     						
     						
@@ -270,14 +319,15 @@ class TrabajadorController extends Controller
     			}
     		}
     
-    		return $this->redirect(['loadbystablishment', 'id' => $id]);
+    	
     
-    	} else {
+    	} 
+    		
+    		
     		return $this->render('load_by_establishment', [
     				'model' => $companyModel,
     				'fileModel'=>$fileModel
     				]);
-    	}
     	 
     	 
     	 
@@ -304,6 +354,8 @@ class TrabajadorController extends Controller
     	
        	$i= 0;
        	
+
+       	
     	$workers = array();
        	
     	if (Yii::$app->request->isPost) {
@@ -328,7 +380,7 @@ class TrabajadorController extends Controller
     					
     					if($i++){
     					
-    						
+    							
     						
     					//$worker = Trabajador::find(['RFC'=>$line[5], 'ID_EMPRESA'=>$id_company, 'NSS'=>$line[6]]);	
     						
@@ -368,7 +420,7 @@ class TrabajadorController extends Controller
     						$worker->INSTITUCION_EDUCATIVA = $line[15];
     						$worker->FECHA_EMISION_CERTIFICADO = $line[16];
     						$worker->DOCUMENTO_PROBATORIO = $line[17];
-    						$worker->OTRO_OCUPACION = $line[18];
+    		
     					
     					
     					//$worker->OCUPACION_ESPECIFICA = $line[11];
@@ -381,9 +433,39 @@ class TrabajadorController extends Controller
     					//$worker->SEXO = $line[11];
     					$worker->ACTIVO = 1;
     					
-    					$worker->validate();
+    					if ( !$worker->validate() ){
+    						
+
+    						Yii::$app->session->setFlash('alert', [
+    								'options'=>['class'=>'alert-danger'],
+    								'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'> Existen errores en sus registros por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
+    						]);
+    						
+    						
+    						
+    					}
     					
     					$workers[] = $worker;
+    					}else{
+    						
+    						$columnas = count($line);
+    						
+    						if ($columnas !== 18  || (strtoupper( trim($line[0]).trim($line[1]).trim($line[2]).trim($line[3]).trim($line[4]).trim($line[5]).trim($line[6]).
+    								trim($line[7]).trim($line[8]).trim($line[9]).trim($line[10]).trim($line[11]).trim($line[12]).trim($line[13]).trim($line[14]).trim($line[15]).trim($line[16]).
+    								trim($line[17]) ) !== self::HEADER_DOC )) {
+    							
+    						
+    							Yii::$app->session->setFlash('alert', [
+    									'options'=>['class'=>'alert-danger'],
+    									'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'> Arvhivo no valido, por favor revise el formato.<a href=\'#\' class=\'alert-link\'>'.$columnas.'</a>',
+    							]);
+    								
+    							
+    							break; 
+    							
+    					
+    						}
+    						
     					}
     					
     					
@@ -398,18 +480,14 @@ class TrabajadorController extends Controller
     			}   			
     		}
     		
-    		return $this->redirect(['load', 'id_company' => $id_company]);
+    	
     		
-    	} else {
+    	} 
+    	
     		return $this->render('load', [
     			'model' => $companyModel,
     			'fileModel'=>$fileModel
     			]);
-    	}
-    	
-    	
-   
-    	
     	
     }
     
@@ -483,14 +561,16 @@ class TrabajadorController extends Controller
     
     		Yii::$app->session->setFlash('alert', [
     		'options'=>['class'=>'alert-success'],
-    		'body'=>Yii::t('frontend', "{$count} workers have been saved correctly")
+    		'body'=>Yii::t('frontend', "{$count} Trabajadores guardados correctamente")
     		]);
     
     
     		return $this->redirect(['indexestablishment','id_establishment'=>$id]); // redirect to your next desired page
     
     
-    	}else  return $this->render('loadbyestablishment', [
+    	}
+    		
+    		return $this->render('loadbyestablishment', [
     			'model' => $companyModel,
     			'fileModel'=>$fileModel,
     			'workers'=>$workers
