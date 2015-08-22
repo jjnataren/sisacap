@@ -530,32 +530,43 @@ class TrabajadorController extends Controller
     	}
     	 
     	 
-    	//$workers  =  Trabajador::findAll(['ID_EMPRESA'=>$id_company]);
-    	 
-    	//$workers = $workers ?:
-    
-    	//$postData = Yii::$app->request->post();
-    	//if ($postData) {
-    	//		foreach ($postData as $i => $single) {
-    	//			$workers[$i] = new Trabajador();
-    	//		}
-    	// 	}
-    	 
+     	 
     	if (Trabajador::loadMultiple($workers, Yii::$app->request->post(), null) && Trabajador::validateMultiple($workers)) {
     
     
     		$count = 0;
+    		
+    		$connection = Yii::$app->db;
+    		
+    		$transaction =   $connection->beginTransaction();
+    		 
     		foreach ($workers as $worker) {
     			// populate and save records for each model
     
     			$worker->ACTIVO = 1;
     			$worker->ID_EMPRESA = $companyModel->ID_EMPRESA;
     			 
+    			
+    			
     			if ($worker->save()) {
     				// do something here after saving
     				$count++;
+    				
+    			}else{
+    				
+    				$transaction->rollback();
+    				return $this->render('load_by_establishment', [
+    						'model' => $companyModel,
+    						'fileModel'=>$fileModel,
+    						'workers'=>$workers
+    						 
+    				]);
+    				
     			}
     		}
+    		
+    		$transaction->commit();
+    		
     
     		//Yii::$app->session->setFlash('success', "Processed {$count} records successfully.");
     
@@ -570,7 +581,7 @@ class TrabajadorController extends Controller
     
     	}
     		
-    		return $this->render('loadbyestablishment', [
+    		return $this->render('load_by_establishment', [
     			'model' => $companyModel,
     			'fileModel'=>$fileModel,
     			'workers'=>$workers
@@ -620,46 +631,61 @@ class TrabajadorController extends Controller
     		$workers[] = new Trabajador();
     	}
     	
-    	
-    	//$workers  =  Trabajador::findAll(['ID_EMPRESA'=>$id_company]);
-    	
-    	//$workers = $workers ?:
 
-    	//$postData = Yii::$app->request->post();
-    	//if ($postData) {
-    //		foreach ($postData as $i => $single) {
-    //			$workers[$i] = new Trabajador();
-    //		}
-   // 	}
     	
     	if (Trabajador::loadMultiple($workers, Yii::$app->request->post(), null) && Trabajador::validateMultiple($workers)) {
     		
     		
     		$count = 0;
+    		
+    		$connection = Yii::$app->db;
+    		
+    		$transaction =   $connection->beginTransaction();
+    		
     		foreach ($workers as $worker) {
     			// populate and save records for each model
     		
     			$worker->ACTIVO = 1;
     			$worker->ID_EMPRESA = $companyModel->ID_EMPRESA;
     			
+    	
+    			
     			if ($worker->save()) {
     				// do something here after saving
     				$count++;
+    				
+    			}else{
+    				
+    				$transaction->rollback();
+    				return $this->render('load', [
+    						'model' => $companyModel,
+    						'fileModel'=>$fileModel,
+    						'workers'=>$workers
+    						 
+    				]);
+    				
     			}
+    			
     		}
+    		
+    		$transaction->commit();
+    		 
     		
     		//Yii::$app->session->setFlash('success', "Processed {$count} records successfully.");
     		
     		Yii::$app->session->setFlash('alert', [
     		'options'=>['class'=>'alert-success'],
-    		'body'=>Yii::t('frontend', "{$count} workers have been saved correctly")
+    		'body'=>Yii::t('frontend', "{$count} Trabajadores han sigo guardados correctamente")
     		]);
     		
     		
     		return $this->redirect(['indexcompany']); // redirect to your next desired page
     		
     		
-    	}else  return $this->render('load', [
+    	}
+    	
+    	
+    	return $this->render('load', [
             'model' => $companyModel,
     		'fileModel'=>$fileModel,
     		'workers'=>$workers
