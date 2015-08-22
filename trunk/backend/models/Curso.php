@@ -3,7 +3,6 @@
 namespace backend\models;
 
 use Yii;
-use Codeception\Lib\Console\Message;
 
 /**
  * This is the model class for table "tbl_curso".
@@ -12,7 +11,6 @@ use Codeception\Lib\Console\Message;
  * @property integer $ID_PLAN
  * @property integer $ID_INSTRUCTOR
  * @property string $NOMBRE
- * @property integer $ESTATUS
  * @property integer $DURACION_HORAS
  * @property string $FECHA_INICIO
  * @property string $FECHA_TERMINO
@@ -20,58 +18,57 @@ use Codeception\Lib\Console\Message;
  * @property string $MODALIDAD_CAPACITACION
  * @property string $DESCRIPCION
  * @property string $OBJETIVO_CAPACITACION
+ * @property integer $ESTATUS
  *
  * @property Constancia[] $constancias
  * @property Instructor $iDINSTRUCTOR
  * @property Plan $iDPLAN
+ * @property IndicadorCurso[] $indicadorCursos
  * @property TrabajadorCurso[] $trabajadorCursos
  */
 class Curso extends \yii\db\ActiveRecord
 {
-
+    
 	const  ESTATUS_INICIADO = 1;
 	const  ESTATUS_CREADO = 2;
 	const  ESTATUS_CONCLUIDO = 3;
 	
 	//$itemsModalidad = [1=>'Presencial',2=>'En linea',3=>'Mixta'];
-
 	
-	   
-    const  mod_presencial = 1;
-    const  mod_online = 2 ;
-    const  mod_mixta = 3;
-    
-    
-    const obj_habilidades = 1;
-    const obj_riesgos = 2;
-    const obj_productividad = 3;
-    const obj_niveEducativo = 4;
-    const obj_vacantes = 5;
-    
-    
-     
-    public static function  getModalidad(){
-    	return [Curso::mod_presencial=>'Presencial',
-	 self:: mod_online=> 'En linea',
-	 self::mod_mixta=>'Mixta',
+	
+	
+	const  mod_presencial = 1;
+	const  mod_online = 2 ;
+	const  mod_mixta = 3;
+	
+	
+	const obj_habilidades = 1;
+	const obj_riesgos = 2;
+	const obj_productividad = 3;
+	const obj_niveEducativo = 4;
+	const obj_vacantes = 5;
+	
+	
 	 
-    ];
-    
-    }
-    
-
-  public static function  getObjetivos(){
-  	
-  	return [Curso::obj_habilidades=>'Actualizar y perfeccionar conocimientos y habilidades y proporcionar información de nuevas tecnologías',
-  	self::obj_riesgos=>'Prevenir riesgos de trabajo',
-  	self::obj_productividad=>'Incrementar la productividad',
-  	self::obj_niveEducativo=>'Nivel educativo',
-  	self::obj_vacantes=>'Preparar para ocupar vacantes o puestos de nueva creación',
-  	];
-   }
-    
-   /*
-
+	public static function  getModalidad(){
+		return [Curso::mod_presencial=>'Presencial',
+				self:: mod_online=> 'En linea',
+				self::mod_mixta=>'Mixta',
+	
+		];
+	
+	}
+	
+	
+	public static function  getObjetivos(){
+		 
+		return [Curso::obj_habilidades=>'Actualizar y perfeccionar conocimientos y habilidades y proporcionar información de nuevas tecnologías',
+				self::obj_riesgos=>'Prevenir riesgos de trabajo',
+				self::obj_productividad=>'Incrementar la productividad',
+				self::obj_niveEducativo=>'Nivel educativo',
+				self::obj_vacantes=>'Preparar para ocupar vacantes o puestos de nueva creación',
+		];
+	}
     /**
      * @inheritdoc
      */
@@ -79,8 +76,11 @@ class Curso extends \yii\db\ActiveRecord
     {
         return 'tbl_curso';
     }
+
     
-      
+    
+    
+    
     
     /**
      * Own validation
@@ -159,9 +159,9 @@ class Curso extends \yii\db\ActiveRecord
     	$tmp_fin = new \DateTime($this->FECHA_TERMINO);
     
     	$days_of_dif = date_diff($tmp_inicio, $tmp_fin);
-    		
+    
     	$total_days = $days_of_dif->format('%a');
-    		
+    
     	$total_days = intval($total_days);
     
     	$max_days = intval(isset($params['max']) ? $params['max'] : '0');
@@ -173,8 +173,8 @@ class Curso extends \yii\db\ActiveRecord
     	}
     
     }
-
-    /**
+    
+     /**
      * @inheritdoc
      */
     public function rules()
@@ -203,24 +203,24 @@ class Curso extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
+        /**
      * @inheritdoc
      */
     public function attributeLabels()
     {
         return [
-            'ID_CURSO' => 'Id  Curso',
-            'ID_PLAN' => 'Id  Plan',
-            'ID_INSTRUCTOR' => 'Id  Instructor',
+            'ID_CURSO' => 'Id del Curso',
+            'ID_PLAN' => 'Id del Plan',
+            'ID_INSTRUCTOR' => 'Id del Instructor',
             'NOMBRE' => 'Nombre',
             'ESTATUS' => 'Estatus',
-            'DURACION_HORAS' => 'Duración  Horas',
-            'FECHA_INICIO' => 'Fecha  Inicio',
-            'FECHA_TERMINO' => 'Fecha  Termino',
-            'AREA_TEMATICA' => 'Área  Temática',
-            'MODALIDAD_CAPACITACION' => 'Modalidad  Capacitación',
+            'DURACION_HORAS' => 'Duración horas',
+            'FECHA_INICIO' => 'Fecha de inicio',
+            'FECHA_TERMINO' => 'Fecha de termino',
+            'AREA_TEMATICA' => 'Área temática',
+            'MODALIDAD_CAPACITACION' => 'Modalidad de capacitación',
             'DESCRIPCION' => 'Descripción',
-            'OBJETIVO_CAPACITACION' => 'Objetivo  Capacitación',
+            'OBJETIVO_CAPACITACION' => 'Objetivo de Capacitación',
         ];
     }
 
@@ -246,6 +246,14 @@ class Curso extends \yii\db\ActiveRecord
     public function getIDPLAN()
     {
         return $this->hasOne(Plan::className(), ['ID_PLAN' => 'ID_PLAN']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIndicadorCursos()
+    {
+        return $this->hasMany(IndicadorCurso::className(), ['ID_CURSO' => 'ID_CURSO']);
     }
 
     /**
