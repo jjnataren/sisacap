@@ -56,10 +56,10 @@ public static function  setIndicadoresComision($comisionMixta){
 			$modelIndicador->FECHA_FIN_VIGENCIA = $fechaConstitucion->modify('+10 day')->format('Y-m-d');
 			$modelIndicador->TITULO = 'Generar reporte anual';
 			
-			$modelIndicador->DESCRIPCION = "La empresa deberá mantener en sus registros internos y presentar a la Secretaría, cuando ésta
-					 así lo requiera, la información sobre el  informe anual de las actividades realizadas dentro da la comision mixta de capacitación, adiestramiento y productividad.";
+			$modelIndicador->DESCRIPCION = "La empresa deberá mantener en sus registros internos y presentar a la secretaría cuando ésta
+así lo requiera la información sobre el informe anual de las actividades realizadas dentro da la comisión mixta de capacitación, adiestramiento y productividad.";
 			
-			$modelIndicador->DATA = "Es necesario genearar un reporte anual de actividades que se hayan realizado en la comision mixta";
+			$modelIndicador->DATA = "Es necesario generar un reporte anual de actividades que se hayan realizado en la comisión mixta";
 			
 			$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
 			

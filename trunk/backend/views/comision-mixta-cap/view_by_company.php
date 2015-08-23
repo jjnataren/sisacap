@@ -12,7 +12,7 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
   								<i class="glyphicon glyphicon-copyright-mark -lg  fa-stack-1x"></i>
 							   </span>';
-$this->params['breadcrumbs'][] = ['label' => 'Comision Mixta Caps', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Comision Mixta Caps', 'url' => ['indexbycompany']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="comision-mixta-cap-view">

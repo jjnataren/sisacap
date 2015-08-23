@@ -408,7 +408,7 @@ $planItems[]= 	[
          			echo isset($catalog)?$catalog->NOMBRE: 'no asignado'; ?></dd>	
                         
                           <dt><?= Yii::t('backend', 'Numero de trabajadores') ?></dt>
-                        <dd><?= $model->iDEMPRESA->	  NUMERO_TRABAJADORES ?></dd>	
+                        <dd><?= $model->iDEMPRESA->NUMERO_TRABAJADORES ?></dd>	
                        
                          <dt><?= Yii::t('backend', 'Giro principal') ?></dt>
                         <dd><?php 
@@ -516,7 +516,9 @@ $planItems[]= 	[
                   <div class="box-footer">
                   	  <td><h5>total de trabajadores   <span class="badge bg-yellow">
                           
-                       <?php echo  $trajaEstab;?>  </span></td>
+                       <?php echo  $trajaEstab;?>  </span>
+                       	</h5>
+                       </td>
                
                   </div>
           
@@ -651,7 +653,7 @@ $planItems[]= 	[
 						    <i class="fa fa-calendar"></i>
 						<h3 class="box-title"><?= Yii::t('backend', 'Planes y programas de capacitación') ?>  <small>relacionados a la comisión</small>  
 						
-						</small></h3>	
+						</h3>	
 						<div class="box-tools pull-right">
             <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
             <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
