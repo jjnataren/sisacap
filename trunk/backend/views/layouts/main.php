@@ -298,6 +298,43 @@ use backend\models\Plan;
                         </li>
                     </ul>
                 </li>
+                  <li id="notifications-dropdown" class="dropdown notifications-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-laptop"></i>
+                        <span class="badge bg-green">
+                            <?= count(\backend\models\IndicadorComision::findBySql('select * from tbl_indicador_curso where id_curso in 
+                            		(select id_curso from tbl_curso where id_plan in 
+                            			(select id_plan from tbl_plan where id_comision in 
+                            				(select id_comision from tbl_comision_mixta_cap where id_empresa = '.$companyByUser->ID_EMPRESA.' and ACTIVO=1) ) )  AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia  ')->all()) ?>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="header">
+                            <?php echo 'Notificaciones de cursos'?>
+                        </li>
+                        <li>
+                            <!-- inner menu: contains the actual data -->
+                            <ul class="menu">
+                                <?php foreach(\backend\models\IndicadorCurso::findBySql('select * from tbl_indicador_curso where id_curso in 
+                            		(select id_curso from tbl_curso where id_plan in 
+                            			(select id_plan from tbl_plan where id_comision in 
+                            				(select id_comision from tbl_comision_mixta_cap where id_empresa = '.$companyByUser->ID_EMPRESA.' and ACTIVO=1) ) ) 
+                                		AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia  ')->orderBy(['fecha_inicio_vigencia'=>SORT_DESC])->limit(10)->all() as $eventRecord): ?>
+                                    <li>
+                                        <a href="<?= Yii::$app->urlManager->createUrl(['/indicador-curso/view-by-company', 'id'=>$eventRecord->ID_EVENTO]) ?>">
+                                            <i class="fa fa-bell"></i>
+                                            <?='ID '. $eventRecord->ID_CURSO .'-' .  $eventRecord->TITULO ?>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </li>
+                        <li class="footer">
+                            <?= Html::a(Yii::t('backend', 'ver todas'), ['/indicador-curso/index-by-company']) ?>
+                           
+                        </li>
+                    </ul>
+                </li>
                 <li id="notifications-dropdown" class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-calendar"></i>

@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 
-<h4>Informe notificaciones de las constancias de adiestramiento </h4>
+<h4>Informe notificaciones de los cursos de capacitación</h4>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -28,33 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'ID_CONSTANCIA',
-    		
-    		[
-    		'attribute'=>'ID_CONSTANCIA',
-    		'label'=>'Curso',
-    		'content'=>function($data){
-    			 
-    			return $data->iDCONSTANCIA->iDCURSO->NOMBRE;
-    			 
-    			},
-    		
-    		],
-    		
-    		[
-    		'attribute'=>'ID_CONSTANCIA',
-    		'label'=>'Trabajador',
-    		'content'=>function($data){
-    		
-    			
-    		
-    			return isset($data->iDCONSTANCIA->iDTRABAJADOR) ? $data->iDCONSTANCIA->iDTRABAJADOR->NOMBRE . ' ' . $data->iDCONSTANCIA->iDTRABAJADOR->APP . ' ' . $data->iDCONSTANCIA->iDTRABAJADOR->APM . ' '  : '<i>no establecido</i>';
-    		
-    		},
-    		
-    		],
-    		
-    		[
+        	[
     		'attribute'=>'TITULO',
     		'label'=>'Evento',
 			],
@@ -62,7 +36,39 @@ $this->params['breadcrumbs'][] = $this->title;
 			'attribute'=>'DATA',
 			'label'=>'Descripción',
 			],
-               		
+    		
+    		[
+    		'attribute'=>'ID_CURSO',
+    		'label'=>'Curso',
+    		'content'=>function($data){
+    			 
+    			return  isset($data->iDCURSO) ?  $data->iDCURSO->NOMBRE : '<i>no establecido</i>';
+    			 
+    			},
+    		
+    		],
+    		
+    		[
+    		'attribute'=>'ID_CURSO',
+    		'label'=>'Fecha inicio curso',
+    		'content'=>function($data){
+    		
+    				return  isset($data->iDCURSO) ?  $data->iDCURSO->FECHA_INICIO : '<i>no establecido</i>';
+    		
+    		},
+    		
+    		],
+    		
+    		[
+    		'attribute'=>'ID_CURSO',
+    		'label'=>'Fecha inicio curso',
+    		'content'=>function($data){
+    		
+    			return  isset($data->iDCURSO) ?  $data->iDCURSO->FECHA_TERMINO : '<i>no establecido</i>';
+    		
+    		},
+    		
+    		],
     		
             // 'ID_ALERTA',
             // 'FECHA_CREACION',
@@ -87,12 +93,12 @@ $this->params['breadcrumbs'][] = $this->title;
 			'urlCreator' => function ($action, $model, $key, $index) {
 					
 				if ($action === 'view') {
-					return Yii::$app->urlManager->createUrl(['/indicador-constancia/view-by-company', 'id' => $key]); // Aqui es donde se crean las urls con las acciones personalizadas
+					return Yii::$app->urlManager->createUrl(['/indicador-curso/view-by-company', 'id' => $key]); // Aqui es donde se crean las urls con las acciones personalizadas
 			
 				}
 					
 				if ($action === 'delete') {
-					return Yii::$app->urlManager->createUrl(['/indicador-constancia/delete-by-company', 'id' => $key]); // Aqui es donde se crean las urls con las acciones personalizadas
+					return Yii::$app->urlManager->createUrl(['/indicador-curso/delete-by-company', 'id' => $key]); // Aqui es donde se crean las urls con las acciones personalizadas
 						
 				}
 					
