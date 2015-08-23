@@ -46,9 +46,14 @@ class IndicadorConstanciaSearch extends IndicadorConstancia
     
     public function searchByCompany($params,  $id)
     {
-    	$query = IndicadorConstancia::findBySql('select * from tbl_indicador_constancia where id_constancia  in
-    												(select id_constancia from tbl_constancia where id_empresa = '.$id.' )
-    											 ');
+    	$query = IndicadorConstancia::findBySql('select * from tbl_indicador_constancia where id_constancia in 
+                            		(select id_constancia from tbl_constancia where id_trabajador in 
+                             			(select id_trabajador from tbl_trabajador where id_empresa in 
+                            				(select id_empresa from tbl_empresa where id_empresa_padre = '.$id.' OR id_empresa = '.$id.'  and ACTIVO=1) 
+                            			AND ACTIVO=1)
+                            		AND ACTIVO=1)
+                             	  AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia');
+    	
     
     	$dataProvider = new ActiveDataProvider([
     			'query' => $query,

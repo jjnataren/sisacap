@@ -6,6 +6,7 @@ use backend\models\ComisionMixtaCap;
 use backend\models\IndicadorComision;
 use backend\models\Plan;
 use backend\models\Curso;
+use yii\base\Object;
 
 
 class Indicadores
@@ -116,6 +117,10 @@ public static function  setIndicadoresComision($comisionMixta){
 }	
 	
 
+
+
+
+
 /**
  * 
  * @param Plan $plan
@@ -216,61 +221,10 @@ public static function setIndicadorPlan($plan){
 		 */
 		foreach ($plan->cursos as $curso){
 		
+			
+			Indicadores::setIndicadorCurso($curso);
 		
-			$fechaTerminoCurso = new \DateTime($curso->FECHA_TERMINO);
 			
-			if ($fechaTerminoCurso !== false){
-			
-			
-			$modelIndicador = new IndicadorPlan();
-		
-			$modelIndicador->ACTIVO = 1;
-		
-			$modelIndicador->FECHA_INICIO_VIGENCIA= $fechaTerminoCurso->modify('-5 day')->format('Y-m-d');
-		
-			$modelIndicador->FECHA_FIN_VIGENCIA = $fechaTerminoCurso->modify('+7 day')->format('Y-m-d');
-		
-			$modelIndicador->TITULO = "Curso ID ".$curso->ID_CURSO. ' por terminar';
-			
-			$modelIndicador->CLAVE="CUR0002";
-		
-			$modelIndicador->DATA = "El curso: <br /> ".$curso->NOMBRE.'esta por concluir debe enviar las constancias 15 dias antes a los  trabajadores.';
-		
-			$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
-		
-			$modelIndicador->ID_PLAN  = $plan->ID_PLAN;
-		
-			$modelIndicador->save();
-			
-			}
-			
-			/*
-			 * indicador inicio del curso */
-			
-			$fechaInicio = new \DateTime($curso->FECHA_INICIO);
-				
-			if ($fechaInicio !== false){
-					
-					
-				$modelIndicador = new IndicadorPlan();
-			
-				$modelIndicador->ACTIVO = 1;
-			
-				$modelIndicador->FECHA_INICIO_VIGENCIA= $fechaInicio->modify('-5 day')->format('Y-m-d');
-			
-				$modelIndicador->FECHA_FIN_VIGENCIA = $fechaInicio->modify('+5 day')->format('Y-m-d');
-			
-				$modelIndicador->TITULO = "El curso " . $curso->NOMBRE . ' Iniciará en 5 días';
-			
-				$modelIndicador->DATA = "El curso ID  ".$curso->ID_CURSO. ': <br /> ' .'Deberá preparar a los trabajadores que recibirán el curso.';
-				$modelIndicador->CLAVE="CUR0002";
-				$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
-			
-				$modelIndicador->ID_PLAN  = $plan->ID_PLAN;
-			
-				$modelIndicador->save();
-					
-			}
 		}
 		
 	}
@@ -360,12 +314,101 @@ public static function setIndicadorPlan($plan){
 	
 	
 	
-	
-	
-	
-	
-	
 }
+
+
+
+
+/**
+ *
+ * @param Curso $curso
+ */
+public static function setIndicadorCurso($curso){
+
+	$companyModel = EmpresaUsuario::getMyCompany();
+
+	if ($curso !== null ){
+
+		foreach ($curso->indicadorCursos as $indicador){
+				
+			$indicador->delete();
+				
+				
+		}
+
+
+
+
+
+			$fechaTerminoCurso = new \DateTime($curso->FECHA_TERMINO);
+				
+			if ($fechaTerminoCurso !== false){
+					
+					
+				$modelIndicador = new IndicadorCurso();
+
+				$modelIndicador->ACTIVO = 1;
+
+				$modelIndicador->FECHA_INICIO_VIGENCIA= $fechaTerminoCurso->modify('-15 day')->format('Y-m-d');
+
+				$modelIndicador->FECHA_FIN_VIGENCIA = $fechaTerminoCurso->modify('+20 day')->format('Y-m-d');
+
+				$modelIndicador->TITULO =  'Curso por terminar';
+					
+				$modelIndicador->CLAVE="CUR0002";
+
+				$modelIndicador->DATA = 'Curso por concluir,  debe enviar las constancias de capacitación a  los trabajadores 20  dias despues  del termino del mismo.';
+
+				$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
+
+				$modelIndicador->ID_CURSO  = $curso->ID_CURSO;
+
+				$modelIndicador->save();
+					
+			}
+				
+			/*
+			 * Indicador inicio del curso */
+				
+			$fechaInicio = new \DateTime($curso->FECHA_INICIO);
+
+			if ($fechaInicio !== false){
+					
+					
+				$modelIndicador = new IndicadorCurso();
+					
+				$modelIndicador->ACTIVO = 1;
+					
+				$modelIndicador->FECHA_INICIO_VIGENCIA= $fechaInicio->modify('-5 day')->format('Y-m-d');
+					
+				$modelIndicador->FECHA_FIN_VIGENCIA = $fechaInicio->modify('+5 day')->format('Y-m-d');
+					
+				$modelIndicador->TITULO = 'Curso por  Iniciar';
+					
+				$modelIndicador->DATA = 'El curso esta por iniciar deberá preparar a los trabajadores que recibirán el curso.';
+				$modelIndicador->CLAVE="CUR0002";
+				$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
+					
+				$modelIndicador->ID_CURSO  = $curso->ID_CURSO;
+					
+				$modelIndicador->save();
+					
+			}
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+}
+
 
 
 

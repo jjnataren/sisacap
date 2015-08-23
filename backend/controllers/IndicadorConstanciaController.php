@@ -45,6 +45,7 @@ class IndicadorConstanciaController extends Controller
     	 
     	$companyModel = EmpresaUsuario::getMyCompany();
     	$searchModel = new IndicadorConstanciaSearch();
+    	
     	$dataProvider = $searchModel->searchByCompany(Yii::$app->request->queryParams, $companyModel->ID_EMPRESA);
     
     	return $this->render('index_by_company', [

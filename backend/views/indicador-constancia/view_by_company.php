@@ -46,6 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                  <p>
                                  <h4>Descripción:</h4>
                                  <?=$model->DATA?></p>
+                             
            
  
 				</div>
@@ -64,12 +65,12 @@ $this->params['breadcrumbs'][] = $this->title;
 				</div>
 		
 					 
-         &nbsp;			
+  	
   
 				
 </div>
                             
-   </dl>
+
  </div><!-- /.box-body -->	
  
  
@@ -91,26 +92,50 @@ $this->params['breadcrumbs'][] = $this->title;
                            
                            
                            <dt><?= Yii::t('backend','Fecha de creación') ?> </dt>
-                           <dd><?= $model->FECHA_CREACION?> </dd>
+                                 <dd><?=($model->FECHA_CREACION === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->FECHA_CREACION)) ;?></dd>
+                
+                 
+                           
+                                           <dt>&nbsp; </dt>                 
+                        <dd> </dd>	
+                        	
                            
                            
-                              <dt><?= Yii::t('backend', 'Trabajador') ?> </dt>                 
-                        <dd><?= $model->iDCONSTANCIA->iDTRABAJADOR->NOMBRE. $model->iDCONSTANCIA->iDTRABAJADOR->APP.  $model->iDCONSTANCIA->iDTRABAJADOR->APM?> </dd>	
+                                  <dt><?= Yii::t('backend', 'TRABAJADOR') ?> </dt>                 
+                       			 <dd> </dd>	
+                        	
+                     
+                           
+                              <dt><?= Yii::t('backend', 'Nombre') ?> </dt>                 
+                        <dd><?= $model->iDCONSTANCIA->iDTRABAJADOR->NOMBRE. ' ' . $model->iDCONSTANCIA->iDTRABAJADOR->APP. ' ' .  $model->iDCONSTANCIA->iDTRABAJADOR->APM?> </dd>	
                         	
                             <dt><?= Yii::t('backend', 'RFC') ?> </dt>                 
                         <dd><?= $model->iDCONSTANCIA->iDTRABAJADOR->RFC?> </dd>	
                         
+                              
                            
-                           <dt><?= Yii::t('backend','Curso	') ?></dt>
+                                      
+                                           <dt>&nbsp; </dt>                 
+                        <dd> </dd>	
+                        	
+                           
+                           
+                                  <dt><?= Yii::t('backend', 'CURSO') ?> </dt>                 
+                       			 <dd> </dd>	
+                        	
+                        	       
+                           <dt><?= Yii::t('backend','Nombre del curso') ?></dt>
                            <dd><?= $model->iDCONSTANCIA->iDCURSO->NOMBRE ?>  </dd>
+                 
                            
                              <dt><?= Yii::t('backend','Termino de curso') ?></dt>
-                           <dd><?= $model->iDCONSTANCIA->iDCURSO->FECHA_TERMINO ?>  </dd>
+                             <dd><?=($model->iDCONSTANCIA->iDCURSO->FECHA_TERMINO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->iDCONSTANCIA->iDCURSO->FECHA_TERMINO)) ;?></dd>
+         
                            
                            <dt><?= Yii::t('backend','Plan	') ?></dt>
                            <dd><?= $model->iDCONSTANCIA->iDCURSO->iDPLAN->ALIAS?>  </dd>
                            	  
-                         
+                        </dl>   
                             
                 </div>           
                                        						
@@ -120,7 +145,6 @@ $this->params['breadcrumbs'][] = $this->title;
   
 				</div>
 
-         &nbsp;			
 
 				
 </div>

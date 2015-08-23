@@ -252,6 +252,16 @@ class CursoController extends Controller
     	$planModel = Plan::findOne($id_plan);
     	$curso = $this->findModel($id);
     	$searchModel = new InstructorSearch();
+    	
+    	if($planModel->getCurrentStatus() >= Plan::STATUS_CONCLUIDO){
+    		 
+    		Yii::$app->session->setFlash('alert', [
+    				'options'=>['class'=>'alert-danger'],
+    				'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>El plan ha finalizado, no es posible realizar esta acción. <a href=\'#\' class=\'alert-link\'></a>',
+    		]);
+    		return $this->redirect(['plan/dashboard', 'id' => $id_plan]);
+    	}
+    	
     	 
     	$dataProvider = $searchModel->searchByCompany(null, $model->ID_EMPRESA);
     

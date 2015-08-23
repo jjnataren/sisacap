@@ -8,6 +8,9 @@ use backend\models\search\IndicadorCursoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\models\EmpresaUsuario;
+use yii\base\Object;
+use yii\data\ActiveDataProvider;
 
 /**
  * IndicadorCursoController implements the CRUD actions for IndicadorCurso model.
@@ -101,6 +104,66 @@ class IndicadorCursoController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+    
+    
+    
+    /**
+     * Lists all IndicadorCurso models.
+     * @return mixed
+     */
+    public function actionIndexByCompany()
+    {
+    
+    	$companyModel = EmpresaUsuario::getMyCompany();
+    	$searchModel = new IndicadorCursoSearch();
+    	
+    	
+    	
+    	$query = IndicadorCurso::findBySql('select * from tbl_indicador_curso where id_curso in 
+                            		(select id_curso from tbl_curso where id_plan in 
+                            			(select id_plan from tbl_plan where id_comision in 
+                            				(select id_comision from tbl_comision_mixta_cap where id_empresa = '.$companyModel->ID_EMPRESA.' and ACTIVO=1) AND ACTIVO=1)) '
+    			.' AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia
+    											 ');
+    	
+    	$dataProvider = new ActiveDataProvider([
+    			'query' => $query,
+    	]);
+    	
+    
+    	return $this->render('index_by_company', [
+    			'searchModel' => $searchModel,
+    			'dataProvider' => $dataProvider,
+    	]);
+    }
+    
+    
+    
+   
+    
+    
+    /**
+     * Displays a single IndicadorCurso model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionViewByCompany($id)
+    {
+    
+    	$companyModel = EmpresaUsuario::getMyCompany();
+    
+    
+    	$model = $this->findModel($id);
+    
+    	if ($companyModel->ID_EMPRESA !== $model->iDCURSO->iDPLAN->iDCOMISION->ID_EMPRESA ){
+    
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    	}
+    
+    	return $this->render('view_by_company', [
+    			'model' => $model
+    	]);
     }
 
     /**
