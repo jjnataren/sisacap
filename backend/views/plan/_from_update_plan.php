@@ -9,6 +9,8 @@ use kartik\widgets\DepDrop;
 use yii\helpers\Url;
 use backend\models\PuestoEmpresa;
 use yii\data\ActiveDataProvider;
+use kartik\checkbox\CheckboxX;
+
 
 use yii\grid\GridView;
 /* @var $this yii\web\View */
@@ -79,14 +81,14 @@ $itemsModalidad=[1=>'Plan y programas específicos de la empresa',
 	     <div class=" col-xs-12 col-sm-12 col-md-6">
 	     
       <div class="row">
-     <div class="col-xs-10 col-md-10">
+    	 <div class="col-xs-10">
                <?= $form->field($model, 'ALIAS')->textInput() ?>
          </div>
-          <div class="col-xs-2 col-md-2">
+          <div class="col-xs-2">
         
                 <button id="help_popup_telefono" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="Se requiere intoducir lada. ejemplo (55) 26-32-37-16"><i class="fa fa-question-circle"></i>
-	</button>
-	</div>
+				</button>
+		</div>
 	</div>
     
     <?= $form->field($model, 'NUMERO_ETAPAS')->textInput() ?>
@@ -95,13 +97,17 @@ $itemsModalidad=[1=>'Plan y programas específicos de la empresa',
      
       <?= $form->field($model, 'TOTAL_HOMBRES')->textInput() ?>
       
-      <?= $form->field($model, 'TIPO_PLAN')->checkbox()?> 
-      
-      
-      
+       <div class="row">
+        <div class="col-xs-1">
+    	 <?= $form->field($model, 'TIPO_PLAN')->widget(CheckboxX::classname(), ['options'=>['id'=>'chk_moral'],'pluginOptions'=>['threeState'=>false]])->label(false); ?> 
+      	</div>
+      	<div class="col-xs-11">
+      		<label>Considerar todos los puestos de trabajo en este plan.</label>
+      	</div>
+      </div>	
   
         
-	          </div>
+    </div>
 	   
     </div>    
     </div>
@@ -122,8 +128,15 @@ $itemsModalidad=[1=>'Plan y programas específicos de la empresa',
      
  </div>
    
-    <div class=" col-xs-12 col-sm-12 col-md-12">		
+    <div class=" col-xs-12 col-sm-12 col-md-6">		
 		<div class="panel panel-default">
+			
+				<div class="panel-heading">
+						<h4><i class="fa fa-building-o"></i>
+						
+						<?= Yii::t('backend', 'Establecimiento que presentara el plan ') ?>  </h4>	
+					</div>
+		
 		 <div class="panel-body">	
 		   
 		    
@@ -131,10 +144,7 @@ $itemsModalidad=[1=>'Plan y programas específicos de la empresa',
 		    	
 		    	
 		   	<table class="table">
-		   
-		    		<thead>    		
-		    			 <tr><th colspan="2"><h4><i class="fa fa-building-o"></i>&nbsp;Establecimiento que presentara el plan <span class="label label-warning"><?php ?></span></h4><th></tr>
-		    		</thead>
+		  	
 		    		<tr>
 		    			<td>Id</td>
 		    			<td>
@@ -153,7 +163,7 @@ $itemsModalidad=[1=>'Plan y programas específicos de la empresa',
 		    			   
 		    			   <?php  if (isset($model->iDEMPRESA )){ ?>
 		    			   
-		    			    <?= $model->iDEMPRESA->NOMBRE_CENTRO_TRABAJO ?>
+		    			    <?= $model->iDEMPRESA->NOMBRE_COMERCIAL ?>
 		    			    <?php }?>
 		    			   </label>
 		    			 </td>
@@ -172,29 +182,7 @@ $itemsModalidad=[1=>'Plan y programas específicos de la empresa',
 		    			</label></td>
 		    		</tr>
 		    		
-		    		<tr>
-		    			<td>Entidad federativa</td>
-		    			  <td><label id="lbl_entidad" > 
-		    			  
-		    			  <?php if(isset ($model->iDEMPRESA)) { ?>
-		    			  
-		    			   <?= $model->iDEMPRESA->ENTIDAD_FEDERATIVA?>
-		    			   <?php  } ?>
-		    			   </label></td>
-		    		</tr>
-		 	
-		    		<tr>
-		    			<td>Municipio delegacion</td>
-		    		  	<td><label id="lbl_municipio" > 
-		    		  	<?php  if (isset($model->iDEMPRESA)) { ?>
-		    		  	
-		    		  	<?= $model->iDEMPRESA->MUNICIPIO_DELEGACION?>
-		    		  	
-		    		  	<?php } ?>
-		    		  	</label>
-		    		  	</td>
-		    		</tr>
-		    	
+		   		    	
 		    	</table>
 		    
 		   </div> 
@@ -219,23 +207,21 @@ $itemsModalidad=[1=>'Plan y programas específicos de la empresa',
 		  
 		 
 
-    <div class=" col-xs-12 col-sm-12 col-md-12">		
+    <div class=" col-xs-12 col-sm-12 col-md-6">		
 		<div class="panel panel-default">
-		 <div class="panel-body">	    
-   
-	<h4><i class="fa fa-newspaper-o"></i>
-						<?= Yii::t('backend', ' Seleccione Modalidad de la capacitación  correspondiente.') ?> </h4>	
+		
+			<div class="panel-heading">
+						<h4><i class="fa fa-newspaper-o"></i>
+						
+						<?= Yii::t('backend', 'Seleccione Modalidad de la capacitación  correspondiente.') ?>  </h4>	
+			</div>
 	
-			
-  </div>
   
   <div class="panel-body">	
   <div class=" col-xs-12 col-sm-12 col-md-8">
-    <div class="panel-body">	
      <?= $form->field($model, 'MODALIDAD_CAPACITACION')->radioList($itemsModalidad)->label(false) ?>
-       </div>
-       </div>
-         </div>
+   </div>
+  </div>
                        <div class="panel-footer">
 								<button id="help2" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Es requerido seleccionar la modalidad del plan. Dando [clic] en el circulo. ') ?>"><i class="fa fa-question-circle"></i>
 			</button>	   
@@ -378,7 +364,7 @@ Es requerido evaluar el objetivo del plan. Dando [clic] la flecha. Seleccione de
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
                             
 
 
