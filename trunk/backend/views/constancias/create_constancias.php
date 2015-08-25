@@ -495,7 +495,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 										    </div>
                                         <div class="modal-footer">
                                         	
-                                            <button type="button" class="btn btn-default" data-dismiss="modal"> <?= Yii::t('backend', 'Close')?></button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"> <?= Yii::t('backend', 'cerrar')?></button>
                                             
                                         </div>
                                     </div>
@@ -563,7 +563,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 										    </div>
                                         <div class="modal-footer">
                                         	
-                                            <button type="button" class="btn btn-default" data-dismiss="modal"> <?= Yii::t('backend', 'Close')?></button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"> <?= Yii::t('backend', 'cerrar')?></button>
                                             
                                         </div>
                                     </div>
