@@ -29,8 +29,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
 
 <div class="callout callout-warning">
 	<h4><i class="fa fa-info-circle"></i> Resumen de la Constancia</h4>
-	<p>- Esta es solo una previsualización de la constancia, puede imprimir el comprobante o el formato DC-3 <br />
-		- Puede editar los parametros de la constancia
+	<p>- Esta es solo una pre visualización de la constancia, puede imprimir el comprobante o el formato DC-3 <br />
+		- Puede editar los parámetros  de la constancia
 	
 	</p>
 </div>
@@ -89,9 +89,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
                     <div class="row">
                         <div class="col-xs-12 table-responsive">
                         		<h2 class="text-center"><?= strtoupper($model->iDCURSO->iDPLAN->iDCOMISION->iDEMPRESA->NOMBRE_RAZON_SOCIAL);?></h2>
-                        		<p class="text-center">Otorga el presente reconimiento a: </p>
+                        		<p class="text-center">Otorga el presente reconocimiento a: </p>
                         		<h1 class="text-center"><?= strtoupper($model->iDTRABAJADOR->NOMBRE. ' '.$model->iDTRABAJADOR->APP.  ' '. $model->iDTRABAJADOR->APM  ) ?></h1>
-                        		<p class="text-center">Por haber compledado exitosamente el curso:</p>
+                        		<p class="text-center">Por haber completado exitosamente el curso:</p>
                         		<h3 class="text-center"><?= strtoupper($model->iDCURSO->NOMBRE); ?></h3>
                         		<p class="text-center text-muted">
                         			<?php
