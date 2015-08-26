@@ -123,7 +123,7 @@ if ($model->OCUPACION_ESPECIFICA === '99999'){
 		'type'=>'raw',
 		'value'=>isset($municipioDelegacion) ? $municipioDelegacion->NOMBRE : 'no establecido',
 		],
-            'DOMICILIO',
+          //  'DOMICILIO',
 			'LUGAR_RESIDENCIA',
             'CORREO_ELECTRONICO',
             'TELEFONO',
