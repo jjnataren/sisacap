@@ -32,13 +32,13 @@ $this->registerJs("$('#help6').popover('hide');", View::POS_END, 'my-options6');
 $this->registerJs("$('#empresaButton').click(function() {
 
 		$('#lbl_id_establecimiento').text('".$model->iDCOMISION->iDEMPRESA->ID_EMPRESA."');
-		$('#lbl_nombre_establecimiento').text('".$model->iDCOMISION->iDEMPRESA->NOMBRE_RAZON_SOCIAL."');
+		$('#lbl_nombre_establecimiento').text('". html::encode( $model->iDCOMISION->iDEMPRESA->NOMBRE_RAZON_SOCIAL )."');
 		$('#lbl_rfc').text('".$model->iDCOMISION->iDEMPRESA->RFC."');                         
       
-		$('#lbl_entidad').text('".$model->iDCOMISION->iDEMPRESA->ENTIDAD_FEDERATIVA."');
-		$('#lbl_municipio').text('".$model->iDCOMISION->iDEMPRESA->MUNICIPIO_DELEGACION."');
+	//	$('#lbl_entidad').text('".$model->iDCOMISION->iDEMPRESA->ENTIDAD_FEDERATIVA."');
+	//	$('#lbl_municipio').text('".$model->iDCOMISION->iDEMPRESA->MUNICIPIO_DELEGACION."');
 
-		$('#hid_id_establecimiento').val('".$model->iDCOMISION->iDEMPRESA->ID_EMPRESA."');
+		$('#hid_id_establecimiento').val('".$model->iDCOMISION->ID_EMPRESA."');
 		
 		
 });", View::POS_END, 'my-options5');
@@ -120,7 +120,7 @@ $itemsModalidad=[1=>'Plan y programas específicos de la empresa',
      
    </div>
    
-    <div class=" col-xs-12 col-sm-12 col-md-12">		
+    <div class=" col-xs-12 col-sm-12 col-md-6">		
 		<div class="panel panel-default">
 		 <div class="panel-body">	
 		   
@@ -151,7 +151,7 @@ $itemsModalidad=[1=>'Plan y programas específicos de la empresa',
 		    			   
 		    			   <?php  if (isset($model->iDEMPRESA )){ ?>
 		    			   
-		    			    <?= $model->iDEMPRESA->NOMBRE_CENTRO_TRABAJO ?>
+		    			    <?= $model->iDEMPRESA->NOMBRE_COMERCIAL ?>
 		    			    <?php }?>
 		    			   </label>
 		    			 </td>
@@ -170,28 +170,7 @@ $itemsModalidad=[1=>'Plan y programas específicos de la empresa',
 		    			</label></td>
 		    		</tr>
 		    		
-		    		<tr>
-		    			<td>Entidad federativa</td>
-		    			  <td><label id="lbl_entidad" > 
-		    			  
-		    			  <?php if(isset ($model->iDEMPRESA)) { ?>
-		    			  
-		    			   <?= $model->iDEMPRESA->ENTIDAD_FEDERATIVA?>
-		    			   <?php  } ?>
-		    			   </label></td>
-		    		</tr>
-		 	
-		    		<tr>
-		    			<td>Municipio delegacion</td>
-		    		  	<td><label id="lbl_municipio" > 
-		    		  	<?php  if (isset($model->iDEMPRESA)) { ?>
-		    		  	
-		    		  	<?= $model->iDEMPRESA->MUNICIPIO_DELEGACION?>
-		    		  	
-		    		  	<?php } ?>
-		    		  	</label>
-		    		  	</td>
-		    		</tr>
+		    	
 		    	
 		    	</table>
 		    
@@ -217,7 +196,7 @@ $itemsModalidad=[1=>'Plan y programas específicos de la empresa',
 		  
 		 
 
-    <div class=" col-xs-12 col-sm-12 col-md-12">		
+    <div class=" col-xs-12 col-sm-12 col-md-6">		
 		<div class="panel panel-default">
 		 <div class="panel-body">	    
    
@@ -327,11 +306,8 @@ Es requerido evaluar el objetivo del plan. Dando [clic] la flecha. Seleccione de
 										            ['class' => 'yii\grid\SerialColumn'],
 										
 										            'ID_EMPRESA',
-										            'NOMBRE_CENTRO_TRABAJO',
+										            'NOMBRE_COMERCIAL',
 										            'RFC',
-                                                     'MUNICIPIO_DELEGACION',
-                                                       
-										            'ENTIDAD_FEDERATIVA',
 										           
 										            // 'TELEFONO',
 										            // 'CORREO_ELECTRONICO',
@@ -349,13 +325,10 @@ Es requerido evaluar el objetivo del plan. Dando [clic] la flecha. Seleccione de
 																	'id'=>'user_'.$data->ID_EMPRESA,
 																	'onclick'=>"
 																	$('#user_$data->ID_EMPRESA').fadeIn(300);
-																	$('#lbl_id_establecimiento').text('$data->ID_EMPRESA');
-																	$('#lbl_nombre_establecimiento').text('$data->NOMBRE_CENTRO_TRABAJO');
+																	$('#lbl_id_establecimiento').text(' $data->ID_EMPRESA  ');
+																	$('#lbl_nombre_establecimiento').text(' ". Html::encode( $data->NOMBRE_COMERCIAL) ." ');
 																	$('#lbl_rfc').text('$data->RFC');                         
       
-																	$('#lbl_entidad').text('$data->ENTIDAD_FEDERATIVA');
-                                                                    $('#lbl_municipio').text('$data->MUNICIPIO_DELEGACION');
-
 																	$('#hid_id_establecimiento').val('$data->ID_EMPRESA');
 
 																	$('#userModal').modal('hide')	
