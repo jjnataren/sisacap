@@ -115,7 +115,7 @@ $config = [
             'allow' => true,
             'roles' => ['manager'],
             'actions'=>['create-by-plan','dashboard', 'update-by-company', 'add-establishment', 
-            'report-pdf-4', 'add-constancia','report-pdf-part2', 'update-by-plan'],
+            'report-pdf-4', 'add-constancia','report-pdf-part2', 'update-by-plan', 'report-pdf-all' ],
             ],
             
             [
@@ -196,9 +196,9 @@ $config = [
             'controllers'=>['trabajador'],
             'allow' => true,
             'roles' => ['manager'],
-            'actions'=>['indexcompany', 'indexestablishment', 'deletebystablish', 'updatebystablish', 'viewbystablishment','load',
+            'actions'=>['indexcompany','createworkerbycompany' ,'indexestablishment', 'deletebystablish', 'updatebystablish', 'viewbystablishment','load',
             'updatebyuser', 'viewbycompany','createworkerbyestablishment', 'create-from-const-company', 'deletebyuser', 'loadbyestablishment', 'saveallbyestablishment', 
-            'saveall'		
+            'saveall'	, 'get-normas'	
             ]
             ],
             
