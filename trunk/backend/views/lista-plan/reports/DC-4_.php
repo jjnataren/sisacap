@@ -628,7 +628,16 @@ use backend\models\Catalogo; ?>
 				</td>
 				
 				<td colspan="17" style="text-align:center; vertical-align:middle;  " class="Tabla2_Q13 T28">
-					<?=trim(isset($ocupacion)?$ocupacion->NOMBRE:'') ?>
+						
+				<?php if(isset($ocupacion) &&  $ocupacion->ID_ELEMENTO === 99999 ): ?>
+					
+					<?php echo "$ocupacion->NOMBRE: $trabajador->OTRO_OCUPACION " ;?>
+					
+				<?php else :?>
+				
+					<?=   isset($ocupacion)? $ocupacion->NOMBRE : ' '; ?>
+				
+				<?php endif;?>	
 				</td>
 				
 			</tr>
@@ -744,15 +753,9 @@ use backend\models\Catalogo; ?>
 			</tr>
 			<tr class="Tabla25">
 				<td colspan="14" style="text-align:left; vertical-align:middle; width:0.679cm; height:20 " class="Tabla2_A7 T28">
-				<?php if(isset($ntcl) &&  $ntcl->ID_ELEMENTO === 99999 ): ?>
 					
-					<?= isset($ntcl)? $ntcl->NOMBRE .' ('.$trabajador->OTRO_OCUPACION  .')'  : '  '; ?>
-					
-				<?php else :?>
-				
 					<?= isset($ntcl)? $ntcl->NOMBRE : '  '; ?>
 				
-				<?php endif;?>	
 					
 				</td>
 				

@@ -1464,7 +1464,15 @@ use backend\models\Catalogo; ?>
 				</td>
 				
 				<td colspan="17" style="text-align:center; vertical-align:middle;  " class="Tabla2_Q13 T28">
-					<?=trim(isset($ocupacion)?$ocupacion->NOMBRE:'') ?>
+					<?php if(isset($ocupacion) &&  $ocupacion->ID_ELEMENTO === 99999 ): ?>
+					
+					<?php echo "$ocupacion->NOMBRE: $trabajador->OTRO_OCUPACION " ;?>
+					
+				<?php else :?>
+				
+					<?=   isset($ocupacion)? $ocupacion->NOMBRE : ' '; ?>
+				
+				<?php endif;?>	
 				</td>
 				
 			</tr>
