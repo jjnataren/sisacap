@@ -256,7 +256,7 @@ $itemsObjetivo = [1=>'Actualizar y perfeccionar conocimientos y habilidades y pr
 																	$('#lbl_id_instructor').text('$data->ID_INSTRUCTOR');
 																	$('#lbl_nombre_instructor').text('$data->NOMBRE');
 																	$('#lbl_correo_electronico').text('$data->CORREO_ELECTRONICO');
-																	$('#lbl_correo_telefono').text('$data->TELEFONO');
+																	$('#lbl_telefono').text('$data->TELEFONO');
 																	$('#lbl_num_registro_agente_externo').text('$data->NUM_REGISTRO_AGENTE_EXTERNO');
 																	$('#hid_id_instructor').val('$data->ID_INSTRUCTOR');
 																	$('#userModal').modal('hide')	
