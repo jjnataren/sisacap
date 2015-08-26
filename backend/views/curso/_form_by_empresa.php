@@ -68,14 +68,8 @@ $itemsObjetivo = [1=>'Actualizar y perfeccionar conocimientos y habilidades y pr
                         <?= $form->field($model, 'FECHA_INICIO')->widget('trntv\yii\datetimepicker\DatetimepickerWidget',['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]]) ?>
                         
                         <?= $form->field($model, 'FECHA_TERMINO')->widget('trntv\yii\datetimepicker\DatetimepickerWidget',['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]]) ?>
-                        
-                        
-  
-                        
-                        
-						
-    
-						
+                                            
+          	           <?= $form->field($model, 'DESCRIPCION')->textArea() ?>						  					
 						
 				<!--		<div class="row">
 	   
