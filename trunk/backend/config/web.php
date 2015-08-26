@@ -107,7 +107,7 @@ $config = [
             'controllers'=>['constancias'],
             'allow' => true,
             'roles' => ['manager'],
-            'actions'=>['createbycourse','add-constancia','dashboard','delete-constancia','constanciapdf', 'uploaddocument','send-notification','constancia-comprobante-pdf']
+            'actions'=>['createbycourse','add-constancia','dashboard','delete-constancia','constanciapdf', 'uploaddocument','send-notification','constancia-comprobante-pdf','updatebyuser']
             ],
             
             [
