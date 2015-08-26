@@ -456,6 +456,8 @@ use backend\models\Catalogo; ?>
 			$ocupacion =  Catalogo::findOne(['CATEGORIA'=>5, 'ID_ELEMENTO'=>$trabajador->OCUPACION_ESPECIFICA]);
 			
 			$areaTematica = Catalogo::findOne(['CATEGORIA'=>6, 'ID_ELEMENTO'=>$curso->AREA_TEMATICA]);
+
+			$ntcl = Catalogo::findOne(['CATEGORIA'=>Catalogo::CATEGORIA_NTCL, 'ID_ELEMENTO'=>$trabajador->NTCL]);
 			
 			/**
 			@todo: revisar invertir el arreglo
@@ -742,6 +744,15 @@ use backend\models\Catalogo; ?>
 			</tr>
 			<tr class="Tabla25">
 				<td colspan="14" style="text-align:left; vertical-align:middle; width:0.679cm; height:20 " class="Tabla2_A7 T28">
+				<?php if(isset($ntcl) &&  $ntcl->ID_ELEMENTO === 99999 ): ?>
+					
+					<?= isset($ntcl)? $ntcl->NOMBRE .' ('.$trabajador->OTRO_OCUPACION  .')'  : '  '; ?>
+					
+				<?php else :?>
+				
+					<?= isset($ntcl)? $ntcl->NOMBRE : '  '; ?>
+				
+				<?php endif;?>	
 					
 				</td>
 				
@@ -1249,7 +1260,7 @@ use backend\models\Catalogo; ?>
 					<span class="P122">Modalidad de la capacitación</span>
 				</td>
 				<td colspan="1" style="text-align:left;width:0.679cm; " class="Tabla2_A5 T28">
-					<?php isset($curso)?$curso->MODALIDAD_CAPACITACION: '';?>
+					<?= isset($curso)?$curso->MODALIDAD_CAPACITACION: '';?>
 				</td>
 				<td colspan="4" style="text-align:left;width:0.679cm; " class="Tabla2_A6">
 					<p class="P51"></p>
@@ -1258,7 +1269,7 @@ use backend\models\Catalogo; ?>
 					<span class="P122">Objetivo de la capacitación</span>
 				</td>
 				<td colspan="1" style="text-align:left;width:0.679cm; " class="Tabla2_A5 T28">
-					<?php isset($curso)?$curso->OBJETIVO_CAPACITACION: '';?>
+					<?= isset($curso)?$curso->OBJETIVO_CAPACITACION: '';?>
 				</td>
 				<td colspan="4" style="text-align:left;width:0.679cm; " class="Tabla2_A6">
 					

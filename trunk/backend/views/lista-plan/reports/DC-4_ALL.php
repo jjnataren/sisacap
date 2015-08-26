@@ -1305,6 +1305,8 @@ use backend\models\Catalogo; ?>
 			
 			$a_fTerminoCurso = ($curso->FECHA_TERMINO!== null ) ? 
 			str_split(strtoupper(''.date("Ymd", strtotime(($curso->FECHA_TERMINO!==null)?$curso->FECHA_TERMINO:'1900-01-01')))) : null;
+			
+			$ntcl = Catalogo::findOne(['CATEGORIA'=>Catalogo::CATEGORIA_NTCL, 'ID_ELEMENTO'=>$trabajador->NTCL]);
 	
 	?>
 	
@@ -1578,6 +1580,7 @@ use backend\models\Catalogo; ?>
 			</tr>
 			<tr class="Tabla25">
 				<td colspan="14" style="text-align:left; vertical-align:middle; width:0.679cm; height:20 " class="Tabla2_A7 T28">
+						<?= isset($ntcl)? $ntcl->NOMBRE : '  '; ?>
 					
 				</td>
 				
@@ -2085,7 +2088,7 @@ use backend\models\Catalogo; ?>
 					<span class="P122">Modalidad de la capacitación</span>
 				</td>
 				<td colspan="1" style="text-align:left;width:0.679cm; " class="Tabla2_A5 T28">
-					<?php isset($curso)?$curso->MODALIDAD_CAPACITACION: '';?>
+					<?= isset($curso)?$curso->MODALIDAD_CAPACITACION: '';?>
 				</td>
 				<td colspan="4" style="text-align:left;width:0.679cm; " class="Tabla2_A6">
 					<p class="P51"></p>
@@ -2094,7 +2097,7 @@ use backend\models\Catalogo; ?>
 					<span class="P122">Objetivo de la capacitación</span>
 				</td>
 				<td colspan="1" style="text-align:left;width:0.679cm; " class="Tabla2_A5 T28">
-					<?php isset($curso)?$curso->OBJETIVO_CAPACITACION: '';?>
+					<?= isset($curso)?$curso->OBJETIVO_CAPACITACION: '';?>
 				</td>
 				<td colspan="4" style="text-align:left;width:0.679cm; " class="Tabla2_A6">
 					
