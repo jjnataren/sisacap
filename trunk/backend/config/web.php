@@ -100,14 +100,14 @@ $config = [
             'roles' => ['manager'],
             'actions'=>['indexbycompany','createbycompany','viewbycompany', 'dashboard',
             			'updatebyuser', 'reportpdf','addestablishment', 'deletestablecimiento','uploaddocument','deletedocument',
-						'select-representante']
+						'select-representante','deletebyuser']
             ],
             
             [
             'controllers'=>['constancias'],
             'allow' => true,
             'roles' => ['manager'],
-            'actions'=>['createbycourse','add-constancia','dashboard','delete-constancia','constanciapdf', 'uploaddocument','send-notification','constancia-comprobante-pd']
+            'actions'=>['createbycourse','add-constancia','dashboard','delete-constancia','constanciapdf', 'uploaddocument','send-notification','constancia-comprobante-pdf']
             ],
             
             [
@@ -115,7 +115,7 @@ $config = [
             'allow' => true,
             'roles' => ['manager'],
             'actions'=>['create-by-plan','dashboard', 'update-by-company', 'add-establishment', 
-            'report-pdf-4', 'add-constancia','report-pdf-part2', 'update-by-plan', 'report-pdf-all','delete-lista' ],
+            'report-pdf-4', 'add-constancia','report-pdf-part2', 'update-by-plan', 'report-pdf-all','delete-lista', 'update' ],
             ],
             
             [
@@ -172,7 +172,7 @@ $config = [
             'controllers'=>['instructor'],
             'allow' => true,
             'roles' => ['manager'],
-            'actions'=>['indexbycompany', 'createbycompany','viewbycompany']
+            'actions'=>['indexbycompany', 'createbycompany','viewbycompany','updatebycompany','deletebycompany']
             ],
             
             [
@@ -181,7 +181,7 @@ $config = [
             'roles' => ['manager'],
             'actions'=>['createbycomision', 'createbycompany','viewbycompany', 'updatebyuser', 'deletebyuser','dashboard',
 						'deletebycomisiones', 'addestablishment', 'deleteestablecimiento', 'reportpdf','updatebycompany', 'addpuesto',
-						'deletepuesto','uploaddocument','deletedocument']
+						'deletepuesto','uploaddocument','deletedocument', 'deletecursos']
             ],
             
             
@@ -237,7 +237,7 @@ $config = [
             'allow' => false,
             ],
            
-        		/*
+        	/*
             [
                 'allow' => true,
                 'roles' => ['manager'],
