@@ -10,6 +10,15 @@ use backend\models\Trabajador;
 
 class ConstanciasController extends \yii\web\Controller
 {
+	
+	
+	
+	public function beforeAction($action) {
+		$this->enableCsrfValidation = false;
+		return parent::beforeAction($action);
+	}
+	
+		
     public function actionIndex()
     {
         
