@@ -119,7 +119,7 @@ class Trabajador extends \yii\db\ActiveRecord
         		 
             [['ID_EMPRESA', 'ROL', 'PUESTO', 'INSTITUCION_EDUCATIVA', 'MUNICIPIO_DELEGACION', 'ENTIDAD_FEDERATIVA', 'ACTIVO', 'GRADO_ESTUDIO', 'DOCUMENTO_PROBATORIO'], 'integer'],
             [['FECHA_AGREGO', 'FECHA_EMISION_CERTIFICADO'], 'safe'],
-            [['SECTOR'], 'required'],
+           // [['SECTOR'], 'required'],
             [['NOMBRE', 'APP', 'APM', 'TELEFONO'], 'string', 'max' => 100],
             [['CURP'], 'string', 'max' => 18],
             [['RFC'], 'string', 'max' => 13],

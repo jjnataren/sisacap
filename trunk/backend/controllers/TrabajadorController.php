@@ -1146,11 +1146,11 @@ class TrabajadorController extends Controller
     		]);
     		return $this->redirect(['viewbycompany', 'id' => $model->ID_TRABAJADOR]);
     	} 
-    } else {
+    } 
     		return $this->render('update_by_user', [
     				'model' => $model,
     				]);
-    	}
+    	
     }
     
     
@@ -1181,11 +1181,11 @@ class TrabajadorController extends Controller
     			]);
     		return $this->redirect(['viewbystablishment', 'id' => $model->ID_TRABAJADOR]);
     	} 
-    } else {
+    } 
     		return $this->render('update_stablisment', [
     				'model' => $model,
     				]);
-    	}
+    	
     }
     /**
      * Deletes an existing Trabajador model.

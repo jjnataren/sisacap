@@ -247,11 +247,11 @@ $config = [
             'allow' => false,
             ],
            
-        	/*
+        	
             [
                 'allow' => true,
                 'roles' => ['manager'],
-            ]*/
+            ]
         ]
     ]
 ];

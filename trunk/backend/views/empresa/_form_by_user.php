@@ -170,7 +170,8 @@ $this->registerJs("$('#chk_moral').change(function(){
 		     </div>
 		         	
     	<div class=" col-xs-12 col-sm-12 col-md-5">
-	   		<?= $form->field($model, 'NUMERO_TRABAJADORES')->textInput(['maxlength' => 4, 'readOnly'=>'readOnly']) ?>
+    		<strong>Número trabajadores</strong>
+	   		 <span class="badge bg-blue"><?= $model->NUMERO_TRABAJADORES;?></span>
 	 		<label><small><i>Si desea agregar más trabajares, póngase en contacto con el administrador</i></small></label>
 	     </div>
 	     

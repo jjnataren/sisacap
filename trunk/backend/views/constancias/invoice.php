@@ -19,7 +19,7 @@ use Openbuildings\Swiftmailer\CssInlinerPlugin;
 
 $this->params['breadcrumbs'][] = ['label' => 'Comisión Id '.$model->iDCURSO->iDPLAN->ID_COMISION, 'url'=>['comision-mixta-cap/dashboard', 'id'=>$model->iDCURSO->iDPLAN->ID_COMISION]];
 $this->params['breadcrumbs'][] = ['label' => 'Plan Id '.$model->iDCURSO->ID_PLAN, 'url'=>['plan/dashboard', 'id'=>$model->iDCURSO->ID_PLAN]];
-$this->params['breadcrumbs'][] = ['label' => 'Curso Id '.$model->ID_CURSO ,'url'=>'constancias/creaatebycourse','id'=>$model->ID_CURSO  ];
+$this->params['breadcrumbs'][] = ['label' => 'Curso Id '.$model->ID_CURSO ,'url'=>['constancias/createbycourse','id'=>$model->ID_CURSO ] ];
 $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTANCIA ];
 
 ?>
