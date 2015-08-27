@@ -115,7 +115,7 @@ $config = [
             'allow' => true,
             'roles' => ['manager'],
             'actions'=>['create-by-plan','dashboard', 'update-by-company', 'add-establishment', 
-            'report-pdf-4', 'add-constancia','report-pdf-part2', 'update-by-plan', 'report-pdf-all','delete-lista', 'update','delete-constancia' ],
+            'report-pdf-4', 'add-constancia','report-pdf-part2', 'update-by-plan', 'report-pdf-all','delete-lista', 'update', 'uploaddocument','deletedocument','delete-constancia' ],
             ],
             
             [
