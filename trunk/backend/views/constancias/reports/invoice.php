@@ -147,7 +147,7 @@ $this->registerJs("$('#help_popup_carnera').popover('hide');", View::POS_END, 'n
 		                        		<td width="50px" />
 		                        		<td width="400px"  style="border-top-style: solid; 
 		                        								 border-top-width:1px; border-top-color:#000000; text-align: center;">
-		                        		Repredentante legal de la empresa
+		                        		Representante legal de la empresa
 		                        		</td>
 		                        		<td width="100px" />
 		                        	</tr>
