@@ -192,6 +192,16 @@ $config = [
             'actions'=>['indexbycompany', 'createbycompany','viewbycompany', 'updatebyuser', 'deletebyuser']
             ],
             
+
+        		[
+        		'controllers'=>['indicador-curso'],
+        		'allow' => true,
+        		'roles' => ['manager'],
+        		'actions'=>['view-by-company', 'index-by-company'
+        		]
+        		],
+        		
+        		
             [
             'controllers'=>['trabajador'],
             'allow' => true,
