@@ -16,6 +16,7 @@ use Yii;
  * @property string $CURP
  * @property string $RFC
  * @property string $NSS
+ * @property string $NTCL
  * @property string $DOMICILIO
  * @property string $CORREO_ELECTRONICO
  * @property string $TELEFONO
@@ -32,8 +33,8 @@ use Yii;
  * @property integer $GRADO_ESTUDIO
  * @property integer $DOCUMENTO_PROBATORIO
  * @property string $OTRO_OCUPACION
- * @property string $NTCL
  * @property string $SECTOR
+ *
  * @property ComisionMixtaCap[] $comisionMixtaCaps
  * @property Constancia[] $constancias
  * @property Empresa $iDEMPRESA
@@ -43,8 +44,6 @@ use Yii;
 class Trabajador extends \yii\db\ActiveRecord
 {
     
-
-
 
 	//itemsexo
 	const SEX_HOMBRE=2;
