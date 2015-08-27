@@ -117,7 +117,7 @@ class Trabajador extends \yii\db\ActiveRecord
         		[['NOMBRE'],'required','message' =>'El nombre del trabajador es requerido'],
         		[[ 'RFC'],'required','message' =>'Este campo es requerido'],
         		 
-            [['ID_EMPRESA', 'ROL', 'PUESTO', 'INSTITUCION_EDUCATIVA', 'MUNICIPIO_DELEGACION', 'ENTIDAD_FEDERATIVA', 'ACTIVO', 'GRADO_ESTUDIO', 'DOCUMENTO_PROBATORIO'], 'integer'],
+            [['OCUPACION_ESPECIFICA','ID_EMPRESA', 'ROL', 'PUESTO', 'INSTITUCION_EDUCATIVA', 'MUNICIPIO_DELEGACION', 'ENTIDAD_FEDERATIVA', 'ACTIVO', 'GRADO_ESTUDIO', 'DOCUMENTO_PROBATORIO'], 'integer'],
             [['FECHA_AGREGO', 'FECHA_EMISION_CERTIFICADO'], 'safe'],
            // [['SECTOR'], 'required'],
             [['NOMBRE', 'APP', 'APM', 'TELEFONO'], 'string', 'max' => 100],
@@ -126,7 +126,7 @@ class Trabajador extends \yii\db\ActiveRecord
             [['NSS'], 'string', 'max' => 20],
             [['NTCL', 'SECTOR'], 'string', 'max' => 250],
             [['DOMICILIO', 'CORREO_ELECTRONICO'], 'string', 'max' => 300],
-            [['OCUPACION_ESPECIFICA'], 'string', 'max' => 30],
+        
             [['SEXO'], 'string', 'max' => 1],
             [['LUGAR_RESIDENCIA', 'OTRO_OCUPACION'], 'string', 'max' => 200],
            [['RFC'], 'unique','message' =>'Ya existe un trabajador con este RFC'],
