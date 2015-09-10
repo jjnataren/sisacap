@@ -84,7 +84,7 @@ $this->registerJs("$('#helppop1').popover('hide');
      
     <div class="col-xs-3 col-md-6">
 		<br />
-		<button id="help_popup_numero_integrantes" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Numero de integrantes que constiruiran la comision mixta de capacitación') ?>"><i class="fa fa-question-circle"></i>
+		<button id="help_popup_numero_integrantes" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Número de individuos que pertenecerán a la comisión mixta de capacitación, adiestramiento y productividad. ') ?>"><i class="fa fa-question-circle"></i>
 	</button>
     		
      </div>
@@ -96,7 +96,7 @@ $this->registerJs("$('#helppop1').popover('hide');
 		       </div>
          <div class="col-xs-3 col-md-6">
 			<br />
-			<button id="help_popup_numero_fecha_const" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Fecha en la que la comision mixta de capacitación sera constituida') ?>"><i class="fa fa-question-circle"></i>
+			<button id="help_popup_numero_fecha_const" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Fecha en la que la comisión será constituida') ?>"><i class="fa fa-question-circle"></i>
 		</button>
   	 </div>
    </div>
@@ -107,7 +107,7 @@ $this->registerJs("$('#helppop1').popover('hide');
 	
 	<div class="col-xs-3 col-md-6">
 			<br />
-		<button id="help_popup_numero_fecha_elab" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Fecha en la que la comision mixta de capacitación sera elaborada') ?>"><i class="fa fa-question-circle"></i>
+		<button id="help_popup_numero_fecha_elab" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Fecha en la que la comisión mixta de capacitación será elaborada') ?>"><i class="fa fa-question-circle"></i>
 		</button>
   	 </div>
 		</div>
