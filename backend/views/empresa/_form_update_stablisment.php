@@ -162,7 +162,7 @@ $this->registerJs("$('#drop_giro').change(function(){
     <div class="col-xs-2 col-md-2">
     	<br />
     	
-    <button id="help_popup_telefono" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="correo electronico para contacto "><i class="fa fa-question-circle"></i>
+    <button id="help_popup_telefono" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content=" Número telefónico para el contacto, favor de introducir lada ejemplo: 01 (55) 26323716. "><i class="fa fa-question-circle"></i>
 	  </button>
     </div>
  </div>
@@ -174,7 +174,7 @@ $this->registerJs("$('#drop_giro').change(function(){
     	<br />
     	<div class="col-xs-2 col-md-2">
     	
-    	<button id="help_popup_correo" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="correo electronico para contacto "><i class="fa fa-question-circle"></i>
+    	<button id="help_popup_correo" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="correo electronico para contacto (ejemplo@)gmail.com) "><i class="fa fa-question-circle"></i>
 	  </button>
 	</div>
     	</div>
@@ -266,7 +266,7 @@ $this->registerJs("$('#drop_giro').change(function(){
 	
 
 	     <div class="panel-footer">
-								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', ' Para crear un establecimiento es necesario llenar todos los campos,Presiona el boton [Crear] para guardar sus datos') ?>"><i class="fa fa-question-circle"></i>
+								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Presione el botón [Guardar] para salvar los cambios, cerciore que todos los campos estén perfectamente llenos. ') ?>"><i class="fa fa-question-circle"></i>
 						</button>
              <?= Html::submitButton( '<i class="fa fa-floppy-o"></i> Guardar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 </div>
