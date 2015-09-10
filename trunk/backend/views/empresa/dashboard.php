@@ -101,7 +101,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                                         0
                                     </h3>
                                     <p>
-                                        Listas de constancias enviados
+                                        Listas de constancias enviadas
                                     </p>
                                 </div>
                                 <div class="icon">
@@ -172,7 +172,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                             <div class="box box-primary">
                                 <div class="box-header">
                                    <i class="glyphicon glyphicon-copyright-mark"></i>
-                                    <h3 class="box-title">Comisiones en la organizacion</h3>
+                                    <h3 class="box-title">Comisiones en la organización</h3>
                                      <div class="box-tools pull-right">
             <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
             <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
