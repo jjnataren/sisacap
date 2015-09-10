@@ -28,6 +28,7 @@ $this->registerJs("$('#help3').popover('hide');", View::POS_END, 'my-options3');
 $this->registerJs("$('#help4').popover('hide');", View::POS_END, 'my-options4');
 $this->registerJs("$('#help5').popover('hide');", View::POS_END, 'my-options5');
 $this->registerJs("$('#help6').popover('hide');", View::POS_END, 'my-options6');
+$this->registerJs("$('#helpAyuda').popover('hide');", View::POS_END, 'my-options6');
 
 $this->registerJs("$('#empresaButton').click(function() {
 
@@ -83,7 +84,7 @@ $itemsModalidad=[1=>'Plan y programas específicos de la empresa',
          </div>
           <div class="col-xs-2 col-md-2">
         
-                <button id="help_popup_telefono" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="Se requiere intoducir lada. ejemplo (55) 26-32-37-16"><i class="fa fa-question-circle"></i>
+                <button id="help1" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="El alias nos ayudara a identificar el plan, ejemplo: plan de verano."><i class="fa fa-question-circle"></i>
 	</button>
 	</div>
 	</div>
@@ -276,7 +277,7 @@ Es requerido evaluar el objetivo del plan. Dando [clic] la flecha. Seleccione de
 </div>
 
   	<div class="panel-footer">
-								<button id="helppop3" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Para guardar el plan es necesario llenar todos los campos, Presiona el boton [Guardar] y acontinuación se guardara el plan de capacitacion') ?>"><i class="fa fa-question-circle"></i>
+								<button id="helpAyuda" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Para guardar el plan es necesario llenar todos los campos, Presiona el boton [Guardar] y acontinuación se guardara el plan de capacitacion') ?>"><i class="fa fa-question-circle"></i>
 						</button>
              <?= Html::submitButton( '<i class="fa fa-floppy-o"></i> Guardar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
