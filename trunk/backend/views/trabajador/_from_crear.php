@@ -101,7 +101,7 @@ $this->registerJs("$('#drop_ocup').change(function(){
 					<div class="panel-heading">
 						<h3><i class="fa fa-plus-square"></i>
 						
-						<?= Yii::t('backend', 'Nuevo trabajador ') ?> <small>Trabajador perteneciente a la empresa</small> </h3>	
+						<?= Yii::t('backend', 'Nuevo trabajador perteneciente a la empresa') ?> 
 					</div>
 					<div class="panel-body">
 		
