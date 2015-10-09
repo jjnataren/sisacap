@@ -163,6 +163,10 @@ class ConstanciasController extends \yii\web\Controller
     		->setSubject('Notificaciones SISACAP.  Constancia de capacitación')
     		->send();
     		
+    		$constanciaModel->ESTATUS = Constancia::STATUS_DELIVERED;
+    		
+    		$constanciaModel->save();
+    		
     	}catch (\Exception $e){
     		
     		return '<h2><i class="fa fa-frown-o"></i>&nbsp;Ha ocurrido un error al enviar la notificación,  por favor contacte al administrador.</h2>' . 
