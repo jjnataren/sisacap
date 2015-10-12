@@ -253,6 +253,8 @@ class CursoController extends Controller
     	$curso = $this->findModel($id);
     	$searchModel = new InstructorSearch();
     	
+    	
+    	
     	if($planModel->getCurrentStatus() >= Plan::STATUS_CONCLUIDO){
     		 
     		Yii::$app->session->setFlash('alert', [
@@ -283,7 +285,8 @@ class CursoController extends Controller
     		
     		Indicadores::setIndicadorPlan($planModel);
     		
-    		return $this->redirect(['plan/dashboard', 'id' => $planModel->ID_PLAN]);
+    		return $this->redirect(Yii::$app->user->returnUrl);
+    		
     		}else{
     				
     			Yii::$app->session->setFlash('alert', [
@@ -291,10 +294,17 @@ class CursoController extends Controller
     					'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha ocurrido un error, por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
     			]);
     			
+    			return $this->render('_form_by_update', [
+    					'model' => $curso,
+    					'dataProvider'=>$dataProvider,
+    					'searchModel'=>$searchModel
+    			]);
+    			
     		}
     	} 
     	
     	
+    	Yii::$app->user->returnUrl = Yii::$app->request->referrer;
     	
     		return $this->render('_form_by_update', [
     				'model' => $curso,
