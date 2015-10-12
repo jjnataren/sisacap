@@ -59,6 +59,7 @@ class SignInController extends Controller{
     public function actionLogout()
     {
         Yii::$app->user->logout();
+       //return $this->redirect( Yii::getAlias('@frontendUrl'));
         return $this->goHome();
     }
 
@@ -68,7 +69,7 @@ class SignInController extends Controller{
         if($model->load($_POST) && $model->save()){
             Yii::$app->session->setFlash('alert', [
                 'options'=>['class'=>'alert-success'],
-                'body'=>Yii::t('frontend', 'Your profile has been successfully saved')
+                'body'=>Yii::t('frontend', 'tu perfil ha sido actualizado satisfactoriamente')
             ]);
             return $this->refresh();
         }
