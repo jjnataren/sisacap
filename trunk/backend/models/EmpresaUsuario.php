@@ -81,7 +81,15 @@ class EmpresaUsuario extends \yii\db\ActiveRecord
     	 
     	$model = EmpresaUsuario::findOne(['ID_USUARIO'=>Yii::$app->user->id, 'ACTIVO'=>1]);
     	 
-    	if($model === null) throw new NotFoundHttpException('The requested page does not exist.');
+    	if($model === null) {
+    		
+    		Yii::$app->session->setFlash('alert', [
+    				'options'=>['class'=>'alert-warning'],
+    				'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> No tiene acceso a este recurso.',
+    		]);
+    		
+    		return Yii::$app->getResponse()->redirect(array('/sign-in/logout'));
+    	}
     	 
     	return $model;
     }
