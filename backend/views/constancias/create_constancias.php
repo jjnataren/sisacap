@@ -150,6 +150,11 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
                                                      
                    </dl>
           </div><!-- /.box-body -->
+          
+      	<div class= "box-footer">
+				          
+		  <?= Html::a('<i class="fa fa-pencil-square-o"></i>  Editar curso', ['curso/updatebyplan', 'id_plan' => $model->ID_PLAN,'id'=>$model->ID_CURSO], ['class' => 'btn btn-primary']) ?>
+    	</div>
 </div><!-- /.box -->
 </div>
 
