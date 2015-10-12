@@ -207,7 +207,7 @@ $config = [
             'allow' => true,
             'roles' => ['manager'],
             'actions'=>['indexcompany','createworkerbycompany' ,'indexestablishment', 'deletebystablish', 'updatebystablish', 'viewbystablishment','load',
-            'updatebyuser', 'viewbycompany','createworkerbyestablishment', 'create-from-const-company', 'deletebyuser', 'loadbyestablishment', 'saveallbyestablishment', 
+            'updatebyuser', 'viewbycompany','createworkerbyestablishment', 'create-from-const-company','createfromconst', 'deletebyuser', 'loadbyestablishment', 'saveallbyestablishment', 
             'saveall'	, 'get-normas'	
             ]
             ],
