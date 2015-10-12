@@ -237,8 +237,8 @@ $config = [
                 'roles' => ['?'],
             ],
             [
-                'controllers'=>['user','page','key-storage','file-manager','file-storage','system-information','log','cache',
-                			 'empresa','representante-legal'],
+                'controllers'=>['page','key-storage','file-manager','file-storage','system-information','log','cache',
+                			 'empresa','representante-legal','catalogo','user'],
                 'allow' => true,
                 'roles' => ['administrator'],
             ],
