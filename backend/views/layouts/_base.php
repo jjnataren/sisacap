@@ -33,6 +33,8 @@ $this->params['body-class'] = array_key_exists('body-class', $this->params) ?
 </head>
 <body class="<?= ArrayHelper::getValue($this->params, 'body-class') ?> <?=Yii::$app->user->can('administrator')? Yii::$app->keyStorage->get('backend.theme-skin', 'skin-blue'): Yii::$app->keyStorage->get('backend.theme-skin-manager', 'skin-blue') ?>">
 <?php $this->beginBody() ?>
+
+
     <?= $content ?>
 <?php $this->endBody() ?>
 </body>
