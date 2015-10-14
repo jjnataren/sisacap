@@ -142,6 +142,7 @@ class Empresa extends \yii\db\ActiveRecord
             [['ALIAS'], 'string', 'max' => 20],
             [['NSS'],'string', 'max'=>14],
             [['RFC'], 'string', 'max' => 13],
+            [['RFC','NUMERO_TRABAJADORES','NOMBRE_RAZON_SOCIAL'] ,'required','message' =>'El dato es obligatorio'],
             [['CURP'], 'string', 'max' => 18],
             [['NUMERO_EXTERIOR', 'NUMERO_INTERIOR', 'ENTIDAD_FEDERATIVA', 'LOCALIDAD', 'NUM_CONTACTO', 'NOMBRE_CENTRO_TRABAJO', 'NOMBRE_COMERCIAL'], 'string', 'max' => 100],
             [['OTRO_GIRO', 'DOMICILIO'], 'string', 'max' => 200],
