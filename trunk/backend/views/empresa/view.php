@@ -79,8 +79,8 @@ if ($model->GIRO_PRINCIPAL === 66666){
 		'type'=>'raw',
 		'value'=>isset($entidadFederativa) ? $entidadFederativa->NOMBRE : 'no establecido',
 		],
-            'LOCALIDAD',
-			'NOMBRE_CONTACTO',
+            'LOCALIDAD',	
+            'CODIGO_POSTAL',		                                                                                                 
 			'NUM_CONTACTO',
             'TELEFONO',
             [
@@ -95,12 +95,12 @@ if ($model->GIRO_PRINCIPAL === 66666){
 		'value'=> $tmp_otroGiro
 		],
             'NUMERO_TRABAJADORES',
-            'CODIGO_POSTAL',
+           
 
 		    'NOMBRE_CONTACTO',	
             'NUM_CONTACTO',
             'CORREO_ELECTRONICO',
-'FECHA_INICIO_OPERACIONES',
+            'FECHA_INICIO_OPERACIONES',
             'ACTIVO',
         ],
     ]) ?>
