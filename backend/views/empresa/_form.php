@@ -171,7 +171,8 @@ $this->registerJs("$('#chk_moral').change(function(){
 		         	
     	<div class=" col-xs-12 col-sm-12 col-md-5">
 	   		<?= $form->field($model, 'NUMERO_TRABAJADORES')->textInput(['maxlength' => 4]) ?>
-	 
+	  CORREO_ELECTRONICO_EMPRESA
+	  
 	     </div>
 	  <div class=" col-xs-12 col-sm-12 col-md-5">
 	     	<?= $form->field($model, 'FECHA_INICIO_OPERACIONES')->widget('trntv\yii\datetimepicker\DatetimepickerWidget', ['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]]) ?>
@@ -198,9 +199,7 @@ $this->registerJs("$('#chk_moral').change(function(){
     <?= $form->field($model, 'NUMERO_INTERIOR')->textInput(['maxlength' => 100]) ?>
 
  	<!-- <?= $form->field($model, 'DOMICILIO')->textArea(['maxlength' => 100]) ?> -->
-      
-     
-     
+           
      <?= $form->field($model, 'ENTIDAD_FEDERATIVA')->dropDownList($dataListEntidad,['prompt'=>'-- Seleccione  --','id' => 'cat-id']) ?>
 
 <!--     <?= $form->field($model, 'MUNICIPIO_DELEGACION')->textInput(['maxlength' => 300]) ?> -->
@@ -220,6 +219,8 @@ $this->registerJs("$('#chk_moral').change(function(){
         <?= $form->field($model, 'COLONIA')->textInput(['maxlength' => 300]) ?>
         
          <?= $form->field($model, 'CODIGO_POSTAL')->textInput(['maxlength' => 5]) ?>   
+      
+       	<?= $form->field($model, 'CORREO_ELECTRONICO_EMPRESA')->textInput(['maxlength' => 300]) ?>
         </div>
         </div>
         </div>
