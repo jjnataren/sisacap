@@ -198,7 +198,7 @@ $this->registerJs("$('#chk_moral').change(function(){
     <?= $form->field($model, 'NUMERO_INTERIOR')->textInput(['maxlength' => 100]) ?>
 
  	<!-- <?= $form->field($model, 'DOMICILIO')->textArea(['maxlength' => 100]) ?> -->
-       <?= $form->field($model, 'CODIGO_POSTAL')->textInput(['maxlength' => 5]) ?>   
+      
      
      
      <?= $form->field($model, 'ENTIDAD_FEDERATIVA')->dropDownList($dataListEntidad,['prompt'=>'-- Seleccione  --','id' => 'cat-id']) ?>
@@ -218,6 +218,8 @@ $this->registerJs("$('#chk_moral').change(function(){
    <!--  <?= $form->field($model, 'LOCALIDAD')->textInput(['maxlength' => 100]) ?> -->
     
         <?= $form->field($model, 'COLONIA')->textInput(['maxlength' => 300]) ?>
+        
+         <?= $form->field($model, 'CODIGO_POSTAL')->textInput(['maxlength' => 5]) ?>   
         </div>
         </div>
         </div>
