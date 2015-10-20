@@ -193,7 +193,7 @@ class Empresa extends \yii\db\ActiveRecord
             'NOMBRE_COMERCIAL' => 'Nombre Comercial',
             'ACTIVO' => 'Activo',
             'FECHA_INICIO_OPERACIONES' => 'Fecha inicio de operaciones',
-            'CORREO_ELECTRONICO_EMPRESA' => 'E-mail de empresa',
+            'CORREO_ELECTRONICO_EMPRESA' => 'Correo electrónico',
         ];
     }
 
