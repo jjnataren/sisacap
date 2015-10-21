@@ -171,7 +171,7 @@ $this->registerJs("$('#chk_moral').change(function(){
 		         	
     	<div class=" col-xs-12 col-sm-12 col-md-5">
 	   		<?= $form->field($model, 'NUMERO_TRABAJADORES')->textInput(['maxlength' => 4]) ?>
-	  CORREO_ELECTRONICO_EMPRESA
+
 	  
 	     </div>
 	  <div class=" col-xs-12 col-sm-12 col-md-5">
