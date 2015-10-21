@@ -162,7 +162,7 @@ $this->registerJs("$('#chk_moral').change(function(){
 		     </div>
 		     
 		    	<div class=" col-xs-12 col-sm-12 col-md-5">
-		    <?= $form->field($model, 'NSS')->textInput(['maxlength' => 10, 'id'=>'txt_nss']) ?>
+		    <?= $form->field($model, 'NSS')->textInput(['maxlength' => 20, 'id'=>'txt_nss']) ?>
 		    	</div>
 		    
 		     <div class=" col-xs-12 col-sm-12 col-md-5">
