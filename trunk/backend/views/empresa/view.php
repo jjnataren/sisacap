@@ -70,6 +70,14 @@ if ($model->GIRO_PRINCIPAL === 66666){
             'NSS',
             'CURP',
             'MORAL',
+    		[
+    		'attribute'=>'GIRO_PRINCIPAL',
+    		'type'=>'raw',
+    		'value'=> $tmp_otroGiro
+    		],
+    		'NUMERO_TRABAJADORES',
+    		'FECHA_INICIO_OPERACIONES',
+    		'ACTIVO',
             'CALLE',
             'NUMERO_EXTERIOR',
             'NUMERO_INTERIOR',
@@ -80,28 +88,20 @@ if ($model->GIRO_PRINCIPAL === 66666){
 		'value'=>isset($entidadFederativa) ? $entidadFederativa->NOMBRE : 'no establecido',
 		],
             'LOCALIDAD',	
-            'CODIGO_POSTAL',		                                                                                                 
-			'NUM_CONTACTO',
+            'CODIGO_POSTAL',
+          'CORREO_ELECTRONICO_EMPRESA',
+		                                                                                                 
+			'NOMBRE_CONTACTO',
+            'NUM_CONTACTO',
             'TELEFONO',
             [
 		'attribute'=>'MUNICIPIO_DELEGACION',
 		'type'=>'raw',
 		'value'=>isset($municipioDelegacion) ? $municipioDelegacion->NOMBRE : 'no establecido',
-		],
+         	          	],
+        'CORREO_ELECTRONICO',
 
-            [
-		'attribute'=>'GIRO_PRINCIPAL',
-		'type'=>'raw',
-		'value'=> $tmp_otroGiro
-		],
-            'NUMERO_TRABAJADORES',
-           
-
-		    'NOMBRE_CONTACTO',	
-            'NUM_CONTACTO',
-            'CORREO_ELECTRONICO',
-            'FECHA_INICIO_OPERACIONES',
-            'ACTIVO',
+         
         ],
     ]) ?>
 
