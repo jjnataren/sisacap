@@ -60,6 +60,8 @@ class ComisionMixtaCap extends \yii\db\ActiveRecord
             [['ID_EMPRESA', 'COMISION_MIXTA_PADRE', 'NUMERO_INTEGRANTES', 'ACTIVO'], 'integer'],
             [['FECHA_CONSTITUCION', 'FECHA_ELABORACION','FECHA_AGREGO', 'FECHA_INFORME'], 'safe'],
             [['ALIAS', 'LUGAR_INFORME'], 'string', 'max' => 100],
+            ['ALIAS', 'required','message'=>'El campo no puede estar en blanco. '],
+            ['ALIAS','string','min'=>3],
             [['DOCUMENTO_PROBATORIO'], 'string', 'max' => 2048],
             [['NOMBRE_DOC_PROB'], 'string', 'max' => 300],
             [['DESCRIPCION'], 'string', 'max' => 200]
