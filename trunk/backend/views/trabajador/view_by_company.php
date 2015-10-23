@@ -76,71 +76,78 @@ if ($model->OCUPACION_ESPECIFICA === '99999'){
             'CURP',
             'RFC',
             'NSS',
-    		'TELEFONO',
-    		'CORREO_ELECTRONICO',
-			
-    		//DOCUMENTO APROBATORIO 
-			[
-			'attribute'=>'DOCUMENTO_PROBATORIO',
-			'type'=>'raw',
-			'value'=>isset($model->DOC_TIPO[ $model->DOCUMENTO_PROBATORIO ])? $model->DOC_TIPO[$model->DOCUMENTO_PROBATORIO]: 'no establecido'
-
-			],
-    		
-    		//INSTITUCION EDUCATIVA 
-			
     		[
-    		'attribute'=>'INSTITUCION_EDUCATIVA',
+    		'attribute'=>'PUESTO',
     		'type'=>'raw',
-    		'value'=>isset($model->INST_TIPO[ $model->INSTITUCION_EDUCATIVA])? $model->INST_TIPO[$model->INSTITUCION_EDUCATIVA]: 'no establecido'
-    		
-    				],
-    		//GRADO DE ESTUDIOS
-    		
+    		'value'=> isset($PUESTO) ? $PUESTO-> NOMBRE_PUESTO : 'no establecido ',
+    		],
+    		[
+    		'attribute'=>'OCUPACION_ESPECIFICA',
+    		'type'=>'raw',
+    		'value'=> $tmp_ocupacionEspecifica
+    		],
     		[
     		'attribute'=>'GRADO_ESTUDIO',
     		'type'=>'raw',
     		'value'=>isset($model->GRADO_TIPO[ $model->GRADO_ESTUDIO])? $model->GRADO_TIPO[$model->GRADO_ESTUDIO]: 'no establecido'
     		
     				],
+    		[
+    		'attribute'=>'DOCUMENTO_PROBATORIO',
+    		'type'=>'raw',
+    		'value'=>isset($model->DOC_TIPO[ $model->DOCUMENTO_PROBATORIO ])? $model->DOC_TIPO[$model->DOCUMENTO_PROBATORIO]: 'no establecido'
+    		
+    				],
+    		[
+    		'attribute'=>'INSTITUCION_EDUCATIVA',
+    		'type'=>'raw',
+    		'value'=>isset($model->INST_TIPO[ $model->INSTITUCION_EDUCATIVA])? $model->INST_TIPO[$model->INSTITUCION_EDUCATIVA]: 'no establecido'
+    		
+    				],
+    		'FECHA_EMISION_CERTIFICADO',
+    		[
+    		'attribute'=> 'ENTIDAD_FEDERATIVA',
+    		'type'=>'raw',
+    		'value'=>isset($entidadFederativa) ? $entidadFederativa->NOMBRE : 'no establecido',
+    		],
+    		//MUNICIPIO
+    		[
+    		'attribute'=>'MUNICIPIO_DELEGACION',
+    		'type'=>'raw',
+    		'value'=>isset($municipioDelegacion) ? $municipioDelegacion->NOMBRE : 'no establecido',
+    		],
+    		//  'DOMICILIO',
+    		'LUGAR_RESIDENCIA',
+    		
+    		'CORREO_ELECTRONICO',
+    		'TELEFONO',
+    		//DOCUMENTO APROBATORIO 
+			
+    		
+    		//INSTITUCION EDUCATIVA 
+			
+    		
+    		//GRADO DE ESTUDIOS
+    		
+    		
+    	
     		//ntcl
     		
     		
+    		
+    		//ENTIDAD FEDERATIVA
+		
+            'CORREO_ELECTRONICO',
+            'TELEFONO',
     		[
     		'attribute'=> 'NTCL',
     		'type'=>'raw',
     		'value'=>isset($NTCL) ? $NTCL->NOMBRE : 'no establecido',
     		],
     		
-    		//ENTIDAD FEDERATIVA
-			[
-		'attribute'=> 'ENTIDAD_FEDERATIVA',
-		'type'=>'raw',
-		'value'=>isset($entidadFederativa) ? $entidadFederativa->NOMBRE : 'no establecido',
-		],
-			//MUNICIPIO
-		[
-		'attribute'=>'MUNICIPIO_DELEGACION',
-		'type'=>'raw',
-		'value'=>isset($municipioDelegacion) ? $municipioDelegacion->NOMBRE : 'no establecido',
-		],
-          //  'DOMICILIO',
-			'LUGAR_RESIDENCIA',
-            'CORREO_ELECTRONICO',
-            'TELEFONO',
-    		[
-            'attribute'=>'PUESTO',
-    		'type'=>'raw',
-    		'value'=> isset($PUESTO) ? $PUESTO-> NOMBRE_PUESTO : 'no establecido ',
-    		],
-    		[
-            'attribute'=>'OCUPACION_ESPECIFICA',
-    		'type'=>'raw',
-    		'value'=> $tmp_ocupacionEspecifica
-    		],
 			//'OTRO_OCUPACION',
             'FECHA_AGREGO',
-			'FECHA_EMISION_CERTIFICADO',
+			
             //'ACTIVO',
         ],
     ]) ?>
