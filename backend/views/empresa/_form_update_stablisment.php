@@ -144,7 +144,7 @@ $this->registerJs("$('#drop_giro').change(function(){
             <div class="panel">
                 <div class="panel-heading text-primary">
                     
-                    <h3 class="panel-title"><?= Yii::t('backend', 'Contacto de la empresa') ?></h3>
+                    <h3 class="panel-title"><?= Yii::t('backend', 'Contacto del establecimiento') ?></h3>
                 </div>
                 <div class="panel-body">  
      
@@ -196,10 +196,11 @@ $this->registerJs("$('#drop_giro').change(function(){
 	
 						<?= $form->field($model, 'NOMBRE_COMERCIAL')->textInput(['maxlength' => 300]) ?>
 						 <?= $form->field($model, 'ESQUEMA_SEGURIDAD_SOCIAL')->dropDownList($itemsSex,['prompt'=>'-- Seleccione  --','id' => 'esquemaSeg']) ?>
-                        <?= $form->field($model, 'NSS')->textInput(['maxlength' => 14, 'id'=>'txt_nss']) ?>
                         <?= $form->field($model, 'GIRO_PRINCIPAL')->dropDownList($dataListGiro,['prompt'=>'-- Seleccione  --','maxlength' => 300, 'id'=>'drop_giro']) ?>
                         
     					<?= $form->field($model, 'OTRO_GIRO')->textInput(['maxlength' => 200,'id'=>'txt_giro_otro']) ?>
+                        
+                        <?= $form->field($model, 'NSS')->textInput(['maxlength' => 14, 'id'=>'txt_nss']) ?>
                         <div class="row">
 							<div class="col-xs-9 col-md-6">
 							

@@ -114,7 +114,7 @@ $this->registerJs("$('#chk_moral').change(function(){
             <div class="panel">
                 <div class="panel-heading text-primary">
                     
-                    <h3 class="panel-title"><?= Yii::t('backend', 'Contacto') ?></h3>
+                    <h3 class="panel-title"><?= Yii::t('backend', 'Contacto del establecimiento') ?></h3>
                 </div>
                 <div class="panel-body">
            
