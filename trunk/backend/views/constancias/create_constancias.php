@@ -332,7 +332,8 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 									<th>Estatus</th>
 									<th>Promedio</th>
 									<th>Aprobado</th>
-									<th></th>
+									<th>Descargar constancia</th>
+								
 																		
 								</tr>
 							</thead>
@@ -353,13 +354,13 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 	                                    <?= $form->field($constancia, "[$i]PROMEDIO")->textInput(['maxlength' => 50, 'style' => 'width: 50px;'])->label(false)?>
 	                                    
                                     </td>
-								    <td>
+								    <td>	
 								    <?= $form->field($constancia, "[$i]APROBADO")->widget(CheckboxX::classname(), ['options'=>['id'=>'chk_pass'.$constancia->ID_CONSTANCIA],'pluginOptions'=>['threeState'=>false]])->label(false); ?>
 								    </td>	
 								      <td>   					
 									<?php if (!$constancia->isNewRecord){?>
 										<?= Html::a('<i class="fa fa-download"></i>', ['constanciapdf', 'id'=>$constancia->ID_CONSTANCIA],  ['target' => '_blank',  'class' => 'btn btn-success btn-xs' ]) ?>
-											<?= Html::a('<i class="fa fa-eye"></i>', ['constancias/dashboard', 'id'=>$constancia->ID_CONSTANCIA],  [ 'class' => 'btn btn-info btn-xs' ]) ?>
+											<?= Html::a('<i class="fa fa-eye"></i>', ['constancias/dashboard', 'id'=>$constancia->ID_CONSTANCIA],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
 											<?= Html::a('<i class="fa fa-trash"></i>', ['constancias/delete-constancia', 'id'=>$constancia->ID_CONSTANCIA], ['class' => 'btn btn-danger btn-xs',  'data' => ['confirm' => '¿Realmente quiere borrar esta constancia?',
                 												  'method' => 'post',
             														],]) ?>
