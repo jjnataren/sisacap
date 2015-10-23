@@ -77,8 +77,7 @@ if ($model->GIRO_PRINCIPAL === 66666){
     		],
     		'NUMERO_TRABAJADORES',
     		'FECHA_INICIO_OPERACIONES',
-    		'ACTIVO',
-            'CALLE',
+    		'CALLE',
             'NUMERO_EXTERIOR',
             'NUMERO_INTERIOR',
 [
@@ -100,6 +99,7 @@ if ($model->GIRO_PRINCIPAL === 66666){
             'NUM_CONTACTO',
             'TELEFONO',
             'CORREO_ELECTRONICO',
+            'ACTIVO',
         ],
     ]) ?>
 
