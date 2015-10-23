@@ -81,6 +81,11 @@ if ($model->GIRO_PRINCIPAL === 66666){
             'CALLE',
             'NUMERO_EXTERIOR',
             'NUMERO_INTERIOR',
+[
+'attribute'=>'MUNICIPIO_DELEGACION',
+'type'=>'raw',
+'value'=>isset($municipioDelegacion) ? $municipioDelegacion->NOMBRE : 'no establecido',
+],
             'COLONIA',
             [
 		'attribute'=> 'ENTIDAD_FEDERATIVA',
@@ -94,14 +99,7 @@ if ($model->GIRO_PRINCIPAL === 66666){
 			'NOMBRE_CONTACTO',
             'NUM_CONTACTO',
             'TELEFONO',
-            [
-		'attribute'=>'MUNICIPIO_DELEGACION',
-		'type'=>'raw',
-		'value'=>isset($municipioDelegacion) ? $municipioDelegacion->NOMBRE : 'no establecido',
-         	          	],
-        'CORREO_ELECTRONICO',
-
-         
+            'CORREO_ELECTRONICO',
         ],
     ]) ?>
 
