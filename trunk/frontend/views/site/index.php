@@ -49,7 +49,7 @@ Artesanías Gallardo S. A. de C. V.<br>
 
 Cactus Automotive Service de México S. de R. L. de C.V. (Camex)<br>
 
-Consultoria Delgadillo & López SC<br>
+Consultoría Delgadillo & López SC<br>
 
 Ensambles de Precisión S. A de C. V.<br>
 
@@ -78,7 +78,7 @@ Mueblex de Baja California S. A. de C. V.<br>
                 <p><a class="btn btn-default" href="">Ver mas... &raquo;</a></p>
             </div>
             <div class="col-lg-4">
-                <h2>Asesorias</h2>
+                <h2>Asesorías</h2>
 
                <b></b> <p>DIPLOMADOS: <br><b></b>
 
@@ -97,7 +97,7 @@ Evaluación de Incidentes y Accidentes de Trabajo<br>
 Cargas Estáticas. Normatividad oficial, técnicas de medición y dispositivos de control.<br>
 Ergonomía aplicada a las Líneas de Producción<br>
 Seguridad en láseres industriales<br>
-Seguridad  en equipos que utilizan radiaciones ionizantes y no ionizantes.<br>
+Seguridad en equipos que utilizan radiaciones ionizantes y no ionizantes.<br>
 Conceptos básicos de Radiaciones ionizantes y no ionizantes.<br>
 Evaluación de agentes físicos - Ruido, iluminación, radiaciones etc.</p>
 
