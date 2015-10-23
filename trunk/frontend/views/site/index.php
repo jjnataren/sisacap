@@ -78,7 +78,7 @@ Mueblex de Baja California S. A. de C. V.<br>
                 <p><a class="btn btn-default" href="">Ver mas... &raquo;</a></p>
             </div>
             <div class="col-lg-4">
-                <h2>Acesorias</h2>
+                <h2>Asesorias</h2>
 
                <b></b> <p>DIPLOMADOS: <br><b></b>
 
