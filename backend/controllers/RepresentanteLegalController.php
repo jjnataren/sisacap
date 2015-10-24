@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use backend\models\EmpresaUsuario;
+use yii\web\UploadedFile;
 
 /**
  * RepresentanteLegalController implements the CRUD actions for RepresentanteLegal model.
@@ -101,6 +102,8 @@ class RepresentanteLegalController extends Controller
     	 
     	$representante =$company->iDREPRESENTANTELEGAL;
     	
+    	$representante->SIGN_PICTURE = null;
+    	
     	if ($representante->load(Yii::$app->request->post())) {
     		
     		
@@ -121,6 +124,61 @@ class RepresentanteLegalController extends Controller
     	
     
     	return $this->render('update_by_company',['model'=>$representante]);
+    
+    }
+    
+    
+    /**
+     * Manages signing picture
+     * @throws NotFoundHttpException
+     * @return \yii\web\Response|string
+     */
+    public function actionManageSignPic(){
+    
+    	$model = EmpresaUsuario::findOne(['ID_USUARIO'=>Yii::$app->user->id]);
+    
+    	if($model === null) throw new NotFoundHttpException('The requested page does not exist.');
+    
+    	$company= $model->iDEMPRESA;
+    
+    	$representante =$company->iDREPRESENTANTELEGAL;
+    	
+    	$file = UploadedFile::getInstanceByName('SIGN_PICTURE');
+    	
+    	//$fileReturn = Yii::$app->fileStorage->save($file);
+    	
+    	//$file = fopen($_FILES['SIGN_PICTURE']['tmp_name'],"r");
+    	
+   // 	$content = fread($file,filesize($_FILES['SIGN_PICTURE']['tmp_name']));
+    	
+    	
+    	
+    	/*if ($representante->load(Yii::$app->request->post())) {
+    
+    		$file = UploadedFile::getInstanceByName('SIGN_PICTURE');
+    		
+    		$fileReturn = Yii::$app->fileStorage->save($file);
+    		
+    		
+    		$model->SIGN_PICTURE = $fileReturn->url;
+    		
+    		if( $representante->save()) {
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-success'],
+    					 
+    					'body'=> '<i class="fa fa-check"></i> Imagen guardada correctamente.',
+    			]);
+    		}
+    		return $this->redirect(['viewbycompany', 'id' => $representante->ID_REPRESENTANTE_LEGAL]);
+    	}
+    	else {
+    		return $this->render('manage-sign-pic', [
+    				'model' => $representante,
+    		]);
+    	}*/
+    	 
+    
+    	return $this->render('manage-sign-pic',['model'=>$representante]);
     
     }
     
