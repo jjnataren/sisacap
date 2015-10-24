@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\web\View;
+use kartik\file\FileInput;
+use kartik\password\PasswordInput;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\RepresentanteLegal */
@@ -18,14 +20,17 @@ $itemsAct = [1=>'Activo',0=>'No activo'];
 
   <div class=" col-xs-12 col-sm-12 col-md-12">
   
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+    		'options'=>['enctype'=>'multipart/form-data']
+    		
+    ]); ?>
 				<div class="panel panel-warning">
 					<div class="panel-heading">
 						<h3><i class="fa fa-pencil"></i>
 						
 							<?= Yii::t('backend', 'Editar datos ') ?> <small>formulario de actualización</small> </h3>	
 						</div>
-						<div class="panel-body">
+<div class="panel-body">
 		<div class=" col-xs-12 col-sm-12 col-md-6">
     
 
@@ -40,7 +45,7 @@ $itemsAct = [1=>'Activo',0=>'No activo'];
     <?= $form->field($model, 'APP')->textInput(['maxlength' => 100]) ?>
     </div>
 		</div>
-<div class="row">
+	<div class="row">
 		<div class="col-xs-12 col-md-9">
     <?= $form->field($model, 'APM')->textInput(['maxlength' => 100]) ?>
     </div>
@@ -56,23 +61,23 @@ $itemsAct = [1=>'Activo',0=>'No activo'];
 		</div>
   <div class=" col-xs-12 col-sm-12 col-md-6">
 
-<div class="row">
-		<div class="col-xs-12 col-md-7">
-    <?= $form->field($model, 'TELEFONO')->textArea(['maxlength' => 100]) ?>
-    </div>
-		</div>
-<div class="row">
-		<div class="col-xs-12 col-md-7">
-    <?= $form->field($model, 'CORREO_ELECTRONICO')->textInput(['maxlength' => 300]) ?>
-    
-    </div>
-		</div>
+			<div class="row">
+					<div class="col-xs-12 col-md-7">
+			    <?= $form->field($model, 'TELEFONO')->textArea(['maxlength' => 100]) ?>
+			    </div>
+			</div>
+			<div class="row">
+					<div class="col-xs-12 col-md-7">
+			    <?= $form->field($model, 'CORREO_ELECTRONICO')->textInput(['maxlength' => 300]) ?>
+			    
+			    </div>
+			</div>
+			
 
-   
-
-   <!-- <?= $form->field($model, 'NSS')->textInput(['maxlength' => 20]) ?>  --> 
-
-   
+			
+			   <!-- <?= $form->field($model, 'NSS')->textInput(['maxlength' => 20]) ?>  --> 
+			
+			   
     </div>
 
 
@@ -80,7 +85,7 @@ $itemsAct = [1=>'Activo',0=>'No activo'];
 </div>
 
     <div class="panel-footer">
-								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Aquí podrás actualizar los datos del representante legal de tu empresa, es importante que todos los campos estén llenos con sus datos correctos. Presiona el botón [Guardar] para salvar sus cambios.') ?>"><i class="fa fa-question-circle"></i>
+								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Aqui puedes actualizar los datos del representante legale de tu empresa, es importante que todos los campos esten llenos con sus datos correctos. Presiona el boton [Guardar] y acontinuación se guardaran los datos del representante legal') ?>"><i class="fa fa-question-circle"></i>
 						</button>
 						&nbsp;
 						
