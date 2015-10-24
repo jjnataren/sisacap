@@ -558,6 +558,9 @@ use backend\models\Plan;
 							['label'=>Yii::t('backend', 'Editar'),
 							'url'=>['/representante-legal/updatebycompany'],
 							'icon'=>'<i class="fa fa-angle-double-right"></i>'],	
+								['label'=>Yii::t('backend', 'Firma electronica'),
+								'url'=>['/representante-legal/manage-sign-pic'],
+								'icon'=>'<i class="fa fa-pencil-square-o"></i>'],
 							
 						]
 					
