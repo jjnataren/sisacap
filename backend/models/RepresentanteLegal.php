@@ -5,7 +5,7 @@ namespace backend\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%representante_legal}}".
+ * This is the model class for table "tbl_representante_legal".
  *
  * @property integer $ID_REPRESENTANTE_LEGAL
  * @property string $NOMBRE
@@ -19,6 +19,9 @@ use Yii;
  * @property string $CORREO_ELECTRONICO
  * @property integer $ACTIVO
  * @property string $NSS
+ * @property string $SIGN_PICTURE
+ * @property string $SIGN_PASSWD
+ * @property string $SIGN_KEY
  *
  * @property Empresa[] $empresas
  */
@@ -29,7 +32,7 @@ class RepresentanteLegal extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%representante_legal}}';
+        return 'tbl_representante_legal';
     }
 
     /**
@@ -45,7 +48,9 @@ class RepresentanteLegal extends \yii\db\ActiveRecord
             [['RFC'], 'string', 'max' => 13],
             [['DOMICILIO', 'CORREO_ELECTRONICO'], 'string', 'max' => 300],
             [['NSS'], 'string', 'max' => 20],
-            [['CORREO_ELECTRONICO'], 'email',]
+            [['CORREO_ELECTRONICO'], 'email',],
+            [['SIGN_PICTURE'], 'string', 'max' => 2048],
+            [['SIGN_PASSWD', 'SIGN_KEY'], 'string', 'max' => 1024]
         ];
     }
 
@@ -55,7 +60,7 @@ class RepresentanteLegal extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ID_REPRESENTANTE_LEGAL' => 'Id  representante legal',
+             'ID_REPRESENTANTE_LEGAL' => 'Id  representante legal',
             'NOMBRE' => 'Nombre',
             'APP' => 'Apellido paterno' ,
             'APM' => 'Apellido materno',
@@ -67,6 +72,9 @@ class RepresentanteLegal extends \yii\db\ActiveRecord
             'CORREO_ELECTRONICO' => 'Correo  electrónico',
             'ACTIVO' => 'Activo',
             'NSS' => 'Número de registro patronal',
+            'SIGN_PICTURE' => 'Imagen firma',
+            'SIGN_PASSWD' => 'Constraseña encriptación',
+            'SIGN_KEY' => 'Sign  Key',
         ];
     }
 

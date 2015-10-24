@@ -121,7 +121,7 @@ class Trabajador extends \yii\db\ActiveRecord
             [['FECHA_AGREGO', 'FECHA_EMISION_CERTIFICADO'], 'safe'],
            // [['SECTOR'], 'required'],
             [['NOMBRE', 'APP', 'APM', 'TELEFONO'], 'string', 'max' => 100],
-            [['CURP'], 'string', 'max' => 18],
+            [['CURP'], 'string', 'max' => 18,'message'=>'Este curp no es valido'],
             [['RFC'], 'string', 'max' => 13],
             [['NSS'], 'string', 'max' => 20],
             [['NTCL', 'SECTOR'], 'string', 'max' => 250],
