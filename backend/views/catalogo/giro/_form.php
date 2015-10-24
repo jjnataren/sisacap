@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
 /* @var $form yii\widgets\ActiveForm */
 
 //$dataListArea=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>Catalogo::CATEGORIA_AREA_TEMATI,'ACTIVO'=>1]), 'ID_ELEMENTO', 'NOMBRE');
-
+$itemsAct = [1=>'Activo',0=>'No activo'];
 ?>
 
 
@@ -23,7 +23,8 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'DESCRIPCION')->textInput(['maxlength' => 300]) ?>
 
-    <?= $form->field($model, 'ACTIVO')->textInput() ?>
+    <?= $form->field($model, 'ACTIVO')->dropDownList($itemsAct,['prompt'=>'-- Seleccione  --','id' => 'tex-sex']) ?>
+  
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

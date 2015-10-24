@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
 /* @var $form yii\widgets\ActiveForm */
 
 $dataListEntidades=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>Catalogo::CATEGORIA_ENTIDADES_FEDERATIVAS,'ACTIVO'=>1]), 'ID_ELEMENTO', 'NOMBRE');
-
+$itemsAct = [1=>'Activo',0=>'No activo'];
 ?>
 
 
@@ -24,7 +24,8 @@ $dataListEntidades=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>Catalogo::CA
 
     <?= $form->field($model, 'DESCRIPCION')->textInput(['maxlength' => 300]) ?>
 
-    <?= $form->field($model, 'ACTIVO')->textInput() ?>
+      <?= $form->field($model, 'ACTIVO')->dropDownList($itemsAct,['prompt'=>'-- Seleccione  --','id' => 'tex-sex']) ?>
+    
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
