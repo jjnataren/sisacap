@@ -51,7 +51,7 @@ $itemsAct = [1=>'Activo',0=>'No activo'];
    <!--  <?= $form->field($model, 'NSS')->textInput(['maxlength' => 20]) ?>  -->
 
     <div class="panel-footer">
-								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Aqui puedes registra al representante legale de tu empresa,Es importante que todos los campos esten llenos con sus datos correctos. Presiona el boton [Guardar] y acontinuaci�n se guardaran los datos del representante legal') ?>"><i class="fa fa-question-circle"></i>
+								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Una ves llenado todos los campos solo selecciones [crear] para salvar sus datos.') ?>"><i class="fa fa-question-circle"></i>
 						</button>
 						
 	    <?= Html::submitButton( '<i class="fa fa-floppy-o"></i> Crear', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
