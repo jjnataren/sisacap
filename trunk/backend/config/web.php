@@ -147,7 +147,7 @@ $config = [
             'controllers'=>['indicador-comision'],
             'allow' => true,
             'roles' => ['manager'],
-            'actions'=>['view-by-company','index-by-company']
+            'actions'=>['view-by-company','index-by-company','delete-by-company']
             ],
             
             
@@ -155,7 +155,7 @@ $config = [
             'controllers'=>['indicador-constancia'],
             'allow' => true,
             'roles' => ['manager'],
-            'actions'=>['view-by-company','index-by-company']
+            'actions'=>['view-by-company','index-by-company','delete-by-company']
             ],
             
             
@@ -163,7 +163,7 @@ $config = [
             'controllers'=>['indicador-plan'],
             'allow' => true,
             'roles' => ['manager'],
-            'actions'=>['view-by-company','index-by-company']
+            'actions'=>['view-by-company','index-by-company','delete-by-company']
             ],
             
             
@@ -216,7 +216,7 @@ $config = [
             'controllers'=>['representante-legal'],
             'allow' => true,
             'roles' => ['manager'],
-            'actions'=>['viewbycompany','updatebycompany']
+            'actions'=>['viewbycompany','updatebycompany','manage-sign-pic']
             ],
             
         		[
@@ -246,8 +246,8 @@ $config = [
             'controllers'=>['user','page','key-storage','file-manager','file-storage','system-information','log','cache',],
             'allow' => false,
             ],
-           
-        	/*
+           /*
+        	
             [
                 'allow' => true,
                 'roles' => ['manager'],
