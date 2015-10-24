@@ -285,7 +285,7 @@ $this->registerJs("$('#chk_moral').change(function(){
     <?php ActiveForm::end(); ?>
 <div class="panel-footer">
     
-						<button id="help_popup_carnera" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Presiona el boton [Crear] y acontinuacin se guardara el plan de capacitación') ?>"><i class="fa fa-question-circle"></i>
+						<button id="help_popup_carnera" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Presione el botón [Guardar] para salvar sus datos capturados.') ?>"><i class="fa fa-question-circle"></i>
 						</button>
              <?= Html::submitButton( '<i class="fa fa-floppy-o"></i> Guardar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 						    </div>

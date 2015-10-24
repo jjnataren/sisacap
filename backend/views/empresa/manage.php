@@ -162,7 +162,7 @@ $this->registerJs("$('#ownerpop').popover('hide');", View::POS_END, 'my-options1
 	<div class=" col-xs-12 col-sm-12 col-md-6 ">
 	
 				<div class="panel panel-default">
-			<div class="panel-heading"><h3><i class="fa fa-users"></i> <?= Yii::t('backend', 'Usuarios') ?><small>&nbsp;&nbsp;<?= Yii::t('backend', ' que puden adminitrar la empresa') ?>.</small></h3></div>
+			<div class="panel-heading"><h3><i class="fa fa-users"></i> <?= Yii::t('backend', 'Usuarios') ?><small>&nbsp;&nbsp;<?= Yii::t('backend', ' que pueden administrar la empresa') ?>.</small></h3></div>
 			<div class="panel-body">
 			
 		<table class="table">
