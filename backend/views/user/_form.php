@@ -11,6 +11,7 @@ use yii\web\View;
 $this->registerJs("$('#help1').popover('hide');", View::POS_END, 'my-options');
 $this->registerJs("$('#help2').popover('hide');", View::POS_END, 'my-options1');
 $this->registerJs("$('#help3').popover('hide');", View::POS_END, 'my-options2');
+$this->registerJs("$('#help4').popover('hide');", View::POS_END, 'my-options3');
 
 ?>
 
@@ -66,7 +67,7 @@ La contraseña no debe llevar espacios en blanco ."><i class="fa fa-question-cir
       </div>
       </div>
        <div class="panel-footer">
-								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'La contraseña no debe llevar espacios en blanco.') ?>"><i class="fa fa-question-circle"></i>
+								<button id="help4" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'La contraseña no debe llevar espacios en blanco.') ?>"><i class="fa fa-question-circle"></i>
 						</button>  
             <?= Html::submitButton(Yii::t('backend', '<i class="fa fa-floppy-o"></i> Guardar'), ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
        
