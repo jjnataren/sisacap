@@ -21,17 +21,18 @@ use Yii;
  * @property integer $TIPO_INSTRUCTOR
  * @property string $COMENTARIOS
  * @property integer $ACTIVO
+ * @property integer $ID_USUARIO
  *
  * @property Curso[] $cursos
+ * @property User $iDUSUARIO
  * @property Empresa $iDEMPRESA
  */
 class Instructor extends \yii\db\ActiveRecord
 {
-    
-/**
- * Tipos de capacitadores
- * @var unknown
- */
+	/**
+	 * Tipos de instructores
+	 * @var unknown
+	 */
 	const TIPO_AGENTE_CAP_INTERNO = 1;
 	const TIPO_AGENTE_EXT_IND = 2;
 	const TIPO_AGENTE_ACREDITACION = 3;
@@ -39,22 +40,21 @@ class Instructor extends \yii\db\ActiveRecord
 	
 	
 	public static function getTypeInstructor(){
-		 
+			
 		return [Instructor::TIPO_AGENTE_CAP_INTERNO=>'Agente capacitador interno',
 				self::TIPO_AGENTE_EXT_IND=>'Agente capacitador externo con numero de acreditación, independiente',
-				self::TIPO_AGENTE_ACREDITACION=>'Agente capacitador externo con numero de acreditación, perteneciente a una empresa ', 
+				self::TIPO_AGENTE_ACREDITACION=>'Agente capacitador externo con numero de acreditación, perteneciente a una empresa ',
 				self::TIPO_AGENTE_PROVEDOR=>'Agente empresa provedor externo'];
 	}
-	
-	/**
+    
+    /**
      * @inheritdoc
      */
     public static function tableName()
     {
         return 'tbl_instructor';
     }
-
-    /**
+   /**
      * @inheritdoc
      */
     public function rules()
@@ -68,7 +68,7 @@ class Instructor extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
+     /**
      * @inheritdoc
      */
     public function attributeLabels()
@@ -97,6 +97,14 @@ class Instructor extends \yii\db\ActiveRecord
     public function getCursos()
     {
         return $this->hasMany(Curso::className(), ['ID_INSTRUCTOR' => 'ID_INSTRUCTOR']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIDUSUARIO()
+    {
+        return $this->hasOne(User::className(), ['id' => 'ID_USUARIO']);
     }
 
     /**
