@@ -105,6 +105,23 @@ public function actionViewbycompany($id){
     
     
      }
+     
+     
+     /**
+      * Displays a single Instructor model by its company.
+      * @param integer $id
+      * @return mixed
+      */
+     public function actionViewByInstructor(){
+     
+     	$model = Instructor::getOwnData();
+     
+       
+     	return $this->render('view_by_instructor',['model'=>$model]);
+     
+     
+     
+     }
  
     
     /**
