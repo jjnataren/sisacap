@@ -67,6 +67,43 @@ class UserSearch extends User
     }
     
     
+    /**
+     * Creates data provider instance with search query applied
+     * filters -not assigned 
+     * 			-only instructor role
+     * @return ActiveDataProvider
+     */
+    public function searchInstructorNotAssigned($params)
+    {
+    	$query = User::find();
+    
+    	$dataProvider = new ActiveDataProvider([
+    			'query' => $query,
+    	]);
+    
+    	$this->load($params);
+    
+    	$query->andFilterWhere(['not in', 'id', (new Query())->select('ID_USUARIO')->from('tbl_empresa_usuario')]);
+    
+    	$query->andFilterWhere([
+    			'id' => $this->id,
+    			'role' => 7,
+    			'status' => $this->status,
+    			'created_at' => $this->created_at,
+    			'updated_at' => $this->updated_at,
+    	]);
+    	 
+    	 
+    
+    	$query->andFilterWhere(['like', 'username', $this->username])
+    	->andFilterWhere(['like', 'auth_key', $this->auth_key])
+    	->andFilterWhere(['like', 'password_hash', $this->password_hash])
+    	->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
+    	->andFilterWhere(['like', 'email', $this->email]);
+    
+    	return $dataProvider;
+    }
+    
     
     /**
      * Creates data provider instance with search query applied

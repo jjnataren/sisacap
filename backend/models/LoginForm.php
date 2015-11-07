@@ -84,7 +84,7 @@ class LoginForm extends Model
             $this->_user = User::find()
                 ->andWhere(['or', ['username'=>$this->username], ['email'=>$this->username]])
                 ->one();
-            if(!Yii::$app->user->can('manager', ['user'=>$this->_user])){
+            if(!Yii::$app->user->can('manager', ['user'=>$this->_user]) && !Yii::$app->user->can('instructor', ['user'=>$this->_user])){
                 $this->_user = null;
             }
         }

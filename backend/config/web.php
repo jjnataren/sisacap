@@ -246,12 +246,12 @@ $config = [
             'controllers'=>['user','page','key-storage','file-manager','file-storage','system-information','log','cache',],
             'allow' => false,
             ],
-           /*
+           
         	
             [
                 'allow' => true,
-                'roles' => ['manager'],
-            ]*/
+                'roles' => ['manager','instructor'],
+            ]
         ]
     ]
 ];

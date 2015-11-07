@@ -263,7 +263,7 @@ use backend\models\Plan;
         <div class="navbar-right">
             <ul class="nav navbar-nav">
             
-            <?php  if(!Yii::$app->user->can('administrator')) :?>
+            <?php  if(!Yii::$app->user->can('administrator') && Yii::$app->user->can('manager')  ) :?>
             
             	  <li id="notifications-dropdown" class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -426,7 +426,7 @@ use backend\models\Plan;
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header bg-light-blue">
-                            <img src="<?= Yii::$app->user->identity->profile->picture ?: '/img/anonymous.jpg' ?>" class="img-circle" alt="User Image" />
+                            <img src="<?= ( isset(Yii::$app->user->identity->profile->picture) && Yii::$app->user->identity->profile->picture) ?: '/img/anonymous.jpg' ?>" class="img-circle" alt="User Image" />
                             <p>
                                 <?php Yii::$app->user->identity->username ?>
                                 <small>
@@ -459,7 +459,7 @@ use backend\models\Plan;
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="<?= Yii::$app->user->identity->profile->picture ?: '/img/anonymous.jpg' ?>" class="img-circle" alt="User Image" />
+                    <img src="<?= ( isset(Yii::$app->user->identity->profile->picture) && Yii::$app->user->identity->profile->picture)?: '/img/anonymous.jpg' ?>" class="img-circle" alt="User Image" />
                 </div>
                 <div class="pull-left info">
                     <p><?= Yii::t('backend', 'Hola, {username}', ['username'=>Yii::$app->user->identity->username]) ?></p>
@@ -493,16 +493,41 @@ use backend\models\Plan;
                 'submenuTemplate'=>"\n<ul class=\"treeview-menu\">\n{items}\n</ul>\n",
                 'activateParents'=>true,
                 'items'=>[
-
 						
-            		[
-            		'visible'=>!Yii::$app->user->can('administrator'),
-            		'label'=>Yii::t('backend', 'Inicio'),
-            		'icon'=>'<span class="fa fa-home">
-							 </span>',
-            		'url'=>['/empresa/dashboard']
-            		],
-            		
+                		
+                		[
+                		'visible'=>( !Yii::$app->user->can('administrator') ),
+                		'label'=>Yii::t('backend', 'Inicio'),
+                		'icon'=>'<i class="fa fa-home fa-lg"> </i>',
+                		'url'=>[ ( Yii::$app->user->can('manager') ) ? '/empresa/dashboard' : '/curso/dashboard-instructor']
+                		],
+                		
+                		
+                		[
+                		'visible'=>( !Yii::$app->user->can('administrator') &&   Yii::$app->user->can('instructor')),
+                		'label'=>Yii::t('backend', 'Mis datos'),
+                		'options'=>['class'=>'treeview'],
+                		'icon'=>'<i class="fa fa-graduation-cap fa-lg"></i>',
+                		
+                		'items'=>[
+                				['label'=>Yii::t('backend', 'Ver'),
+                						'url'=>['/instructor/view-by-instructor'],
+                						'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+                				//['label'=>Yii::t('backend', 'Crear'),
+                				//'url'=>['representante-legal/create'],
+                				//'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+                				['label'=>Yii::t('backend', 'Editar'),
+                						'url'=>['/instructor/update-by-instructor'],
+                						'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+                				['label'=>Yii::t('backend', 'Firma electronica'),
+                						'url'=>['/instructor/manage-sign-pic-by-instructor'],
+                						'icon'=>'<i class="fa fa-pencil-square-o"></i>'],
+                					
+                		]
+                			
+                		],
+                		
+            	
                    /* [
                         'label'=>Yii::t('backend', 'Timeline'),
                         'icon'=>'<i class="fa fa-bar-chart-o"></i>',
@@ -532,7 +557,7 @@ use backend\models\Plan;
 									  'url'=>['empresa/updatebyuser'],
 								'icon'=>'<i class="fa fa-angle-double-right"></i>'],
 							['label'=>Yii::t('backend', 'Trabajadores'),
-'icon'=>'<span class="fa fa-users ">
+							'icon'=>'<span class="fa fa-users ">
 							 </span>',
 							 'url'=>['/trabajador/indexcompany'],
 							 'badge'=>isset($companyByUser->iDEMPRESA) ? count($companyByUser->iDEMPRESA->trabajadors) : 0],

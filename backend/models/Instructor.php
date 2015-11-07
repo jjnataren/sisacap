@@ -114,4 +114,16 @@ class Instructor extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Empresa::className(), ['ID_EMPRESA' => 'ID_EMPRESA']);
     }
+    
+    
+    public static function getOwnData() {
+    	
+    	$empresaModel = EmpresaUsuario::getMyCompany();
+    	
+    	$model = Instructor::findOne(['ID_USUARIO'=>Yii::$app->user->id, 'ID_EMPRESA'=>$empresaModel->ID_EMPRESA]);
+    
+    	if($model === null) throw new NotFoundHttpException('The requested page does not exist.');
+    	
+    	return $model;
+    }
 }

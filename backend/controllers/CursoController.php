@@ -12,6 +12,7 @@ use backend\models\EmpresaUsuario;
 use backend\models\search\InstructorSearch;
 use backend\models\Plan;
 use backend\models\Indicadores;
+use backend\models\Instructor;
 
 /**
  * CursoController implements the CRUD actions for Curso model.
@@ -105,6 +106,22 @@ class CursoController extends Controller
     			]);
     }
     
+    
+    
+    /**
+     * Displays a single Curso model by its company.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDashboardInstructor()
+    {
+    	
+    	$model  = Instructor::getOwnData();
+    	
+    	return $this->render('view_by_company', [
+    			'model' => $cursoModel,
+    	]);
+    }
     
     
     
