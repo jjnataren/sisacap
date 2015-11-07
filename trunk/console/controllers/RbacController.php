@@ -22,12 +22,18 @@ class RbacController extends Controller{
         $manager->ruleName = $userRule->name;
         $auth->add($manager);
         $auth->addChild($manager, $user);
+        
+        $instructor = $auth->createRole('instructor');
+        $instructor->ruleName = $userRule->name;
+        $auth->add($instructor);
+        $auth->addChild($instructor, $user);
 
         $admin = $auth->createRole('administrator');
         $admin->ruleName = $userRule->name;
         $auth->add($admin);
         $auth->addChild($admin, $manager);
-
+        $auth->addChild($admin, $instructor);
+        
         Console::output('Success! RBAC roles has been added.');
     }
 } 

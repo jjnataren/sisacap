@@ -23,8 +23,11 @@ class UserGroupRule extends Rule
             } elseif ($item->name === 'manager') {
                 return $role == User::ROLE_ADMINISTRATOR || $role == User::ROLE_MANAGER;
             }
+            elseif ($item->name === 'instructor') {
+            	return $role == User::ROLE_ADMINISTRATOR || $role == User::ROLE_INSTRUCTOR;
+            }
             elseif ($item->name === 'user') {
-                return $role == User::ROLE_ADMINISTRATOR || $role == User::ROLE_MANAGER || $role == User::ROLE_USER;
+                return $role == User::ROLE_ADMINISTRATOR ||$role == User::ROLE_INSTRUCTOR  || $role == User::ROLE_MANAGER || $role == User::ROLE_USER;
             }
         }
         return false;
