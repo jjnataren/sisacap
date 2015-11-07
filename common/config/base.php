@@ -14,7 +14,7 @@ $config = [
             'itemChildTable' => 'rbac_auth_item_child',
             'assignmentTable' => 'rbac_auth_assignment',
             'ruleTable' => 'rbac_auth_rule',
-            'defaultRoles' => ['administrator', 'manager', 'user'],
+            'defaultRoles' => ['administrator', 'manager', 'user','instructor'],
         ],
 
         'cache' => [
