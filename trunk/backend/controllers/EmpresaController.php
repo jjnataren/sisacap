@@ -22,6 +22,8 @@ use yii\imagine\Image;
 use backend\models\Catalogo;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
+use backend\models\Instructor;
+use yii\base\Object;
 
 /**
  * EmpresaController implements the CRUD actions for Empresa model.
@@ -430,7 +432,7 @@ class EmpresaController extends Controller
     		$establishment_model->FECHA_INICIO_OPERACIONES =( $tmpdate === false)? null : $tmpdate ->format('Y-m-d') ;
     		
     		
-    		IF( $establishment_model->save()) {
+    		if( $establishment_model->save()) {
     			
     			Yii::$app->session->setFlash('alert', [
     					'options'=>['class'=>'alert-success'],
@@ -564,6 +566,24 @@ class EmpresaController extends Controller
     			$modelEmpresaUsuario->ACTIVO = 1;
     			
     			$modelEmpresaUsuario->save();
+    			
+    			if ($modelUser->role === User::ROLE_INSTRUCTOR){
+    				
+    				$instructor = Instructor::findOne(['ID_EMPRESA'=>$id,'ID_USUARIO'=>$id_u, 'ACTIVO'=>1]);
+    				
+    				if ($instructor === null){
+    					
+    					$instructor = new Instructor();
+    					
+    					$instructor->ACTIVO = 1;
+    					$instructor->ID_EMPRESA = $id;
+    					$instructor->ID_USUARIO = $id_u;
+    					$instructor->COMENTARIOS = 'Instructor nuevo';
+    					$instructor->save();
+    				}
+    				
+    			}
+    			
     			  			    		   		
     		}
     		
@@ -607,6 +627,7 @@ class EmpresaController extends Controller
     		
     		$dataProvider = $searchModel->searchNotAssigned(Yii::$app->request->queryParams);
     		
+    		$instructorDataProvider = $searchModel->searchInstructorNotAssigned(Yii::$app->request->queryParams);
     		 
     		$searchModel_lr = new RepresentanteLegalSearch();
     		$dataProvider_lr = $searchModel_lr->search(Yii::$app->request->queryParams);
@@ -616,7 +637,8 @@ class EmpresaController extends Controller
     				'searchModel' => $searchModel,
     				'dataProvider' => $dataProvider,
     				'searchModel_lr'=>$searchModel_lr,
-    				'dataProvider_lr'=>$dataProvider_lr
+    				'dataProvider_lr'=>$dataProvider_lr,
+    				'instructorDataProvider'=>$instructorDataProvider,
     					]);
     	}
     }
