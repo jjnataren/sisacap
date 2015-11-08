@@ -174,6 +174,9 @@ $config = [
             'roles' => ['manager'],
             'actions'=>['indexbycompany', 'createbycompany','viewbycompany','updatebycompany','deletebycompany']
             ],
+        		
+        		
+        
             
             [
             'controllers'=>['plan'],
