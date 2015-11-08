@@ -178,6 +178,8 @@ $config = [
         		
         
             
+            
+                      
             [
             'controllers'=>['plan'],
             'allow' => true,
