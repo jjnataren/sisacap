@@ -99,10 +99,10 @@ $this->registerJs("$('#drop_instructor').change(function(){
 <div class="row">  
     
  <div class="col-md-12 col-xs-12 col-sm-12">   
-    <div class="panel <?=  ($model->isNewRecord) ? 'panel-primary': 'panel-warning'  ?>">
+    <div class="panel <?=  ($model->isNewRecord) ? 'panel-primary': 'panel-primary'  ?>">
 			<div class="panel-heading">
 						<h3><i class="glyphicon glyphicon-plus"></i>
-						<?= Yii::t('backend', 'Datos del instructor') ?> </h3>	
+						<?= Yii::t('backend', 'Mis datos') ?> </h3>	
 			</div>
 
     			<div class="panel-body">
@@ -122,6 +122,8 @@ $this->registerJs("$('#drop_instructor').change(function(){
 				
 				    				<?= $form->field($model, 'APM')->textInput(['maxlength' => 100]) ?>
 				
+				                    <?= $form->field($model, 'RFC')->textInput(['maxlength' => 100]) ?>
+				 
 								    <?= $form->field($model, 'DOMICILIO')->textArea(['maxlength' => 300]) ?>
 								
 								    <?= $form->field($model, 'TELEFONO')->textInput(['maxlength' => 100]) ?>
