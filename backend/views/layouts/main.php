@@ -510,12 +510,19 @@ use backend\models\Plan;
                 		'icon'=>'<i class="fa fa-graduation-cap fa-lg"></i>',
                 		
                 		'items'=>[
-                				['label'=>Yii::t('backend', 'Ver'),
-                						'url'=>['/instructor/view-by-instructor'],
+                				['label'=>Yii::t('backend', 'Mis datos'),
+                						'url'=>['/instructor/create-by-instructor'],
                 						'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+
+                                 ['label'=>Yii::t('backend', 'Ver'),
+                                         'url'=>['/instructor/view-by-instructor'],
+                                          'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+
+
                 				//['label'=>Yii::t('backend', 'Crear'),
                 				//'url'=>['representante-legal/create'],
                 				//'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+                				
                 				['label'=>Yii::t('backend', 'Editar'),
                 						'url'=>['/instructor/update-by-instructor'],
                 						'icon'=>'<i class="fa fa-angle-double-right"></i>'],
@@ -673,11 +680,11 @@ use backend\models\Plan;
 			            		['label'=>Yii::t('backend', 'Ver instructores'),
 			            				'url'=>['instructor/indexbycompany'],
 											'icon'=>'<i class="fa fa-angle-double-right"></i>'],
-											[
-			            				'label'=>Yii::t('backend', 'Crear instructor '),
-			            						'url'=>['instructor/createbycompany'],
-			            						'icon'=>'<i class="fa fa-angle-double-right"></i>'
-											],
+											//[
+			            				//'label'=>Yii::t('backend', 'Crear instructor '),
+			            					//	'url'=>['instructor/createbycompany'],
+			            						//'icon'=>'<i class="fa fa-angle-double-right"></i>'
+											//],
 								]
 			            		
 							],
