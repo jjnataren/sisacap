@@ -505,14 +505,15 @@ use backend\models\Plan;
                 		
                 		[
                 		'visible'=>( !Yii::$app->user->can('administrator') &&   Yii::$app->user->can('instructor')),
-                		'label'=>Yii::t('backend', 'Mis datos'),
+                		'label'=>Yii::t('backend', 'Instructor'),
                 		'options'=>['class'=>'treeview'],
                 		'icon'=>'<i class="fa fa-graduation-cap fa-lg"></i>',
                 		
                 		'items'=>[
-                				['label'=>Yii::t('backend', 'Ver'),
+                				['label'=>Yii::t('backend', 'mis datos'),
                 						'url'=>['/instructor/view-by-instructor'],
                 						'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+
 
                                 
 
@@ -520,7 +521,6 @@ use backend\models\Plan;
                 				//['label'=>Yii::t('backend', 'Crear'),
                 				//'url'=>['representante-legal/create'],
                 				//'icon'=>'<i class="fa fa-angle-double-right"></i>'],
-                				
                 				['label'=>Yii::t('backend', 'Editar'),
                 						'url'=>['/instructor/create-by-instructor'],
                 						'icon'=>'<i class="fa fa-angle-double-right"></i>'],
@@ -533,19 +533,96 @@ use backend\models\Plan;
                 		]
                 			
                 		],
-                		
+
+
+
+//INSTRUCTOR
+
+
+
+            		
+            		[
+            		'visible'=>(!Yii::$app->user->can('administrator') &&   Yii::$app->user->can('instructor')),
+            		'label'=>Yii::t('backend', 'Empresa'),
+            			
+            		'icon'=>'<span class="fa fa-building fa-lg">
+							 </span>',
+            									  
+            									 'options'=>['class'=>'treeview'],
+            									 'url'=>['/empresa/updatebyuser'],
+            									 'items'=>[
+            										['label'=>Yii::t('backend', 'Ver'),
+            										'url'=>['empresa/viewbyuser'],
+            										'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+            										//['label'=>Yii::t('backend', 'Mis empresas '),
+            		//'url'=>['empresa/index'],
+            		//	'icon'=>'<i class="fa fa-plus-circle"></i>'],
+            		
+            		['label'=>Yii::t('backend', 'Trabajadores'),
+            		'icon'=>'<span class="fa fa-users ">
+							 </span>',
+            									 'url'=>['/trabajador/indexcompany'],
+            									 'badge'=>isset($companyByUser->iDEMPRESA) ? count($companyByUser->iDEMPRESA->trabajadors) : 0],
+            									 ]
+            									  
+            									 	
+            		
+            									 ],
+            		[
+            		'visible'=>(!Yii::$app->user->can('administrator')&&   Yii::$app->user->can('instructor')),
+            		'label'=>Yii::t('backend', 'Mis establecimientos'),
+            		'icon'=>'<span class="fa fa-university">
+							 </span>',
+            									 'options'=>['class'=>'treeview'],
+            									 'items'=>[
+            									 ['label'=>Yii::t('backend', 'Ver establecimientos'), 'url'=>['/empresa/establishments', 'id'=>$companyByUser->ID_EMPRESA ?: 0], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+            									 		
+					]
+            									 			
+            									 		],
+            		
+            		[
+            		'visible'=>(!Yii::$app->user->can('administrator') &&   Yii::$app->user->can('instructor')),
+            		'label'=>Yii::t('backend', 'Representante legal'),
+            		'options'=>['class'=>'treeview'],
+            		'icon'=>'<i class="fa fa-suitcase"></i>',
+            		
+            		'items'=>[
+            		['label'=>Yii::t('backend', 'Ver'),
+            				'url'=>['representante-legal/viewbycompany'],
+							'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+							//['label'=>Yii::t('backend', 'Crear'),
+            									//'url'=>['representante-legal/create'],
+            		//'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+            		
+				
+						]
+			
+            												],
+[	'encode'=>'false',
+'label'=>Yii::t('backend', 'Cursos'),
+'visible'=>(!Yii::$app->user->can('administrator')&&   Yii::$app->user->can('instructor')),
+            		
+			 'badge'=>$totalCourses,
+							 'options'=>['class'=>'treeview'],
+							 'items'=> $activePlans,
+							'icon'=>'<i class="fa fa-angle-double-right"></i>'],
             	
                    /* [
                         'label'=>Yii::t('backend', 'Timeline'),
                         'icon'=>'<i class="fa fa-bar-chart-o"></i>',
                         'url'=>['/system-event/timeline']
                     ],
+                    'icon'=>'<span class="fa-stack fa-lg">
+ 							 <i class="fa fa-square-o fa-stack-2x"></i>
+  							 <i class="fa fa-laptop fa-stack-1x"></i>
+							 </span>',
 				*/
             		
             		
 
 					[
-						'visible'=>!Yii::$app->user->can('administrator'),
+						'visible'=>(!Yii::$app->user->can('administrator') &&   Yii::$app->user->can('manager')),
 						'label'=>Yii::t('backend', 'Mi empresa'),
 					
             		    'icon'=>'<span class="fa fa-building fa-lg">
@@ -575,7 +652,7 @@ use backend\models\Plan;
 					],
 				
 					[
-						'visible'=>!Yii::$app->user->can('administrator'),
+						'visible'=>(!Yii::$app->user->can('administrator') &&   Yii::$app->user->can('manager')),
 						'label'=>Yii::t('backend', 'Representante legal'),
 						'options'=>['class'=>'treeview'],
 						'icon'=>'<i class="fa fa-suitcase"></i>',
@@ -598,7 +675,7 @@ use backend\models\Plan;
 					
 					],
 					[
-					'visible'=>!Yii::$app->user->can('administrator'),
+					'visible'=>(!Yii::$app->user->can('administrator')&&   Yii::$app->user->can('manager')),
 					'label'=>Yii::t('backend', 'Mis establecimientos'),
             		'icon'=>'<span class="fa fa-university">
 							 </span>',
@@ -614,7 +691,7 @@ use backend\models\Plan;
 
 					['label'=>Yii::t('backend', 'Comisión mixta'),
 					
-            		'visible'=>!Yii::$app->user->can('administrator'),
+            		'visible'=>(!Yii::$app->user->can('administrator')&&   Yii::$app->user->can('manager')),
 					'label'=>Yii::t('backend', 'Comisión mixta'),
 					 'icon'=>'<span class="glyphicon glyphicon-copyright-mark ">
 							 </span>',
@@ -671,7 +748,7 @@ use backend\models\Plan;
 								//]
 						
 							//],
-            				[	'visible'=>!Yii::$app->user->can('administrator'),
+            				[	'visible'=>(!Yii::$app->user->can('administrator')&&   Yii::$app->user->can('manager')),
 			            		'label'=>Yii::t('backend', 'Instructores'),
 			            		'options'=>['class'=>'treeview'],
                                 'icon'=>'<span class="fa fa-graduation-cap">
@@ -680,17 +757,17 @@ use backend\models\Plan;
 			            		['label'=>Yii::t('backend', 'Ver instructores'),
 			            				'url'=>['instructor/indexbycompany'],
 											'icon'=>'<i class="fa fa-angle-double-right"></i>'],
-											//[
-			            				//'label'=>Yii::t('backend', 'Crear instructor '),
-			            					//	'url'=>['instructor/createbycompany'],
-			            						//'icon'=>'<i class="fa fa-angle-double-right"></i>'
-											//],
+											[
+			            				'label'=>Yii::t('backend', 'Crear instructor '),
+			            						'url'=>['instructor/createbycompany'],
+			            						'icon'=>'<i class="fa fa-angle-double-right"></i>'
+											],
 								]
 			            		
 							],
 			
             		
-            		[	'visible'=>!Yii::$app->user->can('administrator'),
+            		[	'visible'=>(!Yii::$app->user->can('administrator')&&   Yii::$app->user->can('manager')),
             		'label'=>Yii::t('backend', 'Puestos de trabajo'),
             		'options'=>['class'=>'treeview'],
          		
@@ -762,7 +839,7 @@ use backend\models\Plan;
             		 */
             		[	'encode'=>'false',
             		'label'=>Yii::t('backend', 'Planes'),
-            		'visible'=>!Yii::$app->user->can('administrator'),
+            		'visible'=>(!Yii::$app->user->can('administrator')&&   Yii::$app->user->can('manager')),
             		'icon'=>'<span class="fa-stack fa-lg">
  							 <i class="fa fa-square-o fa-stack-2x"></i>
   							 <i class="fa fa-calendar fa-stack-1x"></i>
@@ -778,7 +855,7 @@ use backend\models\Plan;
             		 */
             		[	'encode'=>'false',
             		'label'=>Yii::t('backend', 'Cursos'),
-            		'visible'=>!Yii::$app->user->can('administrator'),
+            		'visible'=>(!Yii::$app->user->can('administrator')&&   Yii::$app->user->can('manager')),
             		'icon'=>'<span class="fa-stack fa-lg">
  							 <i class="fa fa-square-o fa-stack-2x"></i>
   							 <i class="fa fa-laptop fa-stack-1x"></i>
