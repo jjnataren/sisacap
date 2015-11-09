@@ -93,17 +93,11 @@ class InstructorController extends Controller
      public function actionViewByInstructor(){
      
      	$model = Instructor::getOwnData();
-            
-     	//return $this->render('view_by_instructor', [
-     		//	'model' => $this->findModel(),
-     		//	]);
+     	
      	return $this->render('view_by_instructor',['model'=>$model]);
     
-                  
-     }
-    
-     
-     
+       }
+              
      /**
       * Creates a new Instructor model by its company.
       * If creation is successful, the browser will be redirected to the 'view' page.
@@ -113,14 +107,15 @@ class InstructorController extends Controller
      {
      	      
      	$companyUserModel = EmpresaUsuario::getMyCompany();
-     	 
+     	
+    
      	$model = new Instructor();
      	 
      	$model->ID_EMPRESA = $companyUserModel->ID_EMPRESA;
      	$model->ACTIVO = 1;
      
      	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-     		return $this->redirect(['viewbyinstructor']);
+     		return $this->redirect(['view_by_instructor']);
      	} else {
      		return $this->render('create_by_instructor', [
      				'model' => $model,
@@ -150,7 +145,7 @@ class InstructorController extends Controller
     	$model->ACTIVO = 1;
     
     	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		return $this->redirect(['viewbycompany', 'id' => $model->ID_INSTRUCTOR]);
+    		return $this->redirect(['create_by_company', 'id' => $model->ID_INSTRUCTOR]);
     	} else {
     		return $this->render('create_by_company', [
     				'model' => $model,
@@ -218,7 +213,7 @@ class InstructorController extends Controller
     		
     		'body'=> '<i class="fa fa-check"></i> Instructor actualizado correctamente.',
     		]);
-    		return $this->redirect(['viewbycompany', 'id' => $model->ID_INSTRUCTOR]);
+    		return $this->redirect(['view_by_company', 'id' => $model->ID_INSTRUCTOR]);
     	} else {
     		return $this->render('update_by_company', [
     				'model' => $model,
