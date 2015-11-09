@@ -513,10 +513,7 @@ use backend\models\Plan;
                 				['label'=>Yii::t('backend', 'mis datos'),
                 						'url'=>['/instructor/view-by-instructor'],
                 						'icon'=>'<i class="fa fa-angle-double-right"></i>'],
-
-
-                                
-
+                         
 
                 				//['label'=>Yii::t('backend', 'Crear'),
                 				//'url'=>['representante-legal/create'],
@@ -757,11 +754,11 @@ use backend\models\Plan;
 			            		['label'=>Yii::t('backend', 'Ver instructores'),
 			            				'url'=>['instructor/indexbycompany'],
 											'icon'=>'<i class="fa fa-angle-double-right"></i>'],
-											[
-			            				'label'=>Yii::t('backend', 'Crear instructor '),
-			            						'url'=>['instructor/createbycompany'],
-			            						'icon'=>'<i class="fa fa-angle-double-right"></i>'
-											],
+										//	[
+			            			//	'label'=>Yii::t('backend', 'Crear instructor '),
+			            						//'url'=>['instructor/createbycompany'],
+			            						//'icon'=>'<i class="fa fa-angle-double-right"></i>'
+										//	],
 								]
 			            		
 							],
