@@ -58,17 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 </div>
-<p><div class="panel-footer">
-        <?= Html::a('Actualizar', ['updatebycompany', 'id' => $model->ID_INSTRUCTOR], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Eliminar', ['deletebycompany', 'id' => $model->ID_INSTRUCTOR], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => '¿Seguro que quieres borrar este elemento?',
-                'method' => 'post',
-            ],
-        ]) ?>
-        </div>
-    </p>
+
 </div>
 </div>
 
