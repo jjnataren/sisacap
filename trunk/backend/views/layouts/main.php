@@ -510,7 +510,7 @@ use backend\models\Plan;
                 		'icon'=>'<i class="fa fa-graduation-cap fa-lg"></i>',
                 		
                 		'items'=>[
-                				['label'=>Yii::t('backend', 'mis datos'),
+                				['label'=>Yii::t('backend', 'Mis datos'),
                 						'url'=>['/instructor/view-by-instructor'],
                 						'icon'=>'<i class="fa fa-angle-double-right"></i>'],
                          
