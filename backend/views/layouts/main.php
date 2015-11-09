@@ -510,13 +510,11 @@ use backend\models\Plan;
                 		'icon'=>'<i class="fa fa-graduation-cap fa-lg"></i>',
                 		
                 		'items'=>[
-                				['label'=>Yii::t('backend', 'Mis datos'),
-                						'url'=>['/instructor/create-by-instructor'],
+                				['label'=>Yii::t('backend', 'Ver'),
+                						'url'=>['/instructor/view-by-instructor'],
                 						'icon'=>'<i class="fa fa-angle-double-right"></i>'],
 
-                                 ['label'=>Yii::t('backend', 'Ver'),
-                                         'url'=>['/instructor/view-by-instructor'],
-                                          'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+                                
 
 
                 				//['label'=>Yii::t('backend', 'Crear'),
@@ -524,8 +522,10 @@ use backend\models\Plan;
                 				//'icon'=>'<i class="fa fa-angle-double-right"></i>'],
                 				
                 				['label'=>Yii::t('backend', 'Editar'),
-                						'url'=>['/instructor/update-by-instructor'],
+                						'url'=>['/instructor/create-by-instructor'],
                 						'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+
+
                 				['label'=>Yii::t('backend', 'Firma electronica'),
                 						'url'=>['/instructor/manage-sign-pic-by-instructor'],
                 						'icon'=>'<i class="fa fa-pencil-square-o"></i>'],
