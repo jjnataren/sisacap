@@ -141,7 +141,7 @@ public function actionViewbycompany($id){
      	$model->ACTIVO = 1;
      	 
      	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-     		return $this->redirect(['view_by_instructor']);
+     		return $this->redirect(['view-by-instructor']);
      	} else {
      		return $this->render('create_by_instructor', [
      				'model' => $model,
@@ -168,7 +168,7 @@ public function actionViewbycompany($id){
     	$model->ACTIVO = 1;
     
     	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		return $this->redirect(['viewbycompany', 'id' => $model->ID_INSTRUCTOR]);
+    		return $this->redirect(['view-by-instructor', 'id' => $model->ID_INSTRUCTOR]);
     	} else {
     		return $this->render('create_by_company', [
     				'model' => $model,
