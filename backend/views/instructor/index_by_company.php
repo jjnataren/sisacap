@@ -77,8 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				//},
 				
 				],
-				
-				
+								
 				/*En esta seccion se definen las acciones que tendran los botones*/
 				'urlCreator' => function ($action, $model, $key, $index) {
 				//	if ($action === 'update') {
