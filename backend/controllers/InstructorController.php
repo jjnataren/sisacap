@@ -11,7 +11,6 @@ use yii\filters\VerbFilter;
 use backend\models\EmpresaUsuario;
 use yii\base\Model;
 
-
 /**
  * InstructorController implements the CRUD actions for Instructor model.
  */
@@ -84,8 +83,31 @@ class InstructorController extends Controller
         ]);
     }
 
-       
-   /*  
+    
+    /**
+     * Displays a single Instructor model by its company.
+     * @param integer $id
+     * @return mixed
+     */
+public function actionViewbycompany($id){
+    
+    	$model = EmpresaUsuario::getMyCompany();
+    	 
+    	$instructorModel = $this->findModel($id);
+    	
+    	if ($instructorModel->ID_EMPRESA !== $model->ID_EMPRESA){
+    		
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    	}
+    
+    	return $this->render('view_by_company',['model'=>$instructorModel]);
+    
+    
+    
+     }
+     
+     
+     /**
       * Displays a single Instructor model by its company.
       * @param integer $id
       * @return mixed
@@ -93,11 +115,15 @@ class InstructorController extends Controller
      public function actionViewByInstructor(){
      
      	$model = Instructor::getOwnData();
-     	
+     
+       
      	return $this->render('view_by_instructor',['model'=>$model]);
+     
+     
+     
+     }
+ 
     
-       }
-              
      /**
       * Creates a new Instructor model by its company.
       * If creation is successful, the browser will be redirected to the 'view' page.
@@ -105,29 +131,26 @@ class InstructorController extends Controller
       */
      public function actionCreateByInstructor()
      {
-     	      
+     
      	$companyUserModel = EmpresaUsuario::getMyCompany();
-     	
-    
+     
+     
      	$model = new Instructor();
      	 
      	$model->ID_EMPRESA = $companyUserModel->ID_EMPRESA;
      	$model->ACTIVO = 1;
-     
+     	 
      	if ($model->load(Yii::$app->request->post()) && $model->save()) {
      		return $this->redirect(['view_by_instructor']);
      	} else {
      		return $this->render('create_by_instructor', [
      				'model' => $model,
-     				]);
+     		]);
      	}
      }
-     
-     
-     
-     
-     
-     
+      
+    
+    
     /**
      * Creates a new Instructor model by its company.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -145,7 +168,7 @@ class InstructorController extends Controller
     	$model->ACTIVO = 1;
     
     	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		return $this->redirect(['create_by_company', 'id' => $model->ID_INSTRUCTOR]);
+    		return $this->redirect(['viewbycompany', 'id' => $model->ID_INSTRUCTOR]);
     	} else {
     		return $this->render('create_by_company', [
     				'model' => $model,
@@ -213,7 +236,7 @@ class InstructorController extends Controller
     		
     		'body'=> '<i class="fa fa-check"></i> Instructor actualizado correctamente.',
     		]);
-    		return $this->redirect(['view_by_company', 'id' => $model->ID_INSTRUCTOR]);
+    		return $this->redirect(['viewbycompany', 'id' => $model->ID_INSTRUCTOR]);
     	} else {
     		return $this->render('update_by_company', [
     				'model' => $model,
@@ -221,6 +244,8 @@ class InstructorController extends Controller
     	}
     }
 
+    
+    
     
     
     public function actionUpdateByInstructor()
