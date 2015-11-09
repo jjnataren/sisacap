@@ -11,17 +11,23 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-graduation-cap -lg  fa-stack-1x"></i>
 							   </span>';
 
-$this->params['breadcrumbs'][] = ['label' => 'Instructores', 'url' => ['indexbycompany']];
+$this->params['breadcrumbs'][] = ['label' => 'Instructores', 'url' => ['viewbyinstructor']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-  <div class=" col-xs-12 col-sm-12 col-md-12">
-				<div class="panel panel-info">
-					<div class="panel-heading">
+
+	<div class="panel-body">
+				
+				<div class="row">
+				
+				 <div class="col-md-12 col-xs-12 col-sm-12">
+			            <div class="panel">
+			               <div class="panel-heading">
 						<h3><i class="fa fa-eye"></i>
-						<?= Yii::t('backend', 'Detalles') ?> <small>Instructor</small> </h3>
-					</div>
+						<?= Yii::t('backend', 'Datos') ?> <small>personales</small> </h3>
+					    </div>
 					
+						
         
 	<div class="row">
    <div class=" col-xs-12 col-sm-12 col-md-12">
@@ -58,21 +64,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 </div>
-<p><div class="panel-footer">
-        <?= Html::a('Actualizar', ['updatebycompany', 'id' => $model->ID_INSTRUCTOR], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Eliminar', ['deletebycompany', 'id' => $model->ID_INSTRUCTOR], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => '¿Seguro que quieres borrar este elemento?',
-                'method' => 'post',
-            ],
-        ]) ?>
-        </div>
-    </p>
 </div>
 </div>
 
-
+</div>
 
 
 
