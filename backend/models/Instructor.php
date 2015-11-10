@@ -13,6 +13,7 @@ use Yii;
  * @property string $NOMBRE
  * @property string $APP
  * @property string $APM
+ * @property string $RFC
  * @property string $DOMICILIO
  * @property string $TELEFONO
  * @property string $CORREO_ELECTRONICO
@@ -62,7 +63,7 @@ class Instructor extends \yii\db\ActiveRecord
         return [
             [['ID_EMPRESA', 'LOGOTIPO', 'NUM_REGISTRO_AGENTE_EXTERNO', 'TIPO_INSTRUCTOR', 'ACTIVO'], 'integer'],
 //            [['NUM_REGISTRO_AGENTE_EXTERNO'], 'required'],
-            [['NOMBRE_AGENTE_EXTERNO', 'NOMBRE', 'APP', 'APM', 'TELEFONO'], 'string', 'max' => 100],
+            [['NOMBRE_AGENTE_EXTERNO', 'NOMBRE', 'APP', 'APM','RFC','TELEFONO'], 'string', 'max' => 100],
             [['DOMICILIO', 'CORREO_ELECTRONICO'], 'string', 'max' => 300],
             [['COMENTARIOS'], 'string', 'max' => 200]
         ];
@@ -88,6 +89,7 @@ class Instructor extends \yii\db\ActiveRecord
             'TIPO_INSTRUCTOR' => 'Tipo de instructor',
             'COMENTARIOS' => 'Comentarios',
             'ACTIVO' => 'Activo',
+            'RFC'=> 'RFC',
         ];
     }
 
