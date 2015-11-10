@@ -69,6 +69,26 @@ class InstructorController extends Controller
     
     
     }
+    
+    
+    
+    public function actionIndexbyinstructor(){
+    
+    	$model = EmpresaUsuario::getMyCompany();
+    
+    
+    	$searchModel = Instructor::getOwnData();
+    	$searchModel = new InstructorSearch();
+    	$dataProvider = $searchModel->searchByCompany(Yii::$app->request->queryParams, $model->ID_EMPRESA);
+    
+    	return $this->render('index', [
+    			'searchModel' => $searchModel,
+    			'dataProvider' => $dataProvider,
+    			]);
+    
+    
+    }
+    
         
       
     /**
@@ -115,8 +135,7 @@ public function actionViewbycompany($id){
      public function actionViewByInstructor(){
      
      	$model = Instructor::getOwnData();
-     
-       
+           
      	return $this->render('view_by_instructor',['model'=>$model]);
      
      
@@ -246,18 +265,27 @@ public function actionViewbycompany($id){
 
     
     
-    
-    
     public function actionUpdateByInstructor()
     {
     	$model = Instructor::getOwnData();
-    	
-    	//return $this->render('view_by_instructor', [
-    	//	'model' => $this->findModel(),
-    	//	]);
-    	return $this->render('form_by_instructor',['model'=>$model]);
+   
+    	 
+    if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-success'],
+    		
+    		'body'=> '<i class="fa fa-check"></i> Instructor actualizado correctamente.',
+    		]);
+    		return $this->redirect(['view-by-instructor', 'id' => $model->ID_INSTRUCTOR]);
+    	} else {
+    		return $this->render('update_by_instructor', [
+    				'model' => $model,
+    				]);
+    	}
     }
     
+    
+      
     /**
      * Deletes an existing Instructor model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
