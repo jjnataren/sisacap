@@ -558,7 +558,7 @@ use backend\models\Plan;
             		['label'=>Yii::t('backend', 'Trabajadores'),
             		'icon'=>'<span class="fa fa-users ">
 							 </span>',
-            									 'url'=>['/trabajador/indexcompany'],
+            									 'url'=>['/trabajador/indexcompanyinstructor'],
             									 'badge'=>isset($companyByUser->iDEMPRESA) ? count($companyByUser->iDEMPRESA->trabajadors) : 0],
             									 ]
             									  
