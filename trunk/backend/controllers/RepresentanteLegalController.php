@@ -74,6 +74,21 @@ class RepresentanteLegalController extends Controller
     	return $this->render('view_by_company',['model'=>$representante]);
     	 
     }
+    
+    
+    public function actionViewByInstructor(){
+    
+    	$model = EmpresaUsuario::findOne(['ID_USUARIO'=>Yii::$app->user->id]);
+    
+    	if($model === null) throw new NotFoundHttpException('The requested page does not exist.');
+    
+    	$company= $model->iDEMPRESA;
+    	 
+    	$representante =$company->iDREPRESENTANTELEGAL;
+    
+    	return $this->render('view_by_instructor',['model'=>$representante]);
+    
+    }
     /**
      * Creates a new RepresentanteLegal model.
      * If creation is successful, the browser will be redirected to the 'view' page.
