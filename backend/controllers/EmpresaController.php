@@ -290,6 +290,21 @@ class EmpresaController extends Controller
     	
     }
     
+    
+    public function actionViewByInstructor(){
+    
+    	$model = EmpresaUsuario::findOne(['ID_USUARIO'=>Yii::$app->user->id]);
+    	 
+    	if($model === null) throw new NotFoundHttpException('The requested page does not exist.');
+    	 
+    	$company= $model->iDEMPRESA;
+    	 
+    	return $this->render('view_by_instructor',['model'=>$company]);
+    	 
+    }
+    
+    
+    
     /**
      * Lists all Empresa models.
      * @return mixed
