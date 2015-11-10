@@ -16,19 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 
-	<div class="panel-body">
-				
-				<div class="row">
-				
-				 <div class="col-md-12 col-xs-12 col-sm-12">
-			            <div class="panel">
-			               <div class="panel-heading">
+
+				<div class="panel panel-info">
+					<div class="panel-heading">
 						<h3><i class="fa fa-eye"></i>
-						<?= Yii::t('backend', 'Datos') ?> <small>personales</small> </h3>
-					    </div>
-					
-						
-        
+						<?= Yii::t('backend', 'Detalles') ?> <small>Instructor</small> </h3>
+					</div>
+					       
 	<div class="row">
    <div class=" col-xs-12 col-sm-12 col-md-12">
             <div class="panel">
@@ -43,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'NOMBRE',
             'APP',
             'APM',
+             'RFC',
             'NUM_REGISTRO_AGENTE_EXTERNO',
 			'NOMBRE_AGENTE_EXTERNO',
          
@@ -61,13 +56,10 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 </div>
 </div>	
-
-</div>
 </div>
 </div>
 </div>
 
-</div>
 
 
 
