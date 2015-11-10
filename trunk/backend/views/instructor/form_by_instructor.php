@@ -100,7 +100,7 @@ $this->registerJs("$('#drop_instructor').change(function(){
     
  <div class="col-md-12 col-xs-12 col-sm-12">   
     <div class="panel <?=  ($model->isNewRecord) ? 'panel-primary': 'panel-primary'  ?>">
-			<div class="panel-warning">
+			<div class="panel-heading">
 						<h3><i class="glyphicon glyphicon-plus"></i>
 						<?= Yii::t('backend', 'Mis datos') ?> </h3>	
 			</div>
