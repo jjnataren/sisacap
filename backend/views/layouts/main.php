@@ -519,7 +519,7 @@ use backend\models\Plan;
                 				//'url'=>['representante-legal/create'],
                 				//'icon'=>'<i class="fa fa-angle-double-right"></i>'],
                 				['label'=>Yii::t('backend', 'Editar'),
-                						'url'=>['/instructor/create-by-instructor'],
+                						'url'=>['/instructor/update-by-instructor'],
                 						'icon'=>'<i class="fa fa-angle-double-right"></i>'],
 
 
