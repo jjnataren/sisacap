@@ -148,6 +148,27 @@ class TrabajadorController extends Controller
     			'id_company'=>$companyModel->ID_EMPRESA
     			]);
     }
+    public function actionIndexcompanyinstructor(){
+    	 
+    	 
+    	$model = EmpresaUsuario::getMyCompany();
+    	 
+    	 
+    	$companyModel = $model->iDEMPRESA;
+    	 
+    	 
+    	 
+    	if ($companyModel === null || $model === null)  throw new NotFoundHttpException('The requested page does not exist.');
+    	 
+    	$searchModel = new TrabajadorSearch();
+    	$dataProvider = $searchModel->searchByCompany(Yii::$app->request->queryParams,$companyModel->ID_EMPRESA);
+    
+    	return $this->render('trab_instructor', [
+    			'searchModel' => $searchModel,
+    			'dataProvider' => $dataProvider,
+    			'id_company'=>$companyModel->ID_EMPRESA
+    			]);
+    }
     
     
     /**
@@ -726,6 +747,19 @@ class TrabajadorController extends Controller
     		throw new NotFoundHttpException('The requested page does not exist.');
     	
     	return $this->render('view_by_company', [
+    			'model'=>$trabajadorModel		]);
+    }
+    
+    public function actionViewbyinstructor($id){
+    
+    	$model = EmpresaUsuario::getMyCompany();
+    	 
+    	$trabajadorModel = $this->findModel($id);
+    	 
+    	if (!($model->ID_EMPRESA === $trabajadorModel->ID_EMPRESA))
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    	 
+    	return $this->render('view_by_instructor', [
     			'model'=>$trabajadorModel		]);
     }
     
