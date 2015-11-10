@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = 'Actualizar';
 
    
 
-    <?= $this->render('_form_by_company', [
+    <?= $this->render('form_by_instructor', [
         'model' => $model,
     ]) ?>
 
