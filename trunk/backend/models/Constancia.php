@@ -57,8 +57,10 @@ class Constancia extends \yii\db\ActiveRecord
 	 * @var unknown
 	 */
 	const STATUS_ALREADY = 1;
-	const STATUS_CREATED = 2;
-	const STATUS_DELIVERED= 3;
+	const STATUS_CREATED =0;
+	const STATUS_DELIVERED= 2;
+	const STATUS_SIGNED_INSTRUCTOR=3;
+	const STATUS_SIGNED_REPRESENTATIVE=4;	
 	
 	
 	/**
@@ -80,8 +82,8 @@ class Constancia extends \yii\db\ActiveRecord
 	
 	public static function getAllEstatusType(){
 	
-		return [Constancia::STATUS_ALREADY => 'Editando', Constancia::STATUS_CREATED =>'Emitida',
-				Constancia::STATUS_DELIVERED =>'Enviada'
+		return [Constancia::STATUS_ALREADY => 'Editando', Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firma representante legal',
+				 Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firma instructor', Constancia::STATUS_DELIVERED =>'Enviada'
 		];
 	}
 	
