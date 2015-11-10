@@ -549,7 +549,7 @@ use backend\models\Plan;
             									 'url'=>['/empresa/updatebyuser'],
             									 'items'=>[
             										['label'=>Yii::t('backend', 'Ver'),
-            										'url'=>['empresa/viewbyuser'],
+            										'url'=>['empresa/view-by-instructor'],
             										'icon'=>'<i class="fa fa-angle-double-right"></i>'],
             										//['label'=>Yii::t('backend', 'Mis empresas '),
             		//'url'=>['empresa/index'],
@@ -558,7 +558,7 @@ use backend\models\Plan;
             		['label'=>Yii::t('backend', 'Trabajadores'),
             		'icon'=>'<span class="fa fa-users ">
 							 </span>',
-            									 'url'=>['/trabajador/indexcompanyinstructor'],
+            									 'url'=>['/trabajador/index-by-instructor'],
             									 'badge'=>isset($companyByUser->iDEMPRESA) ? count($companyByUser->iDEMPRESA->trabajadors) : 0],
             									 ]
             									  
@@ -586,7 +586,7 @@ use backend\models\Plan;
             		
             		'items'=>[
             		['label'=>Yii::t('backend', 'Ver'),
-            				'url'=>['representante-legal/viewbycompany'],
+            				'url'=>['representante-legal/view-by-instructor'],
 							'icon'=>'<i class="fa fa-angle-double-right"></i>'],
 							//['label'=>Yii::t('backend', 'Crear'),
             									//'url'=>['representante-legal/create'],
