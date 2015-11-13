@@ -158,24 +158,109 @@ class RepresentanteLegalController extends Controller
     
     	$representante =$company->iDREPRESENTANTELEGAL;
     	
-    	$file = UploadedFile::getInstanceByName('SIGN_PICTURE');
+      	$image64Data = null;
     	
-    	//$fileReturn = Yii::$app->fileStorage->save($file);
-    	
-    	//$file = fopen($_FILES['SIGN_PICTURE']['tmp_name'],"r");
-    	
-   // 	$content = fread($file,filesize($_FILES['SIGN_PICTURE']['tmp_name']));
-    	
-    	
-    	
-    	/*if ($representante->load(Yii::$app->request->post())) {
-    
-    		$file = UploadedFile::getInstanceByName('SIGN_PICTURE');
+    	if ($representante->load(Yii::$app->request->post())) {
+    		
+    		
+    		$file = UploadedFile::getInstance($representante,'SIGN_PICTURE');
+    		
+    		
+    		$passphrase = 'My secret';
+    		
+    		/* Turn a human readable passphrase
+    		 * into a reproducable iv/key pair
+    		 */
+    		$iv = substr(md5('iv'.$passphrase, true), 0, 8);
+    		$key = substr(md5('pass1'.$passphrase, true) .
+    				md5('pass2'.$passphrase, true), 0, 24);
+    		$opts = array('iv'=>$iv, 'key'=>$key);
+    		
+    		$fp = fopen($file->tempName, "r");
+    		
+    		$fileStream  = stream_get_contents($fp); //  fgets($fp,$file->size);
+    		
+    		fclose($fp);
+    		
+    		$fpw = fopen($file->tempName, "w");
+    		
+    		
+    		stream_filter_append($fpw, 'mcrypt.tripledes', STREAM_FILTER_WRITE, $opts);
+    		
+    		fwrite($fpw, $fileStream);
+    		
+    		fclose($fpw);
     		
     		$fileReturn = Yii::$app->fileStorage->save($file);
     		
+    		$representante->SIGN_PICTURE = $fileReturn->url;
     		
-    		$model->SIGN_PICTURE = $fileReturn->url;
+    		
+    		$representante->save();
+    		
+//     		$passphrase = 'My secret';
+//     		 $cipher = 'mcrypt.tripledes';
+//     		 $mode = 'ofb';
+    		
+//     		// Turn a human readable passphrase
+//     		// into a reproducible iv/key pair
+    		
+//     		$iv = substr(md5("\x1B\x3C\x58".$passphrase, true), 0, 8);
+//     		$key = substr(md5("\x2D\xFC\xD8".$passphrase, true) .
+//     				md5("\x2D\xFC\xD9".$passphrase, true), 0, 24);
+//     		$opts = array('iv' => $iv, 'key' => $key, 'mode' => 'stream');
+    		
+//     		//$typeencrypt  = mcrypt_module_open($cipher, '', $mode, '');
+    		
+//     		// Open the file
+//     		$fp = fopen($file->tempName, 'wb');
+    		
+//     		// Add the Mcrypt stream filter
+//     		// We use Triple DES here, but you
+//     		// can use other encryption algorithm here
+//     		stream_filter_append($fp, $cipher, STREAM_FILTER_WRITE, $opts);
+    		
+    		// Wrote some contents to the file
+    		//  fwrite($fp, 'Secret secret secret data');
+    		
+    		// Close the file
+    		//  fclose($fp);
+    		 
+    		//$fileReturn = Yii::$app->fileStorage->save($file);
+    		 
+    		//$file = fopen($_FILES['SIGN_PICTURE']['tmp_name'],"r");
+    		 
+    		// 	$content = fread($file,filesize($_FILES['SIGN_PICTURE']['tmp_name']));
+    		
+    	}else{
+    		
+    		
+    		$passphrase = 'My secret';
+    		
+    		/* Turn a human readable passphrase
+    		 * into a reproducable iv/key pair
+    		 */
+    		$iv = substr(md5('iv'.$passphrase, true), 0, 8);
+    		$key = substr(md5('pass1'.$passphrase, true) .
+    				md5('pass2'.$passphrase, true), 0, 24);
+    		$opts = array('iv'=>$iv, 'key'=>$key);
+    		
+    		$fp = fopen($representante->SIGN_PICTURE, 'r');
+    		stream_filter_append($fp, 'mdecrypt.tripledes', STREAM_FILTER_READ, $opts);
+    		$data = rtrim(stream_get_contents($fp));
+    		fclose($fp);
+    		
+    		$image64Data =  $data;
+    		
+    		
+    	}
+    
+    		//$file = UploadedFile::getInstanceByName('SIGN_PICTURE');
+    		
+    		//$fileReturn = Yii::$app->fileStorage->save($file);
+    		
+    		
+    		/*$model->SIGN_PICTURE = $fileReturn->url;
     		
     		if( $representante->save()) {
     			Yii::$app->session->setFlash('alert', [
@@ -193,7 +278,7 @@ class RepresentanteLegalController extends Controller
     	}*/
     	 
     
-    	return $this->render('manage-sign-pic',['model'=>$representante]);
+    	return $this->render('manage-sign-pic',['model'=>$representante, 'SIGN_IMAGE'=> base64_encode($image64Data)]);
     
     }
     
