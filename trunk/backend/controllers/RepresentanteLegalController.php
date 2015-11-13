@@ -143,6 +143,74 @@ class RepresentanteLegalController extends Controller
     }
     
     
+    
+    
+    /**
+     * shows signing picture
+     * @throws NotFoundHttpException
+     * @return \yii\web\Response|string
+     */
+    public function actionViewSignPic(){
+    	   	
+    	$modelEmpresa = EmpresaUsuario::getMyCompany();
+    	
+    	$representante =$modelEmpresa->iDEMPRESA->iDREPRESENTANTELEGAL;
+    	
+    	$image64Data = null;
+    	
+    	$passwordoriginal  = $representante->SIGN_PASSWD;
+    	
+    	if ($representante->load(Yii::$app->request->post())) {
+    		
+    		
+    	
+    		
+    		$passphrase = md5($representante->SIGN_PASSWD);
+    		
+    		if($passwordoriginal  !==  $passphrase){
+    			
+
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-warning'],
+    					'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <b>La constraseña proporcionada no puede des encriptar la firma </b>',
+    			]);
+    			
+    		}else{
+    		
+    			
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-success'],
+    					 
+    					'body'=> '<i class="fa fa-check"></i> Firma des encriptada correctamente.',
+    			]);
+    			
+    		/* Turn a human readable passphrase
+    		 * into a reproducable iv/key pair
+    		 */
+    		$iv = substr(md5('iv'.$passphrase, true), 0, 8);
+    		$key = substr(md5('pass1'.$passphrase, true) .
+    				md5('pass2'.$passphrase, true), 0, 24);
+    		$opts = array('iv'=>$iv, 'key'=>$key);
+    		
+    		$fp = fopen($representante->SIGN_PICTURE, 'r');
+    		stream_filter_append($fp, 'mdecrypt.tripledes', STREAM_FILTER_READ, $opts);
+    		$data = rtrim(stream_get_contents($fp));
+    		fclose($fp);
+    		
+    		$image64Data =  $data;
+    		
+    		}
+    		
+    	}
+    	
+    	
+    	
+    	return $this->render('view_sign_pic',['model'=>$representante, 'SIGN_IMAGE'=> base64_encode($image64Data)]);
+    	
+    }
+    
+    
+    
     /**
      * Manages signing picture
      * @throws NotFoundHttpException
@@ -166,7 +234,9 @@ class RepresentanteLegalController extends Controller
     		$file = UploadedFile::getInstance($representante,'SIGN_PICTURE');
     		
     		
-    		$passphrase = 'My secret';
+    		$passphrase = md5($representante->SIGN_PASSWD);
+    		
+    		
     		
     		/* Turn a human readable passphrase
     		 * into a reproducable iv/key pair
@@ -194,88 +264,26 @@ class RepresentanteLegalController extends Controller
     		$fileReturn = Yii::$app->fileStorage->save($file);
     		
     		$representante->SIGN_PICTURE = $fileReturn->url;
+    		$representante->SIGN_PASSWD = $passphrase;
+    		$representante->SIGN_EXTENSION = $file->extension;
+    		$representante->SIGN_CREATED = date("Y-m-d H:i:s");
     		
     		
-    		$representante->save();
+    		if($representante->save() ) {
     		
-//     		$passphrase = 'My secret';
-//     		 $cipher = 'mcrypt.tripledes';
-//     		 $mode = 'ofb';
-    		
-//     		// Turn a human readable passphrase
-//     		// into a reproducible iv/key pair
-    		
-//     		$iv = substr(md5("\x1B\x3C\x58".$passphrase, true), 0, 8);
-//     		$key = substr(md5("\x2D\xFC\xD8".$passphrase, true) .
-//     				md5("\x2D\xFC\xD9".$passphrase, true), 0, 24);
-//     		$opts = array('iv' => $iv, 'key' => $key, 'mode' => 'stream');
-    		
-//     		//$typeencrypt  = mcrypt_module_open($cipher, '', $mode, '');
-    		
-//     		// Open the file
-//     		$fp = fopen($file->tempName, 'wb');
-    		
-//     		// Add the Mcrypt stream filter
-//     		// We use Triple DES here, but you
-//     		// can use other encryption algorithm here
-//     		stream_filter_append($fp, $cipher, STREAM_FILTER_WRITE, $opts);
-    		
-    		// Wrote some contents to the file
-    		//  fwrite($fp, 'Secret secret secret data');
-    		
-    		// Close the file
-    		//  fclose($fp);
-    		 
-    		//$fileReturn = Yii::$app->fileStorage->save($file);
-    		 
-    		//$file = fopen($_FILES['SIGN_PICTURE']['tmp_name'],"r");
-    		 
-    		// 	$content = fread($file,filesize($_FILES['SIGN_PICTURE']['tmp_name']));
-    		
-    	}else{
-    		
-    		
-    		$passphrase = 'My secret';
-    		
-    		/* Turn a human readable passphrase
-    		 * into a reproducable iv/key pair
-    		 */
-    		$iv = substr(md5('iv'.$passphrase, true), 0, 8);
-    		$key = substr(md5('pass1'.$passphrase, true) .
-    				md5('pass2'.$passphrase, true), 0, 24);
-    		$opts = array('iv'=>$iv, 'key'=>$key);
-    		
-    		$fp = fopen($representante->SIGN_PICTURE, 'r');
-    		stream_filter_append($fp, 'mdecrypt.tripledes', STREAM_FILTER_READ, $opts);
-    		$data = rtrim(stream_get_contents($fp));
-    		fclose($fp);
-    		
-    		$image64Data =  $data;
-    		
-    		
-    	}
-    
-    		//$file = UploadedFile::getInstanceByName('SIGN_PICTURE');
-    		
-    		//$fileReturn = Yii::$app->fileStorage->save($file);
-    		
-    		
-    		/*$model->SIGN_PICTURE = $fileReturn->url;
-    		
-    		if( $representante->save()) {
     			Yii::$app->session->setFlash('alert', [
     					'options'=>['class'=>'alert-success'],
     					 
-    					'body'=> '<i class="fa fa-check"></i> Imagen guardada correctamente.',
+    					'body'=> '<i class="fa fa-check"></i> Firma guardada y encriptada correctamente, ¡ Puede desencriptar la firma  proporcionando la constraseña nuevamente !.',
     			]);
+    			
+    			return $this->redirect(['view-sign-pic']);
     		}
-    		return $this->redirect(['viewbycompany', 'id' => $representante->ID_REPRESENTANTE_LEGAL]);
+
+    		
     	}
-    	else {
-    		return $this->render('manage-sign-pic', [
-    				'model' => $representante,
-    		]);
-    	}*/
+    
+    
     	 
     
     	return $this->render('manage-sign-pic',['model'=>$representante, 'SIGN_IMAGE'=> base64_encode($image64Data)]);
