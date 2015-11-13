@@ -35,6 +35,50 @@ class InstructorController extends Controller
         ];
     }
 
+    
+    /**
+     *
+     * @param integer $id
+     */
+    public function actionDashboard(){
+    	     	     	 
+    	if(Yii::$app->user->can('administrator')){
+    		 
+    		return $this->redirect(['instructor/index']);
+    	}
+    	 
+    	$model = EmpresaUsuario::getMyCompany();
+    	 
+    	 
+    	 
+    	return $this->render('dashboard', [
+    			'model' => $model->iDEMPRESA,
+    			]);
+    	 
+    }
+    
+    public function actionConstanciasByInstructor(){
+    	
+    	    	
+    	if(Yii::$app->user->can('administrator')){
+    		 
+    		return $this->redirect(['instructor/index']);
+    	}
+    	
+    	$model = EmpresaUsuario::getMyCompany();
+    	
+    	
+    	
+    	return $this->render('constancias_by_instructor', [
+    			'model' => $model->iDEMPRESA,
+    			]);
+    	
+    	}
+    	
+    	
+    
+    
+    
     /**
      * Lists all Instructor models.
      * @return mixed
