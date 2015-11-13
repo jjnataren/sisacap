@@ -126,6 +126,26 @@ class ConstanciasController extends \yii\web\Controller
     	
     }
     
+    /**
+     *
+     * @param unknown $id
+     * @throws NotFoundHttpException
+     * @return Ambigous <string, string>
+     */
+    public function actionDashboardByInstructor($id){
+    	 
+    	$model = EmpresaUsuario::getMyCompany();
+    	 
+    	$modelConstancia = $this->findModel($id);
+    	 
+    	if ($modelConstancia->iDCURSO->iDPLAN->iDCOMISION->ID_EMPRESA !== $model->ID_EMPRESA)
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    	 
+    	return $this->render('invoice_by_instructor',['model'=>$modelConstancia]);
+    	 
+    }
+    
+    
 
     
     
@@ -717,6 +737,189 @@ class ConstanciasController extends \yii\web\Controller
     	
     	
     }
+    
+    
+    
+    
+    ///
+    
+    public function actionCourseByInstructor($id){
+    
+    	$courseModel = Curso::findOne($id);
+    	 
+    	 
+    	$constancias = [];
+    	 
+    	if ($courseModel === null )
+    		throw  new NotFoundHttpException('La pagina que ha solicitado no existe');
+    	 
+    	$companyModel = EmpresaUsuario::getMyCompany();
+    	 
+    	if ($companyModel->ID_EMPRESA !== $courseModel->iDPLAN->iDCOMISION->ID_EMPRESA)
+    		throw  new NotFoundHttpException('La pagina que ha solicitado no existe');
+    	 
+    	 
+    	$id_est = yii::$app->request->get('id_est');
+    	 
+    
+    	 
+    	if(Yii::$app->request->isPost && Yii::$app->request->post('Constancia') !== NULL){
+    		 
+    		$id_establishment = yii::$app->request->get('id_est');
+    		 
+    		$i= 0;
+    		 
+    		$constanciasPost = Yii::$app->request->post('Constancia');
+    		$constancias = [];
+    		 
+    		foreach ($constanciasPost as $constancia){
+    			 
+    			$constancias[] = new Constancia();
+    		}
+    		 
+    		if (Constancia::loadMultiple($constancias, Yii::$app->request->post(), null) ) {
+    
+    			Constancia::validateMultiple($constancias);
+    			 
+    			$count = 0;
+    			foreach ($constancias as $constancia) {
+    				// populate and save records for each model
+    
+    				$tmpConstancia = Constancia::findOne(['ID_CURSO'=>$id, 'ID_TRABAJADOR'=>$constancia->ID_TRABAJADOR]);
+    
+    				if ($tmpConstancia === null){
+    						
+    					$constancia->ACTIVO = 1;
+    					$constancia->ID_CURSO = $id;
+    					$constancia->FECHA_CREACION = date("Y-m-d H:i:s");
+    					$constancia->ESTATUS = 1;
+    					$constancia->ID_EMPRESA = $companyModel->ID_EMPRESA;
+    					$constancia->ID_PLAN = $courseModel->ID_PLAN;
+    						
+    						
+    				}else{
+    						
+    					$tmpConstancia->METODO_OBTENCION = $constancia->METODO_OBTENCION;
+    					$tmpConstancia->TIPO_CONSTANCIA = $constancia->TIPO_CONSTANCIA;
+    					$tmpConstancia->ESTATUS = $constancia->ESTATUS;
+    					$tmpConstancia->PROMEDIO = $constancia->PROMEDIO;
+    					$tmpConstancia->APROBADO = $constancia->APROBADO;
+    						
+    					$constancia = $tmpConstancia;
+    
+    				}
+    
+    				$constancia->FECHA_AGREGO = date('Y-m-d H:i');
+    				 
+    				if ($constancia->save()) {
+    					// do something here after saving
+    						
+    					Indicadores::setIndicadorConstancia($constancia);
+    						
+    					$count++;
+    				}
+    			}
+    			 
+    			//Yii::$app->session->setFlash('success', "Processed {$count} records successfully.");
+    			 
+    			Yii::$app->session->setFlash('alert', [
+    			'options'=>['class'=>'alert-success'],
+    			'body'=>'<i class="fa fa-check fa-lg"> </i>'.Yii::t('frontend', "Constancia(s) guardadas correctamente")
+    			]);
+    			 
+    			return $this->redirect(['createbycourse','id'=>$id, 'id_est'=>$id_establishment]); // redirect to your next desired page
+    			 
+    			 
+    		}else  return $this->render('create_constancias', [
+    				'model' => $courseModel,
+    				'constancias'=>$constancias,
+    				 
+    				]);
+    		 
+    	}
+    	 
+    	if (yii::$app->request->get('id_est') !== null ){
+    		 
+    		 
+    		$establishmentModel = Empresa::findOne($id_est);
+    
+    		if ($establishmentModel === null || $companyModel->ID_EMPRESA !== $establishmentModel->ID_EMPRESA_PADRE)
+    			throw  new NotFoundHttpException('La pagina que ha solicitado no existe');
+    
+    
+    		$constancias = Constancia::findBySql('select * from tbl_constancia where  id_curso = :id_curso AND  id_trabajador in
+    												(select id_trabajador from tbl_trabajador where id_empresa = :id_empresa)
+    											  AND ACTIVO = 1',[':id_empresa'=>$id_est, ':id_curso'=>$id])->all(); //All($condition)(['ID_CURSO'=>$id, 'ACTIVO'=>1]);
+    
+    
+    
+    		$searchModel = new TrabajadorSearch();
+    		 
+    		$dataProvider = $searchModel->searchByCourse(Yii::$app->request->queryParams,$id_est,$id);
+    		 
+    
+    		//$workers = $establishmentModel->trabajadors;
+    
+    		//$constancias = [];
+    
+    		/*foreach ($workers as $worker){
+    	   
+    		$constancia = Constancia::findOne(['ID_CURSO'=>$id, 'ID_TRABAJADOR'=>$worker->ID_TRABAJADOR]);
+    		 
+    		if ($constancia === null){
+    
+    		$constancia = new Constancia();
+    		$constancia->ID_TRABAJADOR = $worker->ID_TRABAJADOR;
+    		 
+    		}
+    		 
+    		$constancias[] = $constancia;
+    		 
+    		}*/
+    
+    		 
+    	}else {
+    
+    
+    		 
+    		//$workers = $companyModel->iDEMPRESA->trabajadors;
+    
+    		$constancias = Constancia::findBySql('select * from tbl_constancia where id_curso= :id_curso AND id_trabajador in
+    												(select id_trabajador from tbl_trabajador where id_empresa = :id_empresa)
+    											  AND ACTIVO = 1',[':id_empresa'=>$companyModel->ID_EMPRESA, ':id_curso'=>$id])->all(); //All($condition)(['ID_CURSO'=>$id, 'ACTIVO'=>1]);
+    
+    		$searchModel = new TrabajadorSearch();
+    		$dataProvider = $searchModel->searchByCourse(Yii::$app->request->queryParams,$companyModel->ID_EMPRESA,$id);
+    
+    
+    		/*foreach ($companyModel->iDEMPRESA->trabajadors as $worker){
+    
+    		$constancia = Constancia::findOne(['ID_CURSO'=>$id, 'ID_TRABAJADOR'=>$worker->ID_TRABAJADOR]);
+    
+    		if ($constancia === null){
+    
+    		$constancia = new Constancia();
+    		$constancia->ID_TRABAJADOR = $worker->ID_TRABAJADOR;
+    			
+    		}
+    
+    		$constancias[] = $constancia;
+    
+    		}*/
+    
+    	}
+    	 
+    	 
+    	return $this->render('create_constancias_instructor', [
+    			'model' => $courseModel,
+    			'searchModel'=>$searchModel,
+    			'dataProvider'=>$dataProvider,
+    			'constancias'=>$constancias,
+    			]);
+    	 
+    	 
+    }
+    
     
     
     
