@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
     		
     		
     ]); ?>
-				<div class="panel panel-info">
+				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3><i class="fa fa-image"></i>
 						
@@ -132,6 +132,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						
 	  		  <?= Html::submitButton( '<i class="fa fa-cogs"></i> Des encriptar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 	    
+	    	 	<?= Html::a( '<i class="fa fa-floppy-o"></i> Editar firma', '/representante-legal/manage-sign-pic' , ['class' =>  'btn btn-success']) ?>
 	    	<?php else:?>
 	    
 	    	<?= Html::a( '<i class="fa fa-floppy-o"></i> Adjuntar firma', '/representante-legal/manage-sign-pic' , ['class' =>  'btn btn-success']) ?>
