@@ -108,17 +108,39 @@ class EmpresaController extends Controller
     	if(Yii::$app->user->can('administrator')){
     	
     		return $this->redirect(['empresa/index']);
+    		
+    	}elseif (Yii::$app->user->can('instructor')){
+    		
+    		return $this->redirect(['empresa/dashboard-instructor']);
     	}
     	
     	$model = EmpresaUsuario::getMyCompany();
-    	
-    	
     	
     	return $this->render('dashboard', [
     			'model' => $model->iDEMPRESA,
     			]);
     	
     }
+    
+    
+    /**
+     *
+     * @param integer $id
+     */
+    public function actionDashboardInstructor(){
+    	 
+    	 
+   	
+    	
+    	$model = Instructor::getOwnData();
+    	 
+    	return $this->render('dashboard_by_instructor', [
+    			'model' => $model,
+    	]);
+    	 
+    }
+    
+    
     
 
     /**
