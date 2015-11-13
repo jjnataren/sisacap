@@ -247,7 +247,7 @@ use backend\models\Plan;
 							
 							'label'=>$curso->NOMBRE,
 							'icon'=>'<i class="fa fa-calendar"></i>',
-							'url'=>['/plan/dashboard', 'id'=>$curso->ID_CURSO]
+							'url'=>['constancias/course-by-instructor', 'id'=>$curso->ID_CURSO]
 							//'options'=>['class'=>'treeview'],
 							//'items'=>$empresaItemsMenu
 					];
