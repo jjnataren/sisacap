@@ -27,7 +27,9 @@ use Yii;
  * @property integer $PROMEDIO
  * @property integer $APROBADO
  * @property string $ULTIMA_MODIFICACION
- *
+ * 
+ * @property string $COMENTARIO
+ 
  * @property Curso $iDCURSO
  * @property Trabajador $iDTRABAJADOR
  * @property IndicadorConstancia[] $indicadorConstancias
@@ -82,7 +84,7 @@ class Constancia extends \yii\db\ActiveRecord
 	
 	public static function getAllEstatusType(){
 	
-		return [Constancia::STATUS_ALREADY => 'Editando', Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firma representante legal',
+		return [Constancia::STATUS_ALREADY => 'Erronea', Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firma representante legal',
 				 Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firma instructor', Constancia::STATUS_DELIVERED =>'Enviada'
 		];
 	}
@@ -114,6 +116,7 @@ class Constancia extends \yii\db\ActiveRecord
             [['FECHA_EMISION_CERTIFICADO', 'FECHA_AGREGO', 'FECHA_INFORME', 'FECHA_CREACION', 'ULTIMA_MODIFICACION'], 'safe'],
             [['NOMBRE_NORMA', 'NOMBRE_DOC_PROB'], 'string', 'max' => 300],
             [['LUGAR_INFORME'], 'string', 'max' => 200],
+            [['COMENTARIO'], 'string', 'max' => 1024],
             [['DOCUMENTO_PROBATORIO'], 'string', 'max' => 2048]
         ];
     }
@@ -144,6 +147,7 @@ class Constancia extends \yii\db\ActiveRecord
             'PROMEDIO' => 'Promedio',
             'APROBADO' => 'Aprobado',
             'ULTIMA_MODIFICACION' => 'Última  Modificación',
+            'COMENTARIO'=>'Comentario',
         ];
     }
 
