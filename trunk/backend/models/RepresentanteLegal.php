@@ -52,7 +52,7 @@ class RepresentanteLegal extends \yii\db\ActiveRecord
             [['NSS'], 'string', 'max' => 20],
             [['CORREO_ELECTRONICO'], 'email',],
             [['SIGN_PICTURE'], 'string', 'max' => 2048],
-            [['SIGN_PASSWD', 'SIGN_KEY'], 'string', 'max' => 1024]
+            [['SIGN_PASSWD', 'SIGN_KEY'], 'string', 'max' => 1024],
             [['SIGN_EXTENSION'], 'string', 'max' => 45]
         ];
     }
