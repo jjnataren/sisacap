@@ -670,10 +670,24 @@ use backend\models\Plan;
 							//'icon'=>'<i class="fa fa-angle-double-right"></i>'],
 							['label'=>Yii::t('backend', 'Editar'),
 							'url'=>['/representante-legal/updatebycompany'],
-							'icon'=>'<i class="fa fa-angle-double-right"></i>'],	
-								['label'=>Yii::t('backend', 'Firma electronica'),
-								'url'=>['/representante-legal/manage-sign-pic'],
-								'icon'=>'<i class="fa fa-pencil-square-o"></i>'],
+							'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+								
+							['label'=>Yii::t('backend', 'Firma electronica'),
+							
+							'options'=>['class'=>'treeview'],
+							'icon'=>'<i class="fa fa-pencil-square-o"></i>',
+							'items'=>[
+										['label'=>Yii::t('backend', 'Ver'),
+												'url'=>['representante-legal/view-sign-pic'],
+												'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+										//['label'=>Yii::t('backend', 'Crear'),
+										//'url'=>['representante-legal/create'],
+										//'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+										['label'=>Yii::t('backend', 'Editar'),
+												'url'=>['/representante-legal/manage-sign-pic'],
+												'icon'=>'<i class="fa fa-angle-double-right"></i>'],]
+								
+								,]
 							
 						]
 					
