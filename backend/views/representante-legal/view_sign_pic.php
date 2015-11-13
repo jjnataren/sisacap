@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			
 				<div class="callout callout-info">
 					<h4><i class="fa fa-info-circle"></i> Información adicional</h4>
-					<p><b>- Este mecanismo permitira incluir automaticamente la firma del representante legal a  los documentos</b> <br />
+					<p>- Este mecanismo permitira incluir automaticamente la firma del representante legal a  los documentos <br />
 						   
 						   
 					</p>
