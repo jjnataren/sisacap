@@ -103,7 +103,7 @@ class EmpresaController extends Controller
     	$searchModel = new EmpresaSearch();
     	$dataProvider = $searchModel->searchEstablishments(Yii::$app->request->queryParams,$model->ID_EMPRESA);
     
-    	return $this->render('establishment_by_instructor', [
+    	return $this->render('index_establishment_instructor', [
     			'searchModel' => $searchModel,
     			'dataProvider' => $dataProvider,
     			'ID_EMPRESA'=>$model->ID_EMPRESA,
@@ -370,6 +370,25 @@ class EmpresaController extends Controller
     	 
     }
     
+    
+    public function actionViewbystablishmentinstructor($id){
+    
+    	$model = EmpresaUsuario::getMyCompany();
+    
+    	$empresa = Empresa::findOne([
+    
+    			'ID_EMPRESA'=>$id,
+    			'ID_EMPRESA_PADRE'=>$model->ID_EMPRESA
+    			]);
+    
+    	if($model === null) throw new NotFoundHttpException('The requested page does not exist.');
+    
+    	$company= $model->iDEMPRESA;
+    
+    	return $this->render('view_by_stablishment_instructor',[
+    			'model'=>$empresa]);
+    
+    }
      
 
     /**
