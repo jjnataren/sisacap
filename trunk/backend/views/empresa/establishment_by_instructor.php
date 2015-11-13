@@ -91,11 +91,9 @@ Establecimientos
 				
 					
 				if ($action === 'view') {
-					return Yii::$app->urlManager->createUrl(['/empresa/viewbystablishment', 'id' => $key]); // Aqui es donde se crean las urls con las acciones personalizadas
+					return Yii::$app->urlManager->createUrl(['/empresa/view-by-instructor', 'id' => $key]); // Aqui es donde se crean las urls con las acciones personalizadas
 						
 				}
-					
-				
 					
 					
 			}
