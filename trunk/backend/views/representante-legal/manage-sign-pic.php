@@ -58,7 +58,6 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
 			
 				<div class="callout callout-info">
 					<h4><i class="fa fa-info-circle"></i> Información adicional</h4>
-					<p> 
 					
 						<ol>
 							<li>Seleccione la imagen de la firma. Archivos validos <strong> jpeg, png, gif </strong> </li>
@@ -67,7 +66,7 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
 						</ol>
 						   
 						   
-					</p>
+					
 					
 				
 				</div>
