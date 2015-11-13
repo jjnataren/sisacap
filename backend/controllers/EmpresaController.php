@@ -95,6 +95,22 @@ class EmpresaController extends Controller
     			'ID_EMPRESA'=>$model->ID_EMPRESA,
     			]);
     }
+    
+    
+    public function actionIndexEstablishmentInstructor()
+    {
+    	$model = EmpresaUsuario::getMyCompany();
+    	$searchModel = new EmpresaSearch();
+    	$dataProvider = $searchModel->searchEstablishments(Yii::$app->request->queryParams,$model->ID_EMPRESA);
+    
+    	return $this->render('establishment_by_instructor', [
+    			'searchModel' => $searchModel,
+    			'dataProvider' => $dataProvider,
+    			'ID_EMPRESA'=>$model->ID_EMPRESA,
+    			]);
+    }
+    
+
 	
     
     /**
@@ -315,13 +331,23 @@ class EmpresaController extends Controller
     
     public function actionViewByInstructor(){
     
-    	$model = EmpresaUsuario::findOne(['ID_USUARIO'=>Yii::$app->user->id]);
-    	 
+    	$model = EmpresaUsuario::getMyCompany();
+    	
+    	$empresa = Empresa::findOne([
+    	
+    		
+    			'ID_EMPRESA_PADRE'=>$model->ID_EMPRESA
+    			]);
+    	
     	if($model === null) throw new NotFoundHttpException('The requested page does not exist.');
-    	 
+    	
     	$company= $model->iDEMPRESA;
+    	
+    	return $this->render('view_by_instructor',[
+    			'model'=>$empresa]);
+   
     	 
-    	return $this->render('view_by_instructor',['model'=>$company]);
+    	
     	 
     }
     
@@ -350,9 +376,7 @@ class EmpresaController extends Controller
     	 
     }
     
-    
-    
-    
+     
 
     /**
      * Displays a single Empresa model.
