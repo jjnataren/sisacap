@@ -9,10 +9,25 @@ use yii\helpers\Html;
 use yii\web\View;
 use kartik\widgets\DatePicker;
 use kartik\checkbox\CheckboxX;
+use yii\widgets\DetailView;
+
 
 $this->title = 'Constancia Id '.$model->ID_CONSTANCIA;
 
 $this->registerJs("$('#help_popup_boton').popover('hide');", View::POS_END, 'noneoptions234');
+$this->registerJs("  
+		
+		var status = $('#drop_coment').val();
+		
+		if(status == 1){
+
+				$('#txt_coment').val('');
+   				$('#txt_coment').attr('disabled');
+		
+				
+				$('#txt_coment').val('');
+   				$('#txt_coment').attr('disabled');
+		", View::POS_END, 'my_onload');
 
 use Openbuildings\Swiftmailer\CssInlinerPlugin;
 
@@ -251,13 +266,31 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
                 </div><!-- /.box-header -->
                 <div class="box-body">
 				
-    					<?= $form->field($model, 'FECHA_EMISION_CERTIFICADO')->widget('trntv\yii\datetimepicker\DatetimepickerWidget', ['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]]) ?>
+    				<!-- 	<?= $form->field($model, 'FECHA_EMISION_CERTIFICADO')->widget('trntv\yii\datetimepicker\DatetimepickerWidget', ['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]]) ?>
     					<?= $form->field($model, 'METODO_OBTENCION')->dropDownList(Constancia::getAllMetodosType(),['prompt'=>'-- Seleccione  --','maxlength' => 300]); ?>	
 						<?= $form->field($model, 'TIPO_CONSTANCIA')->dropDownList(Constancia::getAllContanciasType(),['prompt'=>'-- Seleccione  --','maxlength' => 300]); ?>
 						<?=  $form->field($model, 'PROMEDIO')->textInput();  ?>
 						<?= $form->field($model, 'APROBADO')->widget(CheckboxX::classname(), ['options'=>['id'=>'chk_aprobado'],'pluginOptions'=>['threeState'=>false]]); ?>
-						<?= $form->field($model, 'ESTATUS')->dropDownList(Constancia::getAllEstatusType(),['prompt'=>'-- Seleccione  --',]); ?>
+						-->
 								
+						 		
+								
+ <?= DetailView::widget([
+		'model' => $model,
+		'attributes' => [
+		'FECHA_EMISION_CERTIFICADO',
+		'METODO_OBTENCION',
+		'TIPO_CONSTANCIA',
+		'PROMEDIO',
+		'APROBADO',
+		
+		
+],
+    ]) ?>				
+    <?= $form->field($model, 'ESTATUS')->dropDownList(Constancia::getAllEstatusType(),['prompt'=>'-- Seleccione  --',]); ?>
+<!--  -->		<?=  $form->field($model, 'COMENTARIO')->textArea(Constancia:: getAllEstatusType(), ['id'=>'drop_coment']) ?>  							
+
+				 						
 								
                 </div>
                 <div class="box-footer">
