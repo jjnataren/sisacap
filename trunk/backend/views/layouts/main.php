@@ -6,6 +6,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use backend\models\EmpresaUsuario;
+use backend\models\Instructor;
 use backend\models\Empresa;
 use backend\models\Plan;
 ?>
@@ -16,6 +17,7 @@ use backend\models\Plan;
             $establishments = [];
             $userMenuCompanies  = [];
             $planesMenu = [];
+            $instructorCursos = [];
             
             $establishmentsCreated = [];
             $activePlans[]  = [
@@ -235,6 +237,23 @@ use backend\models\Plan;
 					
 					
 
+            }else if(Yii::$app->user->can('instructor')){
+            	
+				$instructor = Instructor::getOwnData();
+				
+				foreach ($instructor->cursos as $curso){
+					
+					$instructorCursos[] =  [
+							
+							'label'=>$curso->NOMBRE,
+							'icon'=>'<i class="fa fa-calendar"></i>',
+							'url'=>['/plan/dashboard', 'id'=>$cursoo->ID_CURSO]
+							//'options'=>['class'=>'treeview'],
+							//'items'=>$empresaItemsMenu
+					];
+										
+				}
+				           	
             }
              
             
@@ -502,12 +521,17 @@ use backend\models\Plan;
                 		'url'=>[ ( Yii::$app->user->can('manager') ) ? '/empresa/dashboard' : '/curso/dashboard-instructor']
                 		],
                 		
+
+'url'=>[ ( Yii::$app->user->can('manager') ) ? '/instructor/constancias-by-instructor' : '/curso/dashboard-instructor'],
+
                 		
                 		[
                 		'visible'=>( !Yii::$app->user->can('administrator') &&   Yii::$app->user->can('instructor')),
                 		'label'=>Yii::t('backend', 'Instructor'),
                 		'options'=>['class'=>'treeview'],
                 		'icon'=>'<i class="fa fa-graduation-cap fa-lg"></i>',
+
+
                 		
                 		'items'=>[
                 				['label'=>Yii::t('backend', 'Mis datos'),
@@ -567,43 +591,26 @@ use backend\models\Plan;
             									 ],
             		[
             		'visible'=>(!Yii::$app->user->can('administrator')&&   Yii::$app->user->can('instructor')),
-            		'label'=>Yii::t('backend', 'Mis establecimientos'),
+            		'label'=>Yii::t('backend', 'Establecimientos'),
             		'icon'=>'<span class="fa fa-university">
 							 </span>',
             									 'options'=>['class'=>'treeview'],
             									 'items'=>[
-            									 ['label'=>Yii::t('backend', 'Ver establecimientos'), 'url'=>['/empresa/establishments', 'id'=>$companyByUser->ID_EMPRESA ?: 0], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+            									 ['label'=>Yii::t('backend', 'Ver establecimientos'), 'url'=>['/empresa/index-establishment-instructor', 'id'=>$companyByUser->ID_EMPRESA ?: 0], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
             									 		
 					]
             									 			
             									 		],
             		
-            		[
-            		'visible'=>(!Yii::$app->user->can('administrator') &&   Yii::$app->user->can('instructor')),
-            		'label'=>Yii::t('backend', 'Representante legal'),
-            		'options'=>['class'=>'treeview'],
-            		'icon'=>'<i class="fa fa-suitcase"></i>',
             		
-            		'items'=>[
-            		['label'=>Yii::t('backend', 'Ver'),
-            				'url'=>['representante-legal/view-by-instructor'],
-							'icon'=>'<i class="fa fa-angle-double-right"></i>'],
-							//['label'=>Yii::t('backend', 'Crear'),
-            									//'url'=>['representante-legal/create'],
-            		//'icon'=>'<i class="fa fa-angle-double-right"></i>'],
-            		
-				
-						]
-			
-            												],
-[	'encode'=>'false',
-'label'=>Yii::t('backend', 'Cursos'),
-'visible'=>(!Yii::$app->user->can('administrator')&&   Yii::$app->user->can('instructor')),
-            		
-			 'badge'=>$totalCourses,
-							 'options'=>['class'=>'treeview'],
-							 'items'=> $activePlans,
-							'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+            										
+[	'visible'=>!Yii::$app->user->can('administrator'),
+	'label'=>Yii::t('backend', 'Cursos'),
+	'options'=>['class'=>'treeview'],
+	'icon'=>'<i class="fa fa-book"></i>',
+	'items'=>$instructorCursos,
+
+],
             	
                    /* [
                         'label'=>Yii::t('backend', 'Timeline'),
