@@ -6,7 +6,7 @@ use backend\models\Catalogo;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Empresa */
-$this->title ='Ver establecimiento '.$model->NOMBRE_RAZON_SOCIAL ;
+$this->title ='Empresa' .'-' . $model->NOMBRE_RAZON_SOCIAL ;
 $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
   								<i class="fa fa-university  fa-stack-1x"></i>
@@ -38,7 +38,7 @@ if ($model->GIRO_PRINCIPAL === 66666){
 					<div class="panel-heading">
 						<h3><i class="fa fa-eye"></i>
 						
-						<?= Yii::t('backend', 'Detalles') ?> <small>Establecimientos</small> </h3>
+						<?= Yii::t('backend', 'Detalles') ?> <small></small> </h3>
 						
 					</div>
 					<div class="panel-body">
