@@ -654,6 +654,8 @@ class ComisionMixtaCapController extends Controller
     	$model = $this->findModel($id);
     
  		Yii::$app->response->format = 'pdf';
+ 		
+ 		$mympdf = null;
     
     	// Rotate the page
     // Rotate the page
@@ -664,11 +666,16 @@ class ComisionMixtaCapController extends Controller
 		'marginRight' => 8, // Optional
 		'marginTop' => 11, // Optional
 		'marginBottom' => 20, // Optional
-		'beforeRender' => function($mpdf, $data) {},
+		'beforeRender' => function($mpdf, $data) {
+			
+		},
 		]); 
 		
 		
     	$this->layout = '//_print';
+    	
+    	$valuePre = $this->render('reports/DC-1', ['model'=>$model]);
+    	
     	return $this->render('reports/DC-1', ['model'=>$model]);
     }
 

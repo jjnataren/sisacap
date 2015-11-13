@@ -1015,7 +1015,27 @@ use backend\models\Catalogo; ?>
 					<p class="P18"> </p>
 				</td>
 				<td colspan="15" style="text-align:center;width:0.326cm; " class="Tabla3_H7">
-					<p class="P16"> </p><p class="P7 text-center"><span class="T28"><?=$model->iDEMPRESA->iDREPRESENTANTELEGAL->NOMBRE ?>&nbsp;<?=$model->iDEMPRESA->iDREPRESENTANTELEGAL->APP ?>&nbsp;<?=$model->iDEMPRESA->iDREPRESENTANTELEGAL->APM ?></span></p>
+					
+					
+					  <?php 
+					  
+					  $representante = $model->iDEMPRESA->iDREPRESENTANTELEGAL;
+					  
+					  if ($representante->SIGN_PICTURE !== NULL && $representante->SIGN_PASSWD !== NULL  ): ?>
+					  
+					  
+					  <table>
+						  <tr>
+						  	<td><img  src="<?='data:image/' . 'gif' . ';base64,'.$representante->getSigningBinary(); ?>" style="height:1.4cm;width:3cm;"></td>
+						  	<td style="vertical-align: bottom;"><p class="P7 text-center"><span class="T28"><?=$representante->NOMBRE ?>&nbsp;<?=$representante->APP ?>&nbsp;<?=$representante->APM ?></span></p></td>
+						  </tr>
+					  </table>
+					  <?php else:?>
+					  	<p class="P16"> </p>
+					  	<p class="P7 text-center"><span class="T28"><?=$representante->NOMBRE ?>&nbsp;<?=$representante->APP ?>&nbsp;<?=$representante->APM ?></span></p>
+					  <?php endif;?>
+						
+					
 				</td>
 				<td colspan="9" style="text-align:left;width:0.644cm; " class="Tabla3_W7">
 					<p class="P15"> </p>
