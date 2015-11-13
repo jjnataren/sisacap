@@ -22,6 +22,8 @@ use Yii;
  * @property string $SIGN_PICTURE
  * @property string $SIGN_PASSWD
  * @property string $SIGN_KEY
+ * @property string $SIGN_CREATED
+ * @property string $SIGN_EXTENSION
  *
  * @property Empresa[] $empresas
  */
@@ -51,6 +53,7 @@ class RepresentanteLegal extends \yii\db\ActiveRecord
             [['CORREO_ELECTRONICO'], 'email',],
             [['SIGN_PICTURE'], 'string', 'max' => 2048],
             [['SIGN_PASSWD', 'SIGN_KEY'], 'string', 'max' => 1024]
+            [['SIGN_EXTENSION'], 'string', 'max' => 45]
         ];
     }
 
