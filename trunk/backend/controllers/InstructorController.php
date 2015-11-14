@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use backend\models\EmpresaUsuario;
 use yii\base\Model;
+use yii\web\UploadedFile;
 
 /**
  * InstructorController implements the CRUD actions for Instructor model.
@@ -368,6 +369,142 @@ public function actionViewbycompany($id){
     }
     
     
+    
+    /**
+     * shows signing picture
+     * @throws NotFoundHttpException
+     * @return \yii\web\Response|string
+     */
+    public function actionViewSignPic(){
+    		
+    	 
+    	$instructor =Instructor::getOwnData();
+    	
+    	$image64Data = null;
+    	 
+    	$passwordoriginal  = $instructor->SIGN_PASSWD;
+    	 
+    	if ($instructor->load(Yii::$app->request->post())) {
+    
+    		$passphrase = md5($instructor->SIGN_PASSWD);
+    
+    		if($passwordoriginal  !==  $passphrase){
+    			 
+    
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-warning'],
+    					'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <b>La constraseña proporcionada no puede des encriptar la firma </b>',
+    			]);
+    			 
+    		}else{
+    			 
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-success'],
+    
+    					'body'=> '<i class="fa fa-check"></i> Firma des encriptada correctamente.',
+    			]);
+    			 
+    			/* Turn a human readable passphrase
+    			 * into a reproducable iv/key pair
+    			*/
+    			$iv = substr(md5('iv'.$passphrase, true), 0, 8);
+    			$key = substr(md5('pass1'.$passphrase, true) .
+    					md5('pass2'.$passphrase, true), 0, 24);
+    			$opts = array('iv'=>$iv, 'key'=>$key);
+    
+    			$fp = fopen($instructor->SIGN_PIC, 'r');
+    			stream_filter_append($fp, 'mdecrypt.tripledes', STREAM_FILTER_READ, $opts);
+    			$data = rtrim(stream_get_contents($fp));
+    			fclose($fp);
+    
+    			$image64Data =  $data;
+    
+    		}
+    
+    	}
+    	 
+    	 
+    	 
+    	return $this->render('view_sign_pic',['model'=>$instructor, 'SIGN_IMAGE'=> base64_encode($image64Data)]);
+    	 
+    }
+    
+    
+    
+    /**
+     * Manages signing picture
+     * @throws NotFoundHttpException
+     * @return \yii\web\Response|string
+     */
+    public function actionManageSignPic(){
+    
+    	$instructor =Instructor::getOwnData();
+    
+
+    	 
+    	$image64Data = null;
+    	 
+    	if ($instructor->load(Yii::$app->request->post())) {
+    
+    
+    		$file = UploadedFile::getInstance($instructor,'SIGN_PIC');
+    
+    
+    		$passphrase = md5($instructor->SIGN_PASSWD);
+    
+    
+    
+    		/* Turn a human readable passphrase
+    		 * into a reproducable iv/key pair
+    		*/
+    		$iv = substr(md5('iv'.$passphrase, true), 0, 8);
+    		$key = substr(md5('pass1'.$passphrase, true) .
+    				md5('pass2'.$passphrase, true), 0, 24);
+    		$opts = array('iv'=>$iv, 'key'=>$key);
+    
+    		$fp = fopen($file->tempName, "r");
+    
+    		$fileStream  = stream_get_contents($fp); //  fgets($fp,$file->size);
+    
+    		fclose($fp);
+    
+    		$fpw = fopen($file->tempName, "w");
+    
+    
+    		stream_filter_append($fpw, 'mcrypt.tripledes', STREAM_FILTER_WRITE, $opts);
+    
+    		fwrite($fpw, $fileStream);
+    
+    		fclose($fpw);
+    
+    		$fileReturn = Yii::$app->fileStorage->save($file);
+    
+    		$instructor->SIGN_PIC = $fileReturn->url;
+    		$instructor->SIGN_PASSWD = $passphrase;
+    		$instructor->SIGN_PIC_EXTENSION = $file->extension;
+    		$instructor->SIGN_CREATED_AT = date("Y-m-d H:i:s");
+    
+    
+    		if($instructor->save() ) {
+    
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-success'],
+    
+    					'body'=> '<i class="fa fa-check"></i> Firma guardada y encriptada correctamente, ¡ Puede desencriptar la firma  proporcionando la constraseña nuevamente !.',
+    			]);
+    			 
+    			return $this->redirect(['view-sign-pic']);
+    		}
+    
+    
+    	}
+    
+    
+    
+    
+    	return $this->render('manage-sign-pic',['model'=>$instructor, 'SIGN_IMAGE'=> base64_encode($image64Data)]);
+    
+    }
 
     /**
      * Deletes an existing Instructor model.

@@ -548,8 +548,21 @@ use backend\models\Plan;
 
 
                 				['label'=>Yii::t('backend', 'Firma electronica'),
-                						'url'=>['/instructor/manage-sign-pic-by-instructor'],
-                						'icon'=>'<i class="fa fa-pencil-square-o"></i>'],
+							
+							'options'=>['class'=>'treeview'],
+							'icon'=>'<i class="fa fa-pencil-square-o"></i>',
+							'items'=>[
+										['label'=>Yii::t('backend', 'Ver'),
+												'url'=>['instructor/view-sign-pic'],
+												'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+										//['label'=>Yii::t('backend', 'Crear'),
+										//'url'=>['representante-legal/create'],
+										//'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+										['label'=>Yii::t('backend', 'Editar'),
+												'url'=>['/instructor/manage-sign-pic'],
+												'icon'=>'<i class="fa fa-angle-double-right"></i>'],]
+								
+								,]
                 					
                 		]
                 			
