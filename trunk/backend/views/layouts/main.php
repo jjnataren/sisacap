@@ -239,6 +239,8 @@ use backend\models\Plan;
 
             }else if(Yii::$app->user->can('instructor')){
             	
+            	$companyByUser = EmpresaUsuario::getMyCompany();
+            	
 				$instructor = Instructor::getOwnData();
 				
 				foreach ($instructor->cursos as $curso){
@@ -518,12 +520,8 @@ use backend\models\Plan;
                 		'visible'=>( !Yii::$app->user->can('administrator') ),
                 		'label'=>Yii::t('backend', 'Inicio'),
                 		'icon'=>'<i class="fa fa-home fa-lg"> </i>',
-                		'url'=>[ ( Yii::$app->user->can('manager') ) ? '/empresa/dashboard' : '/curso/dashboard-instructor']
+                		'url'=>[  '/empresa/dashboard' ]
                 		],
-                		
-
-'url'=>[ ( Yii::$app->user->can('manager') ) ? '/instructor/constancias-by-instructor' : '/curso/dashboard-instructor'],
-
                 		
                 		[
                 		'visible'=>( !Yii::$app->user->can('administrator') &&   Yii::$app->user->can('instructor')),
