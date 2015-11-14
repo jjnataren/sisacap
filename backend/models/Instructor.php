@@ -13,7 +13,6 @@ use Yii;
  * @property string $NOMBRE
  * @property string $APP
  * @property string $APM
- * @property string $RFC
  * @property string $DOMICILIO
  * @property string $TELEFONO
  * @property string $CORREO_ELECTRONICO
@@ -23,10 +22,15 @@ use Yii;
  * @property string $COMENTARIOS
  * @property integer $ACTIVO
  * @property integer $ID_USUARIO
+ * @property string $RFC
+ * @property string $SIGN_PIC
+ * @property string $SIGN_PASSWD
+ * @property string $SIGN_PIC_EXTENSION
+ * @property string $SIGN_CREATED_AT
  *
  * @property Curso[] $cursos
- * @property User $iDUSUARIO
  * @property Empresa $iDEMPRESA
+ * @property User $iDUSUARIO
  */
 class Instructor extends \yii\db\ActiveRecord
 {
@@ -47,7 +51,6 @@ class Instructor extends \yii\db\ActiveRecord
 				self::TIPO_AGENTE_ACREDITACION=>'Agente capacitador externo con numero de acreditación, perteneciente a una empresa ',
 				self::TIPO_AGENTE_PROVEDOR=>'Agente empresa provedor externo'];
 	}
-    
     /**
      * @inheritdoc
      */
@@ -55,42 +58,44 @@ class Instructor extends \yii\db\ActiveRecord
     {
         return 'tbl_instructor';
     }
-   /**
+    /**
      * @inheritdoc
      */
     public function rules()
     {
-        return [
-            [['ID_EMPRESA', 'LOGOTIPO', 'NUM_REGISTRO_AGENTE_EXTERNO', 'TIPO_INSTRUCTOR', 'ACTIVO'], 'integer'],
-//            [['NUM_REGISTRO_AGENTE_EXTERNO'], 'required'],
-            [['NOMBRE_AGENTE_EXTERNO', 'NOMBRE', 'APP', 'APM','RFC','TELEFONO'], 'string', 'max' => 100],
-            [['DOMICILIO', 'CORREO_ELECTRONICO'], 'string', 'max' => 300],
-            [['COMENTARIOS'], 'string', 'max' => 200]
-        ];
+    	return [
+    			[['ID_EMPRESA', 'LOGOTIPO', 'NUM_REGISTRO_AGENTE_EXTERNO', 'TIPO_INSTRUCTOR', 'ACTIVO'], 'integer'],
+    			//            [['NUM_REGISTRO_AGENTE_EXTERNO'], 'required'],
+    			[['NOMBRE_AGENTE_EXTERNO', 'NOMBRE', 'APP', 'APM','RFC','TELEFONO'], 'string', 'max' => 100],
+    			[['DOMICILIO', 'CORREO_ELECTRONICO'], 'string', 'max' => 300],
+    			[['COMENTARIOS'], 'string', 'max' => 200]
+    	];
     }
-
-     /**
+    /**
      * @inheritdoc
      */
     public function attributeLabels()
     {
-        return [
-            'ID_INSTRUCTOR' => 'Id  Instructor',
-            'ID_EMPRESA' => 'Id  Empresa',
-            'NOMBRE_AGENTE_EXTERNO' => 'Nombre del agente  externo',
-            'NOMBRE' => 'Nombre',
-            'APP' => 'Apellido paterno',
-            'APM' => 'Apellido materno',
-            'DOMICILIO' => 'Domicilio',
-            'TELEFONO' => 'Teléfono',
-            'CORREO_ELECTRONICO' => 'Correo  electrónico',
-            'LOGOTIPO' => 'Logotipo',
-            'NUM_REGISTRO_AGENTE_EXTERNO' => 'Número de registro del agente  externo',
-            'TIPO_INSTRUCTOR' => 'Tipo de instructor',
-            'COMENTARIOS' => 'Comentarios',
-            'ACTIVO' => 'Activo',
-            'RFC'=> 'RFC',
-        ];
+    	return [
+    			'ID_INSTRUCTOR' => 'Id  Instructor',
+    			'ID_EMPRESA' => 'Id  Empresa',
+    			'NOMBRE_AGENTE_EXTERNO' => 'Nombre del agente  externo',
+    			'NOMBRE' => 'Nombre',
+    			'APP' => 'Apellido paterno',
+    			'APM' => 'Apellido materno',
+    			'DOMICILIO' => 'Domicilio',
+    			'TELEFONO' => 'Teléfono',
+    			'CORREO_ELECTRONICO' => 'Correo  electrónico',
+    			'LOGOTIPO' => 'Logotipo',
+    			'NUM_REGISTRO_AGENTE_EXTERNO' => 'Número de registro del agente  externo',
+    			'TIPO_INSTRUCTOR' => 'Tipo de instructor',
+    			'COMENTARIOS' => 'Comentarios',
+    			'ACTIVO' => 'Activo',
+    			'RFC'=> 'RFC',
+    			'SIGN_PICTURE' => 'Imagen firma',
+    			'SIGN_PASSWD' => 'Constraseña encriptación',
+    			'SIGN_KEY' => 'Sign  Key',
+    	];
     }
 
     /**
@@ -101,6 +106,7 @@ class Instructor extends \yii\db\ActiveRecord
         return $this->hasMany(Curso::className(), ['ID_INSTRUCTOR' => 'ID_INSTRUCTOR']);
     }
 
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -108,24 +114,26 @@ class Instructor extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'ID_USUARIO']);
     }
-
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getIDEMPRESA()
     {
-        return $this->hasOne(Empresa::className(), ['ID_EMPRESA' => 'ID_EMPRESA']);
+    	return $this->hasOne(Empresa::className(), ['ID_EMPRESA' => 'ID_EMPRESA']);
     }
     
-    
+    /**
+     * Get instance of Instructor
+     * @throws NotFoundHttpException
+     */
     public static function getOwnData() {
-    	
+    	 
     	$empresaModel = EmpresaUsuario::getMyCompany();
-    	
+    	 
     	$model = Instructor::findOne(['ID_USUARIO'=>Yii::$app->user->id, 'ID_EMPRESA'=>$empresaModel->ID_EMPRESA]);
     
     	if($model === null) throw new NotFoundHttpException('The requested page does not exist.');
-    	
+    	 
     	return $model;
     }
 }
