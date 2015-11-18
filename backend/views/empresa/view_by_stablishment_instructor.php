@@ -55,7 +55,7 @@ if ($model->GIRO_PRINCIPAL === 66666){
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-           // 'ID_EMPRESA',
+           'ID_EMPRESA',
             //'ID_REPRESENTANTE_LEGAL',
             'NOMBRE_RAZON_SOCIAL',
            // 'RFC',
