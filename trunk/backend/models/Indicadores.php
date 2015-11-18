@@ -430,46 +430,125 @@ public static function setIndicadorConstancia($constancia){
 	
 	if ($constancia !== null){
 		
+				
+		/**
+		 * Indicador "caundo una constancia este erronea"
+		 */
+		
+		
+		if ($constancia->ESTATUS == Constancia::STATUS_ALREADY ){
+				
+				
+			$fechaInicio = new \DateTime($constancia->ULTIMA_MODIFICACION);
+				
+			if ($fechaInicio!== false){
+		
+				$indicador = new IndicadorConstancia();
+		
+		
+				$indicador->TITULO  = 'Constancia erronea';
+		
+				$indicador->ID_CONSTANCIA = $constancia->ID_CONSTANCIA;
+		
+				$indicador->ACTIVO = 1;
+		
+				$indicador->DATA = 'Concatenar la descripcion de la constancia';
+		
+				$indicador->FECHA_CREACION = date("Y-m-d H:i:s");
+		
+				$indicador->CLAVE = "CON0001";
+		
+				$indicador->FECHA_INICIO_VIGENCIA = $fechaInicio->modify('-1 day')->format('Y-m-d');
+		
+				$indicador->FECHA_FIN_VIGENCIA = $fechaInicio->modify('+20 day')->format('Y-m-d');
+		
+				$indicador->save();
+		
+		
+			}
+				
+				
+		}
+		
+		
+		/**
+		 * Indicador "Constancias recibidas"
+		 */
+		
+		
+		if ($constancia->ESTATUS == Constancia::STATUS_SIGNED_INSTRUCTOR ){
+		
+		
+			$fechaInicio = new \DateTime($constancia->ULTIMA_MODIFICACION);
+		
+			if ($fechaInicio!== false){
+		
+				$indicador = new IndicadorConstancia();
+		
+		
+				$indicador->TITULO  = 'Constancia recibida';
+		
+				$indicador->ID_CONSTANCIA = $constancia->ID_CONSTANCIA;
+		
+				$indicador->ACTIVO = 1;
+		
+				$indicador->DATA = 'Esta constancia ha sido expedida por el instructor, favor de revisar que los datos sean correctos y satisfactorios.';
+		
+				$indicador->FECHA_CREACION = date("Y-m-d H:i:s");
+		
+				$indicador->CLAVE = "CON0002";
+		
+				$indicador->FECHA_INICIO_VIGENCIA = $fechaInicio->modify('-1 day')->format('Y-m-d');
+		
+				$indicador->FECHA_FIN_VIGENCIA = $fechaInicio->modify('+20 day')->format('Y-m-d');
+		
+				$indicador->save();
+		
+		
+			}
+		
+		
+		}
+		
 		/**
 		 * Indicador "Una vez emitida la constancia se debe entregar al trabajador  en no  mas e 20 dias"
 		 */
 		
-		if ($constancia->ESTATUS == Constancia::STATUS_CREATED){
-			
-			
+		if ($constancia->ESTATUS == Constancia::STATUS_SIGNED_REPRESENTATIVE){
+				
+				
 			$fechaInicio = new \DateTime($constancia->ULTIMA_MODIFICACION);
-			
+				
 			if ($fechaInicio!== false){
-				
-				$indicador = new IndicadorConstancia();
-				
-				
-				$indicador->TITULO  = 'Enviar la constancia al trabajador';
-				
-				$indicador->ID_CONSTANCIA = $constancia->ID_CONSTANCIA;
-				
-				$indicador->ACTIVO = 1;
-				
-				$indicador->DATA = 'Se deberá entregar a los trabajadores que aprueben el curso de capacitación o el examen de suficiencia, dentro de los veinte días hábiles posteriores al término del mismo.
-						 Las empresas deberán tener a disposición de la Secretaría, como parte de sus registros internos, 
-						copia de las constancias de competencias o de habilidades laborales expedidas a sus trabajadores durante el último año';
-				
-				$indicador->FECHA_CREACION = date("Y-m-d H:i:s");
-				
-				$indicador->CLAVE = "CON0001";
-				
-				$indicador->FECHA_INICIO_VIGENCIA = $fechaInicio->modify('+3 day')->format('Y-m-d');
-				
-				$indicador->FECHA_FIN_VIGENCIA = $fechaInicio->modify('+20 day')->format('Y-m-d');
-				
-				$indicador->save();
-				
-				
-			}
-			
-			
-		}
 		
+				$indicador = new IndicadorConstancia();
+		
+		
+				$indicador->TITULO  = 'Enviar la constancia al trabajador';
+		
+				$indicador->ID_CONSTANCIA = $constancia->ID_CONSTANCIA;
+		
+				$indicador->ACTIVO = 1;
+		
+				$indicador->DATA = 'Se deberá entregar a los trabajadores que aprueben el curso de capacitación o el examen de suficiencia, dentro de los veinte días hábiles posteriores al término del mismo.
+						 Las empresas deberán tener a disposición de la Secretaría, como parte de sus registros internos,
+						copia de las constancias de competencias o de habilidades laborales expedidas a sus trabajadores durante el último año';
+		
+				$indicador->FECHA_CREACION = date("Y-m-d H:i:s");
+		
+				$indicador->CLAVE = "CON0003";
+		
+				$indicador->FECHA_INICIO_VIGENCIA = $fechaInicio->modify('-1 day')->format('Y-m-d');
+		
+				$indicador->FECHA_FIN_VIGENCIA = $fechaInicio->modify('+20 day')->format('Y-m-d');
+		
+				$indicador->save();
+		
+		
+			}
+				
+				
+		}
 		
 	}
 	
