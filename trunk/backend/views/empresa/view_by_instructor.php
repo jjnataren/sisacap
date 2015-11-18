@@ -6,14 +6,18 @@ use backend\models\Catalogo;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Empresa */
-$this->title ='Empresa' .'-' . $model->NOMBRE_RAZON_SOCIAL ;
+
+
+
+$this->title ='Empresa'.'-'.$model->NOMBRE_RAZON_SOCIAL ;
 $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
-  								<i class="fa fa-university  fa-stack-1x"></i>
+  								<i class="fa fa-building  fa-stack-1x"></i>
 								   </span>';
-//$this->title = $model->ID_EMPRESA;
-//$this->params['breadcrumbs'][] = ['label' => 'Establecimiento', 'url' => ['indexestablishment']];
-//$this->params['breadcrumbs'][] = $this->title;
+
+$this->params['breadcrumbs'][] = $this->title;
+//$this->title = $model->NOMBRE_RAZON_SOCIAL;
+
 $entidadFederativa = Catalogo::findOne(['ID_ELEMENTO'=>$model->ENTIDAD_FEDERATIVA,'CATEGORIA'=>1,'ACTIVO'=>1]);
 $municipioDelegacion = Catalogo::findOne(['ID_ELEMENTO'=>$model->MUNICIPIO_DELEGACION,'CATEGORIA'=>2,'ACTIVO'=>1]);
 //$giroPrincipal = Catalogo::findOne(['ID_ELEMENTO'=>$model->GIRO_PRINCIPAL,'CATEGORIA'=>4,'ACTIVO'=>1]);
@@ -38,7 +42,7 @@ if ($model->GIRO_PRINCIPAL === 66666){
 					<div class="panel-heading">
 						<h3><i class="fa fa-eye"></i>
 						
-						<?= Yii::t('backend', 'Detalles') ?> <small></small> </h3>
+						<?= Yii::t('backend', 'Detalles' ) ?> <small> de la empresa</small> </h3>
 						
 					</div>
 					<div class="panel-body">
@@ -46,13 +50,13 @@ if ($model->GIRO_PRINCIPAL === 66666){
             <div class="panel">
                 <div class="panel-heading text-primary">
                     
-                    <h3 class="panel-title"><?= Yii::t('backend', 'Datos del establecimiento') ?></h3>
+                    <h3 class="panel-title"><?= Yii::t('backend', 'Datos de la empresa') ?></h3>
                 </div>
                 <div class="panel-body">
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            //'ID_EMPRESA',
+           'ID_EMPRESA',
             //'ID_REPRESENTANTE_LEGAL',
             'NOMBRE_RAZON_SOCIAL',
          // 'RFC',
@@ -67,7 +71,7 @@ if ($model->GIRO_PRINCIPAL === 66666){
             <div class="panel">
                 <div class="panel-heading text-primary">
                     
-                    <h3 class="panel-title"><?= Yii::t('backend', 'Contacto del establecimiento') ?></h3>
+                    <h3 class="panel-title"><?= Yii::t('backend', 'Contacto de la empresa') ?></h3>
                 </div>
                 <div class="panel-body">  
 <?= DetailView::widget([
