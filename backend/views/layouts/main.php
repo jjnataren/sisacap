@@ -590,11 +590,11 @@ use backend\models\Plan;
             		//'url'=>['empresa/index'],
             		//	'icon'=>'<i class="fa fa-plus-circle"></i>'],
             		
-            		['label'=>Yii::t('backend', 'Trabajadores'),
-            		'icon'=>'<span class="fa fa-users ">
-							 </span>',
-            									 'url'=>['/trabajador/index-by-instructor'],
-            									 'badge'=>isset($companyByUser->iDEMPRESA) ? count($companyByUser->iDEMPRESA->trabajadors) : 0],
+            		//['label'=>Yii::t('backend', 'Trabajadores'),
+            		//'icon'=>'<span class="fa fa-users ">
+							// </span>',
+            									 //'url'=>['/trabajador/index-by-instructor'],
+            									// 'badge'=>isset($companyByUser->iDEMPRESA) ? count($companyByUser->iDEMPRESA->trabajadors) : 0],
             									 ]
             									  
             									 	
