@@ -9,20 +9,25 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel backend\models\EmpresaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Establecimientos de la empresa';
+$this->title = 'Establecimientos ';
 $this->params['subtitle'] = '';
 
 $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
   								<i class="fa fa-university fa-stack-1x"></i>
 							   </span>';
-$this->params['breadcrumbs'][] = ['label' => '
-Establecimientos 
-', 'url' => ['']];
+$this->params['breadcrumbs'][] = ['label' => 'Establecimientos ', 'url' => ['']];
 							
 ?>
 <div class="empresa-index">
 
+
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3><i class="fa fa-eye"></i>
+						<?= Yii::t('backend', 'Detalles') ?> <small> establecimientos</small> </h3>
+					</div>
+					<div class="panel-body">
   
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -32,7 +37,7 @@ Establecimientos
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'ID_EMPRESA',
+            'ID_EMPRESA',
             'NOMBRE_COMERCIAL',
             //'ID_REPRESENTANTE_LEGAL',
             //'NOMBRE_CENTRO_TRABAJO',
@@ -74,7 +79,7 @@ Establecimientos
             // 'NUMERO_TRABAJADORES',
             // 'CODIGO_POSTAL',
             // 'FAX',
-            // 'CORREO_ELECTRONICO',
+            'CORREO_ELECTRONICO',
             // 'ACTIVO',
 
             ['class' => 'yii\grid\ActionColumn',
@@ -101,3 +106,6 @@ Establecimientos
     ]]); ?>
 
 </div>
+</div>
+</div>
+
