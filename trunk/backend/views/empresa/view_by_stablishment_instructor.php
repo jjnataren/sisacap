@@ -12,7 +12,7 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-university  fa-stack-1x"></i>
 								   </span>';
 //$this->title = $model->ID_EMPRESA;
-//$this->params['breadcrumbs'][] = ['label' => 'Establecimiento', 'url' => ['index-establishment-instructor']];
+$this->params['breadcrumbs'][] = ['label' => 'Establecimientos ', 'url' => ['index-establishment-instructor']];
 $this->params['breadcrumbs'][] = $this->title;
 $entidadFederativa = Catalogo::findOne(['ID_ELEMENTO'=>$model->ENTIDAD_FEDERATIVA,'CATEGORIA'=>1,'ACTIVO'=>1]);
 $municipioDelegacion = Catalogo::findOne(['ID_ELEMENTO'=>$model->MUNICIPIO_DELEGACION,'CATEGORIA'=>2,'ACTIVO'=>1]);
