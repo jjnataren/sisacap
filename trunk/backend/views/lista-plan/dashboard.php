@@ -32,7 +32,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 
 
 $constanciasItems = Constancia::findBySql('select * from tbl_constancia where ID_TRABAJADOR in (select ID_TRABAJADOR from tbl_trabajador where (ID_EMPRESA IN (SELECT ID_ESTABLECIMIENTO FROM tbl_lista_establecimiento where ID_LISTA = '.$model->ID_LISTA.') OR ID_EMPRESA = '.EmpresaUsuario::getMyCompany()->ID_EMPRESA.' ) AND ACTIVO = 1)
-								AND ID_CONSTANCIA NOT IN (select ID_CONSTANCIA from tbl_lista_constancia where ID_LISTA = '.$model->ID_LISTA.') AND ESTATUS > 1;')->all();
+								AND ID_CONSTANCIA NOT IN (select ID_CONSTANCIA from tbl_lista_constancia where ID_LISTA = '.$model->ID_LISTA.') AND ESTATUS = 5;')->all();
 	
 
 $tConstanciasBox = count($model->iDCONSTANCIAs);
@@ -251,7 +251,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 
 				         		$tConstancias = count( Constancia::findBySql('select count(id_constancia) from tbl_constancias where id_trabajador in 
 															(select id_trabajador from tbl_trabajador where id_empresa = :id_empresa and activo = 1) and  estatus = :estatus', 
-																[':id_empresa'=>$establecimiento->ID_EMPRESA, ':estatus'=>Constancia::STATUS_CREATED]) ); 
+																[':id_empresa'=>$establecimiento->ID_EMPRESA, ':estatus'=>Constancia::STATUS_SIGNED_REPRESENTATIVE]) ); 
 				         				
 
 								/*$tConstancias = (new yii\db\Query())
@@ -600,9 +600,9 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 											
 											
 											<tr>
-													
-													<td colspan="6"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
 													<td colspan="4"><i class="fa fa-user"></i> Datos trabajador</td>
+													<td colspan="6"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
+													
 													
 													<th></th>
 											</tr>
@@ -610,15 +610,19 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 											
 												<tr>
 													<th>Id</th>
+													<th><?=Yii::t('backend', 'Nombre ');?></th>	
+													<th><?=Yii::t('backend', 'CURP')?></th>
+													<th><?=Yii::t('backend', 'Ocupación')?></th>
+													<th><?=Yii::t('backend', 'Establecimiento')?></th>
 													<th>Curso</th>
 													<th>Obtención</th>
 													<th>Tipo</th>
 													<th>Estatus</th>
 													<th><?=Yii::t('backend', 'Fecha emisión')?></th>
-													<th><?=Yii::t('backend', 'Establecimiento')?></th>
-													<th><?=Yii::t('backend', 'Nombre ');?></th>									
-													<th><?=Yii::t('backend', 'CURP')?></th>
-													<th><?=Yii::t('backend', 'Ocupación')?></th>
+													
+																				
+													
+													
 													<th></th>
 																															
 												</tr>
@@ -632,9 +636,15 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 							
 								<tr>
 									<td><?= $constancia->ID_CONSTANCIA; ?></td>
+									<td><?= $constancia->iDTRABAJADOR->NOMBRE . ' '. $constancia->iDTRABAJADOR->APP;?></td>
+									<td><?= $constancia->iDTRABAJADOR->CURP;?></td>
+									<td>
+									<?php $ocupacionEspecifica = Catalogo::findOne($constancia->iDTRABAJADOR->OCUPACION_ESPECIFICA);?>
+									<?= isset($ocupacionEspecifica)?$ocupacionEspecifica->NOMBRE: '<i class="text text-muted">no establecido</i>';?>
+									</td>
+									<td><?= $constancia->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>	
 									<td><?= $constancia->iDCURSO->NOMBRE;?></td>
 									<td><?= isset( Constancia::getAllMetodosType()[$constancia->METODO_OBTENCION] )? Constancia::getAllMetodosType()[$constancia->METODO_OBTENCION]: '<i class="text text-muted">no establecido</i>' ?></td>	
-									<td><?= isset(Constancia::getAllContanciasType()[$constancia->TIPO_CONSTANCIA])?Constancia::getAllContanciasType()[$constancia->TIPO_CONSTANCIA]: '<i class="text text-muted">no establecido</i>' ?></td>
 									<?php
 
 									$labelType = '';
@@ -649,15 +659,14 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 												$labelType = 'label';
 										}
 									?>
+									<td><?= isset(Constancia::getAllContanciasType()[$constancia->TIPO_CONSTANCIA])?Constancia::getAllContanciasType()[$constancia->TIPO_CONSTANCIA]: '<i class="text text-muted">no establecido</i>' ?></td>
+									
 									<td><span class="<?=$labelType ?>"><?= isset(Constancia::getAllEstatusType()[$constancia->ESTATUS])? Constancia::getAllEstatusType()[$constancia->ESTATUS]: '<i class="text text-muted">no establecido</i>' ?></span></td>
 									<td><?= $constancia->FECHA_EMISION_CERTIFICADO?></td>
-									<td><?= $constancia->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>									
-									<td><?= $constancia->iDTRABAJADOR->NOMBRE . ' '. $constancia->iDTRABAJADOR->APP;?></td>
-									<td><?= $constancia->iDTRABAJADOR->CURP;?></td>
-									<td>
-									<?php $ocupacionEspecifica = Catalogo::findOne($constancia->iDTRABAJADOR->OCUPACION_ESPECIFICA);?>
-									<?= isset($ocupacionEspecifica)?$ocupacionEspecifica->NOMBRE: '<i class="text text-muted">no establecido</i>';?>
-									</td>
+																	
+									
+									
+								
 									
 									
 									<td>
@@ -710,26 +719,30 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 							<thead>
 							
 							<tr>
-									
-									<td colspan="5"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
 									<td colspan="5"><i class="fa fa-user"></i> Datos trabajador</td>
+									<td colspan="5"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
+									
 									
 									<th></th>
 							</tr>
 							
 								<tr>
 									<th>Id</th>
-									<th>Curso</th>
-									<th><?=Yii::t('backend', 'Fecha emisión')?></th>
-									<th>Obtención</th>
-									<th>Tipo</th>
-									
-								
 									<th><?=Yii::t('backend', 'Nombre')?></th>									
 									<th><?=Yii::t('backend', 'A. paterno')?></th>
 									<th><?=Yii::t('backend', 'CURP')?></th>
 									<th><?=Yii::t('backend', 'Ocupación')?></th>
 									<th><?=Yii::t('backend', 'Establecimiento')?></th>
+									<th>Curso</th>
+									<th>Obtención</th>
+									<th>Tipo</th>
+									<th><?=Yii::t('backend', 'Fecha emisión')?></th>
+									
+									
+								
+									
+									
+									
 							
 									<th></th>
 																											
@@ -745,19 +758,24 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 							
 								<tr>
 									<td><?= $constancia->ID_CONSTANCIA; ?></td>
-									<td><?= $constancia->iDCURSO->NOMBRE;?></td>
-									<td><?=($constancia->FECHA_EMISION_CERTIFICADO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($constancia->FECHA_EMISION_CERTIFICADO)) ;?></td>
-									<td><?= isset(Constancia::getAllMetodosType()[$constancia->METODO_OBTENCION])?Constancia::getAllMetodosType()[$constancia->METODO_OBTENCION] : '<i class"text text-muted">no asignado</i>' ?></td>	
-									<td><?= isset(Constancia::getAllContanciasType()[$constancia->TIPO_CONSTANCIA])?Constancia::getAllContanciasType()[$constancia->TIPO_CONSTANCIA] : '<i class"text text-muted">no asignado</i>'; ?></td>
-																	
-									<td><?= $constancia->iDTRABAJADOR->NOMBRE;?></td>
+										<td><?= $constancia->iDTRABAJADOR->NOMBRE;?></td>
 									<td><?= $constancia->iDTRABAJADOR->APP;?></td>
 									<td><?= $constancia->iDTRABAJADOR->CURP;?></td>
-									<td>
+										<td>
 									<?php $ocupacionEspecifica = Catalogo::findOne($constancia->iDTRABAJADOR->OCUPACION_ESPECIFICA);?>
 									<?= isset($ocupacionEspecifica)?$ocupacionEspecifica->NOMBRE: '<i class="text text-muted">no establecido</i>';?>
 									</td>
-										<td><?= $constancia->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
+									<td><?= $constancia->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
+									
+									
+									<td><?= $constancia->iDCURSO->NOMBRE;?></td>
+									<td><?= isset(Constancia::getAllMetodosType()[$constancia->METODO_OBTENCION])?Constancia::getAllMetodosType()[$constancia->METODO_OBTENCION] : '<i class"text text-muted">no asignado</i>' ?></td>	
+									<td><?= isset(Constancia::getAllContanciasType()[$constancia->TIPO_CONSTANCIA])?Constancia::getAllContanciasType()[$constancia->TIPO_CONSTANCIA] : '<i class"text text-muted">no asignado</i>'; ?></td>
+									<td><?=($constancia->FECHA_EMISION_CERTIFICADO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($constancia->FECHA_EMISION_CERTIFICADO)) ;?></td>
+																	
+								
+									
+										
 									
 									<td>
 									
