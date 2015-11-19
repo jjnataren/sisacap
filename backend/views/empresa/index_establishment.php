@@ -21,6 +21,13 @@ Establecimientos
 ', 'url' => ['']];
 							
 ?>
+ <div class=" col-xs-12 col-sm-12 col-md-12">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3><i class="fa fa-eye"></i>
+						<?= Yii::t('backend', 'Todos mis establecimientos') ?> <small></small> </h3>
+					</div>
+					<div class="panel-body">
 <div class="empresa-index">
 
   
@@ -34,9 +41,9 @@ Establecimientos
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+        //    ['class' => 'yii\grid\SerialColumn'],
 
-            //'ID_EMPRESA',
+            'ID_EMPRESA',
             'NOMBRE_COMERCIAL',
             //'ID_REPRESENTANTE_LEGAL',
             //'NOMBRE_CENTRO_TRABAJO',
@@ -117,4 +124,7 @@ Establecimientos
         ],
     ]]); ?>
 
+</div>
+</div>
+</div>
 </div>
