@@ -77,7 +77,7 @@ class Instructor extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
     	return [
-    			'ID_INSTRUCTOR' => 'Id  Instructor',
+    			'ID_INSTRUCTOR' => 'Id instructor',
     			'ID_EMPRESA' => 'Id  Empresa',
     			'NOMBRE_AGENTE_EXTERNO' => 'Nombre del agente  externo',
     			'NOMBRE' => 'Nombre',
