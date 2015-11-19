@@ -408,7 +408,11 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 						       		</a>
 						       
 						     <?php else :     ?>
-						       
+						         <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#mod_worker_company" id="userButton">
+			    	
+									<i class="fa fa-user"></i>&nbsp;<?= Yii::t('backend', 'Nuevo trabajador')?>
+									
+			   					</a>
 						  
 			   					
 			   				<?php endif;?>	
