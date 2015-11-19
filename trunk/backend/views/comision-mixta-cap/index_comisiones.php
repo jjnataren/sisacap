@@ -14,6 +14,13 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
 							   </span>';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+ <div class=" col-xs-12 col-sm-12 col-md-12">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3><i class="fa fa-eye"></i>
+						<?= Yii::t('backend', 'Todas mis comisiones') ?> <small></small> </h3>
+					</div>
+					<div class="panel-body">
 <div class="empresa-index">
 
     
@@ -27,8 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
+           // ['class' => 'yii\grid\SerialColumn'],
+			'ID_COMISION_MIXTA',	
             'ALIAS',
             'FECHA_CONSTITUCION',
     		'FECHA_ELABORACION',
@@ -89,4 +96,8 @@ $this->params['breadcrumbs'][] = $this->title;
     		    ]]); ?>
     		
     		</div>
+    		</div>
+    		</div>
+    		</div>
+    		
     		    		
