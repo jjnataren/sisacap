@@ -16,15 +16,23 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-users fa-lg  fa-stack-1x"></i>
 							   </span>';
 ?>
-<div class="trabajador-index">
+
 
    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <div class=" col-xs-12 col-sm-12 col-md-12">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3><i class="fa fa-eye"></i>
+						<?= Yii::t('backend', 'Todos mis trabajadores') ?> <small></small> </h3>
+					</div>
+					<div class="panel-body">
+<div class="trabajador-index">
     <p>
         <?= Html::a('<i class="fa fa-plus-square"></i> Crear Trabajador', ['createworkerbycompany'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('<i class="fa fa-file-excel-o"></i> Cargar por archivo', ['load',], ['class' => 'btn btn-primary']) ?>
     </p>
+  
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -32,7 +40,7 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
 
-            //'ID_TRABAJADOR',
+            'ID_TRABAJADOR',
             //'ID_EMPRESA',
             //'ROL',
             'NOMBRE',
@@ -98,5 +106,8 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
 				}
 				],
 				    		    ]]); ?>
+				    		</div>
+				    		</div>
+				    		</div>
 				    		
 				    		</div>
