@@ -347,4 +347,13 @@ return array (
       '@trntv/yii/datetimepicker' => $vendorDir . '/trntv/yii2-bootstrap-datetimepicker/src',
     ),
   ),
+  'kartik-v/yii2-password' => 
+  array (
+    'name' => 'kartik-v/yii2-password',
+    'version' => '1.5.0.0',
+    'alias' => 
+    array (
+      '@kartik/password' => $vendorDir . '/kartik-v/yii2-password',
+    ),
+  ),
 );
