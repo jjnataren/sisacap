@@ -14,6 +14,15 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-user-secret fa-stack-1x"></i>
 							   </span>';
 ?>
+
+  
+<div class=" col-xs-12 col-sm-12 col-md-12">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3><i class="fa fa-eye"></i>
+						<?= Yii::t('backend', 'Todos mis puestos') ?> <small></small> </h3>
+					</div>
+					<div class="panel-body">
 <div class="puesto-index">
 
 
@@ -27,7 +36,7 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 		 	//'ID_PUESTO',
             //'ID_EMPRESA',
     		'CLAVE_PUESTO',
@@ -70,3 +79,7 @@ return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, ['title'
     ]]); ?>
 
 </div>
+</div>
+</div>
+</div>
+
