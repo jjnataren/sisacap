@@ -23,7 +23,7 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
   								<i class="fa fa-laptop fa-stack-1x"></i>
 							   </span>';
-$this->title = 'Curso  '. $model->NOMBRE;//-  Plan( '.$model->iDPLAN->ALIAS.' ), Curso ('.$model->NOMBRE.')';
+$this->title =   'Curso  '.'Id ' . $model->ID_CURSO .'-'. $model->NOMBRE ;//-  Plan( '.$model->iDPLAN->ALIAS.' ), Curso ('.$model->NOMBRE.')';
 
 
 $this->params['breadcrumbs'][] = ['label' => 'Curso ID'.$model->ID_CURSO];
@@ -113,6 +113,9 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
         <div class="box-body" >
   
   				<dl class="dl-horizontal">
+  				
+  				 <dt><?= Yii::t('backend', 'Id') ?></dt>
+                        <dd><?= $model->ID_CURSO?></dd>
                                                 
                         <dt><?= Yii::t('backend', 'Nombre') ?></dt>
                         <dd><?= $model->NOMBRE ?></dd>
@@ -131,8 +134,18 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
                         <dt><?= Yii::t('backend', 'Duracion horas') ?></dt>
                         <dd><?= $model->DURACION_HORAS?></dd>
                         
-                          <dt><?= Yii::t('backend', 'Area tematica') ?></dt>
-                        <dd><?= $model->AREA_TEMATICA ?></dd>
+                                          
+                        <dt><?= Yii::t('backend', 'Area temática') ?></dt>         
+                          <dd><?php
+						$cur = \backend\models\Catalogo:: findone(['ID_ELEMENTO'=>$model-> AREA_TEMATICA, 'CATEGORIA'=>6, 'ACTIVO'=>1]);
+         			echo isset($cur)?$cur->NOMBRE: 'no asignado'; ?>
+						</dd>
+                                                   
+                                                     
+                        <dt><?= Yii::t('backend', 'Descripción') ?></dt>
+                        <dd><?= $model->DESCRIPCION	?></dd>
+                        
+                                               
                                                      
                    </dl>
           </div><!-- /.box-body -->
@@ -156,6 +169,9 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
   
   				<dl class="dl-horizontal">
                        
+                         <dt><?= Yii::t('backend', 'Id') ?></dt>
+                        <dd><?= $model->iDPLAN->ID_PLAN ?></dd>
+                        
                         <dt><?= Yii::t('backend', 'Alias') ?></dt>
                         <dd><?= $model->iDPLAN->ALIAS ?></dd>
                                                                       
@@ -228,6 +244,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
          <thead> 
 	         <tr>
 		         <th>No.</th>
+		         <th>Id</th>
 		         <th>Nombre comercial</th>  
 		         		      
 		         
@@ -240,6 +257,9 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
          	<?php $i = 0; foreach ($model->iDPLAN->planEstablecimientos as $establecimiento){?>
          	<tr>
          		<td><?= ++$i?></td>
+         		
+         		<td><?= $establecimiento->ID_EMPRESA?></td>
+         		
          		<td><?= $establecimiento->NOMBRE_COMERCIAL?></td>
          	
          		<td><?= $establecimiento->CALLE .$establecimiento->NUMERO_INTERIOR .$establecimiento->NUMERO_EXTERIOR  ?></td>
@@ -304,10 +324,10 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 									<th><?=Yii::t('backend', 'Puesto')?></th>
 								 	<th>Obtención</th>
 									<th>Tipo</th>
-									
-									<th>Promedio</th>
-									<th>Aprobado</th> 
+																							 
 									<th>Estatus</th>
+										<th>Promedio</th>
+									<th>Aprobado</th>
 									<th>Ver constancia</th>
 								
 																		
@@ -324,7 +344,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 									<td><?= isset($worker->pUESTO)?$worker->pUESTO->NOMBRE_PUESTO: ''?></td>
 									<td><?= $form->field($constancia, "[$i]METODO_OBTENCION")->dropDownList(Constancia::getAllMetodosType(),['prompt'=>'- Seleccione -','style' => 'width: 170px;'])->label(false) ?></td> 
 									<td><?= $form->field($constancia, "[$i]TIPO_CONSTANCIA")->dropDownList(Constancia::getAllContanciasType(),['prompt'=>'- Seleccione -','style' => 'width: 130px;'])->label(false) ?></td> 
-									<td><?= $form->field($constancia, "[$i]ESTATUS")->dropDownList(Constancia::getAllEstatusType(),['prompt'=>'-- Seleccione  --','style' => 'width: 100px;'])->label(false) ?></td>
+									<td><?= $form->field($constancia, "[$i]ESTATUS")->dropDownList(Constancia::getAllEstatusInstructor(),['prompt'=>'-- Seleccione  --','style' => 'width: 100px;'])->label(false) ?></td>
                                   <td>
 	                                                                    
 	                                    <?= $form->field($constancia, "[$i]PROMEDIO")->textInput(['maxlength' => 50, 'style' => 'width: 50px;'])->label(false)?>
