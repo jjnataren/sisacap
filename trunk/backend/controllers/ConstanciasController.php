@@ -106,6 +106,76 @@ class ConstanciasController extends \yii\web\Controller
     
     
     
+    
+    public function actionUpdatebyinstructor($id)
+    {
+    	 
+    	$companyModel  = EmpresaUsuario::getMyCompany();
+    	$model = $this->findModel($id);
+    	 
+    	 
+    	if ($model->iDCURSO->iDPLAN->iDCOMISION->ID_EMPRESA !== $companyModel->ID_EMPRESA){
+    
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    	}
+    	 
+    
+    	if ($model->load(Yii::$app->request->post()) ) {
+    
+    
+    		$tmpdate = \DateTime::createFromFormat('d/m/Y', $model->FECHA_EMISION_CERTIFICADO);
+    
+    		 
+    		$model->FECHA_EMISION_CERTIFICADO = ($tmpdate) ?   $tmpdate->format('Y-m-d') : '';
+    
+    		if (!$model->save()){
+    
+    			Yii::$app->session->setFlash('alert', [
+    			'options'=>['class'=>'alert-warning'],
+    			'body'=> '<i class="fa-exclamation-circle fa-lg"></i> Ocurrio un error al actualizar la constancia por favor revise los errores.',
+    			]);
+    
+    
+    			return $this->render('dashboardbyinstructor', [
+    					'model' => $model,
+    					]);
+    			 
+    		}
+    		 
+    		 
+    		 
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-success'],
+    		'body'=> '<i class="fa fa-check fa-lg"></i> La constancia ha sido modificada correctamente.',
+    		]);
+    		 
+    		Indicadores::setIndicadorConstancia($model);
+    		 
+    		if ($model->iDTRABAJADOR->iDEMPRESA->ID_EMPRESA_PADRE === null){
+    
+    			return $this->redirect(['course-by-instructor', 'id' => $model->ID_CURSO, 'is_company'=>1]);
+    
+    		}else
+    			return $this->redirect(['course-by-instructor', 'id' => $model->ID_CURSO, 'id_est'=>$model->iDTRABAJADOR->ID_EMPRESA]);
+    		 
+    
+    
+    
+    	} else {
+    
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-warning'],
+    		'body'=> '<i class="fa-exclamation-circle"></i> Ocurrio un error al actualizar la constancia por favor revise los errores.',
+    		]);
+    		 
+    
+    		return $this->render('dashboardbyinstructor', [
+    				'model' => $model,
+    				]);
+    	}
+    }
+    
+    
 	
     /**
      * 
