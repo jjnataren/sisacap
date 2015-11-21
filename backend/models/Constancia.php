@@ -64,6 +64,7 @@ class Constancia extends \yii\db\ActiveRecord
 	const STATUS_SIGNED_INSTRUCTOR=4;
 	const STATUS_SIGNED_REPRESENTATIVE=5;	
 	const STATUS_DELIVERED= 6;
+	const STATUS_REJECTED=7;
 	
 	/**
 	 *
@@ -88,7 +89,8 @@ class Constancia extends \yii\db\ActiveRecord
 				Constancia::STATUS_ASIGNADA =>'Asignada',
 				Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firma instructor',
 				Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firma representante legal',
-				Constancia::STATUS_DELIVERED =>'Enviada'
+				Constancia::STATUS_DELIVERED =>'Enviada',
+				Constancia::STATUS_REJECTED =>'Rechazada por instructor' 
 		];
 	}
 	
@@ -96,6 +98,7 @@ class Constancia extends \yii\db\ActiveRecord
 	public static function getAllEstatusTypeInstructor(){
 	
 		return [Constancia::STATUS_ASIGNADA =>'Asignada',
+		Constancia::STATUS_REJECTED =>'Rechazada instructor',
 		Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firma instructor',
 	
 				];
