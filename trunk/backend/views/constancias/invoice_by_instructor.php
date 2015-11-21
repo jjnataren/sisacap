@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
 
 
 <?php $form = ActiveForm::begin([
-	'action'=>['updatebyuser','id'=>$model->ID_CONSTANCIA]
+	'action'=>['updatebyinstructor','id'=>$model->ID_CONSTANCIA]
 		
 ]); ?>
 
