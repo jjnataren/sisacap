@@ -490,29 +490,29 @@ public static function setIndicadorConstancia($constancia){
 	
 	if ($constancia !== null){
 		
-				
 		/**
-		 * Indicador "caundo una constancia este erronea"
+		 * Indicador "Una vez emitida la constancia se debe entregar al trabajador  en no  mas e 20 dias"
 		 */
 		
+		if ($constancia->ESTATUS == Constancia::STATUS_SIGNED_REPRESENTATIVE){
 		
-		if ($constancia->ESTATUS == Constancia::STATUS_ALREADY ){
-				
-				
+		
 			$fechaInicio = new \DateTime($constancia->ULTIMA_MODIFICACION);
-				
+		
 			if ($fechaInicio!== false){
 		
 				$indicador = new IndicadorConstancia();
 		
 		
-				$indicador->TITULO  = 'Constancia erronea';
+				$indicador->TITULO  = 'Enviar la constancia al trabajador';
 		
 				$indicador->ID_CONSTANCIA = $constancia->ID_CONSTANCIA;
 		
 				$indicador->ACTIVO = 1;
 		
-				$indicador->DATA = 'Concatenar la descripcion de la constancia';
+				$indicador->DATA = 'Se deberá entregar a los trabajadores que aprueben el curso de capacitación o el examen de suficiencia, dentro de los veinte días hábiles posteriores al término del mismo.
+						 Las empresas deberán tener a disposición de la Secretaría, como parte de sus registros internos,
+						copia de las constancias de competencias o de habilidades laborales expedidas a sus trabajadores durante el último año';
 		
 				$indicador->FECHA_CREACION = date("Y-m-d H:i:s");
 		
@@ -526,10 +526,125 @@ public static function setIndicadorConstancia($constancia){
 		
 		
 			}
+		
+		
+		}
+		
+				
+		/**
+		 * Indicador "caundo una constancia este erronea y la rechaza el instructor "
+		 */
+		
+		
+		if ($constancia->ESTATUS == Constancia::STATUS_RECHANZADA_INSTRUCTOR ){
+				
+				
+			$fechaInicio = new \DateTime($constancia->ULTIMA_MODIFICACION);
+				
+			if ($fechaInicio!== false){
+		
+				$indicador = new IndicadorConstancia();
+		
+		
+				$indicador->TITULO  = 'Constancia rechazada';
+		
+				$indicador->ID_CONSTANCIA = $constancia->ID_CONSTANCIA;
+		
+				$indicador->ACTIVO = 1;
+		
+				$indicador->DATA = 'El instructor  encontro algun inpedimento para generar esta constancia, debera comentar el motivo por el cual la rechazo.';
+		
+				$indicador->FECHA_CREACION = date("Y-m-d H:i:s");
+		
+				$indicador->CLAVE = "CON0002";
+		
+				$indicador->FECHA_INICIO_VIGENCIA = $fechaInicio->modify('-1 day')->format('Y-m-d');
+		
+				$indicador->FECHA_FIN_VIGENCIA = $fechaInicio->modify('+20 day')->format('Y-m-d');
+		
+				$indicador->save();
+		
+		
+			}
+			
+			
 				
 				
 		}
+		/**
+		 * Indicador "caundo una constancia este erronea y la rechaza el MANAGER "
+		 */
 		
+		
+		if ($constancia->ESTATUS == Constancia::STATUS_RECHAZADA_MANAGER ){
+		
+		
+			$fechaInicio = new \DateTime($constancia->ULTIMA_MODIFICACION);
+		
+			if ($fechaInicio!== false){
+		
+				$indicador = new IndicadorConstancia();
+		
+		
+				$indicador->TITULO  = 'Constancia rechazada';
+		
+				$indicador->ID_CONSTANCIA = $constancia->ID_CONSTANCIA;
+		
+				$indicador->ACTIVO = 1;
+		
+				$indicador->DATA = 'El manager encontro una anomalia en la constancia, favor de hacer las correcciones nesesarias para esta constancia.';
+		
+				$indicador->FECHA_CREACION = date("Y-m-d H:i:s");
+		
+				$indicador->CLAVE = "CON0003";
+		
+				$indicador->FECHA_INICIO_VIGENCIA = $fechaInicio->modify('-1 day')->format('Y-m-d');
+		
+				$indicador->FECHA_FIN_VIGENCIA = $fechaInicio->modify('+20 day')->format('Y-m-d');
+		
+				$indicador->save();
+		
+		
+			}
+		}
+		
+		/**
+		 * Indicador "el intructor asigna una constancia"
+		 */
+		
+		if ($constancia->ESTATUS == Constancia::STATUS_ASIGNADA){
+		
+		
+			$fechaInicio = new \DateTime($constancia->ULTIMA_MODIFICACION);
+		
+			if ($fechaInicio!== false){
+		
+				$indicador = new IndicadorConstancia();
+		
+		
+				$indicador->TITULO  = 'Constancia asignada';
+		
+				$indicador->ID_CONSTANCIA = $constancia->ID_CONSTANCIA;
+		
+				$indicador->ACTIVO = 1;
+		
+				$indicador->DATA = 'El manager ha asignado una constancia para usted, favor de  hacer la evaluacion correspondiente.';
+		
+				$indicador->FECHA_CREACION = date("Y-m-d H:i:s");
+		
+				$indicador->CLAVE = "CON0001";
+		
+				$indicador->FECHA_INICIO_VIGENCIA = $fechaInicio->modify('-1 day')->format('Y-m-d');
+		
+				$indicador->FECHA_FIN_VIGENCIA = $fechaInicio->modify('+20 day')->format('Y-m-d');
+		
+				$indicador->save();
+		
+		
+			}
+		
+		
+		}
 		
 		/**
 		 * Indicador "Constancias recibidas"
@@ -556,7 +671,7 @@ public static function setIndicadorConstancia($constancia){
 		
 				$indicador->FECHA_CREACION = date("Y-m-d H:i:s");
 		
-				$indicador->CLAVE = "CON0002";
+				$indicador->CLAVE = "CON0005";
 		
 				$indicador->FECHA_INICIO_VIGENCIA = $fechaInicio->modify('-1 day')->format('Y-m-d');
 		
@@ -570,45 +685,7 @@ public static function setIndicadorConstancia($constancia){
 		
 		}
 		
-		/**
-		 * Indicador "Una vez emitida la constancia se debe entregar al trabajador  en no  mas e 20 dias"
-		 */
 		
-		if ($constancia->ESTATUS == Constancia::STATUS_SIGNED_REPRESENTATIVE){
-				
-				
-			$fechaInicio = new \DateTime($constancia->ULTIMA_MODIFICACION);
-				
-			if ($fechaInicio!== false){
-		
-				$indicador = new IndicadorConstancia();
-		
-		
-				$indicador->TITULO  = 'Enviar la constancia al trabajador';
-		
-				$indicador->ID_CONSTANCIA = $constancia->ID_CONSTANCIA;
-		
-				$indicador->ACTIVO = 1;
-		
-				$indicador->DATA = 'Se deberá entregar a los trabajadores que aprueben el curso de capacitación o el examen de suficiencia, dentro de los veinte días hábiles posteriores al término del mismo.
-						 Las empresas deberán tener a disposición de la Secretaría, como parte de sus registros internos,
-						copia de las constancias de competencias o de habilidades laborales expedidas a sus trabajadores durante el último año';
-		
-				$indicador->FECHA_CREACION = date("Y-m-d H:i:s");
-		
-				$indicador->CLAVE = "CON0003";
-		
-				$indicador->FECHA_INICIO_VIGENCIA = $fechaInicio->modify('-1 day')->format('Y-m-d');
-		
-				$indicador->FECHA_FIN_VIGENCIA = $fechaInicio->modify('+20 day')->format('Y-m-d');
-		
-				$indicador->save();
-		
-		
-			}
-				
-				
-		}
 		
 	}
 	
