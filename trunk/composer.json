@@ -38,7 +38,8 @@
         "kartik-v/yii2-widgets": "dev-master",
         "kartik-v/yii2-checkbox-x": "*",
         "robregonm/yii2-pdf": "*",
-        "miloschuman/yii2-highcharts-widget": "dev-master"
+        "miloschuman/yii2-highcharts-widget": "dev-master",
+        "kartik-v/yii2-password": "@dev"
 
 	},
 	"require-dev": {
