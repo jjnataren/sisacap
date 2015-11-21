@@ -793,9 +793,16 @@ class ConstanciasController extends \yii\web\Controller
     					$constancia->ID_CURSO = $id;
     					$constancia->FECHA_CREACION = date("Y-m-d H:i:s");
     					$constancia->ESTATUS = 1;
+    				
+    					if ($constancia->ESTATUS =3){
+    				  		   		   						
+    						
+    					}else { $constanciaModel->ESTATUS = Constancia::STATUS_ASIGNADA;
+    					
+    					
     					$constancia->ID_EMPRESA = $companyModel->ID_EMPRESA;
     					$constancia->ID_PLAN = $courseModel->ID_PLAN;
-    						
+    					}
     						
     				}else{
     						
@@ -827,7 +834,7 @@ class ConstanciasController extends \yii\web\Controller
     			'body'=>'<i class="fa fa-check fa-lg"> </i>'.Yii::t('frontend', "Constancia(s) guardadas correctamente")
     			]);
     			 
-    			return $this->redirect(['createbycourse','id'=>$id, 'id_est'=>$id_establishment]); // redirect to your next desired page
+    			return $this->redirect(['course-by-instructor','id'=>$id, 'id_est'=>$id_establishment]); // redirect to your next desired page
     			 
     			 
     		}else  return $this->render('create_constancias', [
