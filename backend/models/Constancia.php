@@ -107,6 +107,149 @@ class Constancia extends \yii\db\ActiveRecord
 				];
 	}
 	
+	
+	public static function getAvaliableStatusByRol($currentStatus, $rol){
+	
+		$avaliableStatuses = [];
+		
+		
+	switch ($rol){
+		
+	
+	CASE 5:	//manager
+		
+		switch ($currentStatus){
+			
+			case self::STATUS_ALREADY:
+				
+				$avaliableStatuses = 	[Constancia::STATUS_ASIGNADA =>'Asignada',
+				Constancia::STATUS_ALREADY =>'Editando',
+				];
+				
+				
+			break;
+
+			case self::STATUS_ASIGNADA:
+			
+				$avaliableStatuses = 	[Constancia::STATUS_ASIGNADA =>'Asignada',
+				];
+			
+				break;
+
+
+				case self::STATUS_SIGNED_INSTRUCTOR:
+						
+					$avaliableStatuses = 	[Constancia::STATUS_RECHAZADA_MANAGER =>'Rechazada por manager',
+					Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firmada instructor',
+					Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firmar representante',
+					];
+						
+				break;
+				case self::STATUS_SIGNED_REPRESENTATIVE:
+				
+					$avaliableStatuses = 	[
+					Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firmada instructor',
+					Constancia::STATUS_DELIVERED =>'Enviada',
+					];
+				
+					break;
+					case self::STATUS_DELIVERED:
+					
+						$avaliableStatuses = 	[
+						Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firmada instructor',
+						Constancia::STATUS_DELIVERED =>'Enviada',
+						];
+					
+						break;
+			
+				
+				case self::STATUS_RECHAZADA_MANAGER:
+				
+					$avaliableStatuses = 	[Constancia::STATUS_RECHAZADA_MANAGER =>'Rechazada por manager',
+					
+					
+					];
+				
+					break;
+					
+					case self::STATUS_REJECTED:
+					
+						$avaliableStatuses = 	[Constancia::STATUS_RECHAZADA_MANAGER =>'Rechazada por manager',
+						Constancia::STATUS_ASIGNADA =>'Asignada',
+						Constancia::STATUS_REJECTED =>'Rechazada instructor',
+						];
+					
+						break;
+				
+			default:
+			break;	
+			
+		}
+
+		break;
+		
+	CASE 7:
+
+		switch ($currentStatus){
+				
+			case self::STATUS_ASIGNADA:
+		
+				$avaliableStatuses = 	[Constancia::STATUS_ASIGNADA =>'Asignada',
+				Constancia::STATUS_REJECTED =>'Rechazada por instructor',
+				Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firmada instructor',
+				];
+		
+		
+				break;
+		
+			case self::STATUS_REJECTED:
+					
+				$avaliableStatuses = 	[Constancia::STATUS_REJECTED =>'Rechazada por instructor',
+				];
+					
+				break;
+		
+		
+			case self::STATUS_SIGNED_INSTRUCTOR:
+		
+				$avaliableStatuses = 	[
+				Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firmar instructor',
+				];
+		
+				break;
+			
+				case self::STATUS_RECHAZADA_MANAGER:
+				
+					$avaliableStatuses = 	[
+					Constancia::STATUS_REJECTED =>'Rechazada por instructor',
+					Constancia::STATUS_RECHAZADA_MANAGER =>'Rechazada por manager',
+					Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firmada instructor',
+					];
+				
+				
+					break;
+		
+			default:
+				break;
+					
+		}
+		
+	break;	
+		
+		
+		
+			default:
+			break;	
+	}
+		
+		return $avaliableStatuses;
+		
+		
+		
+	}
+	
+	
+	
 	public function getCurrentStatus(){
 	
 		return  isset(Constancia::getAllEstatusType()[$this->ESTATUS])?Constancia::getAllEstatusType()[$this->ESTATUS] : 'no establecido';
