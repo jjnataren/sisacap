@@ -13,7 +13,7 @@ use backend\models\PuestoEmpresa;
 use yii\grid\GridView;
 use kartik\checkbox\CheckboxX;
 use backend\models\EmpresaUsuario;
-
+use backend\models\Curso;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\ComisionMixtaCap */
@@ -135,18 +135,25 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 
                         <dt><?= Yii::t('backend', 'Fecha de inicio') ?></dt>
                         <dd><?=($model->FECHA_INICIO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->FECHA_INICIO)) ;?></dd>
-                     
-                
+                                    
                         
                         <dt><?= Yii::t('backend', 'Fecha de termino') ?></dt>
                          <dd><?=($model->FECHA_TERMINO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->FECHA_TERMINO)) ;?></dd>
                   
                         
                         <dt><?= Yii::t('backend', 'Duracion horas') ?></dt>
-                        <dd><?= $model->DURACION_HORAS?></dd>
+                        
                         
                           <dt><?= Yii::t('backend', 'Area tematica') ?></dt>
+                          
+                          
                         <dd><?= $model->AREA_TEMATICA ?></dd>
+                        
+                        <dt><?= Yii::t('backend', 'Estatus') ?></dt>
+                          <dd><span class="label label-success"><?= Curso::statusDescription()[ $model->getCurrentStatus() ]; ?></span></dd>
+                     
+                        
+                       
                                                      
                    </dl>
           </div><!-- /.box-body -->
