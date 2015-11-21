@@ -31,10 +31,10 @@ $this->registerJs("
 
 use Openbuildings\Swiftmailer\CssInlinerPlugin;
 
-
-
 $this->params['breadcrumbs'][] = ['label' => 'Curso Id '.$model->ID_CURSO ,'url'=>['constancias/course-by-instructor','id'=>$model->ID_CURSO ] ];
+
 $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTANCIA ];
+
 
 ?>
 
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
 
 <div class="callout callout-warning">
 	<h4><i class="fa fa-info-circle"></i> Resumen de la Constancia</h4>
-	<p>- Esta es solo una pre visualización de la constancia,  formato DC-3 <br />
+	<p>- Esta es solo una pre visualización de la constancia, puede imprimir el comprobante o el formato DC-3 <br />
 		- Puede editar los parámetros  de la constancia
 	
 	</p>
@@ -139,33 +139,12 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
                     <div class="row no-print">
                         <div class="col-xs-12">
                         
-                        <!--  	<?= Html::a('<i class="fa fa-download"></i> Descargar en comprobante', ['constancia-comprobante-pdf', 'id'=>$model->ID_CONSTANCIA],  ['target' => '_blank', 'class'=>"btn btn-primary" ]) ?>
+                        	<?= Html::a('<i class="fa fa-download"></i> Descargar en comprobante', ['constancia-comprobante-pdf', 'id'=>$model->ID_CONSTANCIA],  ['target' => '_blank', 'class'=>"btn btn-primary" ]) ?>
                             
-                            <?= Html::a('<i class="fa fa-download"></i> Descargar en formato DC-3', ['constanciapdf', 'id'=>$model->ID_CONSTANCIA],  ['target' => '_blank', 'class'=>"btn btn-primary" ]) ?>
-                            -->
-                            <?= Html::a('<i class="fa fa-trash"></i> Eliminar', ['delete-constancia', 'id'=>$model->ID_CONSTANCIA],  [ 'class'=>"btn btn-danger", 'data'=>['confirm' => '¿Realmente quiere borrar esta constancia?',
-                												  'method' => 'post',] ]) ?>
+                                          												  '
                 												  
                 			
-                			<!-- 
-                			<?= Html::a('<i class="fa fa-envelope"></i> Enviar notificación',
-                						'#', [
-										'title' => Yii::t('yii', 'Close'),
-									    'onclick'=>"
-										$('#modal_mail_content').html('<h1><i class=\\'fa fa-spinner fa-pulse\\'></i>&nbsp;Enviando notificación ...</h1>');
-                						$('#modal_mail').modal('show');//for jui dialog in my page
-
-									     $.ajax({
-									    type     :'POST',
-									    cache    : false,
-									    url  : 'send-notification?id=$model->ID_CONSTANCIA',
-									    success  : function(response) {
-									        $('#modal_mail_content').html(response);
-									    }
-									    });return false;",
-                						'class'=>"btn btn-success"
-                						
-			                ]);	?>		-->			  
+                							  
                             
                         </div>
                     </div>
@@ -180,7 +159,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
  </h4>
  
  <div class="row">
-                
+ 
+       
+        
          <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="box box-primary">
                 <div class="box-header">
@@ -195,29 +176,17 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
                 </div><!-- /.box-header -->
                 <div class="box-body">
 				
-    				<!-- 	<?= $form->field($model, 'FECHA_EMISION_CERTIFICADO')->widget('trntv\yii\datetimepicker\DatetimepickerWidget', ['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]]) ?>
+    			 	<?= $form->field($model, 'FECHA_EMISION_CERTIFICADO')->widget('trntv\yii\datetimepicker\DatetimepickerWidget', ['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]]) ?>
     					<?= $form->field($model, 'METODO_OBTENCION')->dropDownList(Constancia::getAllMetodosType(),['prompt'=>'-- Seleccione  --','maxlength' => 300]); ?>	
 						<?= $form->field($model, 'TIPO_CONSTANCIA')->dropDownList(Constancia::getAllContanciasType(),['prompt'=>'-- Seleccione  --','maxlength' => 300]); ?>
 						<?=  $form->field($model, 'PROMEDIO')->textInput();  ?>
 						<?= $form->field($model, 'APROBADO')->widget(CheckboxX::classname(), ['options'=>['id'=>'chk_aprobado'],'pluginOptions'=>['threeState'=>false]]); ?>
-						-->
-								
-						 		
-								
- <?= DetailView::widget([
-		'model' => $model,
-		'attributes' => [
-		'FECHA_EMISION_CERTIFICADO',
-		'METODO_OBTENCION',
-		'TIPO_CONSTANCIA',
-		'PROMEDIO',
-		'APROBADO',
-		
-		
-],
-    ]) ?>				
-    <?= $form->field($model, 'ESTATUS')->dropDownList(Constancia::getAllEstatusType(),['prompt'=>'-- Seleccione  --',]); ?>
-<!--  -->		<?=  $form->field($model, 'COMENTARIO')->textArea(Constancia:: getAllEstatusType(), ['id'=>'drop_coment']) ?>  							
+						
+												 									
+ 
+			
+    <?= $form->field($model, 'ESTATUS')->dropDownList(Constancia::getAllEstatusTypeInstructor(),['prompt'=>'-- Seleccione  --',]); ?>
+		<?=  $form->field($model, 'COMENTARIO')->textArea(Constancia:: getAllEstatusType(), ['id'=>'drop_coment']) ?>  							
 
 				 						
 								
@@ -231,6 +200,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
            </div>     
               
  </div>
+ 
        
  <?php ActiveForm::end(); ?>
  
@@ -257,3 +227,7 @@ yii\bootstrap\Modal::end();
  
  
  
+
+ 
+ 
+        
