@@ -342,6 +342,21 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 							<?php $i = 0; foreach ($constancias as $constancia) :?>
 							<?php $worker = $constancia->iDTRABAJADOR;?>
 							
+							<?php   
+							
+							$estatus = Constancia::getAllEstatusType();
+							
+						/*	$estatus =  null;
+							
+							if($constancia->ESTATUS > 2){
+							
+							$estatus = [Constancia::STATUS_ASIGNADA=>'Asignada',Constancia::STATUS_DELIVERED=>'Firmada' ];  
+							
+							
+							}else $estatus = Constancia::getAllEstatusType(); 
+							*/
+							?>
+							
 								<tr>
 									<td ><?= $worker->ID_TRABAJADOR?><?= $form->field($constancia, "[$i]ID_TRABAJADOR")->hiddenInput(['id'=>'hid_id_instructor'])->label(false) ?></td>
 									<td><?= $worker->NOMBRE.' '. $worker->APP ?></td>
@@ -349,7 +364,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 									<td><?= isset($worker->pUESTO)?$worker->pUESTO->NOMBRE_PUESTO: ''?></td>
 						<!-- 			<td><?= $form->field($constancia, "[$i]METODO_OBTENCION")->dropDownList(Constancia::getAllMetodosType(),['prompt'=>'- Seleccione -','style' => 'width: 170px;'])->label(false) ?></td> -->	
 						<!-- 			<td><?= $form->field($constancia, "[$i]TIPO_CONSTANCIA")->dropDownList(Constancia::getAllContanciasType(),['prompt'=>'- Seleccione -','style' => 'width: 130px;'])->label(false) ?></td> -->
-									<td><?= $form->field($constancia, "[$i]ESTATUS")->dropDownList(Constancia::getAllEstatusType(),['prompt'=>'-- Seleccione  --','style' => 'width: 100px;'])->label(false) ?></td>
+									<td><?= $form->field($constancia, "[$i]ESTATUS")->dropDownList($estatus,['style' => 'width: 100px;'])->label(false) ?></td>
                        <!--              <td>
 	                                                                    
 	                                    <?= $form->field($constancia, "[$i]PROMEDIO")->textInput(['maxlength' => 50, 'style' => 'width: 50px;'])->label(false)?>
