@@ -109,6 +109,35 @@ class IndicadorCursoController extends Controller
     
     
     
+
+    /**
+     * Deletes an existing IndicadorCurso model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDeleteByInstructor($id)
+    {
+    	
+    	$modelInstructor = Instructor::getOwnData();
+    	
+    	$model = $this->findModel($id);
+    	
+		if ($modelInstructor->ID_INSTRUCTOR ==! $model->iDCURSO->ID_INSTRUCTOR) {   	
+			throw new NotFoundHttpException('The requested page does not exist.');
+    
+		}
+
+		
+		$model->delete();
+		
+			
+    	return $this->redirect(['index-by-instructor']);
+    	
+    }
+    
+    
+    
     /**
      * Lists all IndicadorCurso models.
      * @return mixed
@@ -160,7 +189,7 @@ class IndicadorCursoController extends Controller
                             		(select id_curso from tbl_curso where id_plan in
                             			(select id_plan from tbl_plan where id_comision in
                             				(select id_comision from tbl_comision_mixta_cap where id_empresa = '.$companyModel->ID_EMPRESA.' and ACTIVO=1) AND ACTIVO=1) AND id_instructor  = '.$instructorModel->ID_INSTRUCTOR.' ) '
-    			.' AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia
+    			.' AND (CLAVE = \'CUR0003\'  OR CLAVE = \'CUR0004\') AND  curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia
     											 ');
     	 
     	$dataProvider = new ActiveDataProvider([
@@ -191,11 +220,16 @@ class IndicadorCursoController extends Controller
     	$model = $this->findModel($id);
     
     	if ($companyModel->ID_EMPRESA !== $model->iDCURSO->iDPLAN->iDCOMISION->ID_EMPRESA    ||   
-    			$instructorModel->ID_INSTRUCTOR =! $model->iDCURSO->ID_INSTRUCTOR  ){
-    
-    		throw new NotFoundHttpException('The requested page does not exist.');
+    			$instructorModel->ID_INSTRUCTOR =! $model->iDCURSO->ID_INSTRUCTOR     ){
+
+    			throw new NotFoundHttpException('The requested page does not exist.');
     	}
     
+
+    	if ( !($model->CLAVE === 'CUR0003' || $model->CLAVE === 'CUR0004' )){
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    	}
+    	
     	return $this->render('view_by_instructor', [
     			'model' => $model
     	]);
