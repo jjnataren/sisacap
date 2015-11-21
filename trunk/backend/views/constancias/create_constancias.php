@@ -135,25 +135,22 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 
                         <dt><?= Yii::t('backend', 'Fecha de inicio') ?></dt>
                         <dd><?=($model->FECHA_INICIO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->FECHA_INICIO)) ;?></dd>
-                                    
+                     
+                
                         
                         <dt><?= Yii::t('backend', 'Fecha de termino') ?></dt>
                          <dd><?=($model->FECHA_TERMINO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->FECHA_TERMINO)) ;?></dd>
                   
                         
                         <dt><?= Yii::t('backend', 'Duracion horas') ?></dt>
-                        
+                        <dd><?= $model->DURACION_HORAS?></dd>
                         
                           <dt><?= Yii::t('backend', 'Area tematica') ?></dt>
-                          
-                          
                         <dd><?= $model->AREA_TEMATICA ?></dd>
                         
-                        <dt><?= Yii::t('backend', 'Estatus') ?></dt>
+                         <dt><?= Yii::t('backend', 'Estatus') ?></dt>
                           <dd><span class="label label-success"><?= Curso::statusDescription()[ $model->getCurrentStatus() ]; ?></span></dd>
                      
-                        
-                       
                                                      
                    </dl>
           </div><!-- /.box-body -->
@@ -351,7 +348,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 							
 							<?php   
 							
-							$estatus = Constancia::getAllEstatusType();
+							$estatus = Constancia::getAvaliableStatusByRol($constancia->ESTATUS, 5);
 							
 						/*	$estatus =  null;
 							
@@ -371,7 +368,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 									<td><?= isset($worker->pUESTO)?$worker->pUESTO->NOMBRE_PUESTO: ''?></td>
 						<!-- 			<td><?= $form->field($constancia, "[$i]METODO_OBTENCION")->dropDownList(Constancia::getAllMetodosType(),['prompt'=>'- Seleccione -','style' => 'width: 170px;'])->label(false) ?></td> -->	
 						<!-- 			<td><?= $form->field($constancia, "[$i]TIPO_CONSTANCIA")->dropDownList(Constancia::getAllContanciasType(),['prompt'=>'- Seleccione -','style' => 'width: 130px;'])->label(false) ?></td> -->
-									<td><?= $form->field($constancia, "[$i]ESTATUS")->dropDownList($estatus,['style' => 'width: 100px;'])->label(false) ?></td>
+									<td><?= $form->field($constancia, "[$i]ESTATUS")->dropDownList($estatus,['style' => 'width: 180px;'])->label(false) ?></td>
                        <!--              <td>
 	                                                                    
 	                                    <?= $form->field($constancia, "[$i]PROMEDIO")->textInput(['maxlength' => 50, 'style' => 'width: 50px;'])->label(false)?>
@@ -446,7 +443,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 						       <?php if (isset($constancias) && count($constancias)>0) :?>
 							        <?= Html::submitButton('<i class="fa fa-floppy-o"></i>' .'&nbsp;'.Yii::t('backend', 'Guardar cambios'), ['class' => 'btn btn-success', 'name'=>'proccess' ]) ?>
 						        <?php endif;?>   
-						</div>
+						</div>  
 			
 			 <?php ActiveForm::end(); ?>
 		
