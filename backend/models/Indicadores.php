@@ -536,7 +536,7 @@ public static function setIndicadorConstancia($constancia){
 		 */
 		
 		
-		if ($constancia->ESTATUS == Constancia::STATUS_RECHANZADA_INSTRUCTOR ){
+		if ($constancia->ESTATUS == Constancia::STATUS_REJECTED ){
 				
 				
 			$fechaInicio = new \DateTime($constancia->ULTIMA_MODIFICACION);
