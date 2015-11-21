@@ -65,6 +65,8 @@ class Constancia extends \yii\db\ActiveRecord
 	const STATUS_SIGNED_REPRESENTATIVE=5;	
 	const STATUS_DELIVERED= 6;
 	const STATUS_REJECTED=7;
+	const STATUS_RECHAZADA_MANAGER=8;
+	
 	
 	/**
 	 *
@@ -90,7 +92,8 @@ class Constancia extends \yii\db\ActiveRecord
 				Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firma instructor',
 				Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firma representante legal',
 				Constancia::STATUS_DELIVERED =>'Enviada',
-				Constancia::STATUS_REJECTED =>'Rechazada por instructor' 
+				Constancia::STATUS_REJECTED =>'Rechazada por instructor',						
+				Constancia::STATUS_RECHAZADA_MANAGER =>'Rechazada por manager'
 		];
 	}
 	
