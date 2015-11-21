@@ -26,6 +26,7 @@ use backend\models\Plan;
 							];					
           
             $companyByUser = new EmpresaUsuario();
+            $instructor = null;
             
             $totalPlans = 0;
             $totalCourses = 0;
@@ -428,6 +429,95 @@ use backend\models\Plan;
                         </li>
                         <li class="footer">
                             <?= Html::a(Yii::t('backend', 'Ver todas'), ['/indicador-constancia/index-by-company']) ?>
+                        </li>
+                    </ul>
+                </li>
+                
+                
+                <?php elseif(!Yii::$app->user->can('administrator') && Yii::$app->user->can('instructor')  ):?>
+                
+                 <li id="notifications-dropdown" class="dropdown notifications-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-laptop"></i>
+                        <span class="badge bg-green">
+                            <?= count(\backend\models\IndicadorComision::findBySql('select * from tbl_indicador_curso where id_curso in 
+                            		(select id_curso from tbl_curso where id_plan in 
+                            			(select id_plan from tbl_plan where id_comision in 
+                            				(select id_comision from tbl_comision_mixta_cap where id_empresa = '.$companyByUser->ID_EMPRESA.' and ACTIVO=1) ) 
+                            		  AND id_instructor = '.$instructor->ID_INSTRUCTOR.')  AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia  ')->all()) ?>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="header">
+                            <?php echo 'Notificaciones de cursos'?>
+                        </li>
+                        <li>
+                            <!-- inner menu: contains the actual data -->
+                            <ul class="menu">
+                                <?php foreach(\backend\models\IndicadorCurso::findBySql('select * from tbl_indicador_curso where id_curso in 
+                            		(select id_curso from tbl_curso where id_plan in 
+                            			(select id_plan from tbl_plan where id_comision in 
+                            				(select id_comision from tbl_comision_mixta_cap where id_empresa = '.$companyByUser->ID_EMPRESA.' and ACTIVO=1) ) 
+                            		  AND id_instructor = '.$instructor->ID_INSTRUCTOR.')  AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia  ')->orderBy(['fecha_inicio_vigencia'=>SORT_DESC])->limit(10)->all() as $eventRecord): ?>
+                                    <li>
+                                        <a href="<?= Yii::$app->urlManager->createUrl(['/indicador-curso/view-by-company', 'id'=>$eventRecord->ID_EVENTO]) ?>">
+                                            <i class="fa fa-bell"></i>
+                                            <?='ID '. $eventRecord->ID_CURSO .'-' .  $eventRecord->TITULO ?>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </li>
+                        <li class="footer">
+                            <?= Html::a(Yii::t('backend', 'ver todas'), ['/indicador-curso/index-by-company']) ?>
+                           
+                        </li>
+                    </ul>
+                </li>
+                
+                  <li id="log-dropdown" class="dropdown notifications-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-file-pdf-o"></i>
+                        <span class="badge bg-yellow">
+                            <?= $tIndicadorConstancia = count(\backend\models\IndicadorConstancia::findBySql(
+                            	  'select * from tbl_indicador_constancia where id_constancia in 
+                            		(select id_constancia from tbl_constancia where id_trabajador in 
+                             			(select id_trabajador from tbl_trabajador where id_empresa in 
+                            				(select id_empresa from tbl_empresa where id_empresa_padre = '.$companyByUser->ID_EMPRESA.' OR id_empresa = '.$companyByUser->ID_EMPRESA.'  and ACTIVO=1) 
+                            			AND ACTIVO=1)
+                            		AND ACTIVO=1
+                            		AND id_curso in (select id_curso from tbl_curso where id_instructor  = '.$instructor->ID_INSTRUCTOR.' AND ACTIVO = 1)
+                            		)
+                             	  AND CLAVE = \'CON0004\' AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia')->all()) ?>
+                      
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="header"><?= Yii::t('backend', 'Hay {num} notificaciones en constancias', ['num'=>$tIndicadorConstancia]) ?></li>
+                        <li>
+                            <!-- inner menu: contains the actual data -->
+                            <ul class="menu">
+                                <?php foreach(\backend\models\IndicadorConstancia::findBySql(
+                            	  'select * from tbl_indicador_constancia where id_constancia in 
+                            		(select id_constancia from tbl_constancia where id_trabajador in 
+                             			(select id_trabajador from tbl_trabajador where id_empresa in 
+                            				(select id_empresa from tbl_empresa where id_empresa_padre = '.$companyByUser->ID_EMPRESA.' OR id_empresa = '.$companyByUser->ID_EMPRESA.'  and ACTIVO=1) 
+                            			AND ACTIVO=1)
+                            		AND ACTIVO=1
+                            		AND id_curso in (select id_curso from tbl_curso where id_instructor  = '.$instructor->ID_INSTRUCTOR.' AND ACTIVO = 1)
+                            		)
+                             	  AND CLAVE = \'CON0004\' AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia')->orderBy(['fecha_inicio_vigencia'=>SORT_DESC])->limit(10)->all() as $identificadorConstancia): ?>
+                                    <li>
+                                        <a href="<?= Yii::$app->urlManager->createUrl(['/indicador-constancia/view-by-company', 'id'=>$identificadorConstancia->ID_EVENTO]) ?>">
+                                            <i class="fa fa-bell <?= ''; //$logEntry->level == \yii\log\Logger::LEVEL_ERROR ? 'bg-red' : 'bg-yellow' ?>"></i>
+                                            <?= 'ID '.$identificadorConstancia->ID_CONSTANCIA. '- ' . $identificadorConstancia->TITULO ?>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </li>
+                        <li class="footer">
+                            <?= Html::a(Yii::t('backend', 'Ver todas'), ['/indicador-constancia/index-by-instructor']) ?>
                         </li>
                     </ul>
                 </li>
