@@ -394,7 +394,67 @@ public static function setIndicadorCurso($curso){
 				$modelIndicador->save();
 					
 			}
-
+			
+			
+			//INDICADORES PARA EL INSTRUCTOR 
+			
+			/*
+			 * Indicador inicio del curso */
+				
+			$fechaInicio = new \DateTime($curso->FECHA_INICIO);
+				
+			if ($fechaInicio !== false){
+					
+					
+				$modelIndicador = new IndicadorCurso();
+					
+				$modelIndicador->ACTIVO = 1;
+					
+				$modelIndicador->FECHA_INICIO_VIGENCIA= $fechaInicio->modify('-5 day')->format('Y-m-d');
+					
+				$modelIndicador->FECHA_FIN_VIGENCIA = $fechaInicio->modify('+5 day')->format('Y-m-d');
+					
+				$modelIndicador->TITULO = 'Curso por  Iniciar';
+					
+				$modelIndicador->DATA = 'Está por iniciar un curso, deberá preparar todo lo necesario para impartir el curso.';
+				$modelIndicador->CLAVE="CUR0003";
+				$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
+					
+				$modelIndicador->ID_CURSO  = $curso->ID_CURSO;
+					
+				$modelIndicador->save();
+					
+			}
+			
+			$fechaTerminoCurso = new \DateTime($curso->FECHA_TERMINO);
+			
+			if ($fechaTerminoCurso !== false){
+					
+					
+				$modelIndicador = new IndicadorCurso();
+			
+				$modelIndicador->ACTIVO = 1;
+			
+				$modelIndicador->FECHA_INICIO_VIGENCIA= $fechaTerminoCurso->modify('-15 day')->format('Y-m-d');
+			
+				$modelIndicador->FECHA_FIN_VIGENCIA = $fechaTerminoCurso->modify('+20 day')->format('Y-m-d');
+			
+				$modelIndicador->TITULO =  'Curso por terminar';
+					
+				$modelIndicador->CLAVE="CUR0004";
+			
+				$modelIndicador->DATA = 'El curso está por terminar, favor de concluir con la firma de constancias faltantes.';
+			
+				$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
+			
+				$modelIndicador->ID_CURSO  = $curso->ID_CURSO;
+			
+				$modelIndicador->save();
+					
+			}
+			
+			
+				
 	}
 
 
@@ -413,7 +473,7 @@ public static function setIndicadorCurso($curso){
 
 
 /**
- * 
+ * indicadores de las constancias 
  * @param Constancia $constancia
  */
 public static function setIndicadorConstancia($constancia){
