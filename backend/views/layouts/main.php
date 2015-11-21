@@ -57,9 +57,7 @@ use backend\models\Plan;
              
             }else if(Yii::$app->user->can('manager')){
             	
-            	
             	$companyByUser = EmpresaUsuario::getMyCompany();
-            	
             		
             		
             		/**
@@ -228,9 +226,6 @@ use backend\models\Plan;
 							$courses = null;
 
 						}
-						
-						
-						
 						
 							
 					}
