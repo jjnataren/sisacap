@@ -13,7 +13,7 @@ use backend\models\PuestoEmpresa;
 use yii\grid\GridView;
 use kartik\checkbox\CheckboxX;
 use backend\models\EmpresaUsuario;
-
+use backend\models\Curso;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\ComisionMixtaCap */
@@ -145,6 +145,8 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
                         <dt><?= Yii::t('backend', 'Descripción') ?></dt>
                         <dd><?= $model->DESCRIPCION	?></dd>
                         
+                       <dt><?= Yii::t('backend', 'Estatus') ?></dt>
+                      <dd><span class="label label-success"><?= Curso::statusDescription()[ $model->getCurrentStatus() ]; ?></span></dd>
                                                
                                                      
                    </dl>
@@ -345,6 +347,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 									<td><?= $form->field($constancia, "[$i]METODO_OBTENCION")->dropDownList(Constancia::getAllMetodosType(),['prompt'=>'- Seleccione -','style' => 'width: 170px;'])->label(false) ?></td> 
 									<td><?= $form->field($constancia, "[$i]TIPO_CONSTANCIA")->dropDownList(Constancia::getAllContanciasType(),['prompt'=>'- Seleccione -','style' => 'width: 130px;'])->label(false) ?></td> 
 									<td><?= $form->field($constancia, "[$i]ESTATUS")->dropDownList(Constancia::getAllEstatusTypeInstructor(),['prompt'=>'-- Seleccione  --','style' => 'width: 100px;'])->label(false) ?></td>
+                                 
                                   <td>
 	                                                                    
 	                                    <?= $form->field($constancia, "[$i]PROMEDIO")->textInput(['maxlength' => 50, 'style' => 'width: 50px;'])->label(false)?>
