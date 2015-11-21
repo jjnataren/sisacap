@@ -338,7 +338,14 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 							<tbody>
 							<?php $i = 0; foreach ($constancias as $constancia) :?>
 							<?php $worker = $constancia->iDTRABAJADOR;?>
+							   				
+									<?php if ($constancia->ESTATUS === Constancia::STATUS_ASIGNADA || 
+												$constancia->ESTATUS  ===  Constancia::STATUS_REJECTED ||  
+													$constancia->ESTATUS  ===  Constancia::STATUS_RECHAZADA_MANAGER || 
+														$constancia->ESTATUS  ===  Constancia::STATUS_SIGNED_INSTRUCTOR  ) :?>
+							 
 							
+							<?php $avaliableStatus = Constancia::getAvaliableStatusByRol($constancia->ESTATUS, 7); ?>
 								<tr>
 									<td ><?= $worker->ID_TRABAJADOR?><?= $form->field($constancia, "[$i]ID_TRABAJADOR")->hiddenInput(['id'=>'hid_id_instructor'])->label(false) ?></td>
 									<td><?= $worker->NOMBRE.' '. $worker->APP ?></td>
@@ -346,7 +353,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 									<td><?= isset($worker->pUESTO)?$worker->pUESTO->NOMBRE_PUESTO: ''?></td>
 									<td><?= $form->field($constancia, "[$i]METODO_OBTENCION")->dropDownList(Constancia::getAllMetodosType(),['prompt'=>'- Seleccione -','style' => 'width: 170px;'])->label(false) ?></td> 
 									<td><?= $form->field($constancia, "[$i]TIPO_CONSTANCIA")->dropDownList(Constancia::getAllContanciasType(),['prompt'=>'- Seleccione -','style' => 'width: 130px;'])->label(false) ?></td> 
-									<td><?= $form->field($constancia, "[$i]ESTATUS")->dropDownList(Constancia::getAllEstatusTypeInstructor(),['prompt'=>'-- Seleccione  --','style' => 'width: 100px;'])->label(false) ?></td>
+									<td><?= $form->field($constancia, "[$i]ESTATUS")->dropDownList($avaliableStatus,['style' => 'width: 180px;'])->label(false) ?></td>
                                  
                                   <td>
 	                                                                    
@@ -357,21 +364,26 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 								    <?= $form->field($constancia, "[$i]APROBADO")->widget(CheckboxX::classname(), ['options'=>['id'=>'chk_pass'.$constancia->ID_CONSTANCIA],'pluginOptions'=>['threeState'=>false]])->label(false); ?>
 								    </td>
 								   
-								      <td>   					
+								      <td>   	
+								      				
 									<?php if (!$constancia->isNewRecord){?>
 										   <?= Html::a('<i class="fa fa-download"></i>', ['constanciapdf', 'id'=>$constancia->ID_CONSTANCIA],  ['target' => '_blank',  'class' => 'btn btn-success btn-xs' ]) ?>
 																	<?= Html::a('<i class="fa fa-eye"></i>', ['constancias/dashboard-by-instructor', 'id'=>$constancia->ID_CONSTANCIA],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
-                												
-            													
+                									
+                									
 									<?php }else{?>
 										<span class="fa-stack fa-lg">
   											<i class="fa fa-download fa-stack-1x"></i>
   											<i class="fa fa-ban fa-stack-1x text-danger"></i>
 										</span>
-									<?php }?>
+									 <?php }?>
+								
+								
 									
 									</td>
 								</tr>	
+								
+								<?php endif;?>
 								
 							<?php  $i++; endforeach;?>
 							</tbody>
