@@ -632,7 +632,7 @@ public static function setIndicadorConstancia($constancia){
 		
 				$indicador->FECHA_CREACION = date("Y-m-d H:i:s");
 		
-				$indicador->CLAVE = "CON0001";
+				$indicador->CLAVE = "CON0004";
 		
 				$indicador->FECHA_INICIO_VIGENCIA = $fechaInicio->modify('-1 day')->format('Y-m-d');
 		
