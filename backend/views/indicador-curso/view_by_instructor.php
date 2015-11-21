@@ -1,4 +1,4 @@
-<?php
+
 <?php
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -21,7 +21,7 @@ $this->params ['breadcrumbs'] [] = $this->title;
 
 ?>
 
-
+<div class="row">
 <div class="col-md-6 col-sm-12 col-xs-6">
 	<div class="box box-info">
 		<div class="box-header">
@@ -129,4 +129,4 @@ $this->params ['breadcrumbs'] [] = $this->title;
 </div>
 <!-- /.box-body -->
 
-
+</div>
