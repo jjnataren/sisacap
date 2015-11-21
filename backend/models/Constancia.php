@@ -93,7 +93,21 @@ class Constancia extends \yii\db\ActiveRecord
 	}
 	
 	
+	public static function getAllEstatusTypeInstructor(){
+	
+		return [Constancia::STATUS_ASIGNADA =>'Asignada',
+		Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firma instructor',
+	
+				];
+	}
+	
 	public function getCurrentStatus(){
+	
+		return  isset(Constancia::getAllEstatusType()[$this->ESTATUS])?Constancia::getAllEstatusType()[$this->ESTATUS] : 'no establecido';
+	
+	}
+	
+	public function getCurrentStatusInstructor(){
 	
 		return  isset(Constancia::getAllEstatusType()[$this->ESTATUS])?Constancia::getAllEstatusType()[$this->ESTATUS] : 'no establecido';
 	
