@@ -344,7 +344,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 									<td><?= isset($worker->pUESTO)?$worker->pUESTO->NOMBRE_PUESTO: ''?></td>
 									<td><?= $form->field($constancia, "[$i]METODO_OBTENCION")->dropDownList(Constancia::getAllMetodosType(),['prompt'=>'- Seleccione -','style' => 'width: 170px;'])->label(false) ?></td> 
 									<td><?= $form->field($constancia, "[$i]TIPO_CONSTANCIA")->dropDownList(Constancia::getAllContanciasType(),['prompt'=>'- Seleccione -','style' => 'width: 130px;'])->label(false) ?></td> 
-									<td><?= $form->field($constancia, "[$i]ESTATUS")->dropDownList(Constancia::getAllEstatusInstructor(),['prompt'=>'-- Seleccione  --','style' => 'width: 100px;'])->label(false) ?></td>
+									<td><?= $form->field($constancia, "[$i]ESTATUS")->dropDownList(Constancia::getAllEstatusTypeInstructor(),['prompt'=>'-- Seleccione  --','style' => 'width: 100px;'])->label(false) ?></td>
                                   <td>
 	                                                                    
 	                                    <?= $form->field($constancia, "[$i]PROMEDIO")->textInput(['maxlength' => 50, 'style' => 'width: 50px;'])->label(false)?>
@@ -405,7 +405,9 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 						        
 						       
 						       <?php if (isset($constancias) && count($constancias)>0) :?>
-							        <?= Html::submitButton('<i class="fa fa-floppy-o"></i>' .'&nbsp;'.Yii::t('backend', 'Guardar cambios'), ['class' => 'btn btn-success', 'name'=>'proccess' ]) ?>
+							        <?= Html::submitButton('<i class="fa fa-floppy-o"></i>' 
+				  		.'&nbsp;'.Yii::t('backend', 'Guardar cambios'),
+					  		 ['class' => 'btn btn-success', 'name'=>'proccess' ]) ?>
 						        <?php endif;?>   
 						</div>
 			
