@@ -356,10 +356,10 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 								   
 								      <td>   					
 									<?php if (!$constancia->isNewRecord){?>
-											<?= Html::a('<i class="fa fa-eye"></i>', ['constancias/dashboard-by-instructor', 'id'=>$constancia->ID_CONSTANCIA],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
-											<?= Html::a('<i class="fa fa-trash"></i>', ['constancias/delete-constancia', 'id'=>$constancia->ID_CONSTANCIA], ['class' => 'btn btn-danger btn-xs',  'data' => ['confirm' => '¿Realmente quiere borrar esta constancia?',
-                												  'method' => 'post',
-            														],]) ?>
+										   <?= Html::a('<i class="fa fa-download"></i>', ['constanciapdf', 'id'=>$constancia->ID_CONSTANCIA],  ['target' => '_blank',  'class' => 'btn btn-success btn-xs' ]) ?>
+																	<?= Html::a('<i class="fa fa-eye"></i>', ['constancias/dashboard-by-instructor', 'id'=>$constancia->ID_CONSTANCIA],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
+                												
+            													
 									<?php }else{?>
 										<span class="fa-stack fa-lg">
   											<i class="fa fa-download fa-stack-1x"></i>
