@@ -29,9 +29,10 @@ use Yii;
 class Curso extends \yii\db\ActiveRecord
 {
     
-	const  ESTATUS_INICIADO = 1;
-	const  ESTATUS_CREADO = 2;
-	const  ESTATUS_CONCLUIDO = 3;
+	const  STATUS_INICIADO = 1;
+	const  STATUS_CREADO = 2;
+	const  STATUS_CONCLUIDO = 3;
+	const  STATUS_CERRADO =4 ;
 	
 	//$itemsModalidad = [1=>'Presencial',2=>'En linea',3=>'Mixta'];
 	
@@ -69,6 +70,25 @@ class Curso extends \yii\db\ActiveRecord
 				self::obj_vacantes=>'Preparar para ocupar vacantes o puestos de nueva creación',
 		];
 	}
+	
+	
+public  static  function statusDescription(){
+	
+	return [
+0=>'unknow',
+Curso::STATUS_INICIADO =>'Iniciado',
+Curso::STATUS_CREADO =>'Creado',
+Curso::STATUS_CONCLUIDO => 'Concluido',
+Curso::STATUS_CERRADO =>'Cerrado',
+
+
+];
+}
+
+
+
+
+
     /**
      * @inheritdoc
      */
@@ -77,16 +97,19 @@ class Curso extends \yii\db\ActiveRecord
         return 'tbl_curso';
     }
 
+      
     
-    
-    
-    
-    
+    						
     /**
      * Own validation
      * @param unknown $attribute
      * @param unknown $params
-     */
+     * 
+     * */
+    
+  
+    
+    
     public function  validateVigenciaInicioPlan($attribute, $params){
     
     	$v_inicio = new \DateTime($this->$attribute);
@@ -263,4 +286,38 @@ class Curso extends \yii\db\ActiveRecord
     {
         return $this->hasMany(TrabajadorCurso::className(), ['ID_CURSO' => 'ID_CURSO']);
     }
+    
+    
+    
+    /**
+     * returns course's current status
+     * @return string
+     */
+    public function  getCurrentStatus(){
+    	 
+    	
+    	$v_inicio = strtotime($this->FECHA_INICIO);
+    	$v_fin = strtotime($this->FECHA_TERMINO);
+    	
+    	if (!$v_fin  || !$v_inicio){
+    		
+    		RETURN self::STATUS_CREADO;
+    	}
+    	
+    	$currentTime = time();
+    	
+    	if ($v_inicio <= $currentTime && $v_fin > $currentTime ){
+    		
+    		RETURN self::STATUS_INICIADO;
+    		
+    	}elseif($v_fin < $currentTime){
+    
+    		return  self::STATUS_CONCLUIDO;
+    	}
+    	
+    	
+    	return 0; 
+    }
+   
+    
 }
