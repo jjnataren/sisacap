@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use backend\models\EmpresaUsuario;
 use yii\base\Object;
 use yii\data\ActiveDataProvider;
+use backend\models\Instructor;
 
 /**
  * IndicadorCursoController implements the CRUD actions for IndicadorCurso model.
@@ -141,6 +142,64 @@ class IndicadorCursoController extends Controller
     
     
    
+    /**
+     * Lists all IndicadorCurso models.
+     * @return mixed
+     */
+    public function actionIndexByInstructor()
+    {
+    
+    	
+    	$instructorModel = Instructor::getOwnData();
+    	$companyModel = EmpresaUsuario::getMyCompany();
+    	$searchModel = new IndicadorCursoSearch();
+    	 
+    	 
+    	 
+    	$query = IndicadorCurso::findBySql('select * from tbl_indicador_curso where id_curso in
+                            		(select id_curso from tbl_curso where id_plan in
+                            			(select id_plan from tbl_plan where id_comision in
+                            				(select id_comision from tbl_comision_mixta_cap where id_empresa = '.$companyModel->ID_EMPRESA.' and ACTIVO=1) AND ACTIVO=1) AND id_instructor  = '.$instructorModel->ID_INSTRUCTOR.' ) '
+    			.' AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia
+    											 ');
+    	 
+    	$dataProvider = new ActiveDataProvider([
+    			'query' => $query,
+    	]);
+    	 
+    
+    	return $this->render('index_by_instructor', [
+    			'searchModel' => $searchModel,
+    			'dataProvider' => $dataProvider,
+    	]);
+    }
+    
+    
+    
+    /**
+     * Displays a single IndicadorCurso model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionViewByInstructor($id)
+    {
+    
+    	$companyModel = EmpresaUsuario::getMyCompany();
+    
+    	$instructorModel = Instructor::getOwnData();
+    	
+    	$model = $this->findModel($id);
+    
+    	if ($companyModel->ID_EMPRESA !== $model->iDCURSO->iDPLAN->iDCOMISION->ID_EMPRESA    ||   
+    			$instructorModel->ID_INSTRUCTOR =! $model->iDCURSO->ID_INSTRUCTOR  ){
+    
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    	}
+    
+    	return $this->render('view_by_instructor', [
+    			'model' => $model
+    	]);
+    }
     
     
     /**
