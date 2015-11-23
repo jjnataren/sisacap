@@ -236,6 +236,33 @@ class IndicadorCursoController extends Controller
     }
     
     
+    
+    
+    /**
+     * Displays a single IndicadorCurso in roll Instructor model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionViewByUserInstructor($id)
+    {
+    
+    	$companyModel = EmpresaUsuario::getMyCompany();
+    	
+    	
+    	$model = $this->findModel($id);
+    	
+    	if ($companyModel->ID_EMPRESA !== $model->iDCURSO->iDPLAN->iDCOMISION->ID_EMPRESA ){
+    	
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    	}
+    	
+    	return $this->render('view_by_user_instructor', [
+    			'model' => $model
+    			]);
+    }
+    
+    
+    
     /**
      * Displays a single IndicadorCurso model.
      * @param integer $id
