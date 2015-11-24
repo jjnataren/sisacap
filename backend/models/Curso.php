@@ -30,7 +30,7 @@ class Curso extends \yii\db\ActiveRecord
 {
     
 	const  STATUS_INICIADO = 1;
-	const  STATUS_CREADO = 2;
+	const  STATUS_CREADO = 2;  //POR INICIAR
 	const  STATUS_CONCLUIDO = 3;
 	const  STATUS_CERRADO =4 ;
 	
@@ -301,12 +301,17 @@ Curso::STATUS_CERRADO =>'Cerrado',
     	
     	if (!$v_fin  || !$v_inicio){
     		
-    		RETURN self::STATUS_CREADO;
+    		RETURN 0;
     	}
     	
     	$currentTime = time();
     	
-    	if ($v_inicio <= $currentTime && $v_fin > $currentTime ){
+    	if ($v_inicio > $currentTime ){
+    		
+    		RETURN self::STATUS_CREADO;
+    	
+    	}
+    	if ($v_inicio <= $currentTime && $v_fin >= $currentTime ){
     		
     		RETURN self::STATUS_INICIADO;
     		
