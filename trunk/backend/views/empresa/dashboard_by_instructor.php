@@ -11,6 +11,7 @@ use backend\models\ComisionMixtaCap;
 use yii\widgets\ActiveForm;
 use frontend\models\ContactForm;
 use yii\captcha\Captcha;
+use backend\models\Curso;
 
 $this->title = "Bienvenido instructor " . ( $model->NOMBRE ==null ) ?  Yii::$app->user->identity->username   :  strtoupper($model->NOMBRE . ' ' . $model->APP . ' ' . $model->APM) ;
 
@@ -132,7 +133,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
           </h4>          
           
           
-          <div class="row">
+  <div class="row">
 	<div class="col-md-12 col-xs-12 col-sm-12">
 		 <div class="box box-info" id="controls">
 				
@@ -165,7 +166,26 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 						
 						<tbody>
 						
-								<?php foreach ($model->cursos as $curso):?>
+								<?php
+								
+								$cursosProceso = [];
+								$cursosPorIniciar = [];
+								$cursosFinalizados = [];
+								
+								
+								foreach ($model->cursos as $curso):	?>
+								
+								<?php 
+								
+								
+								if($curso->ESTATUS === Curso::STATUS_INICIADO) {
+									$cursosProceso[] =  $curso; 
+								}elseif ($curso->ESTATUS === Curso::STATUS_CREADO){
+									$cursosPorIniciar[] =  $curso;
+								}elseif ($curso->ESTATUS === curso::STATUS_CONCLUIDO){
+									$cursosFinalizados[] =  $curso;
+								}
+								?>
 								<tr>
 		
 									 <td><?= $curso->ID_CURSO ?></td>
