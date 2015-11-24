@@ -124,6 +124,51 @@ class IndicadorConstanciaController extends Controller
     }
     
     
+    
+    
+    
+    
+    
+    
+    /**
+     * Displays a single Indicador to user Istructor model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionViewByUserInstructor($id)
+    {
+    
+    	$companyModel = EmpresaUsuario::getMyCompany();
+    
+    
+    	$model = $this->findModel($id);
+    
+    	if ($companyModel->ID_EMPRESA !== $model->iDCONSTANCIA->iDTRABAJADOR->ID_EMPRESA && $companyModel->ID_EMPRESA !== $model->iDCONSTANCIA->iDTRABAJADOR->iDEMPRESA->ID_EMPRESA_PADRE){
+    
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    	}
+    	 
+    	 
+    	if(! ( $model->CLAVE === 'CON0003'  ||  $model->CLAVE === 'CON0004') ){
+    
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    
+    	}
+    
+    	return $this->render('view_by_user_instructor', [
+    			'model' => $model
+    			]);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * Displays a single IndicadorComision model.
      * @param integer $id
