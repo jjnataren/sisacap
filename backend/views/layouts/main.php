@@ -322,7 +322,8 @@ use backend\models\Plan;
                             <?= count(\backend\models\IndicadorComision::findBySql('select * from tbl_indicador_curso where id_curso in 
                             		(select id_curso from tbl_curso where id_plan in 
                             			(select id_plan from tbl_plan where id_comision in 
-                            				(select id_comision from tbl_comision_mixta_cap where id_empresa = '.$companyByUser->ID_EMPRESA.' and ACTIVO=1) ) )  AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia  ')->all()) ?>
+                            				(select id_comision from tbl_comision_mixta_cap where id_empresa = '.$companyByUser->ID_EMPRESA.' and ACTIVO=1) ) )  AND CLAVE
+                            				NOT IN  (\'CUR0003\' ,  \'CUR0004\') 	AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia  ')->all()) ?>
                         </span>
                     </a>
                     <ul class="dropdown-menu">
@@ -336,7 +337,7 @@ use backend\models\Plan;
                             		(select id_curso from tbl_curso where id_plan in 
                             			(select id_plan from tbl_plan where id_comision in 
                             				(select id_comision from tbl_comision_mixta_cap where id_empresa = '.$companyByUser->ID_EMPRESA.' and ACTIVO=1) ) ) 
-                                		AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia  ')->orderBy(['fecha_inicio_vigencia'=>SORT_DESC])->limit(10)->all() as $eventRecord): ?>
+                                	AND	CLAVE NOT IN  (\'CUR0003\' ,  \'CUR0004\')  AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia  ')->orderBy(['fecha_inicio_vigencia'=>SORT_DESC])->limit(10)->all() as $eventRecord): ?>
                                     <li>
                                         <a href="<?= Yii::$app->urlManager->createUrl(['/indicador-curso/view-by-company', 'id'=>$eventRecord->ID_EVENTO]) ?>">
                                             <i class="fa fa-bell"></i>
@@ -401,7 +402,7 @@ use backend\models\Plan;
                             				(select id_empresa from tbl_empresa where id_empresa_padre = '.$companyByUser->ID_EMPRESA.' OR id_empresa = '.$companyByUser->ID_EMPRESA.'  and ACTIVO=1) 
                             			AND ACTIVO=1)
                             		AND ACTIVO=1)
-                             	  AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia')->all()) ?>
+                             	  AND CLAVE NOT IN  ( \'CON0004\' ,   \'CON0003\') AND    curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia')->all()) ?>
                       
                         </span>
                     </a>
@@ -417,7 +418,7 @@ use backend\models\Plan;
                             				(select id_empresa from tbl_empresa where id_empresa_padre = '.$companyByUser->ID_EMPRESA.' OR id_empresa = '.$companyByUser->ID_EMPRESA.'  and ACTIVO=1) 
                             			AND ACTIVO=1)
                             		AND ACTIVO=1)
-                             	  AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia')->orderBy(['fecha_inicio_vigencia'=>SORT_DESC])->limit(10)->all() as $identificadorConstancia): ?>
+                             	  AND  CLAVE NOT IN  ( \'CON0004\' ,   \'CON0003\') AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia')->orderBy(['fecha_inicio_vigencia'=>SORT_DESC])->limit(10)->all() as $identificadorConstancia): ?>
                                     <li>
                                         <a href="<?= Yii::$app->urlManager->createUrl(['/indicador-constancia/view-by-company', 'id'=>$identificadorConstancia->ID_EVENTO]) ?>">
                                             <i class="fa fa-bell <?= ''; //$logEntry->level == \yii\log\Logger::LEVEL_ERROR ? 'bg-red' : 'bg-yellow' ?>"></i>
@@ -458,7 +459,7 @@ use backend\models\Plan;
                             		(select id_curso from tbl_curso where id_plan in 
                             			(select id_plan from tbl_plan where id_comision in 
                             				(select id_comision from tbl_comision_mixta_cap where id_empresa = '.$companyByUser->ID_EMPRESA.' and ACTIVO=1) ) 
-                            		  AND id_instructor = '.$instructor->ID_INSTRUCTOR.')  AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia  ')->orderBy(['fecha_inicio_vigencia'=>SORT_DESC])->limit(10)->all() as $eventRecord): ?>
+                            		  AND id_instructor = '.$instructor->ID_INSTRUCTOR.')  AND curdate() >= fecha_inicio_vigencia  AND (CLAVE = \'CUR0003\'  OR CLAVE = \'CUR0004\')  AND curdate() <= fecha_fin_vigencia  ')->orderBy(['fecha_inicio_vigencia'=>SORT_DESC])->limit(10)->all() as $eventRecord): ?>
                                     <li>
                                         <a href="<?= Yii::$app->urlManager->createUrl(['/indicador-curso/view-by-user-instructor', 'id'=>$eventRecord->ID_EVENTO]) ?>">
                                             <i class="fa fa-bell"></i>
