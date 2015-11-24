@@ -460,7 +460,7 @@ use backend\models\Plan;
                             				(select id_comision from tbl_comision_mixta_cap where id_empresa = '.$companyByUser->ID_EMPRESA.' and ACTIVO=1) ) 
                             		  AND id_instructor = '.$instructor->ID_INSTRUCTOR.')  AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia  ')->orderBy(['fecha_inicio_vigencia'=>SORT_DESC])->limit(10)->all() as $eventRecord): ?>
                                     <li>
-                                        <a href="<?= Yii::$app->urlManager->createUrl(['/indicador-curso/view-by-instructor', 'id'=>$eventRecord->ID_EVENTO]) ?>">
+                                        <a href="<?= Yii::$app->urlManager->createUrl(['/indicador-curso/view-by-user-instructor', 'id'=>$eventRecord->ID_EVENTO]) ?>">
                                             <i class="fa fa-bell"></i>
                                             <?='ID '. $eventRecord->ID_CURSO .'-' .  $eventRecord->TITULO ?>
                                         </a>
@@ -508,7 +508,7 @@ use backend\models\Plan;
                             		)
                              	  AND (CLAVE = \'CON0004\'  OR CLAVE = \'CON0003\')  AND curdate() >= fecha_inicio_vigencia   AND curdate() <= fecha_fin_vigencia')->orderBy(['fecha_inicio_vigencia'=>SORT_DESC])->limit(10)->all() as $identificadorConstancia): ?>
                                     <li>
-                                        <a href="<?= Yii::$app->urlManager->createUrl(['/indicador-constancia/view-by-instructor', 'id'=>$identificadorConstancia->ID_EVENTO]) ?>">
+                                        <a href="<?= Yii::$app->urlManager->createUrl(['/indicador-constancia/view-by-user-instructor', 'id'=>$identificadorConstancia->ID_EVENTO]) ?>">
                                             <i class="fa fa-bell <?= ''; //$logEntry->level == \yii\log\Logger::LEVEL_ERROR ? 'bg-red' : 'bg-yellow' ?>"></i>
                                             <?= 'ID '.$identificadorConstancia->ID_CONSTANCIA. '- ' . $identificadorConstancia->TITULO ?>
                                         </a>
