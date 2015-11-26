@@ -37,6 +37,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Plan Id '.$model->iDCURSO->ID_PLAN
 $this->params['breadcrumbs'][] = ['label' => 'Curso Id '.$model->ID_CURSO ,'url'=>['constancias/createbycourse','id'=>$model->ID_CURSO ] ];
 $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTANCIA ];
 
+
+
 ?>
 
 
@@ -278,11 +280,35 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
  <?= DetailView::widget([
 		'model' => $model,
 		'attributes' => [
-		'FECHA_EMISION_CERTIFICADO',
-		'METODO_OBTENCION',
-		'TIPO_CONSTANCIA',
-		'PROMEDIO',
-		'APROBADO',
+	'FECHA_EMISION_CERTIFICADO',
+
+	[
+	'attribute'=>'METODO_OBTENCION',
+	'type'=>'raw',
+	'value'=>isset($model->MET_OBTEN[ $model->METODO_OBTENCION ])? $model->MET_OBTEN [$model->METODO_OBTENCION]: 'no establecido'
+
+	],
+
+ 		[
+ 		'attribute'=>'TIPO_CONSTANCIA',
+ 		'type'=>'raw',
+ 		'value'=>isset($model->TIPE_CONST[ $model->TIPO_CONSTANCIA ])? $model->TIPE_CONST [$model->TIPO_CONSTANCIA]: 'no establecido'
+ 		
+ 				],
+ 		'PROMEDIO',
+ 		
+ 		[
+ 		'attribute'=>'APROBADO',
+ 		'type'=>'raw',
+ 		'value'=>isset($model->TYPE_APROB[ $model->APROBADO])? $model->TYPE_APROB [$model->APROBADO]: 'no establecido'
+ 	
+ 				],
+
+
+		
+		
+		
+		
 		
 		
 ],
