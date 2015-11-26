@@ -736,7 +736,7 @@ use backend\models\EmpresaUsuario;
 				<td style="text-align:left;width:50px; " class="Tabla4_A4">
 					<p class="P16"> </p>
 				</td>
-				<td style="text-align:center;width:5.08cm; " class="Tabla4_B4 P12">
+				<td style="text-align:center;width:5.08cm; height: 87px" class="Tabla4_B4 P12">
 					Instructor o tutor
 					<p class="P17"> </p>
 					<p class="P17"> </p>
@@ -776,9 +776,12 @@ use backend\models\EmpresaUsuario;
 				</td>
 				<td style="text-align:center;width:5.08cm; " class="Tabla4_B5">
 						
-						<span class="T28"><?php 		
+						<span class="T28"><?php 
+
+						
 					if (isset($model->iDCURSO->iDINSTRUCTOR))
 						echo $model->iDCURSO->iDINSTRUCTOR->NOMBRE. '&nbsp;' .$model->iDCURSO->iDINSTRUCTOR->APP. '&nbsp;'.$model->iDCURSO->iDINSTRUCTOR->APM;
+						
 					else 
 						echo '&nbsp;'
 					?> </span>
@@ -790,12 +793,29 @@ use backend\models\EmpresaUsuario;
 				<td style="text-align:center;width:5.08cm; " class="Tabla4_B5">
 				<p class="P26_1">&nbsp;</p>
 						
-						<span class="T28"><?php 
+						<span class="T28">
+						<?php 
+						$empresaUsuarioModel = EmpresaUsuario::getMyCompany();
+					  $representante = $empresaUsuarioModel->iDEMPRESA->iDREPRESENTANTELEGAL;
+					  
+					  if ($representante->SIGN_PICTURE !== NULL && $representante->SIGN_PASSWD !== NULL  ): ?>
+					  
+					  
+					  <table>
+						  <tr>
+						  	<td><img  src="<?='data:image/' . 'gif' . ';base64,'.$representante->getSigningBinary(); ?>" style="height:1.4cm;width:3cm;"></td>
+						   </tr>
+					  </table>
+					  <?php else:?>
+					  	<p class="P16"> </p>
+					  	<p class="P7 text-center"><span class="T28"><?=$representante->NOMBRE ?>&nbsp;<?=$representante->APP ?>&nbsp;<?=$representante->APM ?></span></p>
+					  <?php endif;?>
+						<?php 
 					
-					$empresaUsuarioModel = EmpresaUsuario::getMyCompany();
 					
 					
-					$representante = $empresaUsuarioModel->iDEMPRESA->iDREPRESENTANTELEGAL;
+					
+					
 					
 					if ($representante !== null)
 						echo $representante->NOMBRE. ' ' . $representante->APP. ' ' . $representante->APM;
