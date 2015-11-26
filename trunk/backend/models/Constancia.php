@@ -43,16 +43,38 @@ class Constancia extends \yii\db\ActiveRecord
 	 * Constancia's type
 	 * @var unknown
 	 */
+	
+	const TYPE_APROBADO=1;
+	CONST TYPE_NO_APORBADO=2;
+	
+	public $TYPE_APROB=[
+	self::TYPE_APROBADO=>'Aprobado',
+	self::TYPE_NO_APORBADO=>'Reprobado'
+	
+	];
 	const TYPE_CERT = 1;
 	const TYPE_INVOICE = 2;
 	
 	
+	public $TIPE_CONST=[
+	
+	self::TYPE_CERT=>'Certificada',
+	self::TYPE_INVOICE=>'Comprobante',
+	
+	];
 	/**
 	 * Getting methods for
 	 * @var unknown
 	 */
 	const MEHOTD_COURSE = 1;
 	const MEHOTD_EXAM = 2;
+	
+	public $MET_OBTEN = [
+	
+	self::MEHOTD_COURSE => 'Curso',
+	self::MEHOTD_EXAM => 'Examen suficiencia',
+	
+	];
 	
 	/**
 	 * Avaliable statuses of contancias
