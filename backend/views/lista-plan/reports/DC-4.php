@@ -995,11 +995,23 @@ $this->title = 'Reporte Id '.$model->ID_LISTA.'   DC4 parte 1 ';
 					<p class="P18">&nbsp;</p>
 				</td>
 				<td colspan="18" style="text-align:center;width:0.326cm; " class="Tabla3_H7">
-					<p class="P16"> </p>
-					<p class="T28 text-center">
-					<?=$company->iDREPRESENTANTELEGAL->NOMBRE ?>
-					<?=$company->iDREPRESENTANTELEGAL->APP ?>
-					<?=$company->iDREPRESENTANTELEGAL->APM ?></p>
+				<?php 
+					  
+					  $representante = $model->iDPLAN->iDEMPRESA->iDREPRESENTANTELEGAL;
+					  
+					  if ($representante->SIGN_PICTURE !== NULL && $representante->SIGN_PASSWD !== NULL  ): ?>
+					  
+					  
+					  <table>
+						  <tr>
+						  	<td><img  src="<?='data:image/' . 'gif' . ';base64,'.$representante->getSigningBinary(); ?>" style="height:1.4cm;width:3cm;"></td>
+						  	<td style="vertical-align: bottom;"><p class="P7 text-center"><span class="T28"><?=$representante->NOMBRE ?>&nbsp;<?=$representante->APP ?>&nbsp;<?=$representante->APM ?></span></p></td>
+						  </tr>
+					  </table>
+					  <?php else:?>
+					  	<p class="P16"> </p>
+					  	<p class="P7 text-center"><span class="T28"><?=$representante->NOMBRE ?>&nbsp;<?=$representante->APP ?>&nbsp;<?=$representante->APM ?></span></p>
+					  <?php endif;?>
 				</td>
 				<td colspan="7" style="text-align:left;width:0.644cm; " class="Tabla3_W7">
 					<p class="P15"> </p>
