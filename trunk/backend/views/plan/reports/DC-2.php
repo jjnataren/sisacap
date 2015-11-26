@@ -1328,11 +1328,26 @@ use backend\models\Catalogo; ?>
 			<tr class="Tabla316">
 				<td colspan="41" style="text-align:center;width:3.466cm; " class="Tabla3_A16">
 					
-						<span class="T28">
+						
 				
-						<?=$model->iDEMPRESA->iDREPRESENTANTELEGAL->NOMBRE ?><?=$model->iDEMPRESA->iDREPRESENTANTELEGAL->APP ?><?=$model->iDEMPRESA->iDREPRESENTANTELEGAL->APM ?>
-							
-					</span>
+					<?php 
+					  
+					  $representante = $model->iDEMPRESA->iDREPRESENTANTELEGAL;
+					  
+					  if ($representante->SIGN_PICTURE !== NULL && $representante->SIGN_PASSWD !== NULL  ): ?>
+					  
+					  
+					  <table>
+						  <tr>
+						  	<td><img  src="<?='data:image/' . 'gif' . ';base64,'.$representante->getSigningBinary(); ?>" style="height:1.4cm;width:3cm;"></td>
+						  	<td style="vertical-align: bottom;"><p class="P7 text-center"><span class="T28"><?=$representante->NOMBRE ?>&nbsp;<?=$representante->APP ?>&nbsp;<?=$representante->APM ?></span></p></td>
+						  </tr>
+					  </table>
+					  <?php else:?>
+					  	<p class="P16"> </p>
+					  	<p class="P7 text-center"><span class="T28"><?=$representante->NOMBRE ?>&nbsp;<?=$representante->APP ?>&nbsp;<?=$representante->APM ?></span></p>
+					  <?php endif;?>		
+					
 
 				</td>
 			</tr>
