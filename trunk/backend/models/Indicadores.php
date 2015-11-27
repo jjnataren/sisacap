@@ -213,8 +213,7 @@ public static function setIndicadorPlan($plan){
 			$modelIndicador->save();
 				
 		}
-		
-		
+				
 		
 		/**
 		 * Validacion de los cursos
@@ -385,7 +384,7 @@ public static function setIndicadorCurso($curso){
 					
 				$modelIndicador->TITULO = 'Curso por  Iniciar';
 					
-				$modelIndicador->DATA = 'El curso esta por iniciar deberá preparar a los trabajadores que recibirán el curso.';
+				$modelIndicador->DATA = 'El curso esta por iniciar deberá calificar a los trabajadores.';
 				$modelIndicador->CLAVE="CUR0002";
 				$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
 					
