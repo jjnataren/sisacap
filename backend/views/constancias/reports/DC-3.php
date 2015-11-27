@@ -788,11 +788,9 @@ use backend\models\EmpresaUsuario;
 						</table>
 						<?php 
 						
-						if($instructor !== null)
-							
+						
 						echo $model->iDCURSO->iDINSTRUCTOR->NOMBRE. '&nbsp;' .$model->iDCURSO->$iDINSTRUCTOR->APP .'&nbsp;'.$model->iDCURSO->iDINSTRUCTOR->APM;
-						else
-							echo '&nbsp;'
+					
 					
 					?> </span>
 				</td>
