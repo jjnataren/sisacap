@@ -779,15 +779,20 @@ use backend\models\EmpresaUsuario;
 						<span class="T28"><?php 
 
 						$instructor=$model->iDCURSO-> iDINSTRUCTOR;
-					if ($instructor->SIGN_PIC !== NULL && $instructor->SIGN_PASSWD !== NULL) ?>
+						
+					if ($instructor->SIGN_PIC !== NULL && $instructor->SIGN_PASSWD !== NULL): ?>
 						<table>
 						<tr>
 						<td><img  src="<?='data:image/' . 'gif' . ';base64,'.$instructor->getSigningBinary(); ?>" style="height:1.4cm;width:3cm;"></td>
 						</tr>
 						</table>
 						<?php 
-						echo $model->iDCURSO->iDINSTRUCTOR->NOMBRE. '&nbsp;' .$model->iDCURSO->iDINSTRUCTOR->APP. '&nbsp;'.$model->iDCURSO->iDINSTRUCTOR->APM;
 						
+						if($instructor !== null)
+							
+						echo $model->iDCURSO->iDINSTRUCTOR->NOMBRE. '&nbsp;' .$model->iDCURSO->$iDINSTRUCTOR->APP .'&nbsp;'.$model->iDCURSO->iDINSTRUCTOR->APM;
+						else
+							echo '&nbsp;'
 					
 					?> </span>
 				</td>
