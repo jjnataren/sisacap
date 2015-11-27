@@ -25,6 +25,51 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
 $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json' }});", View::POS_END, 'my-options');
 
 
+/*aarays cursos*/
+
+$cursosPorIniciar = []; //cursos creados
+$cursosProceso = []; //cursos inciados
+$cursosFinalizados = []; //cursos terminados
+
+
+/*arrays constancias*/
+$constanciasEnRevision=[];
+$constanciasAsignadas=[];
+$constanciasFirmadas=[];
+
+                                   /*foreach  course*/
+
+								foreach ($model->cursos as $curso){
+																									
+								if($curso->ESTATUS === Curso::STATUS_INICIADO) {									
+									$cursosPorIniciar[] =  $curso; 
+								}																									
+								
+								elseif ($curso->ESTATUS === Curso::STATUS_CREADO){															
+									$cursosProceso[] =  $curso;
+									
+								}elseif ($curso->ESTATUS === Curso::STATUS_CONCLUIDO){
+									$cursosFinalizados[] =  $curso;
+								}
+								
+								
+								
+								}
+								/*foreach  constancias*/
+								
+						/*	foreach ($model-> cursos-> constancias as $constancia)
+																
+								if($constancia->ESTATUS === Constancia::STATUS_REJECTED ){
+									$constanciasAsignadas[] = $constancia;
+								
+								} elseif ($constancia->ESTATUS === Constancia::STATUS_ASUGNADA){
+									$constanciasEnRevision[] =$constancia;
+									
+								}elseif ($constancia->ESTATUS === Constancia::STATUS_SIGNED_INSTRUCTOR){
+								$constanciasFirmadas[] =$constancia;
+}*/
+
+
 ?>
 				<!-- Small boxes (Stat box) -->
                     <div class="row">
@@ -62,10 +107,21 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                                                                                              
                                      
                                          
-                                         <?= count(Constancia::findBySql("select * from tbl_constancia  where ID_CURSO  ")->all()); 
+                                         <?= count(Constancia::findBySql('select * from tbl_constancia where ID_CURSO in 
+                                         		
+                                         		(select ID_INSTRUCTOR from tbl_curso where ID_INSTRUCTOR )')); 
                                         
                                          
                                         ?>
+                                        
+                                        <!--  ('select * from tbl_indicador_curso where id_curso in 
+                            		(select id_curso from tbl_curso where id_plan in 
+                            			(select id_plan from tbl_plan where id_comision in 
+                            				(select id_comision from tbl_comision_mixta_cap where id_empresa = '. $id.') ))' );
+    										-->
+                                   
+                                   
+                                   
                                    
                                     </h3>
                                     <p>
@@ -110,7 +166,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                             <div class="small-box bg-red">
                                 <div class="inner">
                                     <h3>
-                                        0
+                                       10
                                     </h3>
                                     <p>
                                         Listas de constancias enviadas
@@ -131,9 +187,56 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
           
                         <small>Cursos por impartir</small>
           </h4>          
-          
-          
+                   
   <div class="row">
+	<div class="col-md-12 col-xs-12 col-sm-12">
+		 <div class="box box-info" id="controls">
+				
+				<div class="box-header">
+					 <i class="fa fa-laptop"></i>			    			    				
+			   	</div>
+                 	
+				<div class="box-body table-responsive">
+						
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nombre</th>
+								<th>Fecha de inicio</th>
+								<th>Fecha de fin</th>
+							
+							   				 													  
+							 </tr>					
+						</thead>
+						<tbody>	  	
+												         																
+						<?php  foreach ($model->cursos as $ci){ ?>
+								 					
+							<tr>
+				         		<td><?=$ci->ID_CURSO;?></td>
+				         	    <td><?=$ci->NOMBRE;?></td>
+				         		<td><?=$ci->FECHA_INICIO;?></td>
+				         		<td><?=$ci->FECHA_TERMINO;?></td>
+				         				         				         		
+				         			</tr>
+				         	<?php }?>      																		
+																						
+						</tbody>
+					</table>
+					
+				</div>
+                    </div>
+                    </div></div>
+                    
+                    
+                      <h4 class="page-header" id="anchor_comision">
+          
+                        <small>Cursos en proceso</small>
+          </h4> 
+                    
+                    
+                      <div class="row">
 	<div class="col-md-12 col-xs-12 col-sm-12">
 		 <div class="box box-info" id="controls">
 				
@@ -142,7 +245,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 			    	
 			    				
 			   	</div>
-          
+       
           	
 				<div class="box-body table-responsive">
 						
@@ -153,74 +256,67 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 								<th>Nombre</th>
 								<th>Fecha de inicio</th>
 								<th>Fecha de fin</th>
-								
-								<th>Instructor</th>
-							    <th>Número de registro agente externo</th>
-							    <th>Área temática</th>
-							   
-							 
-							
-							  
+														   				 													  
 							 </tr>					
 						</thead>
-						
-						<tbody>
-						
-								<?php
-								
-								$cursosProceso = [];
-								$cursosPorIniciar = [];
-								$cursosFinalizados = [];
-								
-								
-								foreach ($model->cursos as $curso):	?>
-								
-								<?php 
-								
-								
-								if($curso->ESTATUS === Curso::STATUS_INICIADO) {
-									$cursosProceso[] =  $curso; 
-								}elseif ($curso->ESTATUS === Curso::STATUS_CREADO){
-									$cursosPorIniciar[] =  $curso;
-								}elseif ($curso->ESTATUS === curso::STATUS_CONCLUIDO){
-									$cursosFinalizados[] =  $curso;
-								}
-								?>
-								<tr>
-		
-									 <td><?= $curso->ID_CURSO ?></td>
+						<tbody>											
+																	
+							<?php  foreach ($cursosProceso as $cp): ?>
+							<tr>
+				         		<td><?= $cp->ID_CURSO?></td>
+				         		<td><?= $cp->NOMBRE?></td>
+				         		<td><?= $cp->FECHA_INICIO?></td>
+				         		<td><?= $cp->FECHA_TERMINO?></td>
+				         			         						         		
+				         	</tr>
+				         	<?php endforeach;?>	    
+																	
+			    	</tbody>
+			</table>
 					
-									 <td><?= $curso->NOMBRE ?></td>
-										               
-			                            <td><?=($curso->FECHA_INICIO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($curso->FECHA_INICIO)) ;?></td>
-			                    
-			                          
-								     <td><?=($curso->FECHA_TERMINO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($curso->FECHA_TERMINO)) ;?></td>
-			      
-										
-																			
-									 <td>	
-										<?php if (isset($curso->iDINSTRUCTOR)){?>	
-											<?= $curso->iDINSTRUCTOR->NOMBRE ?>
-										<?php }?>
-									 </td>
-										
-					            	 <td>
-										<?php if(isset($curso->iDINSTRUCTOR)){?>
-										
-										<?=$curso->iDINSTRUCTOR->NUM_REGISTRO_AGENTE_EXTERNO ?>
-										
-										<?php }?>
-									 </td>
-									
-									   <td><?php 
-                                    $catalog = Catalogo::findOne(['ID_ELEMENTO'=>$curso->AREA_TEMATICA, 'CATEGORIA'=>6, 'ACTIVO'=>1]);
-         			               echo isset($catalog)?$catalog->NOMBRE: 'no asignado'; ?></td>
-         			         		          					            	
-				            			            	
-							</tr>
-							<?php endforeach;?>	
-						</tbody>
+				</div>
+                    </div>
+                    </div></div>
+                           
+          <h4 class="page-header" id="anchor_comision">
+          
+                        <small>Cursos finalizados</small>
+          </h4> 
+                               
+                               
+    <div class="row">
+	<div class="col-md-12 col-xs-12 col-sm-12">
+		 <div class="box box-info" id="controls">
+				
+				<div class="box-header">
+					 <i class="fa fa-laptop"></i>
+				
+			   	</div>      
+          	
+				<div class="box-body table-responsive">
+						
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nombre</th>
+								<th>Fecha de inicio</th>
+								<th>Fecha de fin</th>												  
+							 </tr>					
+						</thead>
+						<tbody>											
+												         																
+							<?php $i = 0; foreach ($cursosFinalizados as $cf) {?>
+							<tr>
+				         		<td><?= $cf->ID_CURSO?></td>
+				         		<td><?= $cf->NOMBRE?></td>
+				         		<td><?= $cf->FECHA_INICIO?></td>
+				         		<td><?= $cf->FECHA_TERMINO?></td>
+				         				         				         						         		
+				         			</tr>
+				         	<?php }?>	    
+																	
+							</tbody>
 					</table>
 					
 				</div>
@@ -232,8 +328,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
           
                         <small>Constancias por firmar</small>
           </h4>          
-                    
-     		   		
+                         		   		
                             <!-- Custom Tabs (Pulled to the right) -->
                             
                               <div class="box box-primary">
@@ -257,54 +352,39 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 							</tr>
 							
 								<tr>
-									<th>Id</th>
-									<th><?=Yii::t('backend', 'Nombre')?></th>									
-									<th><?=Yii::t('backend', 'A. paterno')?></th>
-									<th><?=Yii::t('backend', 'CURP')?></th>
-									<th><?=Yii::t('backend', 'Ocupación')?></th>
-									<th><?=Yii::t('backend', 'Establecimiento')?></th>
+								<!-- 	<th>Id</th>
+									<th><?//=Yii::t('backend', 'Nombre')?></th>									
+									<th><?//=Yii::t('backend', 'A. paterno')?></th>
+									<th><?//=Yii::t('backend', 'CURP')?></th>
+									<th><?//=Yii::t('backend', 'Ocupación')?></th>
+									<th><?//=Yii::t('backend', 'Establecimiento')?></th>
 									<th>Curso</th>
 									<th>Obtención</th>
 									<th>Tipo</th>
-									<th><?=Yii::t('backend', 'Fecha emisión')?></th>
+									<th><?//=Yii::t('backend', 'Fecha emisión')?></th>
 									
-									
-								
-									
-									
-							
-									<th></th>
-																											
+																			
 								</tr>
 							</thead>
 							<tbody>
-					<!--  		<?php //$i = 0; 
-							
-							//$constanciasItems =   $model->iDCONSTANCIAs;//Constancia::findBySql('select * from tbl_constancia where ID_TRABAJADOR in (select ID_TRABAJADOR from tbl_trabajador where ID_EMPRESA IN (SELECT ID_ESTABLECIMIENTO FROM tbl_lista_establecimiento where ID_LISTA = '.$model->ID_LISTA.')  AND ACTIVO = 1) AND ESTATUS > 1')->all();
-							
-							//foreach ($constanciasItems as $constancia) :?>
-							//<?php// $worker = $constancia->iDTRABAJADOR;?>
-							
-								<tr>
-									<td><?//= $constancia->ID_CONSTANCIA; ?></td>
-										<td><?//= $constancia->iDTRABAJADOR->NOMBRE;?></td>
-									<td><?//= $constancia->iDTRABAJADOR->APP;?></td>
-									<td><?//= $constancia->iDTRABAJADOR->CURP;?></td>
-									
-									<td><?//= $constancia->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
-									
-									
-									<td><?//= $constancia->iDCURSO->NOMBRE;?></td>
-									<td><?//= isset(Constancia::getAllMetodosType()[$constancia->METODO_OBTENCION])?Constancia::getAllMetodosType()[$constancia->METODO_OBTENCION] : '<i class"text text-muted">no asignado</i>' ?></td>	
-									<td><?//=// isset(Constancia::getAllContanciasType()[$constancia->TIPO_CONSTANCIA])?Constancia::getAllContanciasType()[$constancia->TIPO_CONSTANCIA] : '<i class"text text-muted">no asignado</i>'; ?></td>
-									<td><?//=($constancia->FECHA_EMISION_CERTIFICADO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($constancia->FECHA_EMISION_CERTIFICADO)) ;?></td>
-																	
-																									
-									
+											
+			-->
+	<!--  	<?php // foreach ($constanciasAsignadas as $cr) {?>		
+											
 								
-								</tr>	
+							<tr>
+				         		<td><?//= $cr->ID_CURSO?></td>
+				         		<td><?//= $cr->ID_CONSTANCIA?></td>
+				         		<td><?//= $cr->ID_TRABAJADOR?></td>
+				         		<td><?//= $cr->NOMBRE_NORMA?></td>
+				         		<td><?//= $cr->PROMEDIO?></td>
+				         		<td><?//= $cr->FECHA_AGREGO?></td>
+				         				         						         		
+				         			</tr>
 								
-							 //$i++; endforeach;?> -->
+								<?php //} ?> -->
+								
+							
 							</tbody>
 							
 						</table>	
@@ -313,7 +393,6 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                            </div> 
                                              
 
-    
     	
     	                     
                     
@@ -350,3 +429,8 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                         </div>
                     </div>
                     </div>
+                    
+                    
+                    
+
+                    
