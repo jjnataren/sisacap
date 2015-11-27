@@ -26,6 +26,7 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
 $this->title = 'Curso  Id '.$model->ID_CURSO. ' - '.$model->NOMBRE;//-  Plan( '.$model->iDPLAN->ALIAS.' ), Curso ('.$model->NOMBRE.')';
 
 
+
 $this->params['breadcrumbs'][] = ['label' => 'Comisión ID '.$model->iDPLAN->ID_COMISION, 'url'=>['comision-mixta-cap/dashboard', 'id'=>$model->iDPLAN->ID_COMISION]];
 $this->params['breadcrumbs'][] = ['label' => 'Plan ID '.$model->ID_PLAN, 'url'=>['plan/dashboard', 'id'=>$model->ID_PLAN]];
 $this->params['breadcrumbs'][] = ['label' => 'Curso ID'.$model->ID_CURSO];
