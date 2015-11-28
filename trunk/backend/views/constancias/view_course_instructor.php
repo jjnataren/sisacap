@@ -87,7 +87,7 @@ $tabs[]=[
 							 ];
 
 
-$tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Constancias emitidas</li>'; 
+$tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Constancias calificadas</li>'; 
 
 
 
@@ -230,7 +230,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
             <div class="box box-primary">
                 <div class="box-header">
                       <i class="fa fa-university"></i>
-                    <h2 class="box-title"><?= Yii::t('backend', 'Establecimiento(s) ') ?> <small>donde se impartio el curso</small></h2>
+                    <h2 class="box-title"><?= Yii::t('backend', 'Establecimiento(s) ') ?> <small>donde se impartió el curso</small></h2>
                     
                     <div class="box-tools pull-right">
             <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
