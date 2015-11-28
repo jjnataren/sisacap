@@ -46,6 +46,24 @@ foreach ( $model->cursos as $curso ) {
 	} elseif ($curso->getCurrentStatus () === Curso::STATUS_CONCLUIDO) {
 		$cursosFinalizados [] = $curso;
 	}
+	
+	
+	/**
+	 * Here we can filter all constancias by  its type
+	 */
+	
+	foreach ($curso->constancias as $constancia){
+		
+		if ($constancia->ESTATUS === Constancia::STATUS_ASIGNADA)
+			$constanciasAsignadas[] = $constancia;
+			elseif  ($constancia->ESTATUS === Constancia::STATUS_RECHAZADA_MANAGER || $constancia->ESTATUS === Constancia::STATUS_REJECTED	)
+				$constanciasEnRevision[] = $constancia;
+				elseif ($constancia->ESTATUS === Constancia::STATUS_SIGNED_INSTRUCTOR)
+					$constanciasFirmadas[] = $constancia;
+				
+	}
+	
+	
 }
 /* foreach constancias */
 
@@ -347,12 +365,25 @@ foreach ( $model->cursos as $curso ) {
 </div>
 
 
-<h4 class="page-header" id="anchor_comision">
+<h1 >
+Relación de constancias  
+	<small> asignadas</small>
+</h1>
 
-	<small>Constancias por firmar</small>
+
+
+<h4 class="page-header" id="anchor_constancias">
+<span class="fa-stack">
+  <i class="fa fa-circle fa-stack-2x"></i>
+  <i class="fa fa-stop fa-stack-1x text-info"></i>
+</span>
+	 Constancias por evaluar y firmar  
+	<small>constancias que estan pendiente de evaluacion y firma por instructor</small>
 </h4>
 
-<!-- Custom Tabs (Pulled to the right) -->
+
+<div class="row">
+	<div class="col-md-12 col-xs-12 col-sm-12">
 
 <div class="box box-primary">
 	<div class="box-header">
@@ -361,65 +392,233 @@ foreach ( $model->cursos as $curso ) {
 
 
 	</div>
-	<!-- /.box-header -->
 	<div class="box-body table-responsive">
 
-		<table id="dataTable1" class="table table-bordered" cellspacing="0"
+		<table id="dataTable1" class="table table-condensed" cellspacing="0"
 			width="100%">
 			<thead>
 
 				<tr>
 					<td colspan="5"><i class="fa fa-user"></i> Datos trabajador</td>
-					<td colspan="5"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
-
-
-					<th></th>
+					<td colspan="3"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
 				</tr>
 
 				<tr>
-					<!-- 	<th>Id</th>
-									<th><?//=Yii::t('backend', 'Nombre')?></th>									
-									<th><?//=Yii::t('backend', 'A. paterno')?></th>
-									<th><?//=Yii::t('backend', 'CURP')?></th>
-									<th><?//=Yii::t('backend', 'Ocupación')?></th>
-									<th><?//=Yii::t('backend', 'Establecimiento')?></th>
+					 				<th>Id</th>
+									<th><?=Yii::t('backend', 'Nombre') ?></th>									
+									<th><?=Yii::t('backend', 'CURP')?></th>
+									<th><?=Yii::t('backend', 'Puesto')?></th>
+									<th><?=Yii::t('backend', 'Establecimiento')?></th>
+									<th>Id constancia</th>
 									<th>Curso</th>
-									<th>Obtención</th>
-									<th>Tipo</th>
-									<th><?//=Yii::t('backend', 'Fecha emisión')?></th>
+									<th></th>
 									
 																			
-								</tr>
+				</tr>
 							</thead>
 							<tbody>
 											
-			-->
-					<!--  	<?php // foreach ($constanciasAsignadas as $cr) {?>		
+			<!---->
+					 	<?php  foreach ($constanciasAsignadas as $coa) {?>		
 											
 								
 							<tr>
-				         		<td><?//= $cr->ID_CURSO?></td>
-				         		<td><?//= $cr->ID_CONSTANCIA?></td>
-				         		<td><?//= $cr->ID_TRABAJADOR?></td>
-				         		<td><?//= $cr->NOMBRE_NORMA?></td>
-				         		<td><?//= $cr->PROMEDIO?></td>
-				         		<td><?//= $cr->FECHA_AGREGO?></td>
-				         				         						         		
-				         			</tr>
+				         		<td><?= $coa->iDTRABAJADOR->ID_TRABAJADOR;?></td>
+				         		<td><?= $coa->iDTRABAJADOR->NOMBRE . ' ' . $coa->iDTRABAJADOR->APP. ' ' . $coa->iDTRABAJADOR->APM;?></td>
+					         	<td><?= $coa->iDTRABAJADOR->CURP;?></td>
+					         	<td><?= $coa->iDTRABAJADOR->pUESTO->NOMBRE_PUESTO;?></td>
+					         	<td><?= $coa->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
+					         	<td><?= $coa->ID_CONSTANCIA?></td>
+					         	<td><?= $coa->iDCURSO->NOMBRE?></td>
+					         	<td></td>
+				         	</tr>
 								
-								<?php //} ?> -->
+						<?php } ?>
 			
 			
 			</tbody>
-
+			
+				<tfoot>
+						<tr>
+							<td colspan="8" style="text-align: right;">
+								Total <span class="badge bg-blue"><?= count($constanciasAsignadas); ?></span>
+							</td>
+						</tr>
+					</tfoot>
 		</table>
 
 	</div>
 </div>
 
+</div>
+</div>
 
 
 
+<h4 class="page-header" id="anchor_constancias_observaciones">
+<span class="fa-stack">
+  <i class="fa fa-circle fa-stack-2x"></i>
+  <i class="fa fa-stop fa-stack-1x text-danger"></i>
+</span>
+	 Constancias con observaciones  
+	<small>constancias que tubieron alguna obervacion por parte de la empresa o por el propio instructor</small>
+</h4>
+
+
+<div class="row">
+	<div class="col-md-12 col-xs-12 col-sm-12">
+
+<div class="box box-primary">
+	<div class="box-header">
+		<i class="fa fa-paperclip"></i>
+
+
+
+	</div>
+	<div class="box-body table-responsive">
+
+		<table id="dataTable_con2" class="table table-bordered" >
+			<thead>
+
+				<tr>
+					<td colspan="5"><i class="fa fa-user"></i> Datos trabajador</td>
+					<td colspan="6"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
+				</tr>
+
+				<tr>
+					 				<th>Id</th>
+									<th><?=Yii::t('backend', 'Nombre') ?></th>									
+									<th><?=Yii::t('backend', 'CURP')?></th>
+									<th><?=Yii::t('backend', 'Puesto')?></th>
+									<th><?=Yii::t('backend', 'Establecimiento')?></th>
+									<th>Id constancia</th>
+									<th>Curso</th>
+									<th>Aprobado</th>
+									<th>Tipo</th>
+									<th colspan="2">Último comentario</th>
+																			
+				</tr>
+							</thead>
+							<tbody>
+											
+					 	<?php  foreach ($constanciasEnRevision as $cor) {?>		
+											
+							<tr>
+				         		<td><?= $cor->iDTRABAJADOR->ID_TRABAJADOR;?></td>
+				         		<td><?= $cor->iDTRABAJADOR->NOMBRE . ' ' . $cor->iDTRABAJADOR->APP. ' ' . $cor->iDTRABAJADOR->APM;?></td>
+					         	<td><?= $cor->iDTRABAJADOR->CURP;?></td>
+					         	<td><?= $cor->iDTRABAJADOR->pUESTO->NOMBRE_PUESTO;?></td>
+					         	<td><?= $cor->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
+					         	<td><?= $cor->ID_CONSTANCIA?></td>
+					         	<td><?= $cor->iDCURSO->NOMBRE?></td>
+					         	<td><?= $cor->APROBADO?></td>
+					         	<td><?= $cor->TIPO_CONSTANCIA?></td>
+					         	<td colspan="2"><?= $cor->COMENTARIO?></td>
+					         	
+				         	</tr>
+								
+						<?php } ?>
+			
+			
+			</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="9" style="text-align: right;">
+								Total <span class="badge bg-blue"><?= count($constanciasEnRevision); ?></span>
+							</td>
+						</tr>
+					</tfoot>
+		</table>
+
+	</div>
+</div>
+
+</div>
+</div>
+
+
+
+<h4 class="page-header" id="anchor_constancias_observaciones">
+<span class="fa-stack">
+  <i class="fa fa-circle fa-stack-2x"></i>
+  <i class="fa fa-stop fa-stack-1x text-danger"></i>
+</span>
+	 Constancias firmadas  
+	<small>constancias que tubieron alguna obervacion por parte de la empresa o por el propio instructor</small>
+</h4>
+
+
+<div class="row">
+	<div class="col-md-12 col-xs-12 col-sm-12">
+
+<div class="box box-primary">
+	<div class="box-header">
+		<i class="fa fa-paperclip"></i>
+
+
+
+	</div>
+	<div class="box-body table-responsive">
+
+		<table id="dataTable_con3" class="table table-bordered" >
+			<thead>
+
+				<tr>
+					<td colspan="5"><i class="fa fa-user"></i> Datos trabajador</td>
+					<td colspan="6"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
+				</tr>
+
+				<tr>
+					 				<th>Id</th>
+									<th><?=Yii::t('backend', 'Nombre') ?></th>									
+									<th><?=Yii::t('backend', 'CURP')?></th>
+									<th><?=Yii::t('backend', 'Puesto')?></th>
+									<th><?=Yii::t('backend', 'Establecimiento')?></th>
+									<th>Id constancia</th>
+									<th>Curso</th>
+									<th>Aprobado</th>
+									<th>Tipo</th>
+									<th colspan="2">Último comentario</th>
+																
+				</tr>
+							</thead>
+							<tbody>
+											
+										
+					 	<?php  foreach ($constanciasFirmadas as $cof) {?>		
+											
+							<tr>
+				         		<td><?= $cof->iDTRABAJADOR->ID_TRABAJADOR;?></td>
+				         		<td><?= $cof->iDTRABAJADOR->NOMBRE . ' ' . $cof->iDTRABAJADOR->APP. ' ' . $cof->iDTRABAJADOR->APM;?></td>
+					         	<td><?= $cof->iDTRABAJADOR->CURP;?></td>
+					         	<td><?= $cof->iDTRABAJADOR->pUESTO->NOMBRE_PUESTO;?></td>
+					         	<td><?= $cof->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
+					         	<td><?= $cof->ID_CONSTANCIA?></td>
+					         	<td><?= $cof->iDCURSO->NOMBRE?></td>
+					         	<td><?= $cof->APROBADO?></td>
+					         	<td><?= $cof->TIPO_CONSTANCIA?></td>
+					         	<td colspan="2"><?= $cof->COMENTARIO?></td>
+					         	
+				         	</tr>
+								
+						<?php } ?>
+			
+			
+			</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="11" style="text-align: right;">
+								Total <span class="badge bg-blue"><?= count($constanciasFirmadas); ?></span>
+							</td>
+						</tr>
+					</tfoot>
+		</table>
+
+	</div>
+</div>
+
+</div>
+</div>
 
 
 
@@ -461,8 +660,6 @@ foreach ( $model->cursos as $curso ) {
             <?php ActiveForm::end(); ?>
             </div>
 
-</div>
-</div>
 </div>
 
 
