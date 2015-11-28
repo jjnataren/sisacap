@@ -804,9 +804,9 @@ use backend\models\EmpresaUsuario;
 					<p class="P25"> </p>
 				</td>
 				<td style="text-align:center;width:5.08cm; " class="Tabla4_B5">
-				<p class="P26_1">&nbsp;</p>
+			
 						
-						<span class="T28">
+					
 						<?php 
 						$empresaUsuarioModel = EmpresaUsuario::getMyCompany();
 					  $representante = $empresaUsuarioModel->iDEMPRESA->iDREPRESENTANTELEGAL;
@@ -818,20 +818,14 @@ use backend\models\EmpresaUsuario;
 						  <tr>
 						  	<td><img  src="<?='data:image/' . 'gif' . ';base64,'.$representante->getSigningBinary(); ?>" style="height:1.4cm;width:3cm;"></td>
 						   </tr>
+						    <tr>
+						  	<td><span class="T28"><?=$representante->NOMBRE ?>&nbsp;<?=$representante->APP ?>&nbsp;<?=$representante->APM ?></span></td>
+						   </tr>
 					  </table>
 					  <?php else:?>
-					  	<p class="P16"> </p>
-					  	<p class="P7 text-center"><span class="T28"><?=$representante->NOMBRE ?>&nbsp;<?=$representante->APP ?>&nbsp;<?=$representante->APM ?></span></p>
+					  	<span class="T28"><?=$representante->NOMBRE ?>&nbsp;<?=$representante->APP ?>&nbsp;<?=$representante->APM ?></span>
 					  <?php endif;?>
-						<?php 
-								
-					if ($representante !== null)
-						echo $representante->NOMBRE. ' ' . $representante->APP. ' ' . $representante->APM;
-					else 
-						echo '&nbsp;'
 					
-					
-					?></span>
 				</td>
 				<td style="text-align:left;width:0.635cm; " class="Tabla4_C5">
 					<p class="P26">&nbsp;</p>
