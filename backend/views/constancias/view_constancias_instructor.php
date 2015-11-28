@@ -87,7 +87,7 @@ $tabs[]=[
 							 ];
 
 
-$tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Constancias emitidas</li>'; 
+$tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Constancias </li>'; 
 
 
 
@@ -156,81 +156,11 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 </div><!-- /.box -->
 </div>
 
-<div class="col-md-6 col-xs-12 col-sm-12">
-
-<div class="box box-primary">
-        <div class="box-header with-border">
-          <i class="fa fa-calendar"></i>
-          <h3 class="box-title">Detalles del plan</h3>
-          <div class="box-tools pull-right">
-            <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
-            <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
-          </div><!-- /.box-tools -->
-        </div><!-- /.box-header -->
-        <div class="box-body">
-  
-  				<dl class="dl-horizontal">
-                       
-                         <dt><?= Yii::t('backend', 'Id') ?></dt>
-                        <dd><?= $model->iDPLAN->ID_PLAN ?></dd>
-                        
-                        <dt><?= Yii::t('backend', 'Alias') ?></dt>
-                        <dd><?= $model->iDPLAN->ALIAS ?></dd>
-                                                                      
-                            <dt><?= Yii::t('backend', 'Vigencia inicio') ?></dt>
-                            <dd><?=($model->iDPLAN->VIGENCIA_INICIO=== null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->iDPLAN->VIGENCIA_INICIO)) ;?></dd>
-                  
-                        
-                            <dt><?= Yii::t('backend', 'Vigencia fin') ?></dt>
-                            <dd><?=($model->iDPLAN->VIGENCIA_FIN=== null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->iDPLAN->VIGENCIA_FIN)) ;?></dd>
-                                                                     
-                          <dt><?= Yii::t('backend', 'No. hombres') ?></dt>
-                        <dd><?= $model->iDPLAN->TOTAL_HOMBRES ?></dd>
-                     
-                                <dt><?= Yii::t('backend', 'No. mujeres') ?></dt>
-                        <dd><?= $model->iDPLAN->TOTAL_MUJERES ?></dd>
-                     
-                     
-                     	  <dt>Puestos trabajador   <span class="label label-info"><?= count($model->iDPLAN->iDPUESTOs) ?></span></dt>
-                                        <dd>
-                                        <ul>
-                                        
-                                        
-                                        
-	                                        <?php 
-	                                        
-	                                        if (!$model->iDPLAN->TIPO_PLAN){
-	                                        foreach ($model->iDPLAN->iDPUESTOs as $puesto)                                        	
-	                    						echo '<li>'. $puesto->NOMBRE_PUESTO .'</li>';      
-	                                        }else{
-	                                        	
-	                                        	echo '<li>Todos los puestos de trabajo considerados</li>';
-	                                        }                  
-	                                        ?>
-                                        </ul>
-                          </dd>
-             
-             
-             
-             <dt><?= Yii::t('backend', 'Descripción') ?></dt>
-                            <dd><?= $model->iDPLAN->DESCRIPCION_PLAN ?></dd>
-                        
-                   </dl>
-  		     
-  		     
-             
-        
-  </div><!-- /.box-body -->
-  
-</div><!-- /.box -->
-
-</div>
-
   <div class="col-md-6 col-sm-12 col-xs-12">
             <div class="box box-primary">
                 <div class="box-header">
                       <i class="fa fa-university"></i>
-                    <h2 class="box-title"><?= Yii::t('backend', 'Establecimientos ') ?> <small>donde se impartira el curso</small></h2>
+                    <h2 class="box-title"><?= Yii::t('backend', 'Establecimiento(s) ') ?> <small>donde se impartirá el curso</small></h2>
                     
                     <div class="box-tools pull-right">
             <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
@@ -286,7 +216,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 
  			<h4 class="page-header">
           Constancias de los trabajadores
-                        <small>  que pueden ser emitidas en los establecimientos</small>
+                        <small> que deberá calificar en la fecha indicada  </small>
           </h4>   
 <a name="constancias"></a>
  
