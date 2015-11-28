@@ -361,7 +361,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 							}else $estatus = Constancia::getAllEstatusType(); 
 							*/
 							?>
-							
+								
 								<tr>
 									<td ><?= $worker->ID_TRABAJADOR?><?= $form->field($constancia, "[$i]ID_TRABAJADOR")->hiddenInput(['id'=>'hid_id_instructor'])->label(false) ?></td>
 									<td><?= $worker->NOMBRE.' '. $worker->APP ?></td>
