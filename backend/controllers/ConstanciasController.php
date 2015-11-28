@@ -955,31 +955,10 @@ class ConstanciasController extends \yii\web\Controller
     		$dataProvider = $searchModel->searchByCourse(Yii::$app->request->queryParams,$id_est,$id);
     		 
     
-    		//$workers = $establishmentModel->trabajadors;
-    
-    		//$constancias = [];
-    
-    		/*foreach ($workers as $worker){
-    	   
-    		$constancia = Constancia::findOne(['ID_CURSO'=>$id, 'ID_TRABAJADOR'=>$worker->ID_TRABAJADOR]);
-    		 
-    		if ($constancia === null){
-    
-    		$constancia = new Constancia();
-    		$constancia->ID_TRABAJADOR = $worker->ID_TRABAJADOR;
-    		 
-    		}
-    		 
-    		$constancias[] = $constancia;
-    		 
-    		}*/
-    
     		 
     	}else {
     
     
-    		 
-    		//$workers = $companyModel->iDEMPRESA->trabajadors;
     
     		$constancias = Constancia::findBySql('select * from tbl_constancia where id_curso= :id_curso AND id_trabajador in
     												(select id_trabajador from tbl_trabajador where id_empresa = :id_empresa)
@@ -988,35 +967,39 @@ class ConstanciasController extends \yii\web\Controller
     		$searchModel = new TrabajadorSearch();
     		$dataProvider = $searchModel->searchByCourse(Yii::$app->request->queryParams,$companyModel->ID_EMPRESA,$id);
     
-    
-    		/*foreach ($companyModel->iDEMPRESA->trabajadors as $worker){
-    
-    		$constancia = Constancia::findOne(['ID_CURSO'=>$id, 'ID_TRABAJADOR'=>$worker->ID_TRABAJADOR]);
-    
-    		if ($constancia === null){
-    
-    		$constancia = new Constancia();
-    		$constancia->ID_TRABAJADOR = $worker->ID_TRABAJADOR;
-    			
-    		}
-    
-    		$constancias[] = $constancia;
-    
-    		}*/
-    
     	}
-    	 
-    	 
+    	
+    	if ($courseModel->getCurrentStatus () === Curso::STATUS_INICIADO) {
+    		
+    		
+    		
+    		return $this->render('view_constancias_instructor', [
+    				'model' => $courseModel,
+    				'searchModel'=>$searchModel,
+    				'dataProvider'=>$dataProvider,
+    				'constancias'=>$constancias,
+    				]);
+    		
+    	}
+    	elseif ($courseModel->getCurrentStatus () === Curso::STATUS_CREADO) {
+    		 
     	return $this->render('create_constancias_instructor', [
     			'model' => $courseModel,
     			'searchModel'=>$searchModel,
     			'dataProvider'=>$dataProvider,
     			'constancias'=>$constancias,
     			]);
-    	 
-    	 
+    	     }
+    	     
+    	      elseif ($courseModel->getCurrentStatus () === Curso::STATUS_CONCLUIDO) {
+    	      	return $this->render('view_course_instructor', [
+    	      			'model' => $courseModel,
+    	      			'searchModel'=>$searchModel,
+    	      			'dataProvider'=>$dataProvider,
+    	      			'constancias'=>$constancias,
+    	      			]);
     }
-    
+    }
     
     /*view contancias del curso por impartir*/
     
@@ -1150,7 +1133,9 @@ class ConstanciasController extends \yii\web\Controller
     		$dataProvider = $searchModel->searchByCourse(Yii::$app->request->queryParams,$companyModel->ID_EMPRESA,$id);
     
     	}
-    
+    	
+    	
+    	
     
     	return $this->render('view_constancias_instructor', [
     			'model' => $courseModel,
