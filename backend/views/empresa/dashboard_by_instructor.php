@@ -188,8 +188,8 @@ foreach ( $model->cursos as $curso ) {
   <i class="fa fa-laptop fa-stack-2x"></i>
   <i class="fa fa-play fa-stack-1x text-success"></i>
 </span>
-	 Curos por imartir  
-	<small>cursos que debera impartir en la fecha de inicio indicada</small>
+	 Cursos por impartir  
+	<small>cursos que deberá impartir en la fecha de inicio indicada</small>
 </h4>
 
 <div class="row">
@@ -209,6 +209,10 @@ foreach ( $model->cursos as $curso ) {
 							<th>Nombre</th>
 							<th>Fecha de inicio</th>
 							<th>Fecha de fin</th>
+							<th>Numero de horas</th>
+							<th>Area tematica</th>
+							<th>Modalidad</th>
+							<th>Ver</th>
 
 
 						</tr>
@@ -222,14 +226,19 @@ foreach ( $model->cursos as $curso ) {
 							<td><?=$ci->NOMBRE;?></td>
 							<td><?=$ci->FECHA_INICIO;?></td>
 							<td><?=$ci->FECHA_TERMINO;?></td>
-
+							<td><?=$ci->DURACION_HORAS; ?></td>
+							<td><?=$ci->AREA_TEMATICA; ?></td>
+                           <td><?=$ci->MODALIDAD_CAPACITACION; ?></td>
+                           <td>
+                            <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/view-course-instructor', 'id'=>$ci->ID_CURSO],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
+                           </td>
 						</tr>
 				         	<?php }?>      																		
 																						
 						</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="4" style="text-align: right;">
+							<td colspan="8" style="text-align: right;">
 								Total <span class="badge bg-white"><?= count($cursosPorIniciar); ?></span>
 							</td>
 						</tr>
@@ -248,7 +257,7 @@ foreach ( $model->cursos as $curso ) {
   <i class="fa fa-laptop fa-stack-2x"></i>
   <i class="fa fa-pause fa-stack-1x text-warning"></i>
 </span>
-	Curos siendo impartidos
+	Cursos siendo impartidos
 	<small>cursos que estan siendo impartidos a la fecha actual</small>
 </h4>
 
@@ -274,6 +283,10 @@ foreach ( $model->cursos as $curso ) {
 							<th>Nombre</th>
 							<th>Fecha de inicio</th>
 							<th>Fecha de fin</th>
+							<th>Numero de horas</th>
+							<th>Area tematica</th>
+							<th>Modalidad</th>
+							<th>Calificar</th>
 
 						</tr>
 					</thead>
@@ -285,6 +298,13 @@ foreach ( $model->cursos as $curso ) {
 							<td><?= $cp->NOMBRE?></td>
 							<td><?= $cp->FECHA_INICIO?></td>
 							<td><?= $cp->FECHA_TERMINO?></td>
+							<td><?=$cp->DURACION_HORAS; ?></td>
+							<td><?=$cp->AREA_TEMATICA; ?></td>
+                           <td><?=$cp->MODALIDAD_CAPACITACION; ?></td>
+                           <td>
+                           <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/course-by-instructor', 'id'=>$cp->ID_CURSO],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
+                           
+                           </td>
 
 						</tr>
 				         	<?php endforeach;?>	    
@@ -292,7 +312,7 @@ foreach ( $model->cursos as $curso ) {
 			    	</tbody>
 			    	<tfoot>
 						<tr>
-							<td colspan="4" style="text-align: right;">
+							<td colspan="8" style="text-align: right;">
 								Total <span class="badge bg-white"><?= count($cursosProceso); ?></span>
 							</td>
 						</tr>
@@ -310,11 +330,9 @@ foreach ( $model->cursos as $curso ) {
   <i class="fa fa-laptop fa-stack-2x"></i>
   <i class="fa fa-stop fa-stack-1x text-danger"></i>
 </span>
-	 Curos finalizados  
+	 Cursos finalizados  
 	<small>cursos que fueron impartidos </small>
 </h4>
-
-
 
 <div class="row">
 	<div class="col-md-12 col-xs-12 col-sm-12">
@@ -322,7 +340,6 @@ foreach ( $model->cursos as $curso ) {
 
 			<div class="box-header">
 				<i class="fa fa-laptop"></i>
-
 			</div>
 
 			<div class="box-body table-responsive">
@@ -334,6 +351,10 @@ foreach ( $model->cursos as $curso ) {
 							<th>Nombre</th>
 							<th>Fecha de inicio</th>
 							<th>Fecha de fin</th>
+							<th>Numero de horas</th>
+							<th>Area tematica</th>
+							<th>Modalidad</th>
+							<th>Ver</th>
 						</tr>
 					</thead>
 					<tbody>											
@@ -344,6 +365,11 @@ foreach ( $model->cursos as $curso ) {
 							<td><?= $cf->NOMBRE?></td>
 							<td><?= $cf->FECHA_INICIO?></td>
 							<td><?= $cf->FECHA_TERMINO?></td>
+								<td><?=$ci->DURACION_HORAS; ?></td>
+							<td><?=$cf->AREA_TEMATICA; ?></td>
+                           <td><?=$cf->MODALIDAD_CAPACITACION; ?></td>
+                           <td> <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/view-course-constancia', 'id'=>$cf->ID_CURSO],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
+                            </td>                                            	
 
 						</tr>
 				         	<?php }?>	    
@@ -351,7 +377,7 @@ foreach ( $model->cursos as $curso ) {
 					</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="4" style="text-align: right;">
+							<td colspan="8" style="text-align: right;">
 								Total <span class="badge bg-white"><?= count($cursosFinalizados); ?></span>
 							</td>
 						</tr>
@@ -363,6 +389,9 @@ foreach ( $model->cursos as $curso ) {
 		</div>
 	</div>
 </div>
+
+
+
 
 
 <h1 >
