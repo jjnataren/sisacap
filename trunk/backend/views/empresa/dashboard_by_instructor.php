@@ -468,7 +468,7 @@ Relación de constancias
 				         		<td><?= $coa->iDTRABAJADOR->ID_TRABAJADOR;?></td>
 				         		<td><?= $coa->iDTRABAJADOR->NOMBRE . ' ' . $coa->iDTRABAJADOR->APP. ' ' . $coa->iDTRABAJADOR->APM;?></td>
 					         	<td><?= $coa->iDTRABAJADOR->CURP;?></td>
-					         	<td><?= $coa->iDTRABAJADOR->pUESTO->NOMBRE_PUESTO;?></td>
+					         	<td><?=  ($coa->iDTRABAJADOR->pUESTO)?$coa->iDTRABAJADOR->pUESTO->NOMBRE_PUESTO : 'no asignado';?></td>
 					         	<td><?= $coa->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
 					         	<td><?= $coa->ID_CONSTANCIA?></td>
 					         	<td><?= $coa->iDCURSO->NOMBRE?></td>
@@ -552,7 +552,7 @@ Relación de constancias
 				         		<td><?= $cor->iDTRABAJADOR->ID_TRABAJADOR;?></td>
 				         		<td><?= $cor->iDTRABAJADOR->NOMBRE . ' ' . $cor->iDTRABAJADOR->APP. ' ' . $cor->iDTRABAJADOR->APM;?></td>
 					         	<td><?= $cor->iDTRABAJADOR->CURP;?></td>
-					         	<td><?= $cor->iDTRABAJADOR->pUESTO->NOMBRE_PUESTO;?></td>
+					         <td><?=  ($cor->iDTRABAJADOR->pUESTO)?$cor->iDTRABAJADOR->pUESTO->NOMBRE_PUESTO : 'no asignado';?></td>
 					         	<td><?= $cor->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
 					         	<td><?= $cor->ID_CONSTANCIA?></td>
 					         	<td><?= $cor->iDCURSO->NOMBRE?></td>
@@ -637,7 +637,7 @@ Relación de constancias
 				         		<td><?= $cof->iDTRABAJADOR->ID_TRABAJADOR;?></td>
 				         		<td><?= $cof->iDTRABAJADOR->NOMBRE . ' ' . $cof->iDTRABAJADOR->APP. ' ' . $cof->iDTRABAJADOR->APM;?></td>
 					         	<td><?= $cof->iDTRABAJADOR->CURP;?></td>
-					         	<td><?= $cof->iDTRABAJADOR->pUESTO->NOMBRE_PUESTO;?></td>
+					         	<td><?=  ($cof->iDTRABAJADOR->pUESTO)?$cof->iDTRABAJADOR->pUESTO->NOMBRE_PUESTO : 'no asignado';?></td>
 					         	<td><?= $cof->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
 					         	<td><?= $cof->ID_CONSTANCIA?></td>
 					         	<td><?= $cof->iDCURSO->NOMBRE?></td>

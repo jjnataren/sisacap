@@ -1027,7 +1027,6 @@ use backend\models\Catalogo; ?>
 					  <table>
 						  <tr>
 						  	<td><img  src="<?='data:image/' . 'gif' . ';base64,'.$representante->getSigningBinary(); ?>" style="height:1.4cm;width:3cm;"></td>
-						  	<td style="vertical-align: bottom;"><p class="P7 text-center"><span class="T28"><?=$representante->NOMBRE ?>&nbsp;<?=$representante->APP ?>&nbsp;<?=$representante->APM ?></span></p></td>
 						  </tr>
 					  </table>
 					  <?php else:?>

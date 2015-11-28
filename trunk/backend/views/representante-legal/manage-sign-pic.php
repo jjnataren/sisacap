@@ -88,6 +88,7 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
                 								'showUpload' => false,
                 								'browseLabel' => 'Seleccionar',
                 								'removeLabel' => 'Eliminar',
+                								'allowedFileExtensions'=> ['jpeg','jpg', 'png', 'gif']
 								                ],
 							]
                 				
