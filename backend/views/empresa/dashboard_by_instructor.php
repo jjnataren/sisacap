@@ -557,7 +557,7 @@ Relación de constancias
 
 				<tr>
 					<td colspan=5"><i class="fa fa-user"></i> Datos trabajador</td>
-					<td colspan="9"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
+					<td colspan="8"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
 				</tr>
 
 				<tr>
@@ -572,7 +572,9 @@ Relación de constancias
 									<th>Tipo</th>
 									<th>Promedio</th>
 									<th colspan="2">Último comentario</th>
-													<th>Ver</th>						
+									<th colspan="1">Ver</th>
+															
+																
 				</tr>
 							</thead>
 							<tbody>
@@ -594,7 +596,7 @@ Relación de constancias
 					                               
 					         	<td colspan="2"><?= $cor->COMENTARIO?></td>
 					         	<td>  <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/dashboard-by-instructor', 'id'=>$cor->ID_CONSTANCIA],  [ 'class' => 'btn btn-info btn-xs' ] ) ?></td>
-                                 
+                               
 					         	
 				         	</tr>
 								
@@ -603,7 +605,7 @@ Relación de constancias
 			</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="14" style="text-align: right;">
+							<td colspan="13" style="text-align: right;">
 								Total <span class="badge bg-blue"><?= count($constanciasEnRevision); ?></span>
 							</td>
 						</tr>
