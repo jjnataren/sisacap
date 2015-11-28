@@ -22,7 +22,7 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
 							   </span>';
 
 
-$this->params['breadcrumbs'][] = 'Reperesentante legal';
+$this->params['breadcrumbs'][] = 'Instructor ';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -101,6 +101,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
 			   		 
 			</div>
+			
+		
 					
 					<div class="row">
 					<div class="col-xs-12 col-md-7">
@@ -132,10 +134,10 @@ $this->params['breadcrumbs'][] = $this->title;
 						
 	  		  <?= Html::submitButton( '<i class="fa fa-cogs"></i> Des encriptar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 	    
-	    	 	<?= Html::a( '<i class="fa fa-floppy-o"></i> Editar firma', '/representante-legal/manage-sign-pic' , ['class' =>  'btn btn-success']) ?>
+	    	 	<?= Html::a( '<i class="fa fa-floppy-o"></i> Editar firma', '/instructor/manage-sign-pic' , ['class' =>  'btn btn-success']) ?>
 	    	<?php else:?>
 	    
-	    	<?= Html::a( '<i class="fa fa-floppy-o"></i> Adjuntar firma', '/representante-legal/manage-sign-pic' , ['class' =>  'btn btn-success']) ?>
+	    	<?= Html::a( '<i class="fa fa-floppy-o"></i> Adjuntar firma', '/instructor/manage-sign-pic' , ['class' =>  'btn btn-success']) ?>
 	    		
 	    <?php endif;?>
        </div>
