@@ -11,7 +11,7 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-graduation-cap -lg  fa-stack-1x"></i>
 							   </span>';
 
-$this->params['breadcrumbs'][] = ['label' => 'Instructores', 'url' => ['viewbyinstructor']];
+
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
