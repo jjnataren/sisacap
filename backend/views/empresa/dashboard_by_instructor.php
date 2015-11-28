@@ -21,7 +21,7 @@ $this->params ['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-graduation-cap  fa-stack-1x"></i>
 							   </span>';
 $this->registerJs ( "$('#dataTable1').dataTable( {'language': {'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json' }});", View::POS_END, 'my-options' );
-
+  
 /* aarays cursos */
 
 $cursosPorIniciar = [ ]; // cursos creados
@@ -544,7 +544,7 @@ Relación de constancias
   <i class="fa fa-stop fa-stack-1x text-danger"></i>
 </span>
 	 Constancias firmadas  
-	<small>constancias que tubieron alguna obervacion por parte de la empresa o por el propio instructor</small>
+	<small>constancias que ya fuero firmadas por el instructor</small>
 </h4>
 
 
