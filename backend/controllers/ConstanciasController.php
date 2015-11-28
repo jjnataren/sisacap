@@ -235,6 +235,25 @@ class ConstanciasController extends \yii\web\Controller
     
     }
     
+    /**
+     *
+     * @param unknown $id
+     * @throws NotFoundHttpException
+     * @return Ambigous <string, string>
+     */
+    public function actionConstanciaFirmada($id){
+    
+    	$model = EmpresaUsuario::getMyCompany();
+    
+    	$modelConstancia = $this->findModel($id);
+    
+    	if ($modelConstancia->iDCURSO->iDPLAN->iDCOMISION->ID_EMPRESA !== $model->ID_EMPRESA)
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    
+    	return $this->render('view_const_firmada',['model'=>$modelConstancia]);
+    
+    }
+    
     
 
     
