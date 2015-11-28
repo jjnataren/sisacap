@@ -196,9 +196,15 @@ foreach ( $model->cursos as $curso ) {
 	<div class="col-md-12 col-xs-12 col-sm-12">
 		<div class="box box-info" id="controls">
 
+		
 			<div class="box-header">
 				<i class="fa fa-laptop"></i> 
+				 <div class="box-tools pull-right">
+            <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
+            <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
+          </div><!-- /.box-tools -->
 			</div>
+			
 
 			<div class="box-body table-responsive">
 
@@ -269,7 +275,10 @@ foreach ( $model->cursos as $curso ) {
 
 			<div class="box-header">
 				<i class="fa fa-laptop"></i>
-
+ <div class="box-tools pull-right">
+            <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
+            <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
+          </div><!-- /.box-tools -->
 
 			</div>
 
@@ -340,6 +349,10 @@ foreach ( $model->cursos as $curso ) {
 
 			<div class="box-header">
 				<i class="fa fa-laptop"></i>
+				 <div class="box-tools pull-right">
+            <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
+            <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
+          </div><!-- /.box-tools -->
 			</div>
 
 			<div class="box-body table-responsive">
@@ -417,7 +430,10 @@ Relación de constancias
 <div class="box box-primary">
 	<div class="box-header">
 		<i class="fa fa-paperclip"></i>
-
+ <div class="box-tools pull-right">
+            <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
+            <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
+          </div><!-- /.box-tools -->
 
 
 	</div>
@@ -459,7 +475,7 @@ Relación de constancias
 					         	<td><?= $coa->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
 					         	<td><?= $coa->ID_CONSTANCIA?></td>
 					         	<td><?= $coa->iDCURSO->NOMBRE?></td>
-					         	<td></td>
+					         	<td> </td>
 				         	</tr>
 								
 						<?php } ?>
@@ -469,7 +485,7 @@ Relación de constancias
 			
 				<tfoot>
 						<tr>
-							<td colspan="8" style="text-align: right;">
+							<td colspan="10" style="text-align: right;">
 								Total <span class="badge bg-blue"><?= count($constanciasAsignadas); ?></span>
 							</td>
 						</tr>
@@ -501,7 +517,10 @@ Relación de constancias
 	<div class="box-header">
 		<i class="fa fa-paperclip"></i>
 
-
+ <div class="box-tools pull-right">
+            <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
+            <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
+          </div><!-- /.box-tools -->
 
 	</div>
 	<div class="box-body table-responsive">
@@ -552,7 +571,7 @@ Relación de constancias
 			</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="9" style="text-align: right;">
+							<td colspan="10" style="text-align: right;">
 								Total <span class="badge bg-blue"><?= count($constanciasEnRevision); ?></span>
 							</td>
 						</tr>
@@ -584,7 +603,10 @@ Relación de constancias
 	<div class="box-header">
 		<i class="fa fa-paperclip"></i>
 
-
+ <div class="box-tools pull-right">
+            <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
+            <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
+          </div><!-- /.box-tools -->
 
 	</div>
 	<div class="box-body table-responsive">
