@@ -140,7 +140,8 @@ foreach ( $model->cursos as $curso ) {
 		<div class="small-box bg-red">
 			<div class="inner">
 				<h3>
-					<i class="fa fa-file-o""></i>
+					<i class="glyphicon glyphicon-warning-sign""></i>
+					
 					
                                     
                                         <?php  echo count($constanciasEnRevision); ?>
@@ -162,6 +163,7 @@ foreach ( $model->cursos as $curso ) {
 			<div class="inner">
 				<h3>
 				<i class="fa  fa-file-pdf-o"></i>
+				
 				<?php  echo count($constanciasFirmadas); ?>
                                         </h3>
 				<p>constancias firmadas</p>
@@ -184,7 +186,7 @@ foreach ( $model->cursos as $curso ) {
 
 <span class="fa-stack">
   <i class="fa fa-laptop fa-stack-2x"></i>
-  <i class="fa fa-play fa-stack-1x text-success"></i>
+  <i class="glyphicon glyphicon-play"></i>
 </span>
 	 Cursos por impartir  
 	<small>cursos que deberá impartir en la fecha de inicio indicada</small>
@@ -267,14 +269,17 @@ foreach ( $model->cursos as $curso ) {
 </div>
 
 
-<h4 class="page-header" id="anchor_comision">
+<h3 class="page-header" id="anchor_comision">
 <span class="fa-stack">
   <i class="fa fa-laptop fa-stack-2x"></i>
-  <i class="fa fa-pause fa-stack-1x text-warning"></i>
+  <i class="fa fa-spinner"></i>
 </span>
+  
+  
+
 	Cursos siendo impartidos
 	<small>cursos que estan siendo impartidos a la fecha actual</small>
-</h4>
+</h3>
 
 
 
@@ -354,7 +359,7 @@ foreach ( $model->cursos as $curso ) {
 <h4 class="page-header" id="anchor_comision">
 <span class="fa-stack">
   <i class="fa fa-laptop fa-stack-2x"></i>
-  <i class="fa fa-stop fa-stack-1x text-danger"></i>
+  <i class="glyphicon glyphicon-stop"></i>
 </span>
 	 Cursos finalizados  
 	<small>cursos que fueron impartidos </small>
