@@ -757,7 +757,7 @@ class ConstanciasController extends \yii\web\Controller
     			return $this->redirect(['createbycourse','id'=>$id, 'id_est'=>$id_establishment]); // redirect to your next desired page
     	
     	
-    		}else  return $this->render('create_constancias', [
+    		}else  return $this->render('create_constancias_instructor', [
     					'model' => $courseModel,
     					'constancias'=>$constancias,
     	
@@ -946,7 +946,7 @@ class ConstanciasController extends \yii\web\Controller
     			return $this->redirect(['course-by-instructor','id'=>$id, 'id_est'=>$id_establishment]); // redirect to your next desired page
     			 
     			 
-    		}else  return $this->render('create_constancias', [
+    		}else  return $this->render('create_constancias_instructor', [
     				'model' => $courseModel,
     				'constancias'=>$constancias,
     				 
