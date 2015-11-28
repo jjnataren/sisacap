@@ -114,17 +114,10 @@ foreach ( $model->cursos as $curso ) {
 				<h3>
 					<i class="glyphicon glyphicon-calendar"></i>
                                                                                              
-                                     
+                                   
                                          
-                                         <?=count ( Constancia::findBySql ( 'select * from tbl_constancia where ID_CURSO in 
-                                         		
-                                         		(select ID_INSTRUCTOR from tbl_curso where ID_INSTRUCTOR )' ) );?>
+                                         <?php  echo count($constanciasAsignadas); ?>
                                         
-                                        <!--  ('select * from tbl_indicador_curso where id_curso in 
-                            		(select id_curso from tbl_curso where id_plan in 
-                            			(select id_plan from tbl_plan where id_comision in 
-                            				(select id_comision from tbl_comision_mixta_cap where id_empresa = '. $id.') ))' );
-    										-->
 
 
 
@@ -143,13 +136,14 @@ foreach ( $model->cursos as $curso ) {
 	<!-- ./col -->
 	<div class="col-md-3 col-xs-6">
 		<!-- small box -->
-		<div class="small-box bg-yellow">
+		<div class="small-box bg-red">
 			<div class="inner">
 				<h3>
-					<i class="fa  fa-file-pdf-o"></i>
+					<i class="fa fa-file-o""></i>
+					
                                     
-                                        <?=8; // count(Constancia::findBySql("select * from tbl_constancia where ID_EMPRESA = $model->ID_EMPRESA AND ACTIVO = 1")->all());                                    </h3>
-                                        ?>
+                                        <?php  echo count($constanciasEnRevision); ?>
+                      </h3>                  
 				<p>Constancias en revisión</p>
 			</div>
 			<div class="icon">
@@ -163,10 +157,13 @@ foreach ( $model->cursos as $curso ) {
 	<!-- ./col -->
 	<div class="col-md-3 col-xs-6">
 		<!-- small box -->
-		<div class="small-box bg-red">
+		<div class="small-box bg-orange">
 			<div class="inner">
-				<h3>10</h3>
-				<p>Listas de constancias enviadas</p>
+				<h3>
+				<i class="fa  fa-file-pdf-o"></i>
+				<?php  echo count($constanciasFirmadas); ?>
+                                        </h3>
+				<p>constancias firmadas</p>
 			</div>
 			<div class="icon">
 				<i class="ion ion-pie-graph"></i>
