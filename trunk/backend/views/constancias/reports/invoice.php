@@ -126,18 +126,14 @@ $this->registerJs("$('#help_popup_carnera').popover('hide');", View::POS_END, 'n
 		                        	
 		                        	<tr>
 		                        		<td width="100px" />
-		                        		<td width="400px" style="text-align: center; height: 50px;">
-		                        		 &nbsp;
-		                        		 
-		                        		<span class="T28"><?php 
-						
-                    $instructor=$model->iDCURSO-> iDINSTRUCTOR;		
-                    
-                     if ($instructor->SIGN_PIC !== NULL && $instructor->SIGN_PASSWD !== NULL)?>
+		                        		<td width="300px" style="text-align: center; height: 50px;">
+		                        	<span class="T28"><?php 
+						                    $instructor=$model->iDCURSO->iDINSTRUCTOR;		
+                                         if ($instructor->SIGN_PIC !== NULL && $instructor->SIGN_PASSWD !== NULL)?>
 
 					<table>
 					<tr>
-					<td><img  src="<?='data:image/' . 'gif' . ';base64,'.$instructor->getSigningBinary(); ?>" style="height:1.4cm;width:3cm;"></td>
+					<td><img src="<?='data:image/'.'gif'.';base64,'.$instructor->getSigningBinary(); ?>" style="height:1.4cm;width:3cm;"></td>
 					</tr>
 					</table>
 					<?php 
@@ -155,9 +151,7 @@ $this->registerJs("$('#help_popup_carnera').popover('hide');", View::POS_END, 'n
 		                        		</td>
 		                        		<td width="50px" />
 		                        		<td width="400px" style="text-align: center;">
-		                        		&nbsp;
-		                        		
-		                        		
+		                        				                        		
 		                        		<?php 
 						$empresaUsuarioModel = EmpresaUsuario::getMyCompany();
 					  $representante = $empresaUsuarioModel->iDEMPRESA->iDREPRESENTANTELEGAL;
