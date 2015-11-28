@@ -108,7 +108,6 @@ $this->registerJs("$('#help_popup_carnera').popover('hide');", View::POS_END, 'n
 		                        	
 		                        		<td width="100px" />
 		                        		<td width="400px" style="text-align: center;">
-		                        			<?php echo $model->iDCURSO->iDINSTRUCTOR->NOMBRE; ?>
 		                        		
 		                        		</td>
 		                        		<td width="50px" />
@@ -118,7 +117,7 @@ $this->registerJs("$('#help_popup_carnera').popover('hide');", View::POS_END, 'n
 
 		                        		 		$company = EmpresaUsuario::getMyCompany();
 		                        		 	
-		                        		 		echo $company->iDEMPRESA->iDREPRESENTANTELEGAL->NOMBRE;
+		                        		 
 		                        		 	?>
 		                        		</td>
 		                        		<td width="100px" />
@@ -129,10 +128,56 @@ $this->registerJs("$('#help_popup_carnera').popover('hide');", View::POS_END, 'n
 		                        		<td width="100px" />
 		                        		<td width="400px" style="text-align: center; height: 50px;">
 		                        		 &nbsp;
+		                        		 
+		                        		<span class="T28"><?php 
+						
+                    $instructor=$model->iDCURSO-> iDINSTRUCTOR;		
+                    
+                     if ($instructor->SIGN_PIC !== NULL && $instructor->SIGN_PASSWD !== NULL)?>
+
+					<table>
+					<tr>
+					<td><img  src="<?='data:image/' . 'gif' . ';base64,'.$instructor->getSigningBinary(); ?>" style="height:1.4cm;width:3cm;"></td>
+					</tr>
+					</table>
+					<?php 
+					if (isset($model->iDCURSO->iDINSTRUCTOR))
+						
+						if($instructor !== null)
+							
+						echo $model->iDCURSO->iDINSTRUCTOR->NOMBRE. '&nbsp;' .$model->iDCURSO->iDINSTRUCTOR->APP. '&nbsp;'.$model->iDCURSO->iDINSTRUCTOR->APM; 
+					
+							else
+								echo '&nbsp;';
+						?>
+					</span>
+					
 		                        		</td>
 		                        		<td width="50px" />
 		                        		<td width="400px" style="text-align: center;">
 		                        		&nbsp;
+		                        		
+		                        		
+		                        		<?php 
+						$empresaUsuarioModel = EmpresaUsuario::getMyCompany();
+					  $representante = $empresaUsuarioModel->iDEMPRESA->iDREPRESENTANTELEGAL;
+					  
+					  if ($representante->SIGN_PICTURE !== NULL && $representante->SIGN_PASSWD !== NULL  ): ?>
+					  
+					  
+					  <table>
+						  <tr>
+						  	<td><img  src="<?='data:image/' . 'gif' . ';base64,'.$representante->getSigningBinary(); ?>" style="height:1.4cm;width:3cm;"></td>
+						   </tr>
+						    <tr>
+						  	<td><span class="T28"><?=$representante->NOMBRE ?>&nbsp;<?=$representante->APP ?>&nbsp;<?=$representante->APM ?></span></td>
+						   </tr>
+					  </table>
+					  <?php else:?>
+					  	<span class="T28"><?=$representante->NOMBRE ?>&nbsp;<?=$representante->APP ?>&nbsp;<?=$representante->APM ?></span>
+					  <?php endif;?>
+					
+		                        		
 		                        		</td>
 		                        		<td width="100px" />
 		                        	</tr>
