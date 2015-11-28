@@ -230,8 +230,20 @@ foreach ( $model->cursos as $curso ) {
 							<td><?=$ci->FECHA_INICIO;?></td>
 							<td><?=$ci->FECHA_TERMINO;?></td>
 							<td><?=$ci->DURACION_HORAS; ?></td>
-							<td><?=$ci->AREA_TEMATICA; ?></td>
-                           <td><?=$ci->MODALIDAD_CAPACITACION; ?></td>
+							
+							
+							 <td><?php 
+                                    $catalog = Catalogo::findOne(['ID_ELEMENTO'=>$ci->AREA_TEMATICA, 'CATEGORIA'=>6, 'ACTIVO'=>1]);
+         			               echo isset($catalog)?$catalog->NOMBRE: 'no asignado'; ?></td>
+         			
+							
+							
+							 <td><?php
+										
+										$modalidades = Curso::getModalidad();
+						    			  echo  isset($modalidades[$ci->MODALIDAD_CAPACITACION])?$modalidades[$ci->MODALIDAD_CAPACITACION]:'no asignado'; 
+									        ?>
+									 </td>
                            <td>
                             <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/view-course-instructor', 'id'=>$ci->ID_CURSO],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
                            </td>
@@ -305,8 +317,16 @@ foreach ( $model->cursos as $curso ) {
 							<td><?= $cp->FECHA_INICIO?></td>
 							<td><?= $cp->FECHA_TERMINO?></td>
 							<td><?=$cp->DURACION_HORAS; ?></td>
-							<td><?=$cp->AREA_TEMATICA; ?></td>
-                           <td><?=$cp->MODALIDAD_CAPACITACION; ?></td>
+						 <td><?php 
+                                    $catalog = Catalogo::findOne(['ID_ELEMENTO'=>$cp->AREA_TEMATICA, 'CATEGORIA'=>6, 'ACTIVO'=>1]);
+         			               echo isset($catalog)?$catalog->NOMBRE: 'no asignado'; ?></td>
+         			
+                         <td><?php
+										
+										$modalidades = Curso::getModalidad();
+						    			  echo  isset($modalidades[$cp->MODALIDAD_CAPACITACION])?$modalidades[$cp->MODALIDAD_CAPACITACION]:'no asignado'; 
+									        ?>
+									 </td>
                            <td>
                            <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/course-by-instructor', 'id'=>$cp->ID_CURSO],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
                            
@@ -376,8 +396,15 @@ foreach ( $model->cursos as $curso ) {
 							<td><?= $cf->FECHA_INICIO?></td>
 							<td><?= $cf->FECHA_TERMINO?></td>
 								<td><?=$cf->DURACION_HORAS; ?></td>
-							<td><?=$cf->AREA_TEMATICA; ?></td>
-                           <td><?=$cf->MODALIDAD_CAPACITACION; ?></td>
+							 <td><?php 
+                                    $catalog = Catalogo::findOne(['ID_ELEMENTO'=>$cf->AREA_TEMATICA, 'CATEGORIA'=>6, 'ACTIVO'=>1]);
+         			               echo isset($catalog)?$catalog->NOMBRE: 'no asignado'; ?></td>
+         			 <td><?php
+										
+										$modalidades = Curso::getModalidad();
+						    			  echo  isset($modalidades[$cf->MODALIDAD_CAPACITACION])?$modalidades[$cf->MODALIDAD_CAPACITACION]:'no asignado'; 
+									        ?>
+									 </td>
                            <td> <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/view-course-constancia', 'id'=>$cf->ID_CURSO],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
                             </td>                                            	
 
