@@ -3,6 +3,7 @@ use yii\web\View;
 use miloschuman\highcharts\Highcharts;
 use yii\web\JsExpression;
 use backend\models\Plan;
+use kartik\checkbox\CheckboxX;
 use backend\models\Constancia;
 use backend\models\Catalogo;
 use yii\helpers\Html;
@@ -201,7 +202,6 @@ foreach ( $model->cursos as $curso ) {
             <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
           </div><!-- /.box-tools -->
 			</div>
-			
 
 			<div class="box-body table-responsive">
 
@@ -439,9 +439,8 @@ Relación de constancias
 
 
 <h4 class="page-header" id="anchor_constancias">
-<span class="fa-stack">
-  <i class="fa fa-circle fa-stack-2x"></i>
-  <i class="fa fa-stop fa-stack-1x text-info"></i>
+<span class="fa fa-file-o">
+ 
 </span>
 	 Constancias por evaluar y firmar  
 	<small>constancias que estan pendiente de evaluacion y firma por instructor</small>
@@ -499,7 +498,7 @@ Relación de constancias
 					         	<td><?= $coa->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
 					         	<td><?= $coa->ID_CONSTANCIA?></td>
 					         	<td><?= $coa->iDCURSO->NOMBRE?></td>
-					         	<td> </td>
+					         	<td>   <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/dashboard-by-instructor', 'id'=>$coa->ID_CONSTANCIA],  [ 'class' => 'btn btn-info btn-xs' ] ) ?></td>
 				         	</tr>
 								
 						<?php } ?>
@@ -525,9 +524,8 @@ Relación de constancias
 
 
 <h4 class="page-header" id="anchor_constancias_observaciones">
-<span class="fa-stack">
-  <i class="fa fa-circle fa-stack-2x"></i>
-  <i class="fa fa-stop fa-stack-1x text-danger"></i>
+<span class="fa fa-file-o">
+
 </span>
 	 Constancias con observaciones  
 	<small>constancias que tubieron alguna obervacion por parte de la empresa o por el propio instructor</small>
@@ -553,8 +551,8 @@ Relación de constancias
 			<thead>
 
 				<tr>
-					<td colspan="5"><i class="fa fa-user"></i> Datos trabajador</td>
-					<td colspan="6"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
+					<td colspan=5"><i class="fa fa-user"></i> Datos trabajador</td>
+					<td colspan="9"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
 				</tr>
 
 				<tr>
@@ -567,12 +565,13 @@ Relación de constancias
 									<th>Curso</th>
 									<th>Aprobado</th>
 									<th>Tipo</th>
+									<th>Promedio</th>
 									<th colspan="2">Último comentario</th>
-																			
+													<th>Ver</th>						
 				</tr>
 							</thead>
 							<tbody>
-											
+										
 					 	<?php  foreach ($constanciasEnRevision as $cor) {?>		
 											
 							<tr>
@@ -583,9 +582,15 @@ Relación de constancias
 					         	<td><?= $cor->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
 					         	<td><?= $cor->ID_CONSTANCIA?></td>
 					         	<td><?= $cor->iDCURSO->NOMBRE?></td>
-					         	<td><?= $cor->APROBADO?></td>
-					         	<td><?= $cor->TIPO_CONSTANCIA?></td>
+					            	<td><?= ($cor->APROBADO==1) ? 'Aprobado' : 'Reprobado'?></td>
+					         	<td><?= ($cor->TIPO_CONSTANCIA ==1)?'Certificada':'Comprobante'?></td>
+					         			         
+					         	<td><?= $cor->PROMEDIO ?></td>
+					                               
 					         	<td colspan="2"><?= $cor->COMENTARIO?></td>
+					         	<td>  <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/dashboard-by-instructor', 'id'=>$cor->ID_CONSTANCIA],  [ 'class' => 'btn btn-info btn-xs' ] ) ?></td>
+                                 
+					         	
 				         	</tr>
 								
 						<?php } ?>			
@@ -593,7 +598,7 @@ Relación de constancias
 			</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="10" style="text-align: right;">
+							<td colspan="14" style="text-align: right;">
 								Total <span class="badge bg-blue"><?= count($constanciasEnRevision); ?></span>
 							</td>
 						</tr>
@@ -602,16 +607,22 @@ Relación de constancias
 
 	</div>
 </div>
-
+ <?php if (isset($constancias) && count>0) :?>
+							        <?= Html::submitButton('<i class="fa fa-floppy-o"></i>' 
+				  		.'&nbsp;'.Yii::t('backend', 'Guardar cambios'),
+					  		 ['class' => 'btn btn-success', 'name'=>'proccess' ]) ?>
+						        <?php endif;?>  
 </div>
+
+
 </div>
 
 
 
 <h4 class="page-header" id="anchor_constancias_observaciones">
-<span class="fa-stack">
-  <i class="fa fa-circle fa-stack-2x"></i>
-  <i class="fa fa-stop fa-stack-1x text-danger"></i>
+<span class="fa  fa-file-pdf-o">
+  
+ 
 </span>
 	 Constancias firmadas  
 	<small>constancias que ya fuero firmadas por el instructor</small>
@@ -638,7 +649,7 @@ Relación de constancias
 
 				<tr>
 					<td colspan="5"><i class="fa fa-user"></i> Datos trabajador</td>
-					<td colspan="6"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
+					<td colspan="7"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
 				</tr>
 
 				<tr>
@@ -652,6 +663,8 @@ Relación de constancias
 									<th>Aprobado</th>
 									<th>Tipo</th>
 									<th colspan="2">Último comentario</th>
+									<th>Ver </th>
+								
 																
 				</tr>
 							</thead>
@@ -667,10 +680,12 @@ Relación de constancias
 					         	<td><?=  ($cof->iDTRABAJADOR->pUESTO)?$cof->iDTRABAJADOR->pUESTO->NOMBRE_PUESTO : 'no asignado';?></td>
 					         	<td><?= $cof->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
 					         	<td><?= $cof->ID_CONSTANCIA?></td>
-					         	<td><?= $cof->iDCURSO->NOMBRE?></td>
-					         	<td><?= $cof->APROBADO?></td>
-					         	<td><?= $cof->TIPO_CONSTANCIA?></td>
+					         	<td><?= $cof->iDCURSO->NOMBRE?></td> 
+					         	<td><?= ($cof->APROBADO==1) ? 'Aprobado' : 'Reprobado'?></td>
+					         	<td><?= ($cof->TIPO_CONSTANCIA ==1)?'Certificada':'Comprobante'?></td>
 					         	<td colspan="2"><?= $cof->COMENTARIO?></td>
+					         	<td>  <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/constancia-firmada', 'id'=>$cof->ID_CONSTANCIA],  [ 'class' => 'btn btn-info btn-xs' ] ) ?></td>
+					         	
 					         	
 				         	</tr>
 								
@@ -680,7 +695,7 @@ Relación de constancias
 			</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="11" style="text-align: right;">
+							<td colspan="12" style="text-align: right;">
 								Total <span class="badge bg-blue"><?= count($constanciasFirmadas); ?></span>
 							</td>
 						</tr>
