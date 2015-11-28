@@ -28,7 +28,7 @@ $cursosPorIniciar = [ ]; // cursos creados
 $cursosProceso = [ ]; // cursos inciados
 $cursosFinalizados = [ ]; // cursos terminados
 
-/* arrays constancias */
+/* arrays constancias */  
 $constanciasEnRevision = [ ];
 $constanciasAsignadas = [ ];
 $constanciasFirmadas = [ ];
