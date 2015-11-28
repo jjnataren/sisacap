@@ -233,6 +233,17 @@ class RepresentanteLegalController extends Controller
     		
     		$file = UploadedFile::getInstance($representante,'SIGN_PICTURE');
     		
+    		if ($file === null){
+    			 
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-danger'],
+    					 
+    					'body'=> '<i class="fa fa-info"></i> Debe seleccionar una imagen',
+    			]);
+    			return $this->render('manage-sign-pic',['model'=>$representante, 'SIGN_IMAGE'=> base64_encode($image64Data)]);
+    			 
+    		}
+    		
     		
     		$passphrase = md5($representante->SIGN_PASSWD);
     		
