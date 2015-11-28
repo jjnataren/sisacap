@@ -23,7 +23,7 @@ class ConstanciasController extends \yii\web\Controller
 		return parent::beforeAction($action);
 	}
 	
-	
+	  
 	public function actionIndex()
     {
         return $this->render('index');
