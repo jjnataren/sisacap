@@ -274,7 +274,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
 						<?=  $form->field($model, 'PROMEDIO')->textInput();  ?>
 						<?= $form->field($model, 'APROBADO')->widget(CheckboxX::classname(), ['options'=>['id'=>'chk_aprobado'],'pluginOptions'=>['threeState'=>false]]); ?>
 						-->
-								
+								<?php $estatus = Constancia::getAvaliableStatusByRol($model->ESTATUS, 5);?>
 						 		
 								
  <?= DetailView::widget([
@@ -313,7 +313,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
 		
 ],
     ]) ?>				
-    <?= $form->field($model, 'ESTATUS')->dropDownList(Constancia::getAllEstatusType(),['prompt'=>'-- Seleccione  --',]); ?>
+  
+    <td><?= $form->field($model, "ESTATUS")->dropDownList($estatus)->label(false) ?></td>
+                    
 <!--  -->		<?=  $form->field($model, 'COMENTARIO')->textArea(Constancia:: getAllEstatusType(), ['id'=>'drop_coment']) ?>  							
 
 				 						
