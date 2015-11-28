@@ -46,7 +46,7 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
 					<div class="panel-heading">
 						<h3><i class="fa fa-pencil"></i>
 						
-							<?= Yii::t('backend', 'Firma digitalizada  ') ?> <small> del representante legal.</small> </h3>	
+							<?= Yii::t('backend', 'Firma digitalizada  ') ?> <small> del Instructor.</small> </h3>	
 						</div>
 <div class="panel-body">
 
@@ -83,12 +83,13 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
 						
                    
                 <?= $form->field($model, 'SIGN_PIC')->widget(FileInput::classname(), [
- 							   'options' => ['accept' => 'image/*'],
+ 							   //'options' => ['accept' => 'image/jpg'],
                 				'language' => 'es',
                 				'pluginOptions' => [
                 								'showUpload' => false,
                 								'browseLabel' => 'Seleccionar',
                 								'removeLabel' => 'Eliminar',
+                								'allowedFileExtensions'=> ['jpeg','jpg', 'png', 'gif']
 								                ],
 							]
                 				

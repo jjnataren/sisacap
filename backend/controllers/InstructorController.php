@@ -386,6 +386,8 @@ public function actionViewbycompany($id){
     	 
     	if ($instructor->load(Yii::$app->request->post())) {
     
+    	
+    		
     		$passphrase = md5($instructor->SIGN_PASSWD);
     
     		if($passwordoriginal  !==  $passphrase){
@@ -450,6 +452,17 @@ public function actionViewbycompany($id){
     		$file = UploadedFile::getInstance($instructor,'SIGN_PIC');
     
     
+    		if ($file === null){
+    			
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-danger'],
+    			
+    					'body'=> '<i class="fa fa-info"></i> Debe seleccionar una imagen',
+    			]);
+    			return $this->render('manage-sign-pic',['model'=>$instructor, 'SIGN_IMAGE'=> base64_encode($image64Data)]);
+    			
+    		}
+    		
     		$passphrase = md5($instructor->SIGN_PASSWD);
     
     

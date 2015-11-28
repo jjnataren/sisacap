@@ -375,7 +375,7 @@ foreach ( $model->cursos as $curso ) {
 							<td><?= $cf->NOMBRE?></td>
 							<td><?= $cf->FECHA_INICIO?></td>
 							<td><?= $cf->FECHA_TERMINO?></td>
-								<td><?=$ci->DURACION_HORAS; ?></td>
+								<td><?=$cf->DURACION_HORAS; ?></td>
 							<td><?=$cf->AREA_TEMATICA; ?></td>
                            <td><?=$cf->MODALIDAD_CAPACITACION; ?></td>
                            <td> <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/view-course-constancia', 'id'=>$cf->ID_CURSO],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
@@ -559,11 +559,9 @@ Relación de constancias
 					         	<td><?= $cor->APROBADO?></td>
 					         	<td><?= $cor->TIPO_CONSTANCIA?></td>
 					         	<td colspan="2"><?= $cor->COMENTARIO?></td>
-					         	
 				         	</tr>
 								
-						<?php } ?>
-			
+						<?php } ?>			
 			
 			</tbody>
 					<tfoot>

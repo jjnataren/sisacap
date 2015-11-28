@@ -51,27 +51,33 @@ class Instructor extends \yii\db\ActiveRecord
 				self::TIPO_AGENTE_ACREDITACION=>'Agente capacitador externo con numero de acreditación, perteneciente a una empresa ',
 				self::TIPO_AGENTE_PROVEDOR=>'Agente empresa provedor externo'];
 	}
-    /**
+
+
+ /**
      * @inheritdoc
      */
     public static function tableName()
     {
         return 'tbl_instructor';
     }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
-    	return [
-    			[['ID_EMPRESA', 'LOGOTIPO', 'NUM_REGISTRO_AGENTE_EXTERNO', 'TIPO_INSTRUCTOR', 'ACTIVO'], 'integer'],
-    			//            [['NUM_REGISTRO_AGENTE_EXTERNO'], 'required'],
-    			[['NOMBRE_AGENTE_EXTERNO', 'NOMBRE', 'APP', 'APM','RFC','TELEFONO'], 'string', 'max' => 100],
-    			[['DOMICILIO', 'CORREO_ELECTRONICO'], 'string', 'max' => 300],
-    			[['COMENTARIOS'], 'string', 'max' => 200]
-    	];
+        return [
+            [['ID_EMPRESA', 'LOGOTIPO', 'NUM_REGISTRO_AGENTE_EXTERNO', 'TIPO_INSTRUCTOR', 'ACTIVO', 'ID_USUARIO'], 'integer'],
+            [['SIGN_CREATED_AT'], 'safe'],
+            [['NOMBRE_AGENTE_EXTERNO', 'NOMBRE', 'APP', 'APM', 'TELEFONO', 'SIGN_PIC_EXTENSION'], 'string', 'max' => 100],
+            [['DOMICILIO', 'CORREO_ELECTRONICO'], 'string', 'max' => 300],
+            [['COMENTARIOS'], 'string', 'max' => 200],
+            [['RFC'], 'string', 'max' => 13],
+            [['SIGN_PIC', 'SIGN_PASSWD'], 'string', 'max' => 2048]
+        ];
     }
-    /**
+
+     /**
      * @inheritdoc
      */
     public function attributeLabels()
@@ -106,6 +112,13 @@ class Instructor extends \yii\db\ActiveRecord
         return $this->hasMany(Curso::className(), ['ID_INSTRUCTOR' => 'ID_INSTRUCTOR']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIDEMPRESA()
+    {
+        return $this->hasOne(Empresa::className(), ['ID_EMPRESA' => 'ID_EMPRESA']);
+    }
 
     /**
      * @return \yii\db\ActiveQuery
@@ -114,15 +127,8 @@ class Instructor extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'ID_USUARIO']);
     }
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getIDEMPRESA()
-    {
-    	return $this->hasOne(Empresa::className(), ['ID_EMPRESA' => 'ID_EMPRESA']);
-    }
-    
-    /**
+
+ /**
      * Get instance of Instructor
      * @throws NotFoundHttpException
      */
