@@ -32,14 +32,14 @@ use yii\helpers\Html;
     	Si tiene alguna duda y/o comentario acerca de este correo, puede  contactarse con nosotros en:
     	
     	<address>
-  <strong>JAVA LAB SA DE CV</strong><br>
+  <strong>JAVA LAB SA DE CV</strong><br />
   795 Folsom Ave, Suite 600<br>
   Monterrey, CA 94107<br>
   <abbr title="Phone">P:</abbr> (123) 456-7890
 </address>
 
 <address>
-  <strong>Correo Electronico</strong><br>
+  <strong>Correo Electronico</strong><br />
   <a href="mailto:#">contacto@sisacap.com</a>
 </address>
     	
