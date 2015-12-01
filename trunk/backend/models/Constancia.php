@@ -88,6 +88,8 @@ class Constancia extends \yii\db\ActiveRecord
 	const STATUS_DELIVERED= 6;
 	const STATUS_REJECTED=7;
 	const STATUS_RECHAZADA_MANAGER=8;
+	const ESTATUS_ENVIADA=9;
+	const ESTATUS_RECIBIDA=10;	
 	
 	
 	/**
@@ -125,6 +127,8 @@ class Constancia extends \yii\db\ActiveRecord
 		return [Constancia::STATUS_ASIGNADA =>'Asignada',
 		Constancia::STATUS_REJECTED =>'Rechazada instructor',
 		Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firma instructor',
+		constancia::STATUS_ENVIADA =>'Enviada E-mail',
+		constancia::STATUS_RECIBIDA =>'Visto',
 	
 				];
 	}
