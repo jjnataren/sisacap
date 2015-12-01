@@ -88,8 +88,8 @@ class Constancia extends \yii\db\ActiveRecord
 	const STATUS_DELIVERED= 6;
 	const STATUS_REJECTED=7;
 	const STATUS_RECHAZADA_MANAGER=8;
-	const ESTATUS_ENVIADA=9;
-	const ESTATUS_RECIBIDA=10;	
+	const STATUS_ENVIADA=9;
+	const STATUS_RECIBIDA=10;	
 	
 	
 	/**
