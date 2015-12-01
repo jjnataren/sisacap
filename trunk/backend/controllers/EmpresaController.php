@@ -649,10 +649,13 @@ class EmpresaController extends Controller
     					
     					$instructor = new Instructor();
     					
+    					$usuario = $modelEmpresaUsuario->iDUSUARIO;
+    					
     					$instructor->ACTIVO = 1;
     					$instructor->ID_EMPRESA = $id;
     					$instructor->ID_USUARIO = $id_u;
     					$instructor->COMENTARIOS = 'Instructor nuevo';
+    					$instructor->CORREO_ELECTRONICO = $usuario->email;
     					$instructor->save();
     				}
     				
