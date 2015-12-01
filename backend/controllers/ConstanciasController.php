@@ -1002,7 +1002,7 @@ class ConstanciasController extends \yii\web\Controller
     		
     	}
     	elseif ($courseModel->getCurrentStatus () === Curso::STATUS_INICIADO) {
-    		 
+    		
     	return $this->render('create_constancias_instructor', [
     			'model' => $courseModel,
     			'searchModel'=>$searchModel,
