@@ -309,7 +309,7 @@ foreach ( $model->cursos as $curso ) {
 							<th>Numero de horas</th>
 							<th>Area tematica</th>
 							<th>Modalidad</th>
-							<th>Calificar</th>
+							<th>Ver</th>
 
 						</tr>
 					</thead>
