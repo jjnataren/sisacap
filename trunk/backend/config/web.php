@@ -184,7 +184,13 @@ $config = [
         		
         		
         
-            
+        		[
+        		'controllers'=>['instructor'],
+        		'allow' => true,
+        		'roles' => ['instructor'],
+        		'actions'=>['update-by-instructor', 'createbycompany','viewbycompany','updatebycompany','deletebycompany']
+        		],
+        		
             
                       
             [
@@ -259,11 +265,11 @@ $config = [
             'allow' => false,
             ],
            
-        	/*
+        	
             [
                 'allow' => true,
                 'roles' => ['manager','instructor'],
-            ]*/
+            ]
         ]
     ]
 ];

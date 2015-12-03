@@ -315,18 +315,52 @@ public function actionViewbycompany($id){
     	$model = Instructor::getOwnData();
    
     	 
-    if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		Yii::$app->session->setFlash('alert', [
+    if ($model->load(Yii::$app->request->post()) ) {
+    		
+    	
+    	$file = UploadedFile::getInstance($model,'DOCUMENTO_PROBATORIO');
+    	
+    	if ($file !== null){
+    	
+    		$fileReturn = Yii::$app->fileStorage->save($file);
+    		$model->DOCUMENTO_PROBATORIO = $fileReturn->url;
+    		$model->NOMBRE_DOC_PROB = $file->name;
+    		 
+    		 
+    	}else{
+    		
+    		$model->DOCUMENTO_PROBATORIO = '';
+    		$model->NOMBRE_DOC_PROB = '';
+    	}
+    		
+    	
+    	
+   
+    	if(! $model->save()){
+    		
+    		return $this->render('update_by_instructor', [
+    				'model' => $model,
+    		]);
+    		
+    	}	
+    	
+    	Yii::$app->session->setFlash('alert', [
     		'options'=>['class'=>'alert-success'],
     		
     		'body'=> '<i class="fa fa-check"></i> Instructor actualizado correctamente.',
     		]);
+    		
+    		
+    		
+    		
     		return $this->redirect(['view-by-instructor', 'id' => $model->ID_INSTRUCTOR]);
     	} else {
     		return $this->render('update_by_instructor', [
     				'model' => $model,
     				]);
     	}
+    	
+    	
     }
     
     
