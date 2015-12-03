@@ -9,7 +9,7 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel backend\models\search\CatalogoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Normas técnicas de competencia laboral.';
+$this->title = 'Catálogo de cursos.';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="catalogo-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Crear nuevo', ['ntcl-crear'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear nuevo', ['curso-crear'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,23 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'ID_ELEMENTO',
+            
         		
             'CLAVE',
             'NOMBRE',
             'DESCRIPCION',
-        		[
-        		'attribute'=>'ELEMENTO_PADRE',
-        		'label'=>'Comité',
-        		'content'=>function($data){
         		
-        			//$tmpModel = PuestoEmpresa::findOne(['ID_PUESTO'=>$data->PUESTO, 'ACTIVO'=>1]);
-        		
-        			return isset($data->eLEMENTOPADRE)?$data->eLEMENTOPADRE->NOMBRE: 'no establecido';
-        		
-        		},
-        		'filter'=>ArrayHelper::map(Catalogo::findAll([ 'ACTIVO'=>1,'CATEGORIA'=>8]), 'ID_ELEMENTO','NOMBRE'),
-        		],
             // 'ORDEN',
             // 'CATEGORIA',
              ['attribute' =>'ACTIVO',
@@ -63,18 +52,18 @@ $this->params['breadcrumbs'][] = $this->title;
     			
     			
     		'delete' => function ($url, $model, $id) {//Boton borrar
-    		return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, ['title' => Yii::t('app', 'Eliminar'), 'data' => ['confirm' => '¿Realmente quiere borrar este NTCL?','method' => 'post',]]);
+    		return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, ['title' => Yii::t('app', 'Eliminar'), 'data' => ['confirm' => '¿Realmente quiere borrar este curso?','method' => 'post',]]);
     		},
     		],
     		'urlCreator' => function ($action, $model, $key, $index) {
     			    				
     			if ($action === 'update') {
-    				return Yii::$app->urlManager->createUrl(['/catalogo/ntcl-actualizar', 'id' => $key]); // Aqui es donde se crean las urls con las acciones personalizadas
+    				return Yii::$app->urlManager->createUrl(['/catalogo/curso-actualizar', 'id' => $key]); // Aqui es donde se crean las urls con las acciones personalizadas
     		
     			}
     				
     			if ($action === 'delete') {
-    				return Yii::$app->urlManager->createUrl(['/catalogo/ntcl-borrar', 'id' => $key]); // Aqui es donde se crean las urls con las acciones personalizadas
+    				return Yii::$app->urlManager->createUrl(['/catalogo/curso-borrar', 'id' => $key]); // Aqui es donde se crean las urls con las acciones personalizadas
     					
     			}
     				
