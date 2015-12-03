@@ -39,8 +39,6 @@ use backend\models\Plan;
             			
             ];
             
-            
-            
             if(Yii::$app->user->can('administrator')){
           
 
