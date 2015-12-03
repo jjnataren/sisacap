@@ -134,11 +134,18 @@ $config = [
             'actions'=>['viewbyuser', 'updatebyuser','deletebyuser','indexestablishment','establishments', 'createestablishment',
 						'viewbystablishment' , 'updatebystableshiment', 'dashboard','getmunicipios'	]
             ],
+        		
+        		[
+        		'controllers'=>['empresa'],
+        		'allow' => true,
+        		'roles' => ['instructor'],
+        		'actions'=>['dashboard','dashboard-instructor']
+        		],
             
             [
             'controllers'=>['site'],
             'allow' => true,
-            'roles' => ['manager'],
+            'roles' => ['manager','instructor'],
             'actions'=>['error']
             ],
             
@@ -252,11 +259,11 @@ $config = [
             'allow' => false,
             ],
            
-        	
+        	/*
             [
                 'allow' => true,
                 'roles' => ['manager','instructor'],
-            ]
+            ]*/
         ]
     ]
 ];
