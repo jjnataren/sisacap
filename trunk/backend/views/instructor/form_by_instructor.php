@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\web\View;
 use yii\grid\GridView;
 use backend\models\Instructor;
+use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Instructor */
@@ -98,7 +99,10 @@ $usuario = Yii::$app->user->getIdentity();
 ?>
 
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+    		
+    		'options'=>['enctype'=>'multipart/form-data']
+    ]); ?>
 <div class="row">  
     
  <div class="col-md-12 col-xs-12 col-sm-12">   
@@ -180,10 +184,74 @@ $usuario = Yii::$app->user->getIdentity();
 				 <?= $form->field($model, 'COMENTARIOS')->textArea(['maxlength' => 200]) ?>
 					 				
 				   </div>
-				   </div>
+				  </div>
     		</div>
     		</div>
+    		
+    		  <div class="panel">
+	                <div class="panel-heading text-info">
+	                  
+	                    <h3 class="panel-title">
+	                     <i class="fa fa-exclamation-circle fa-lg"></i>
+	                     Documento probatorio para agentes capacitadores externos, para capacitadores internos  o proveedores adjuntar Curriculum Vitae en formato. <br /><br />
+	                    Archivo permitidos: <strong>JPG, GIF, PDF, PNG, JPEG</strong>
+	                    
+	                    	
+	                    </h3>
+	                </div>
+	                <div class="panel-body">
+			 
+			 
+			 	<?php 
+			 	
+			 	if ($model->DOCUMENTO_PROBATORIO !== null && strlen($model->DOCUMENTO_PROBATORIO)>1){
+			 		 
+			 		$initialPreview= ['
+											<object data="'.$model->DOCUMENTO_PROBATORIO.'" type="image/jpeg" width="300px" height="160px">
+											 <param name="movie" value="{caption}" />
+													<div class="file-preview-other">
+														<i class="glyphicon glyphicon-file"></i>
+													</div>
+											 </object>
+											 <div class="file-thumbnail-footer">
+											    <div class="file-caption-name">'.$model->NOMBRE_DOC_PROB.'</div>
+											    <div class="file-actions">
+											</div>
+											</div>
+									'];
+			 	
+			 	
+			 			
+			 			
+			 	}else{
+			 		
+			 		$initialPreview = false;
+			 		
+			 	}
+			 	
+			 	?>
+			 
+    		        
+                <?= $form->field($model, 'DOCUMENTO_PROBATORIO')->widget(FileInput::classname(), [
+ 							   //'options' => ['accept' => 'image/jpg'],
+                				'language' => 'es',
+                				'pluginOptions' => [
+                								'showUpload' => false,
+                								'browseLabel' => 'Seleccionar',
+                								'removeLabel' => 'Eliminar',
+                								'allowedFileExtensions'=> ['jpeg','jpg', 'png', 'gif','pdf'],
+                						'initialPreview' =>$initialPreview
+                						
+								                ],
+							]
+                				
+                		);
+						  ?>
+                  	</div>
+                  	</div>
+    		
     		</div>
+    		
     		</div>
 		</div>		
 				 <div class="panel-footer">
