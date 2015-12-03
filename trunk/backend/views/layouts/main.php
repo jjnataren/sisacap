@@ -133,7 +133,8 @@ use backend\models\Plan;
 						$workersMenu = [
 						'label'=>Yii::t('backend', 'Trabajadores'),
 						'icon'=>'<i class="fa fa-users "></i>',
-						'url'=>['/trabajador/indexestablishment', 'id_establishment'=>$userCompany->ID_EMPRESA]
+						'url'=>['/trabajador/indexestablishment', 'id_establishment'=>$userCompany->ID_EMPRESA],
+						'badge'=>isset($userCompany) ? $userCompany->getTotalWorkers() : 0,
 						
 						];
 						$updateMenu = [
@@ -741,11 +742,11 @@ use backend\models\Plan;
 									  ['label'=>Yii::t('backend', 'Editar '),
 									  'url'=>['empresa/updatebyuser'],
 								'icon'=>'<i class="fa fa-angle-double-right"></i>'],
-							['label'=>Yii::t('backend', 'Trabajadores'),
+							['label'=>Yii::t('backend', 'Total trabajadores'),
 							'icon'=>'<span class="fa fa-users ">
 							 </span>',
 							 'url'=>['/trabajador/indexcompany'],
-							 'badge'=>isset($companyByUser->iDEMPRESA) ? count($companyByUser->iDEMPRESA->trabajadors) : 0],
+							 'badge'=>isset($companyByUser->iDEMPRESA) ? $companyByUser->iDEMPRESA->getTotalWorkers() : 0],
 							]
                
 					
