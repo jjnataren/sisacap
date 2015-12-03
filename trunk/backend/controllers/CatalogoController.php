@@ -52,7 +52,12 @@ class CatalogoController extends Controller
     	$model = $this->findModelByCategory($id,Catalogo::CATEGORIA_AREA_TEMATI);
     
     	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		return $this->redirect(['area-ver','id'=>$id]);
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-success'],
+    		
+    		'body'=> '<i class="fa fa-check"></i> Area actualizada correctamente.',
+    		]);
+    		return $this->redirect(['area','id'=>$id]);
     	} else {
     		return $this->render('area/update.php', [
     				'model' => $model,
@@ -70,6 +75,11 @@ class CatalogoController extends Controller
     public function actionAreaBorrar($id)
     {
     	$this->findModelByCategory($id,Catalogo::CATEGORIA_AREA_TEMATI)->delete();
+    	Yii::$app->session->setFlash('alert', [
+    	'options'=>['class'=>'alert-success'],
+    	
+    	'body'=> '<i class="fa fa-check"></i> Area borrada correctamente.',
+    	]);
     
     	return $this->redirect(['area']);
     
@@ -83,7 +93,13 @@ class CatalogoController extends Controller
     
     
     	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		return $this->redirect(['area-ver', 'id' => $model->ID_ELEMENTO]);
+    		
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-success'],
+    		
+    		'body'=> '<i class="fa fa-check"></i> Area creada correctamente.',
+    		]);
+    		return $this->redirect(['area', 'id' => $model->ID_ELEMENTO]);
     	} else {
     		return $this->render('area/create.php', [
     				'model' => $model,
@@ -110,7 +126,12 @@ class CatalogoController extends Controller
     	$model = $this->findModelByCategory($id,Catalogo::CATEGORIA_OCUPACION);
     
     	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		return $this->redirect(['ocupaciones-ver','id'=>$id]);
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-success'],
+    		
+    		'body'=> '<i class="fa fa-check"></i> Ocupacion actualizada correctamente.',
+    		]);
+    		return $this->redirect(['ocupaciones','id'=>$id]);
     	} else {
     		return $this->render('ocupaciones/update.php', [
     				'model' => $model,
@@ -128,6 +149,11 @@ class CatalogoController extends Controller
     public function actionOcupacionesBorrar($id)
     {
     	$this->findModelByCategory($id,Catalogo::CATEGORIA_OCUPACION)->delete();
+    	Yii::$app->session->setFlash('alert', [
+    	'options'=>['class'=>'alert-success'],
+    	
+    	'body'=> '<i class="fa fa-check"></i> Ocupacion borrada correctamente.',
+    	]);
     
     	return $this->redirect(['ocupaciones']);
     
@@ -141,7 +167,12 @@ class CatalogoController extends Controller
     
     
     	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		return $this->redirect(['ocupaciones-ver', 'id' => $model->ID_ELEMENTO]);
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-success'],
+    		
+    		'body'=> '<i class="fa fa-check"></i> Ocupacion creada correctamente.',
+    		]);
+    		return $this->redirect(['ocupaciones', 'id' => $model->ID_ELEMENTO]);
     	} else {
     		return $this->render('ocupaciones/create.php', [
     				'model' => $model,
@@ -168,7 +199,12 @@ class CatalogoController extends Controller
     	$model = $this->findModelByCategory($id,Catalogo::CATEGORIA_GIRO);
     
     	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		return $this->redirect(['giro-ver','id'=>$id]);
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-success'],
+    		
+    		'body'=> '<i class="fa fa-check"></i> Giro actualizado correctamente.',
+    		]);
+    		return $this->redirect(['giro','id'=>$id]);
     	} else {
     		return $this->render('giro/update.php', [
     				'model' => $model,
@@ -186,6 +222,11 @@ class CatalogoController extends Controller
     public function actionGiroBorrar($id)
     {
     	$this->findModelByCategory($id,Catalogo::CATEGORIA_GIRO)->delete();
+    	Yii::$app->session->setFlash('alert', [
+    	'options'=>['class'=>'alert-success'],
+    	
+    	'body'=> '<i class="fa fa-check"></i> Giro borrado correctamente.',
+    	]);
     
     	return $this->redirect(['giro']);
     
@@ -199,7 +240,12 @@ class CatalogoController extends Controller
     
     
     	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		return $this->redirect(['giro-ver', 'id' => $model->ID_ELEMENTO]);
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-success'],
+    		
+    		'body'=> '<i class="fa fa-check"></i> Giro creado correctamente.',
+    		]);
+    		return $this->redirect(['giro', 'id' => $model->ID_ELEMENTO]);
     	} else {
     		return $this->render('giro/create.php', [
     				'model' => $model,
@@ -207,6 +253,77 @@ class CatalogoController extends Controller
     	}
     }
     
+    
+    //aqui empiesa el catalogo de cursos
+    public function actionCurso()
+    {
+    	$searchModel = new CatalogoSearch();
+    
+    	$dataProvider = $searchModel->searchByCategoria(Yii::$app->request->queryParams,Catalogo::CATEGORIA_CURSO);
+    
+    	return $this->render('cursos/index.php', [
+    			'searchModel' => $searchModel,
+    			'dataProvider' => $dataProvider,
+    			]);
+    }
+    
+    public function actionCursoActualizar($id)
+    {
+    	$model = $this->findModelByCategory($id,Catalogo::CATEGORIA_CURSO);
+    
+    	if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-success'],
+    		
+    		'body'=> '<i class="fa fa-check"></i> Plantilla de curso actualizada correctamente.',
+    		]);
+    		return $this->redirect(['curso','id'=>$id]);
+    	} else {
+    		return $this->render('cursos/update.php', [
+    				'model' => $model,
+    				]);
+    	}
+    }
+    
+    public function actionCursoVer($id)
+    {
+    	return $this->render('cursos/view.php', [
+    			'model' => $this->findModelByCategory($id,Catalogo::CATEGORIA_CURSO),
+    			]);
+    }
+    
+    public function actionCursoBorrar($id)
+    {
+    	$this->findModelByCategory($id,Catalogo::CATEGORIA_CURSO)->delete();
+    	Yii::$app->session->setFlash('alert', [
+    	'options'=>['class'=>'alert-success'],
+    	
+    	'body'=> '<i class="fa fa-check"></i> Plantilla de curso borrada correctamente.',
+    	]);
+    	return $this->redirect(['curso']);
+    
+    }
+    
+    public function actionCursoCrear()
+    {
+    	$model = new Catalogo();
+    	$model->ACTIVO = 1;
+    	$model->CATEGORIA = Catalogo::CATEGORIA_CURSO;
+    
+    
+    	if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-success'],
+    		
+    		'body'=> '<i class="fa fa-check"></i> Plantilla de curso creada correctamente.',
+    		]);
+    		return $this->redirect(['curso', 'id' => $model->ID_ELEMENTO]);
+    	} else {
+    		return $this->render('cursos/create.php', [
+    				'model' => $model,
+    				]);
+    	}
+    }
     
     
 //aqui empieza el catalogo ntcl
@@ -228,7 +345,12 @@ class CatalogoController extends Controller
     	$model = $this->findModelByCategory($id,Catalogo::CATEGORIA_NTCL);
     
     	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		return $this->redirect(['ntcl-ver','id'=>$id]);
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-success'],
+    		
+    		'body'=> '<i class="fa fa-check"></i> NTCL actualizado correctamente.',
+    		]);
+    		return $this->redirect(['ntcl','id'=>$id]);
     	} else {
     		return $this->render('ntcl/update.php', [
     				'model' => $model,
@@ -246,6 +368,11 @@ class CatalogoController extends Controller
     public function actionNtclBorrar($id)
     {
     	$this->findModelByCategory($id,Catalogo::CATEGORIA_NTCL)->delete();
+    	Yii::$app->session->setFlash('alert', [
+    	'options'=>['class'=>'alert-success'],
+    	
+    	'body'=> '<i class="fa fa-check"></i> NTCL borrado correctamente.',
+    	]);
     
     	return $this->redirect(['ntcl']);
     
@@ -259,7 +386,12 @@ class CatalogoController extends Controller
     
     
     	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		return $this->redirect(['ntcl-ver', 'id' => $model->ID_ELEMENTO]);
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-success'],
+    		
+    		'body'=> '<i class="fa fa-check"></i> NTCL creado correctamente.',
+    		]);
+    		return $this->redirect(['ntcl', 'id' => $model->ID_ELEMENTO]);
     	} else {
     		return $this->render('ntcl/create.php', [
     				'model' => $model,
@@ -297,7 +429,12 @@ class CatalogoController extends Controller
     	$model = $this->findModelByCategory($id,Catalogo::CATEGORIA_MUNICIPIOS);
     
     	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		return $this->redirect(['municipios-ver','id'=>$id]);
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-success'],
+    		
+    		'body'=> '<i class="fa fa-check"></i> Municipio actualizado correctamente.',
+    		]);
+    		return $this->redirect(['municipios','id'=>$id]);
     	} else {
     		return $this->render('municipios/update.php', [
     				'model' => $model,
@@ -328,6 +465,11 @@ class CatalogoController extends Controller
     public function actionMunicipiosBorrar($id)
     {
     	$this->findModelByCategory($id,Catalogo::CATEGORIA_MUNICIPIOS)->delete();
+    	Yii::$app->session->setFlash('alert', [
+    	'options'=>['class'=>'alert-success'],
+    	
+    	'body'=> '<i class="fa fa-check"></i> Municipio borrado correctamente.',
+    	]);
     
     	return $this->redirect(['municipios']);
     
@@ -346,7 +488,12 @@ class CatalogoController extends Controller
     	 
     	 
     	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		return $this->redirect(['municipios-ver', 'id' => $model->ID_ELEMENTO]);
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-success'],
+    		
+    		'body'=> '<i class="fa fa-check"></i> Municipio creado correctamente.',
+    		]);
+    		return $this->redirect(['municipios', 'id' => $model->ID_ELEMENTO]);
     	} else {
     		return $this->render('municipios/create.php', [
     				'model' => $model,
@@ -385,7 +532,12 @@ class CatalogoController extends Controller
     	$model = $this->findModelByCategory($id,Catalogo::CATEGORIA_ENTIDADES_FEDERATIVAS);
     
     	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		return $this->redirect(['entidades-federativas-ver','id'=>$id]);
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-success'],
+    		
+    		'body'=> '<i class="fa fa-check"></i> Entidad actualizada correctamente.',
+    		]);
+    		return $this->redirect(['entidades-federativas','id'=>$id]);
     	} else {
     		return $this->render('entidad-federativa/update.php', [
     				'model' => $model,
@@ -415,6 +567,11 @@ class CatalogoController extends Controller
     public function actionEntidadesFederativasBorrar($id)
     {
     	  $this->findModelByCategory($id,Catalogo::CATEGORIA_ENTIDADES_FEDERATIVAS)->delete();
+    	  Yii::$app->session->setFlash('alert', [
+    	  'options'=>['class'=>'alert-success'],
+    	  
+    	  'body'=> '<i class="fa fa-check"></i> Entidad borrada correctamente.',
+    	  ]);
 
         return $this->redirect(['entidades-federativas']);
         
@@ -433,7 +590,12 @@ class CatalogoController extends Controller
     	
     	
     	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		return $this->redirect(['entidades-federativas-ver', 'id' => $model->ID_ELEMENTO]);
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-success'],
+    		
+    		'body'=> '<i class="fa fa-check"></i> Entidad creada correctamente.',
+    		]);
+    		return $this->redirect(['entidades-federativas', 'id' => $model->ID_ELEMENTO]);
     	} else {
     		return $this->render('entidad-federativa/create.php', [
     				'model' => $model,
