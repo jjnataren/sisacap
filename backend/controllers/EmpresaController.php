@@ -118,8 +118,7 @@ class EmpresaController extends Controller
      * @param integer $id
      */
     public function actionDashboard(){
-    	
-    	
+    	  	
     	
     	if(Yii::$app->user->can('administrator')){
     	

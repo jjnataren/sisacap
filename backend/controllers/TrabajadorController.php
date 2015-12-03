@@ -32,6 +32,8 @@ class TrabajadorController extends Controller
 	
 	
 	public function beforeAction($action) {
+		
+	//	return false;
 		$this->enableCsrfValidation = false;
 		return parent::beforeAction($action);
 	}
@@ -365,7 +367,7 @@ class TrabajadorController extends Controller
     public function actionLoad(){
     	 
     
-    	$model = EmpresaUsuario::findOne(['ID_USUARIO'=>Yii::$app->user->id, 'ACTIVO'=>'1']);
+    	$model = EmpresaUsuario::getMyCompany();
     	
     	if($model === null ) throw new NotFoundHttpException('The requested page does not exist.');
     	
@@ -375,6 +377,17 @@ class TrabajadorController extends Controller
     	
        	$i= 0;
        	
+       	
+       	if($model->iDEMPRESA->getTotalWorkers() >= $model->iDEMPRESA->NUMERO_TRABAJADORES ){
+       	
+       		Yii::$app->session->setFlash('alert', [
+       				'options'=>['class'=>'alert-danger'],
+       				'body'=> '<i class="fa fa-times fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha exedido el numero total de trabajadores [ '.$model->iDEMPRESA->NUMERO_TRABAJADORES.' ] . Contacte al administrador si desea aumentar el numero de trabajadores permitido <a href=\'#\' class=\'alert-link\'></a>',
+       		]);
+       	
+       		return $this->redirect(['indexcompany']);
+       	
+       	}
 
        	
     	$workers = array();
@@ -524,7 +537,7 @@ class TrabajadorController extends Controller
     	if( !Yii::$app->request->isPost) throw new NotFoundHttpException('The requested page does not exist.');
     	 
     
-    	$model = EmpresaUsuario::findOne(['ID_USUARIO'=>Yii::$app->user->id, 'ACTIVO'=>'1']);
+    	$model = EmpresaUsuario::getMyCompany();
     
     	if($model === null ) throw new NotFoundHttpException('The requested page does not exist.');
     
@@ -555,6 +568,18 @@ class TrabajadorController extends Controller
     	if (Trabajador::loadMultiple($workers, Yii::$app->request->post(), null) && Trabajador::validateMultiple($workers)) {
     
     
+    		if($model->iDEMPRESA->getTotalWorkers() + count($workers)  > $model->iDEMPRESA->NUMERO_TRABAJADORES ){
+    		
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-danger'],
+    					'body'=> '<i class="fa fa-times fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha exedido el numero total de trabajadores [ '.$model->iDEMPRESA->NUMERO_TRABAJADORES.' ] . Contacte al administrador si desea aumentar el numero de trabajadores permitido <a href=\'#\' class=\'alert-link\'></a>',
+    			]);
+    		
+    				return $this->redirect(['indexestablishment','id_establishment'=>$id]); // redirect to your next desired page
+    		
+    		}
+    		
+    		
     		$count = 0;
     		
     		$connection = Yii::$app->db;
@@ -626,7 +651,7 @@ class TrabajadorController extends Controller
     	if( !Yii::$app->request->isPost) throw new NotFoundHttpException('The requested page does not exist.');
     	
 
-    	$model = EmpresaUsuario::findOne(['ID_USUARIO'=>Yii::$app->user->id, 'ACTIVO'=>'1']);
+    	$model = EmpresaUsuario::getMyCompany();
     	 
     	if($model === null ) throw new NotFoundHttpException('The requested page does not exist.');
     	 
@@ -655,6 +680,19 @@ class TrabajadorController extends Controller
 
     	
     	if (Trabajador::loadMultiple($workers, Yii::$app->request->post(), null) && Trabajador::validateMultiple($workers)) {
+    		
+    		
+    		
+    		if($model->iDEMPRESA->getTotalWorkers() + count($workers)  > $model->iDEMPRESA->NUMERO_TRABAJADORES ){
+    		
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-danger'],
+    					'body'=> '<i class="fa fa-times fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha exedido el numero total de trabajadores [ '.$model->iDEMPRESA->NUMERO_TRABAJADORES.' ] . Contacte al administrador si desea aumentar el numero de trabajadores permitido <a href=\'#\' class=\'alert-link\'></a>',
+    			]);
+    		
+    			return $this->redirect(['indexcompany']); // redirect to your next desired page
+    		
+    		}
     		
     		
     		$count = 0;
@@ -802,19 +840,14 @@ class TrabajadorController extends Controller
     	
     	if($model === null || $companyModel === null) throw new NotFoundHttpException('The requested page does not exist.');
 
-    	$tmpTrabajadors = 0;
-    	
-    	foreach ( $companyModel->empresas as $empresa){
+      	
+    	if($companyModel->getTotalWorkers() >= $companyModel->NUMERO_TRABAJADORES ){
     		
-    		$tmpTrabajadors+= count ( $empresa->trabajadors);
-    	}	
-    	
-    	
-    	if($tmpTrabajadors >= $companyModel->NUMERO_TRABAJADORES ){
     		Yii::$app->session->setFlash('alert', [
-    		'options'=>['class'=>'alert-warning'],
-    		'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha exedido el numero total de trabajadores ['.$companyModel->NUMERO_TRABAJADORES.'] <a href=\'#\' class=\'alert-link\'></a>',
+    		'options'=>['class'=>'alert-danger'],
+    		'body'=> '<i class="fa fa-times fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha exedido el numero total de trabajadores [ '.$companyModel->NUMERO_TRABAJADORES.' ] . Contacte al administrador si desea aumentar el numero de trabajadores permitido <a href=\'#\' class=\'alert-link\'></a>',
     		]);
+    		
     		return $this->redirect(['indexcompany']);
     		
     	}
@@ -879,7 +912,7 @@ class TrabajadorController extends Controller
     
     	$trabajadorModel = new Trabajador();
     	 
-    	$model = EmpresaUsuario::findOne(['ID_USUARIO'=>Yii::$app->user->id, 'ACTIVO'=>'1']);
+    	$model = EmpresaUsuario::getMyCompany();
     	
     	if($model === null) throw new NotFoundHttpException('The requested page does not exist.');
     
@@ -887,25 +920,19 @@ class TrabajadorController extends Controller
     	 
     	if( $companyModel === null) throw new NotFoundHttpException('The requested page does not exist.');
     
-    	$tmpTrabajadors = 0; 
     	
-     	foreach ( $model->iDEMPRESA->empresas as $empresa){
-    		
-    		$tmpTrabajadors+= count ( $empresa->trabajadors);
-    		
-    		
-    	}	
+    	if($model->iDEMPRESA->getTotalWorkers() >= $model->iDEMPRESA->NUMERO_TRABAJADORES ){
     	
-    	$tmpTrabajadors+= count ( $model->iDEMPRESA->trabajadors);
-    	
-    	if($tmpTrabajadors >= $model->iDEMPRESA->NUMERO_TRABAJADORES ){
     		Yii::$app->session->setFlash('alert', [
-    		'options'=>['class'=>'alert-warning'],
-    		'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha exedido el numero total de trabajadores ['.$companyModel->NUMERO_TRABAJADORES.'] <a href=\'#\' class=\'alert-link\'></a>',
+    				'options'=>['class'=>'alert-danger'],
+    				'body'=> '<i class="fa fa-times fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha exedido el numero total de trabajadores [ '.$model->iDEMPRESA->NUMERO_TRABAJADORES .' ] . Contacte al administrador si desea aumentar el numero de trabajadores permitido <a href=\'#\' class=\'alert-link\'></a>',
     		]);
+    	
     		return $this->redirect(['indexcompany']);
-    		
+    	
     	}
+    	
+    	
    
     	$trabajadorModel->ID_EMPRESA = $id;
     	
@@ -968,15 +995,7 @@ class TrabajadorController extends Controller
     
     	if( $companyModel === null) throw new NotFoundHttpException('The requested page does not exist.');
     
-    	
-    	if($companyModel->NUMERO_TRABAJADORES <= count($companyModel->trabajadors)){
-    		Yii::$app->session->setFlash('alert', [
-    		'options'=>['class'=>'alert-warning'],
-    		'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>De acuerdo con la información, has excedido el numero de trabajadores propuestos.. <a href=\'#\' class=\'alert-link\'></a>',
-    		]);
-    		 
-    	}
-
+    
     	$trabajadorModel->ID_EMPRESA = $id_est;
     	 
     	$trabajadorModel->ACTIVO = 1;
@@ -986,11 +1005,16 @@ class TrabajadorController extends Controller
     
     	if ($trabajadorModel->load(Yii::$app->request->post()) && $trabajadorModel->save()) {
     
+    	 if($model->iDEMPRESA->getTotalWorkers() >= $model->iDEMPRESA->NUMERO_TRABAJADORES ){
+    		 
     		Yii::$app->session->setFlash('alert', [
-    		'options'=>['class'=>'alert-success'],
-    		'body'=> '<i class="fa fa-check fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Se ha creado el trabajador correctamente <a href=\'#\' class=\'alert-link\'></a>',
+    				'options'=>['class'=>'alert-danger'],
+    				'body'=> '<i class="fa fa-times fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha exedido el numero total de trabajadores [ '.$model->iDEMPRESA->NUMERO_TRABAJADORES .' ] . Contacte al administrador si desea aumentar el numero de trabajadores permitido <a href=\'#\' class=\'alert-link\'></a>',
     		]);
-    		
+    		 
+    		return $this->redirect(['constancias/createbycourse', 'id' =>$id_course,'id_est'=>$id_est]);
+    		 
+    	}
     		
     		$constanciaModel = new Constancia();
     		
@@ -1047,19 +1071,10 @@ class TrabajadorController extends Controller
     
     	$model = EmpresaUsuario::getMyCompany();
     	
-    	$totalTrabajadores = count(Trabajador::findBySql('select * from tbl_trabajador where id_empresa in
-    													(select id_empresa from tbl_empresa where id_empresa_padre = :empresa_padre OR ID_EMPRESA= :empresa_padre) ',[':empresa_padre'=>$model->ID_EMPRESA])->all());
+    	/*$totalTrabajadores = count(Trabajador::findBySql('select * from tbl_trabajador where id_empresa in
+    													(select id_empresa from tbl_empresa where id_empresa_padre = :empresa_padre OR ID_EMPRESA= :empresa_padre) ',[':empresa_padre'=>$model->ID_EMPRESA])->all());*/
     	
-    	if($model->iDEMPRESA->NUMERO_TRABAJADORES >= $totalTrabajadores){
-    		
-    		Yii::$app->session->setFlash('alert', [
-    		'options'=>['class'=>'alert-warning'],
-    		'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha exedido el numero de trabajadores, comuniquese con el administrador. <a href=\'#\' class=\'alert-link\'></a>',
-    		]);
-    		 
-    		 
-    	}
-    	
+    	 	
     	
     	$trabajadorModel->ID_EMPRESA = $model->ID_EMPRESA;
     
@@ -1069,6 +1084,19 @@ class TrabajadorController extends Controller
     
     
     	if ($trabajadorModel->load(Yii::$app->request->post()) && $trabajadorModel->save()) {
+    		
+    		
+    		
+    		if($model->iDEMPRESA->getTotalWorkers() >= $model->iDEMPRESA->NUMERO_TRABAJADORES ){
+    			 
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-danger'],
+    					'body'=> '<i class="fa fa-times fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha exedido el numero total de trabajadores [ '.$model->iDEMPRESA->NUMERO_TRABAJADORES .' ] . Contacte al administrador si desea aumentar el numero de trabajadores permitido <a href=\'#\' class=\'alert-link\'></a>',
+    			]);
+    			
+    			return $this->redirect(['constancias/createbycourse', 'id' =>$id_course]);
+    			
+    		}
     
     		Yii::$app->session->setFlash('alert', [
     		'options'=>['class'=>'alert-success'],

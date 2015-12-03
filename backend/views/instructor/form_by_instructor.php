@@ -92,6 +92,9 @@ $this->registerJs("$('#drop_instructor').change(function(){
 		
 });", View::POS_END, 'noneoptions');
 
+
+$usuario = Yii::$app->user->getIdentity();
+
 ?>
 
 
@@ -128,7 +131,7 @@ $this->registerJs("$('#drop_instructor').change(function(){
 								
 								    <?= $form->field($model, 'TELEFONO')->textInput(['maxlength' => 100]) ?>
 								
-								    <?= $form->field($model, 'CORREO_ELECTRONICO')->textInput(['maxlength' => 300]) ?>
+								    <?= $form->field($model, 'CORREO_ELECTRONICO')->textInput(['maxlength' => 300,'readOnly'=>'readOnly','value'=>($usuario)?$usuario->email:'']) ?>
 							
 							</div>
 					</div>
