@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
     			
     			
     		'delete' => function ($url, $model, $id) {//Boton borrar
-    		return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, ['title' => Yii::t('app', 'Eliminar'), 'data' => ['confirm' => '¿Realmente quiere borrar esta comisión?','method' => 'post',]]);
+    		return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, ['title' => Yii::t('app', 'Eliminar'), 'data' => ['confirm' => '¿Realmente quiere borrar esta entidad federativa?','method' => 'post',]]);
     		},
     		],
     		'urlCreator' => function ($action, $model, $key, $index) {
