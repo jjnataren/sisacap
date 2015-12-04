@@ -80,7 +80,9 @@ $this->params['breadcrumbs'][] = $this->title;
 											</div>
 					<?php else:?>
 					
-						<label>Sin documento probatorio</label>						
+						<label><i>Sin documento probatorio</i></label>		
+						
+					<?php endif;?>					
                 
                 </div>
              </div>
