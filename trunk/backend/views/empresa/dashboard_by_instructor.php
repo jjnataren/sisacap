@@ -637,7 +637,7 @@ Información  de constancias
  
 </span>
 	 Constancias firmadas  
-	<small>constancias que ya fuero firmadas por el instructor</small>
+	<small>constancias que ya fueron firmadas por el instructor</small>
 </h4>
 
 
