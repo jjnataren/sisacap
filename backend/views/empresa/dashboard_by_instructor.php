@@ -97,12 +97,12 @@ foreach ( $model->cursos as $curso ) {
                                         
                                         
                                     </h3>
-				<p>Cursos relacionados</p>
+				<p>Cursos relacionados al instructor</p>
 			</div>
 			<div class="icon">
 				<i class="ion ion-bag"></i>
 			</div>
-			<a class="small-box-footer" href="#anchor_comision"> DC-1 More info <i
+			<a class="small-box-footer" href="#anchor_comision"> Mas información <i
 				class="fa fa-arrow-circle-right"></i>
 			</a>
 		</div>
@@ -129,7 +129,7 @@ foreach ( $model->cursos as $curso ) {
 			<div class="icon">
 				<i class="ion ion-stats-bars"></i>
 			</div>
-			<a class="small-box-footer" href="#anchor_plan"> DC-2 More info <i
+			<a class="small-box-footer" href="#anchor_plan">Más información <i
 				class="fa fa-arrow-circle-right"></i>
 			</a>
 		</div>
@@ -151,8 +151,7 @@ foreach ( $model->cursos as $curso ) {
 			<div class="icon">
 				<i class="ion ion-person-add"></i>
 			</div>
-			<a class="small-box-footer" href="#anchor_constancia1"> DC-3 More
-				info <i class="fa fa-arrow-circle-right"></i>
+			<a class="small-box-footer" href="#anchor_constancia1"> Más información <i class="fa fa-arrow-circle-right"></i>
 			</a>
 		</div>
 	</div>
@@ -171,7 +170,7 @@ foreach ( $model->cursos as $curso ) {
 			<div class="icon">
 				<i class="ion ion-pie-graph"></i>
 			</div>
-			<a class="small-box-footer" href="#anchor_constancia"> DC-4 More info
+			<a class="small-box-footer" href="#anchor_constancia"> Más información 
 				<i class="fa fa-arrow-circle-right"></i>
 			</a>
 		</div>
@@ -180,6 +179,12 @@ foreach ( $model->cursos as $curso ) {
 </div>
 <!-- /.row -->
 
+
+<h1 >
+	Información de cursos  
+	<small> relacionados al instructor </small>
+</h1>
+<br />
 
 <h4 class="page-header" id="anchor_comision">
 	
@@ -285,7 +290,7 @@ foreach ( $model->cursos as $curso ) {
 
 <div class="row">
 	<div class="col-md-12 col-xs-12 col-sm-12">
-		<div class="box box-info" id="controls">
+		<div class="box box-warning" id="controls">
 
 			<div class="box-header">
 				<i class="fa fa-laptop"></i>
@@ -367,7 +372,7 @@ foreach ( $model->cursos as $curso ) {
 
 <div class="row">
 	<div class="col-md-12 col-xs-12 col-sm-12">
-		<div class="box box-info" id="controls">
+		<div class="box box-success" id="controls">
 
 			<div class="box-header">
 				<i class="fa fa-laptop"></i>
@@ -437,10 +442,10 @@ foreach ( $model->cursos as $curso ) {
 
 
 <h1 >
-Relación de constancias  
-	<small> asignadas</small>
+Información  de constancias  
+	<small> asignadas al instructor</small>
 </h1>
-
+<br />
 
 
 <h4 class="page-header" id="anchor_constancias">
@@ -715,6 +720,13 @@ Relación de constancias
 </div>
 </div>
 
+
+
+<h1 >
+Ayuda y soporte  
+	<small> </small>
+</h1>
+<br />
 
 
 <div class="box box-info">
