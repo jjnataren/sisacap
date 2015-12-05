@@ -129,7 +129,7 @@ foreach ( $model->cursos as $curso ) {
 			<div class="icon">
 				<i class="ion ion-stats-bars"></i>
 			</div>
-			<a class="small-box-footer" href="#anchor_plan">Más información <i
+			<a class="small-box-footer" href="#anchor_constancias">Más información <i
 				class="fa fa-arrow-circle-right"></i>
 			</a>
 		</div>
@@ -151,7 +151,7 @@ foreach ( $model->cursos as $curso ) {
 			<div class="icon">
 				<i class="ion ion-person-add"></i>
 			</div>
-			<a class="small-box-footer" href="#anchor_constancia1"> Más información <i class="fa fa-arrow-circle-right"></i>
+			<a class="small-box-footer" href="#anchor_constanciasrev"> Más información <i class="fa fa-arrow-circle-right"></i>
 			</a>
 		</div>
 	</div>
@@ -170,7 +170,7 @@ foreach ( $model->cursos as $curso ) {
 			<div class="icon">
 				<i class="ion ion-pie-graph"></i>
 			</div>
-			<a class="small-box-footer" href="#anchor_constancia"> Más información 
+			<a class="small-box-footer" href="#anchor_constanciasfirm"> Más información 
 				<i class="fa fa-arrow-circle-right"></i>
 			</a>
 		</div>
@@ -440,11 +440,12 @@ foreach ( $model->cursos as $curso ) {
 
 
 
+<h4 class="page-header" id="anchor_constancias">
 
 <h1 >
 Información  de constancias  
 	<small> asignadas al instructor</small>
-</h1>
+</h1></h4>
 <br />
 
 
@@ -533,7 +534,7 @@ Información  de constancias
 
 
 
-<h4 class="page-header" id="anchor_constancias_observaciones">
+<h4 class="page-header" id="anchor_constanciasrev">
 <span class="fa fa-file-o">
 
 </span>
@@ -631,7 +632,7 @@ Información  de constancias
 
 
 
-<h4 class="page-header" id="anchor_constancias_observaciones">
+<h4 class="page-header" id="anchor_constanciasfirm">
 <span class="fa  fa-file-pdf-o">
   
  
