@@ -851,7 +851,11 @@ class ConstanciasController extends \yii\web\Controller
     
     
     ///
-    
+    /**
+     * Saves and shows constancias related to a particular course
+     * @param unknown $id
+     * @throws NotFoundHttpException
+     */
     public function actionCourseByInstructor($id){
     
     	$courseModel = Curso::findOne($id);
@@ -1012,7 +1016,7 @@ class ConstanciasController extends \yii\web\Controller
     	     }
     	     
     	      elseif ($courseModel->getCurrentStatus () === Curso::STATUS_CONCLUIDO) {
-    	      	return $this->render('view_course_instructor', [
+    	      	return $this->render('view_constancias_instructor', [
     	      			'model' => $courseModel,
     	      			'searchModel'=>$searchModel,
     	      			'dataProvider'=>$dataProvider,
