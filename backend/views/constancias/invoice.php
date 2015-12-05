@@ -150,7 +150,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
                 												  'method' => 'post',] ]) ?>
                 												  
                 			
-                			<?php if($model->ESTATUS ==5 ){?>
+                			<?php if($model->ESTATUS ===5 || $model->ESTATUS === Constancia::STATUS_DELIVERED ){?>
                 			
                 			<?= Html::a('<i class="fa fa-envelope"></i> Enviar notificación',
                 						'#', [
@@ -170,7 +170,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
                 						'class'=>"btn btn-success"
                 						
 			                ]);	?>
-			                <?php } else?>					  
+			                <?php }?>					  
                             
                         </div>
                     </div>
@@ -316,7 +316,11 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
 ],
     ]) ?>				
   
-    <td><?= $form->field($model, "ESTATUS")->dropDownList($estatus,['id'=>'-- Seleccione  --',])->label(false) ?></td>
+   			 <div>
+   			 	
+   			 <br />
+   			 	
+    			<?= $form->field($model, "ESTATUS")->dropDownList($estatus)->label('Cambie el estatus') ?>
                     
 <!--  -->		<?=  $form->field($model, 'COMENTARIO')->textArea(Constancia:: getAllEstatusType(), ['id'=>'drop_coment']) ?>  							
 
