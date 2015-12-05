@@ -1003,7 +1003,7 @@ class TrabajadorController extends Controller
     	$trabajadorModel->FECHA_AGREGO = date("Y-m-d H:i:s");
     	 
     
-    	if ($trabajadorModel->load(Yii::$app->request->post()) && $trabajadorModel->save()) {
+    	if ($trabajadorModel->load(Yii::$app->request->post()) &&  $trabajadorModel->validate()) {
     
     	 if($model->iDEMPRESA->getTotalWorkers() >= $model->iDEMPRESA->NUMERO_TRABAJADORES ){
     		 
@@ -1016,6 +1016,8 @@ class TrabajadorController extends Controller
     		 
     	}
     		
+    		$trabajadorModel->save();
+    	
     		$constanciaModel = new Constancia();
     		
     		$constanciaModel->ID_CURSO = $id_course;
@@ -1028,7 +1030,7 @@ class TrabajadorController extends Controller
     		
     		$constanciaModel->FECHA_CREACION = date("Y-m-d H:i:s");
     		
-    		if ($constanciaModel->save()){
+    			if ($constanciaModel->save() ){
     			 
     			Yii::$app->session->setFlash('alert', [
     			'options'=>['class'=>'alert-success'],
@@ -1047,9 +1049,9 @@ class TrabajadorController extends Controller
     		Yii::$app->session->setFlash('alert', [
     		'options'=>['class'=>'alert-warning'],
     		'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>
-					No fue posible crear el trabajador, revise los errores
+					No fue posible crear el trabajador, revise los errores '.json_encode($trabajadorModel->getErrors()).'
     				<a href=\'#\' class=\'alert-link\'></a>',
-    		]);
+        				]);
     		 
     		
     		return $this->redirect(['constancias/createbycourse', 'id' =>$id_course,'id_est'=>$id_est]);
@@ -1083,7 +1085,7 @@ class TrabajadorController extends Controller
     	$trabajadorModel->FECHA_AGREGO = date("Y-m-d H:i:s");
     
     
-    	if ($trabajadorModel->load(Yii::$app->request->post()) && $trabajadorModel->save()) {
+    	if ($trabajadorModel->load(Yii::$app->request->post()) && $trabajadorModel->validate() ) {
     		
     		
     		
@@ -1103,6 +1105,8 @@ class TrabajadorController extends Controller
     		'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Se ha creado el trabajador correctamente <a href=\'#\' class=\'alert-link\'></a>',
     		]);
     		
+    		$trabajadorModel->save();//modificar esto para realizarlo en multi transaccion 
+    		
     		$constanciaModel = new Constancia();
     		
     		$constanciaModel->ID_CURSO = $id_course;
@@ -1115,7 +1119,7 @@ class TrabajadorController extends Controller
     		
     		$constanciaModel->FECHA_CREACION = date("Y-m-d H:i:s");
     		
-    		if ($constanciaModel->save()){
+    		if ($constanciaModel->save() ){
     			
     			Yii::$app->session->setFlash('alert', [
     			'options'=>['class'=>'alert-success'],
