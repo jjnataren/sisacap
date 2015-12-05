@@ -122,7 +122,7 @@ class Empresa extends \yii\db\ActiveRecord
 	 */
 	public  function  getTotalWorkers(){
 		
-	  $rows = Yii::$app->db->createCommand('SELECT COUNT(*)  FROM  tbl_trabajador where id_empresa in ( select id_empresa from tbl_empresa where id_empresa =  ' . $this->ID_EMPRESA .  ' OR id_empresa='.$this->ID_EMPRESA .') AND ACTIVO=1' )->queryScalar();
+	  $rows = Yii::$app->db->createCommand('SELECT COUNT(*)  FROM  tbl_trabajador where id_empresa in ( select id_empresa from tbl_empresa where id_empresa =  ' . $this->ID_EMPRESA .  ' OR id_empresa_padre ='.$this->ID_EMPRESA .') AND ACTIVO=1' )->queryScalar();
 		
 		return $rows;
 	
