@@ -81,7 +81,7 @@ $this->registerJs("$('#chk_moral').change(function(){
 					<div class="panel-heading">
 						<h3><i class="glyphicon glyphicon-plus"></i>
 						
-						<?= Yii::t('backend', 'Nuevo establecimineto') ?> <small></small> </h3>	
+						<?= Yii::t('backend', 'Nuevo establecimiento') ?> <small></small> </h3>	
 					</div>
 					<div class="panel-body">
 		
