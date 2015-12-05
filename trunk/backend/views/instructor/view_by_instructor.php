@@ -85,6 +85,12 @@ $this->params['breadcrumbs'][] = $this->title;
 					<?php endif;?>					
                 
                 </div>
+                 <?php if ($model->DOCUMENTO_PROBATORIO !== null):?>
+		                 			<div class="panel-footer">
+					    					<a href="<?= $model->DOCUMENTO_PROBATORIO ?>" target="_blank" class="btn btn-default"><i class="fa fa-download"> </i> Descargar documento</a>
+		        	        
+		                 			 </div>
+				             	 <?php endif;?>
              </div>
 		
 		</div>	    
