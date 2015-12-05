@@ -288,6 +288,63 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
                 
             </div>
         </div>   
+        
+        
+         <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                      <i class="fa fa-graduation-cap"></i>
+                    <h2 class="box-title"><?= Yii::t('backend', 'Instructor ') ?> <small>que impartira el curso</small></h2>
+                    
+                    <div class="box-tools pull-right">
+            <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
+            <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
+          </div><!-- /.box-tools -->
+                    
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                   
+                <div class="box-body table-responsive">
+         <table class="table table-hover" >
+         
+         <thead> 
+	         <tr>
+		         <th>Nombre completo</th>
+		         		         
+		         <th>No. registro de agente externo</th>
+		         <th>Telefono</th>
+		         <th>Correo electronico</th>
+		         
+	         </tr>
+         </thead>
+         
+         <tbody>
+         	
+         	<?php $instructor = $model->iDINSTRUCTOR;{?>
+         	<tr>
+         		
+         		<td><?= $instructor->NOMBRE. ' '.$instructor->APP. ' ' .$instructor->APM?></td>
+         		
+         		<td><?= $instructor->NUM_REGISTRO_AGENTE_EXTERNO?></td>
+         		<td><?= $instructor->TELEFONO?></td>
+         		<td><?= $instructor->CORREO_ELECTRONICO?></td>
+         		
+         	  
+         	
+         	</tr>
+         	
+         	
+         	<?php }?>
+         </tbody>
+        
+        </table>
+        </div>
+        
+                </div><!-- /.box-body -->
+                
+                
+            </div>
+        </div>   
 
 </div>
 
