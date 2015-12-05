@@ -30,8 +30,8 @@ class Catalogo extends \yii\db\ActiveRecord
 	const CATEGORIA_NTCL=7;
 	const CATEGORIA_COMITE=8;
 	const CATEGORIA_SECTOR=9;
-
 	const CATEGORIA_OCU=10;
+	const CATEGORIA_CURSO=11;
 	
 	
 	
