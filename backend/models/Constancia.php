@@ -90,6 +90,7 @@ class Constancia extends \yii\db\ActiveRecord
 	const STATUS_RECHAZADA_MANAGER=8;
 	const STATUS_ENVIADA=9;
 	const STATUS_RECIBIDA=10;	
+	const STATUS_RECEIVED_WORKER=11;
 	
 	
 	/**
@@ -117,7 +118,8 @@ class Constancia extends \yii\db\ActiveRecord
 				Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firma representante legal',
 				Constancia::STATUS_DELIVERED =>'Enviada',
 				//Constancia::STATUS_REJECTED =>'Rechazada por instructor',						
-				Constancia::STATUS_RECHAZADA_MANAGER =>'Rechazada por manager'
+				Constancia::STATUS_RECHAZADA_MANAGER =>'Rechazada por manager',
+				constancia::STATUS_RECEIVED_WORKER=>'Recibida por trabajador'
 		];
 	}
 	
@@ -177,6 +179,8 @@ class Constancia extends \yii\db\ActiveRecord
 					$avaliableStatuses = 	[
 					
 					Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firmar representante',
+					
+						
 					Constancia::STATUS_DELIVERED =>'Enviada',
 					];
 				
@@ -208,9 +212,15 @@ class Constancia extends \yii\db\ActiveRecord
 						];
 					
 						break;
+					case self::STATUS_RECEIVED_WORKER:
+						$avaliableStatuses=[Constancia::STATUS_RECEIVED_WORKER=> 'Recibida por trabajador',
+						Constancia::STATUS_RECEIVED_WORKER =>'Recibida por trabajador',
+						Constancia::STATUS_DELIVERED =>'Enviada',
+						];	
 				
 			default:
 			break;	
+			
 			
 		}
 
