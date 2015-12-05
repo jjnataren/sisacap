@@ -55,7 +55,7 @@ if ($model->GIRO_PRINCIPAL === 66666){
 		'NOMBRE_RAZON_SOCIAL',
 		'RFC',
 		'CURP',
-		'NUMERO_TRABAJADORES',
+	
 		'FECHA_INICIO_OPERACIONES'
 ],
     ]) ?>
