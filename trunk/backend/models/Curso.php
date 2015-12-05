@@ -296,6 +296,23 @@ Curso::STATUS_CERRADO =>'Cerrado',
     public function  getCurrentStatus(){
     	 
     	
+    /*	
+    	
+    	
+    	
+    	
+       	if ($plan->getCurrentStatus() < Plan::STATUS_VALIDADO && $fechaInfo !== false){
+    	
+    	
+    		$modelIndicador = new IndicadorPlan();
+    	
+    		$modelIndicador->ACTIVO = 1;
+    	
+    		$modelIndicador->FECHA_INICIO_VIGENCIA= $fechaInfo->modify('-5 day')->format('Y-m-d');
+    	
+    		$modelIndicador->FECHA_FIN_VIGENCIA = $fechaInfo->modify('+10 day')->format('Y-m-d');*/
+    	
+    	
     	$v_inicio = strtotime($this->FECHA_INICIO);
     	$v_fin = strtotime($this->FECHA_TERMINO);
     	
@@ -303,6 +320,10 @@ Curso::STATUS_CERRADO =>'Cerrado',
     		
     		RETURN 0;
     	}
+    	
+    	
+    	$fechaFin60Dias = new \DateTime($this->FECHA_TERMINO);
+    	$fechaFin60Dias->modify('+60 day');
     	
     	$currentTime = time();
     	
@@ -315,7 +336,7 @@ Curso::STATUS_CERRADO =>'Cerrado',
     		
     		RETURN self::STATUS_INICIADO;
     		
-    	}elseif($v_fin < $currentTime){
+    	}elseif($v_fin < $currentTime ){
     
     		return  self::STATUS_CONCLUIDO;
     	}
