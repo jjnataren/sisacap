@@ -58,7 +58,13 @@ foreach ( $model->cursos as $curso ) {
 		if ($constancia->ESTATUS === Constancia::STATUS_ASIGNADA)
 			$constanciasAsignadas[] = $constancia;
 			elseif  ($constancia->ESTATUS === Constancia::STATUS_RECHAZADA_MANAGER || $constancia->ESTATUS === Constancia::STATUS_REJECTED	)
+			
+		//	if($constanciasEnRevision === $cursosFinalizados -> STATUS_CONCLUIDO){
 				$constanciasEnRevision[] = $constancia;
+					
+				
+			//}
+			
 				elseif ($constancia->ESTATUS === Constancia::STATUS_SIGNED_INSTRUCTOR)
 					$constanciasFirmadas[] = $constancia;
 				
@@ -588,9 +594,10 @@ Información  de constancias
 							</thead>
 							<tbody>
 										
-					 	<?php  foreach ($constanciasEnRevision as $cor) {?>		
-											
-							<tr>
+					 	<?php  foreach ($constanciasEnRevision as $cor) {?>
+					 	
+					 							
+					 								<tr>
 				         		<td><?= $cor->iDTRABAJADOR->ID_TRABAJADOR;?></td>
 				         		<td><?= $cor->iDTRABAJADOR->NOMBRE . ' ' . $cor->iDTRABAJADOR->APP. ' ' . $cor->iDTRABAJADOR->APM;?></td>
 					         	<td><?= $cor->iDTRABAJADOR->CURP;?></td>
