@@ -150,6 +150,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
                 												  'method' => 'post',] ]) ?>
                 												  
                 			
+                			<?php if($model->ESTATUS ==5 ){?>
                 			
                 			<?= Html::a('<i class="fa fa-envelope"></i> Enviar notificación',
                 						'#', [
@@ -168,7 +169,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
 									    });return false;",
                 						'class'=>"btn btn-success"
                 						
-			                ]);	?>					  
+			                ]);	?>
+			                <?php } else?>					  
                             
                         </div>
                     </div>
@@ -314,7 +316,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
 ],
     ]) ?>				
   
-    <td><?= $form->field($model, "ESTATUS")->dropDownList($estatus)->label(false) ?></td>
+    <td><?= $form->field($model, "ESTATUS")->dropDownList($estatus,['id'=>'-- Seleccione  --',])->label(false) ?></td>
                     
 <!--  -->		<?=  $form->field($model, 'COMENTARIO')->textArea(Constancia:: getAllEstatusType(), ['id'=>'drop_coment']) ?>  							
 
@@ -328,6 +330,67 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
                 </div>
                </div>
            </div>     
+              
+              
+              
+              
+                <div class="col-xs-12 col-sm-12 col-md-6">
+            <div class="box box-primary">
+                <div class="box-header">
+                   <i class="fa fa-file-pdf-o"></i>
+                    <h2 class="box-title"><?= Yii::t('backend', 'Datos del trabajador') ?></h2>
+               
+                <div class="box-tools pull-right">
+            <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
+            <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
+          </div><!-- /.box-tools -->
+               
+                </div><!-- /.box-header -->
+                <div class="box-body">
+				
+    			 
+				 <dl class="dl-horizontal">				
+					  <dt></dt>
+                      
+	              <dt><?= Yii::t('backend', 'Nombre completo') ?></dt>
+				 <dd> <?= strtoupper( $model->iDTRABAJADOR->NOMBRE. ' '.$model->iDTRABAJADOR->APP. ' '. $model->iDTRABAJADOR->APM) ?>  </dd>
+				   <dt><?= Yii::t('backend', 'CURP') ?></dt>
+				 <dd> <?= strtoupper( $model->iDTRABAJADOR->CURP)?></dd>
+				    <dt><?= Yii::t('backend', 'RFC') ?></dt>
+				 <dd> <?= strtoupper( $model->iDTRABAJADOR->RFC)?></dd>
+				    <dt><?= Yii::t('backend', 'NSS') ?></dt>
+				       <dt><?= Yii::t('backend', 'Sexo') ?></dt>
+				 <dd> <?= strtoupper( $model->iDTRABAJADOR->SEXO)?></dd>
+				 <dd> <?= strtoupper( $model->iDTRABAJADOR->NSS)?></dd>
+				    <dt><?= Yii::t('backend', 'Puesto') ?></dt>
+				 <dd> <?= strtoupper( $model->iDTRABAJADOR->PUESTO)?></dd>
+				    <dt><?= Yii::t('backend', 'Ocupación') ?></dt>
+				 <dd> <?= strtoupper( $model->iDTRABAJADOR->OCUPACION_ESPECIFICA)?></dd>
+				    <dt><?= Yii::t('backend', 'Correo electronico') ?></dt>
+				 <dd> <?= strtoupper( $model->iDTRABAJADOR->CORREO_ELECTRONICO)?></dd>
+				    <dt><?= Yii::t('backend', 'Telefono') ?></dt>
+				 <dd> <?= strtoupper( $model->iDTRABAJADOR->TELEFONO)?></dd>
+				 
+				  </dl>
+		
+		
+		
+			
+  
+						
+                </div>
+                <div class="box-footer">
+                		<button id="help_popup_boton" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Presiona el boton [Guardar] para actualizar los datos de la constancia') ?>"><i class="fa fa-question-circle"></i>
+						</button>
+						 <?= Html::a('<i class="fa fa-eye"> </i>Detalles del trabajador ', ['trabajador/viewbycompany','id'=>$model->ID_TRABAJADOR], ['class' => 'btn btn-primary']) ?>
+           				
+        	        
+          					
+                </div>
+               </div>
+           </div> 
+              
+              
               
  </div>
        
