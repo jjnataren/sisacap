@@ -7,6 +7,8 @@ use frontend\models\ConstanciaForm;
 use Yii;
 use yii\web\Controller;
 use backend\models\Trabajador;
+use backend\models\Constancia;
+use backend\models\Indicadores;
 
 class ConstanciasController extends \yii\web\Controller
 {
@@ -62,6 +64,12 @@ class ConstanciasController extends \yii\web\Controller
         			
         			$model->constancia_document =  $constancia->DOCUMENTO_PROBATORIO;
         			
+        			$constancia->ESTATUS = Constancia::STATUS_RECEIVED_WORKER;
+        			
+        			$constancia->save();
+        			
+        			Indicadores::setIndicadorConstancia($constancia);
+        			
         			$is_constancia = true;
         			
         			break;
@@ -84,7 +92,9 @@ class ConstanciasController extends \yii\web\Controller
         	}*/
 				
         	
-        } 
+        }
+        
+        
         	return $this->render('index', [
         			'model' => $model,
         	]);
