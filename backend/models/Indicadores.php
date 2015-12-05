@@ -56,10 +56,10 @@ public static function  setIndicadoresComision($comisionMixta){
 			$modelIndicador->FECHA_FIN_VIGENCIA = $fechaConstitucion->modify('+10 day')->format('Y-m-d');
 			$modelIndicador->TITULO = 'Generar reporte anual';
 			
-			$modelIndicador->DESCRIPCION = "La empresa deberá mantener en sus registros internos y presentar a la secretaría cuando ésta
-así lo requiera la información sobre el informe anual de las actividades realizadas dentro da la comisión mixta de capacitación, adiestramiento y productividad.";
+			$modelIndicador->DESCRIPCION = "La empresa deberÃ¡ mantener en sus registros internos y presentar a la secretarÃ­a cuando Ã©sta
+asÃ­ lo requiera la informaciÃ³n sobre el informe anual de las actividades realizadas dentro da la comisiÃ³n mixta de capacitaciÃ³n, adiestramiento y productividad.";
 			
-			$modelIndicador->DATA = "Es necesario generar un reporte anual de actividades que se hayan realizado en la comisión mixta";
+			$modelIndicador->DATA = "Es necesario generar un reporte anual de actividades que se hayan realizado en la comisiÃ³n mixta";
 			
 			$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
 			
@@ -97,10 +97,10 @@ así lo requiera la información sobre el informe anual de las actividades reali
 
 			$modelIndicador->TITULO = 'Generar reporte DC-1';
 			
-			$modelIndicador->DESCRIPCION = " La empresa deberá mantener en sus registros internos y presentar a la Secretaría, cuando ésta así lo requiera, la información de la constitucion de la comisión mixta de capacitación, adiestramiento y productividad, para ello se debera generar, imprimir, firmar y adjuntar 
-					el Formato DC-1 INFORME SOBRE LA CONSTITUCIÓN DE LA COMISIÓN MIXTA DE CAPACITACIÓN, ADIESTRAMIENTO Y PRODUCTIVIDAD.   "	;
+			$modelIndicador->DESCRIPCION = " La empresa deberÃ¡ mantener en sus registros internos y presentar a la SecretarÃ­a, cuando Ã©sta asÃ­ lo requiera, la informaciÃ³n de la constitucion de la comisiÃ³n mixta de capacitaciÃ³n, adiestramiento y productividad, para ello se debera generar, imprimir, firmar y adjuntar 
+					el Formato DC-1 INFORME SOBRE LA CONSTITUCIÃ“N DE LA COMISIÃ“N MIXTA DE CAPACITACIÃ“N, ADIESTRAMIENTO Y PRODUCTIVIDAD.   "	;
 				
-			$modelIndicador->DATA = "Es necesario generar el reporte DC-1 y adjuntarlo a la comisión mixta de capacitación.";
+			$modelIndicador->DATA = "Es necesario generar el reporte DC-1 y adjuntarlo a la comisiÃ³n mixta de capacitaciÃ³n.";
 			$modelIndicador->CLAVE="COM0001";	
 			$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
 				
@@ -159,7 +159,7 @@ public static function setIndicadorPlan($plan){
 			
 			$indicadorInformeAnual->TITULO = 'Generar reporte anual';
 			
-			$indicadorInformeAnual->DATA = 'La empresas deberán mantener a disposición de la Secretaría, la información sobre las actividades  realizadas durante el último año,  por lo que será necesario realizarla a la brevedad.  ';
+			$indicadorInformeAnual->DATA = 'La empresas deberÃ¡n mantener a disposiciÃ³n de la SecretarÃ­a, la informaciÃ³n sobre las actividades  realizadas durante el Ãºltimo aÃ±o,  por lo que serÃ¡ necesario realizarla a la brevedad.  ';
 					
 			$indicadorInformeAnual->CLAVE="PLAN0003";		
 					
@@ -251,9 +251,9 @@ public static function setIndicadorPlan($plan){
 		
 		$indicadorInicio->ACTIVO = 1;
 			
-		$indicadorInicio->TITULO = ' El plan '. $plan->ALIAS.' iniciara en 5 días ';
+		$indicadorInicio->TITULO = ' El plan '. $plan->ALIAS.' iniciara en 5 dÃ­as ';
 			
-		$indicadorInicio->DATA = 'Plan ID '. $plan->ID_PLAN.'  '.'<br />  La empresa deberá crear cursos para impartilos durante su plan';
+		$indicadorInicio->DATA = 'Plan ID '. $plan->ID_PLAN.'  '.'<br />  La empresa deberÃ¡ crear cursos para impartilos durante su plan';
 		
 		$indicadorInicio->FECHA_CREACION = date("Y-m-d H:i:s");
 		$indicadorInicio->CLAVE="PLAN0001";
@@ -290,10 +290,10 @@ public static function setIndicadorPlan($plan){
 		$indicadorFin->ACTIVO = 1;
 		
 		//"Curso ID ".$curso->ID_CURSO. ' por iniciar';
-		$indicadorFin->TITULO = ' El Plan '. $plan->ALIAS . ' concluirá en 15 dias';
+		$indicadorFin->TITULO = ' El Plan '. $plan->ALIAS . ' concluirÃ¡ en 15 dias';
 		
-		$indicadorFin->DATA = 'Las empresas deberán mantener a disposición de la Secretaría, la siguiente información:
-     	El formato DC-2 “Elaboración del plan y programas de capacitación, adiestramiento y productividad”;
+		$indicadorFin->DATA = 'Las empresas deberÃ¡n mantener a disposiciÃ³n de la SecretarÃ­a, la siguiente informaciÃ³n:
+     	El formato DC-2 â€œElaboraciÃ³n del plan y programas de capacitaciÃ³n, adiestramiento y productividadâ€�;
 				';
 			
 		$indicadorFin->FECHA_CREACION = date("Y-m-d H:i:s");
@@ -356,7 +356,7 @@ public static function setIndicadorCurso($curso){
 					
 				$modelIndicador->CLAVE="CUR0002";
 
-				$modelIndicador->DATA = 'Curso por concluir,  debe enviar las constancias de capacitación a  los trabajadores 20  dias despues  del termino del mismo.';
+				$modelIndicador->DATA = 'Curso por concluir,  debe enviar las constancias de capacitaciÃ³n a  los trabajadores 20  dias despues  del termino del mismo.';
 
 				$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
 
@@ -384,7 +384,7 @@ public static function setIndicadorCurso($curso){
 					
 				$modelIndicador->TITULO = 'Curso por  Iniciar';
 					
-				$modelIndicador->DATA = 'El curso esta por iniciar deberá calificar a los trabajadores.';
+				$modelIndicador->DATA = 'El curso esta por iniciar deberÃ¡ calificar a los trabajadores.';
 				$modelIndicador->CLAVE="CUR0002";
 				$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
 					
@@ -415,7 +415,7 @@ public static function setIndicadorCurso($curso){
 					
 				$modelIndicador->TITULO = 'Curso por  Iniciar';
 					
-				$modelIndicador->DATA = 'Está por iniciar un curso, deberá preparar todo lo necesario para impartir el curso.';
+				$modelIndicador->DATA = 'EstÃ¡ por iniciar un curso, deberÃ¡ preparar todo lo necesario para impartir el curso.';
 				$modelIndicador->CLAVE="CUR0003";
 				$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
 					
@@ -436,13 +436,13 @@ public static function setIndicadorCurso($curso){
 			
 				$modelIndicador->FECHA_INICIO_VIGENCIA= $fechaTerminoCurso->modify('-15 day')->format('Y-m-d');
 			
-				$modelIndicador->FECHA_FIN_VIGENCIA = $fechaTerminoCurso->modify('+20 day')->format('Y-m-d');
+				$modelIndicador->FECHA_FIN_VIGENCIA = $fechaTerminoCurso->modify('+1 day')->format('Y-m-d');
 			
 				$modelIndicador->TITULO =  'Curso por terminar';
 					
 				$modelIndicador->CLAVE="CUR0004";
 			
-				$modelIndicador->DATA = 'El curso está por terminar, favor de concluir con la firma de constancias faltantes.';
+				$modelIndicador->DATA = 'El curso estÃ¡ por terminar, favor de concluir con la firma de constancias faltantes.';
 			
 				$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
 			
@@ -453,6 +453,34 @@ public static function setIndicadorCurso($curso){
 			}
 			
 			
+			/*FECHA DE TERMINO MAS 2 MESES*/
+
+			$fechaTerminoCurso = new \DateTime($curso->FECHA_TERMINO);
+				
+			if ($fechaTerminoCurso !== false){
+					
+					
+				$modelIndicador = new IndicadorCurso();
+					
+				$modelIndicador->ACTIVO = 1;
+					
+				$modelIndicador->FECHA_INICIO_VIGENCIA= $fechaTerminoCurso->format('Y-m-d');
+									
+				$modelIndicador->FECHA_FIN_VIGENCIA = $fechaTerminoCurso->modify('+60 day')->format('Y-m-d');
+					
+				$modelIndicador->TITULO =  'Curso  terminar';
+					
+				$modelIndicador->CLAVE="CUR0005";
+					
+				$modelIndicador->DATA = 'El curso ha terminado tiene 2 meses para calificar y firmar las constancias de los trabajadores.';
+					
+				$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
+					
+				$modelIndicador->ID_CURSO  = $curso->ID_CURSO;
+					
+				$modelIndicador->save();
+					
+			}
 				
 	}
 
@@ -509,9 +537,9 @@ public static function setIndicadorConstancia($constancia){
 		
 				$indicador->ACTIVO = 1;
 		
-				$indicador->DATA = 'Se deberá entregar a los trabajadores que aprueben el curso de capacitación o el examen de suficiencia, dentro de los veinte días hábiles posteriores al término del mismo.
-						 Las empresas deberán tener a disposición de la Secretaría, como parte de sus registros internos,
-						copia de las constancias de competencias o de habilidades laborales expedidas a sus trabajadores durante el último año';
+				$indicador->DATA = 'Se deberÃ¡ entregar a los trabajadores que aprueben el curso de capacitaciÃ³n o el examen de suficiencia, dentro de los veinte dÃ­as hÃ¡biles posteriores al tÃ©rmino del mismo.
+						 Las empresas deberÃ¡n tener a disposiciÃ³n de la SecretarÃ­a, como parte de sus registros internos,
+						copia de las constancias de competencias o de habilidades laborales expedidas a sus trabajadores durante el Ãºltimo aÃ±o';
 		
 				$indicador->FECHA_CREACION = date("Y-m-d H:i:s");
 		
