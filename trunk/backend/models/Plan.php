@@ -33,6 +33,7 @@ use Yii;
  * @property string $DESCRIPCION_PLAN
  * @property integer $TIPO_PLAN
  * @property string  $LUGAR_INFORME
+ * @property integer $CURSOS
  * 
  * @property string $FECHA_INFO
  *
@@ -125,12 +126,13 @@ class Plan extends \yii\db\ActiveRecord
        		[['TOTAL_HOMBRES','LUGAR_INFORME', 'VIGENCIA_INICIO', 'VIGENCIA_FIN','FECHA_INFO','TOTAL_MUJERES', 'NUMERO_ETAPAS', 'MODALIDAD_CAPACITACION', 'OBJETIVO1', 'OBJETIVO2', 'OBJETIVO3', 'OBJETIVO4', 'OBJETIVO5', 'ID_EMPRESA', 'TIPO_PLAN'], 'required','message' =>'El dato es obligatorio'],
        		['ALIAS', 'required','message'=>'El campo no puede estar en blanco. '],
        		['ALIAS','string','min'=>3],
-            [['ID_COMISION', 'TOTAL_HOMBRES', 'TOTAL_MUJERES', 'NUMERO_ETAPAS', 'NUMERO_CONSTANCIAS_EXPEDIDAS', 'ESTATUS', 'MODALIDAD_CAPACITACION', 'ACTIVO', 'MODALIDAD', 'OBJETIVO1', 'OBJETIVO2', 'OBJETIVO3', 'OBJETIVO4', 'OBJETIVO5', 'ID_EMPRESA', 'TIPO_PLAN'], 'integer'],
+            [['ID_COMISION','CURSOS', 'TOTAL_HOMBRES', 'TOTAL_MUJERES', 'NUMERO_ETAPAS', 'NUMERO_CONSTANCIAS_EXPEDIDAS', 'ESTATUS', 'MODALIDAD_CAPACITACION', 'ACTIVO', 'MODALIDAD', 'OBJETIVO1', 'OBJETIVO2', 'OBJETIVO3', 'OBJETIVO4', 'OBJETIVO5', 'ID_EMPRESA', 'TIPO_PLAN'], 'integer'],
             [['VIGENCIA_INICIO', 'VIGENCIA_FIN', 'FECHA_CONSTITUCION', 'FECHA_AGREGO', 'FECHA_INFO'], 'safe'],
             [['ALIAS'], 'string', 'max' => 50],
             [['DOCUMENTO_APROBATORIO'], 'string', 'max' => 2048],
             [['NOMBRE_DOC_APROBATORIO'], 'string', 'max' => 300],
             [['LUGAR_INFORME'], 'string', 'max' => 300],
+            
             [['DESCRIPCION_PLAN'], 'string', 'max' => 200],
         		
             /*own validations*/
@@ -165,14 +167,15 @@ class Plan extends \yii\db\ActiveRecord
             'OBJETIVO4' => 'Objetivo4',
             'OBJETIVO5' => 'Objetivo5',
             'ID_EMPRESA' => 'Id empresa',
-            'FECHA_CONSTITUCION' => 'Fecha constituci贸n',
+            'FECHA_CONSTITUCION' => 'Fecha constituci髇',
             'FECHA_AGREGO' => 'Fecha agrego',
             'DOCUMENTO_APROBATORIO' => 'Documento probatorio',
             'NOMBRE_DOC_APROBATORIO' => 'Nombre documento probatorio',
-            'DESCRIPCION_PLAN' => 'Descripci贸n del plan',
+            'DESCRIPCION_PLAN' => 'Descripci髇 del plan',
             'TIPO_PLAN' => 'Incluir todos los puestos de trabajo',
-            'FECHA_INFO' => 'Fecha elaboraci贸n del informe',
-            'LUGAR_INFORME' => 'Lugar elaboraci贸n del informe ',
+            'FECHA_INFO' => 'Fecha elaboraci髇 del informe',
+            'LUGAR_INFORME' => 'Lugar elaboraci髇 del informe ',
+            'CURSOS'=>'Cursos',
         ];
     }
 
