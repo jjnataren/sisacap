@@ -19,6 +19,7 @@ $id_empresa = $model->iDCOMISION->ID_EMPRESA;
 
 $cursos=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>6]), 'ID_ELEMENTO', 'NOMBRE');
 
+
 $dataListOcupacion=ArrayHelper::map(PuestoEmpresa::findBySql('SELECT ID_PUESTO,NOMBRE_PUESTO,ID_EMPRESA
 FROM tbl_puesto_empresa where activo=1 AND ID_EMPRESA = '.$id_empresa)->all(), 'ID_PUESTO', 'NOMBRE_PUESTO');
 
@@ -47,14 +48,14 @@ $this->registerJs("$('#empresaButton').click(function() {
 });", View::POS_END, 'my-options5');
 
  
-$itemsCourse=[1=>'ï	Uso y conservaciÛn de las ·reas donde realizan sus actividades en el centro de trabajo',
-2=>'ï	PrevenciÛn de incendios en el centro de trabajo.',
+$itemsCourse=[1=>'ÔøΩ	Uso y conservaciÔøΩn de las ÔøΩreas donde realizan sus actividades en el centro de trabajo',
+2=>'ÔøΩ	PrevenciÔøΩn de incendios en el centro de trabajo.',
 3=>'Primeros auxilios',
 4=>'Manejo de materiales con maquinaria.',
 5=>'El tipo de sistema o equipo utilizado',
-6=>'Uso, revisiÛn, reposiciÛn, limpieza, limitaciones, mantenimiento, resguardo y disposiciÛn final del equipo de protecciÛn personal.',
-7=>'Peligros y riesgos de las sustancias quÌmicas peligrosas',
-8=>'Obligaciones del patrÛn y trabajadores'];
+6=>'Uso, revisiÔøΩn, reposiciÔøΩn, limpieza, limitaciones, mantenimiento, resguardo y disposiciÔøΩn final del equipo de protecciÔøΩn personal.',
+7=>'Peligros y riesgos de las sustancias quÔøΩmicas peligrosas',
+8=>'Obligaciones del patrÔøΩn y trabajadores'];
 
 
 $itemsTipoPlan = [1=>'planes comunes',2=>'plan especifico para empresa',3=>'aderidos a la empresa'];
@@ -209,7 +210,7 @@ $itemsModalidad=[1=>'Plan y programas espec√≠ficos de la empresa',
 		 <div class="panel-body">	    
    
 	<h4><i class="fa fa-newspaper-o"></i>
-						<?= Yii::t('backend', ' Seleccione Modalidad de la capacitaciÛn  correspondiente.') ?> </h4>	
+						<?= Yii::t('backend', ' Seleccione Modalidad de la capacitaciÔøΩn  correspondiente.') ?> </h4>	
 	
 			
   </div>
