@@ -17,6 +17,8 @@ use yii\grid\GridView;
 
 $id_empresa = $model->iDCOMISION->ID_EMPRESA;
 
+$cursos=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>6]), 'ID_ELEMENTO', 'NOMBRE');
+
 $dataListOcupacion=ArrayHelper::map(PuestoEmpresa::findBySql('SELECT ID_PUESTO,NOMBRE_PUESTO,ID_EMPRESA
 FROM tbl_puesto_empresa where activo=1 AND ID_EMPRESA = '.$id_empresa)->all(), 'ID_PUESTO', 'NOMBRE_PUESTO');
 
@@ -45,6 +47,14 @@ $this->registerJs("$('#empresaButton').click(function() {
 });", View::POS_END, 'my-options5');
 
  
+$itemsCourse=[1=>'ï	Uso y conservaciÛn de las ·reas donde realizan sus actividades en el centro de trabajo',
+2=>'ï	PrevenciÛn de incendios en el centro de trabajo.',
+3=>'Primeros auxilios',
+4=>'Manejo de materiales con maquinaria.',
+5=>'El tipo de sistema o equipo utilizado',
+6=>'Uso, revisiÛn, reposiciÛn, limpieza, limitaciones, mantenimiento, resguardo y disposiciÛn final del equipo de protecciÛn personal.',
+7=>'Peligros y riesgos de las sustancias quÌmicas peligrosas',
+8=>'Obligaciones del patrÛn y trabajadores'];
 
 
 $itemsTipoPlan = [1=>'planes comunes',2=>'plan especifico para empresa',3=>'aderidos a la empresa'];
@@ -53,9 +63,6 @@ $itemsModalidad=[1=>'Plan y programas espec√≠ficos de la empresa',
                  2=>'Plan y programas comunes de un grupo de empresas',
                  3=>'Sistema general de una rama de actividad econ√≥mica']
 
-
-                 
-                 
                  
 ?>
 
@@ -202,7 +209,7 @@ $itemsModalidad=[1=>'Plan y programas espec√≠ficos de la empresa',
 		 <div class="panel-body">	    
    
 	<h4><i class="fa fa-newspaper-o"></i>
-						<?= Yii::t('backend', ' Seleccione Modalidad de la capacitaci√≥n  correspondiente.') ?> </h4>	
+						<?= Yii::t('backend', ' Seleccione Modalidad de la capacitaciÛn  correspondiente.') ?> </h4>	
 	
 			
   </div>
@@ -273,7 +280,44 @@ Es requerido evaluar el objetivo del plan. Dando [clic] la flecha. Seleccione de
   
 </div>
 </div>
-</div>    
+
+
+
+ <div class=" col-xs-12 col-sm-12 col-md-12">		
+		<div class="panel panel-default">
+		 <div class="panel-body">	    
+   
+	<h4><i class="fa fa-laptop"></i>
+	<?= Yii::t('backend', '') ?> Seleccione los cursos que desea impartir en su plan de capacitacion </h4>				
+  </div>
+  
+  <div class="panel-body">	
+  
+  
+ 
+  <table class="table">
+   
+ 
+    <tr>
+    <td> </td>
+        <?= $form->field($model, 'CURSOS')->checkboxList($cursos)->label(false) ?>
+        </tr>
+   
+     </table>
+    <div class="panel-footer">
+								<button id="help3" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', '
+   
+										. ') ?>"><i class="fa fa-question-circle"></i>
+			</button>	   
+						</div>
+  
+</div>
+</div>
+
+</div>  
+
+</div>  
+  
 </div>
 
   	<div class="panel-footer">
@@ -282,6 +326,7 @@ Es requerido evaluar el objetivo del plan. Dando [clic] la flecha. Seleccione de
              <?= Html::submitButton( '<i class="fa fa-floppy-o"></i> Guardar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
+    
     <?php ActiveForm::end(); ?>
 
 </div>
