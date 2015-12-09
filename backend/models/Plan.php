@@ -33,7 +33,7 @@ use Yii;
  * @property string $DESCRIPCION_PLAN
  * @property integer $TIPO_PLAN
  * @property string  $LUGAR_INFORME
- * @property integer $CURSOS
+
  * 
  * @property string $FECHA_INFO
  *
@@ -126,7 +126,7 @@ class Plan extends \yii\db\ActiveRecord
        		[['TOTAL_HOMBRES','LUGAR_INFORME', 'VIGENCIA_INICIO', 'VIGENCIA_FIN','FECHA_INFO','TOTAL_MUJERES', 'NUMERO_ETAPAS', 'MODALIDAD_CAPACITACION', 'OBJETIVO1', 'OBJETIVO2', 'OBJETIVO3', 'OBJETIVO4', 'OBJETIVO5', 'ID_EMPRESA', 'TIPO_PLAN'], 'required','message' =>'El dato es obligatorio'],
        		['ALIAS', 'required','message'=>'El campo no puede estar en blanco. '],
        		['ALIAS','string','min'=>3],
-            [['ID_COMISION','CURSOS', 'TOTAL_HOMBRES', 'TOTAL_MUJERES', 'NUMERO_ETAPAS', 'NUMERO_CONSTANCIAS_EXPEDIDAS', 'ESTATUS', 'MODALIDAD_CAPACITACION', 'ACTIVO', 'MODALIDAD', 'OBJETIVO1', 'OBJETIVO2', 'OBJETIVO3', 'OBJETIVO4', 'OBJETIVO5', 'ID_EMPRESA', 'TIPO_PLAN'], 'integer'],
+            [['ID_COMISION', 'TOTAL_HOMBRES', 'TOTAL_MUJERES', 'NUMERO_ETAPAS', 'NUMERO_CONSTANCIAS_EXPEDIDAS', 'ESTATUS', 'MODALIDAD_CAPACITACION', 'ACTIVO', 'MODALIDAD', 'OBJETIVO1', 'OBJETIVO2', 'OBJETIVO3', 'OBJETIVO4', 'OBJETIVO5', 'ID_EMPRESA', 'TIPO_PLAN'], 'integer'],
             [['VIGENCIA_INICIO', 'VIGENCIA_FIN', 'FECHA_CONSTITUCION', 'FECHA_AGREGO', 'FECHA_INFO'], 'safe'],
             [['ALIAS'], 'string', 'max' => 50],
             [['DOCUMENTO_APROBATORIO'], 'string', 'max' => 2048],
@@ -167,15 +167,15 @@ class Plan extends \yii\db\ActiveRecord
             'OBJETIVO4' => 'Objetivo4',
             'OBJETIVO5' => 'Objetivo5',
             'ID_EMPRESA' => 'Id empresa',
-            'FECHA_CONSTITUCION' => 'Fecha constitución',
+            'FECHA_CONSTITUCION' => 'Fecha constituciï¿½n',
             'FECHA_AGREGO' => 'Fecha agrego',
             'DOCUMENTO_APROBATORIO' => 'Documento probatorio',
             'NOMBRE_DOC_APROBATORIO' => 'Nombre documento probatorio',
-            'DESCRIPCION_PLAN' => 'Descripción del plan',
+            'DESCRIPCION_PLAN' => 'Descripciï¿½n del plan',
             'TIPO_PLAN' => 'Incluir todos los puestos de trabajo',
-            'FECHA_INFO' => 'Fecha elaboración del informe',
-            'LUGAR_INFORME' => 'Lugar elaboración del informe ',
-            'CURSOS'=>'Cursos',
+            'FECHA_INFO' => 'Fecha elaboraciï¿½n del informe',
+            'LUGAR_INFORME' => 'Lugar elaboraciï¿½n del informe ',
+            
         ];
     }
 
@@ -259,27 +259,7 @@ class Plan extends \yii\db\ActiveRecord
         return $this->hasMany(TrabajadorCurso::className(), ['ID_PLAN' => 'ID_PLAN']);
     }
     
-   
-    /**
-     * returns  plan's status of particular model
-     */
-    public function  getCurrentStatus(){
     
-    
-    	if(! $this->isVigente())
-    		return Plan::STATUS_CONCLUIDO;
-    
-    
-    	if ($this->DOCUMENTO_APROBATORIO === null) return Plan::STATUS_CREADO;
-    	else return Plan::STATUS_VALIDADO;
-    
-    }
-    
-    
-    
-    /**
-     * returns  plan's status of particular model
-     */
     public function  getStatus(){
     
     	 
