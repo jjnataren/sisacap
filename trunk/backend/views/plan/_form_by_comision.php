@@ -17,7 +17,6 @@ use yii\grid\GridView;
 
 $id_empresa = $model->iDCOMISION->ID_EMPRESA;
 
-$cursos=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>6]), 'ID_ELEMENTO', 'NOMBRE');
 
 
 $dataListOcupacion=ArrayHelper::map(PuestoEmpresa::findBySql('SELECT ID_PUESTO,NOMBRE_PUESTO,ID_EMPRESA
@@ -284,38 +283,7 @@ Es requerido evaluar el objetivo del plan. Dando [clic] la flecha. Seleccione de
 
 
 
- <div class=" col-xs-12 col-sm-12 col-md-12">		
-		<div class="panel panel-default">
-		 <div class="panel-body">	    
-   
-	<h4><i class="fa fa-laptop"></i>
-	<?= Yii::t('backend', '') ?> Seleccione los cursos que desea impartir en su plan de capacitacion </h4>				
-  </div>
-  
-  <div class="panel-body">	
-  
-  
  
-  <table class="table">
-   
- 
-    <tr>
-    <td> </td>
-        <?= $form->field($model, 'CURSOS')->checkboxList($cursos)->label(false) ?>
-        </tr>
-   
-     </table>
-    <div class="panel-footer">
-								<button id="help3" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', '
-   
-										. ') ?>"><i class="fa fa-question-circle"></i>
-			</button>	   
-						</div>
-  
-</div>
-</div>
-
-</div>  
 
 </div>  
   
