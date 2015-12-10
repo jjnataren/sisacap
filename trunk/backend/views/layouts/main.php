@@ -740,10 +740,15 @@ use backend\models\Plan;
 									  ['label'=>Yii::t('backend', 'Editar '),
 									  'url'=>['empresa/updatebyuser'],
 								'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+
+								['label'=>Yii::t('backend', 'Trabajadores empresa matriz'),
+								'url'=>['/trabajador/indexcompany'],
+								'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+
 							['label'=>Yii::t('backend', 'Total trabajadores'),
 							'icon'=>'<span class="fa fa-users ">
 							 </span>',
-							 'url'=>['/trabajador/indexcompany'],
+							 'url'=>['/trabajador/indexallworkers'],
 							 'badge'=>isset($companyByUser->iDEMPRESA) ? $companyByUser->iDEMPRESA->getTotalWorkers() : 0],
 							]
                
