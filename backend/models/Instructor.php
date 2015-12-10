@@ -42,7 +42,7 @@ class Instructor extends \yii\db\ActiveRecord
 	 */
 	const TIPO_AGENTE_CAP_INTERNO = 1;
 	const TIPO_AGENTE_EXT_IND = 2;
-	const TIPO_AGENTE_ACREDITACION = 3;
+	const TIPO_AGENTE_ACREDITACION = 3;   
 	const TIPO_AGENTE_PROVEDOR = 4;
 	
 	
@@ -83,21 +83,21 @@ class Instructor extends \yii\db\ActiveRecord
     	return [
     			'ID_INSTRUCTOR' => 'Id instructor',
     			'ID_EMPRESA' => 'Id  Empresa',
-    			'NOMBRE_AGENTE_EXTERNO' => 'Nombre de la empresa capacitadora',
+    			'NOMBRE_AGENTE_EXTERNO' => 'Nombre del agente  externo',
     			'NOMBRE' => 'Nombre',
     			'APP' => 'Apellido paterno',
     			'APM' => 'Apellido materno',
     			'DOMICILIO' => 'Domicilio',
-    			'TELEFONO' => 'Teléfono',
-    			'CORREO_ELECTRONICO' => 'Correo  electrónico',
+    			'TELEFONO' => 'TelÃ©fono',
+    			'CORREO_ELECTRONICO' => 'Correo  electrÃ³nico',
     			'LOGOTIPO' => 'Logotipo',
-    			'NUM_REGISTRO_AGENTE_EXTERNO' => 'Numero de registro del agente  externo',
+    			'NUM_REGISTRO_AGENTE_EXTERNO' => 'NÃºmero de registro del agente  externo',
     			'TIPO_INSTRUCTOR' => 'Tipo de instructor',
     			'COMENTARIOS' => 'Comentarios',
     			'ACTIVO' => 'Activo',
     			'RFC'=> 'RFC',
     			'SIGN_PICTURE' => 'Imagen firma',
-    			'SIGN_PASSWD' => 'Constraseña encriptación',
+    			'SIGN_PASSWD' => 'ConstraseÃ±a encriptaciÃ³n',
     			'SIGN_KEY' => 'Sign  Key',
     	];
     }
