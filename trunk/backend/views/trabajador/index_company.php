@@ -24,7 +24,7 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h3><i class="fa fa-eye"></i>
-						<?= Yii::t('backend', 'Todos mis trabajadores') ?> <small></small> </h3>
+						<?= Yii::t('backend', 'Trabajadores en la empresa matriz') ?> <small></small> </h3>
 					</div>
 					<div class="panel-body">
 <div class="trabajador-index">
