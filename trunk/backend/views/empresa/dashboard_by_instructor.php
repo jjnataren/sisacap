@@ -240,8 +240,8 @@ foreach ( $model->cursos as $curso ) {
 							<tr>
 							<td><a href="#"><i class="fa fa-arrow-right"></i><strong> <?= $ci->ID_CURSO?> </strong> </a></td>
 							<td><?=$ci->NOMBRE;?></td>
-							<td><?=($ci->FECHA_INICIO === null )? '<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($ci->FECHA_INICIO));?></td>>
-							<td><?=($ci->FECHA_TERMINO=== null )? '<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($ci->FECHA_TERMINO));?></td>>
+							<td><?=($ci->FECHA_INICIO === null )? '<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($ci->FECHA_INICIO));?></td>
+							<td><?=($ci->FECHA_TERMINO=== null )? '<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($ci->FECHA_TERMINO));?></td>
 						
 							<td><?=$ci->DURACION_HORAS; ?></td>
 							
@@ -331,8 +331,8 @@ foreach ( $model->cursos as $curso ) {
 							<tr>
 							<td><a href="#"><i class="fa fa-arrow-right"></i><strong> <?= $cp->ID_CURSO?> </strong> </a></td>
 							<td><?= $cp->NOMBRE?></td>
-							<td><?=($cp->FECHA_INICIO === null )? '<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($cp->FECHA_INICIO));?></td>>
-							<td><?=($cp->FECHA_TERMINO=== null )? '<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($cp->FECHA_TERMINO));?></td>>
+							<td><?=($cp->FECHA_INICIO === null )? '<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($cp->FECHA_INICIO));?></td>
+							<td><?=($cp->FECHA_TERMINO=== null )? '<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($cp->FECHA_TERMINO));?></td>
 						
 							<td><?=$cp->DURACION_HORAS; ?></td>
 						 <td><?php 
@@ -411,8 +411,8 @@ foreach ( $model->cursos as $curso ) {
 							<tr>
 							<td><a href="#"><i class="fa fa-arrow-right"></i><strong> <?= $cf->ID_CURSO?> </strong> </a></td>
 							<td><?= $cf->NOMBRE?></td>
-							<td><?=($cf->FECHA_INICIO === null )? '<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($cf->FECHA_INICIO));?></td>>
-							<td><?=($cf->FECHA_TERMINO=== null )? '<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($cf->FECHA_TERMINO));?></td>>
+							<td><?=($cf->FECHA_INICIO === null )? '<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($cf->FECHA_INICIO));?></td>
+							<td><?=($cf->FECHA_TERMINO=== null )? '<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($cf->FECHA_TERMINO));?></td>
 						
 								<td><?=$cf->DURACION_HORAS; ?></td>
 							 <td><?php 
