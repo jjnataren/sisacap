@@ -249,20 +249,19 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 								
 								<tr >
 									<th colspan="4" style="text-align: left;" ><i class="fa fa-user fa-lg"></i> &nbsp; <small class="text-muted">Datos trabajador</small></th>	
-									<th colspan="6" style="text-align: left;"><i class="fa fa-file-pdf-o fa-lg"></i>&nbsp; <small class="text-muted">Datos constancia</small></th>
-								</tr>
+										</tr>
 								<tr >
 									<th>Id</th>
 									<th><?=Yii::t('backend', 'Nombre')?></th>									
 									<th><?=Yii::t('backend', 'CURP')?></th>
 									<th><?=Yii::t('backend', 'Puesto')?></th>
-								 	<th>Obtención</th>
+							<!--  	 	<th>Obtención</th>
 									<th>Tipo</th>
-																							 
+																		 
 									<th>Estatus</th>
 										<th>Promedio</th>
 									<th>Aprobado</th>
-									<th>Ver constancia</th>
+									<th>Ver constancia</th>-->
 								
 																		
 								</tr>
@@ -271,36 +270,23 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 							<?php $i = 0; foreach ($constancias as $constancia) :?>
 							<?php $worker = $constancia->iDTRABAJADOR;?>
 							   				
-									<?php if ($constancia->ESTATUS === Constancia::STATUS_ASIGNADA || 
-												$constancia->ESTATUS  ===  Constancia::STATUS_REJECTED ||  
-													$constancia->ESTATUS  ===  Constancia::STATUS_RECHAZADA_MANAGER || 
-														$constancia->ESTATUS  ===  Constancia::STATUS_SIGNED_INSTRUCTOR  ) :?>
-							 
-							
-							<?php $avaliableStatus = Constancia::getAvaliableStatusByRol($constancia->ESTATUS, 7); ?>
+								
 								<tr>
 									<td ><?= $worker->ID_TRABAJADOR?><?= $form->field($constancia, "[$i]ID_TRABAJADOR")->hiddenInput(['id'=>'hid_id_instructor'])->label(false) ?></td>
 									<td><?= $worker->NOMBRE.' '. $worker->APP ?></td>
 									<td><?= $worker->CURP?></td>
 									<td><?= isset($worker->pUESTO)?$worker->pUESTO->NOMBRE_PUESTO: ''?></td>
-									<td><?= $form->field($constancia, "[$i]METODO_OBTENCION")->dropDownList(Constancia::getAllMetodosType(),['prompt'=>'- Seleccione -','style' => 'width: 170px;'])->label(false) ?></td> 
-									<td><?= $form->field($constancia, "[$i]TIPO_CONSTANCIA")->dropDownList(Constancia::getAllContanciasType(),['prompt'=>'- Seleccione -','style' => 'width: 130px;'])->label(false) ?></td> 
-									<td><?= $form->field($constancia, "[$i]ESTATUS")->dropDownList($avaliableStatus,['style' => 'width: 180px;'])->label(false) ?></td>
-                                 
+									                                 
                                   <td>
 	                                                                    
-	                                    <?= $form->field($constancia, "[$i]PROMEDIO")->textInput(['maxlength' => 50, 'style' => 'width: 50px;'])->label(false)?>
 	                                    
                                     </td>  
-						  		    <td>	
-								    <?= $form->field($constancia, "[$i]APROBADO")->widget(CheckboxX::classname(), ['options'=>['id'=>'chk_pass'.$constancia->ID_CONSTANCIA],'pluginOptions'=>['threeState'=>false]])->label(false); ?>
-								    </td>
-								   
+						  		   								   
 								      <td>   	
 								      				
 									<?php if (!$constancia->isNewRecord){?>
-										   <?= Html::a('<i class="fa fa-download"></i>', ['constanciapdf', 'id'=>$constancia->ID_CONSTANCIA],  ['target' => '_blank',  'class' => 'btn btn-success btn-xs' ]) ?>
-																	<?= Html::a('<i class="fa fa-eye"></i>', ['constancias/dashboard-by-instructor', 'id'=>$constancia->ID_CONSTANCIA],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
+										<!--     = Html::a('<i class="fa fa-download"></i>', ['constanciapdf', 'id'=>$constancia->ID_CONSTANCIA],  ['target' => '_blank',  'class' => 'btn btn-success btn-xs' ]) -->
+																	<!-- //= Html::a('<i class="fa fa-eye"></i>', ['constancias/dashboard-by-instructor', 'id'=>$constancia->ID_CONSTANCIA],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>-->
                 									
                 									
 									<?php }else{?>
@@ -315,7 +301,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 									</td>
 								</tr>	
 								
-								<?php endif;?>
+								<?php // endif;?>
 								
 							<?php  $i++; endforeach;?>
 							</tbody>
