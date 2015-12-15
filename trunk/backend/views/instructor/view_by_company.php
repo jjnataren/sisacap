@@ -5,18 +5,19 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Instructor */
 
-$this->title = 'Ver instructor:  ' . $model->NOMBRE. ' ' .$model->APP  . ' ' .$model->APM;
+$this->title = 'Mis datos:  ' . $model->NOMBRE. ' ' .$model->APP  . ' ' .$model->APM;
 $this->params ['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
   								<i class="fa fa-graduation-cap -lg  fa-stack-1x"></i>
 							   </span>';
 
-$this->params ['breadcrumbs'] [] = [ 
+/*$this->params ['breadcrumbs'] [] = [ 
 		'label' => 'Instructores',
 		'url' => [ 
 				'indexbycompany' 
 		] 
 ];
+*/
 $this->params ['breadcrumbs'] [] = $this->title;
 ?>
 <div class="row">
