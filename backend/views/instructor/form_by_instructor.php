@@ -134,6 +134,7 @@ $usuario = Yii::$app->user->getIdentity();
 								    <?= $form->field($model, 'DOMICILIO')->textArea(['maxlength' => 300]) ?>
 								
 								    <?= $form->field($model, 'TELEFONO')->textInput(['maxlength' => 100]) ?>
+								    
 								
 								    <?= $form->field($model, 'CORREO_ELECTRONICO')->textInput(['maxlength' => 300,'readOnly'=>'readOnly','value'=>($usuario)?$usuario->email:'']) ?>
 							
@@ -187,7 +188,12 @@ $usuario = Yii::$app->user->getIdentity();
 				  </div>
     		</div>
     		</div>
+    		<div id='oculto'>
     		
+    		<script type="text/javascript">
+				function mostrar(){
+				document.getElementById('oculto').style.display = 'block';}
+				</script>
     		  <div class="panel">
 	                <div class="panel-heading text-info">
 	                  
@@ -249,7 +255,8 @@ $usuario = Yii::$app->user->getIdentity();
 						  ?>
                   	</div>
                   	</div>
-    		
+    			</div>
+    			<input type="button" value="Ocultar" onclick="ocultar()">
     		</div>
     		
     		</div>
