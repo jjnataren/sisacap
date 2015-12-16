@@ -33,7 +33,6 @@ use Yii;
  * @property string $DESCRIPCION_PLAN
  * @property integer $TIPO_PLAN
  * @property string  $LUGAR_INFORME
-
  * 
  * @property string $FECHA_INFO
  *
@@ -47,6 +46,7 @@ use Yii;
  * @property PlanPuesto[] $planPuestos
  * @property PuestoEmpresa[] $iDPUESTOs
  * @property TrabajadorCurso[] $trabajadorCursos
+ * 
 
  * */
 class Plan extends \yii\db\ActiveRecord
@@ -123,16 +123,13 @@ class Plan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-       		[['TOTAL_HOMBRES','LUGAR_INFORME', 'VIGENCIA_INICIO', 'VIGENCIA_FIN','FECHA_INFO','TOTAL_MUJERES', 'NUMERO_ETAPAS', 'MODALIDAD_CAPACITACION', 'OBJETIVO1', 'OBJETIVO2', 'OBJETIVO3', 'OBJETIVO4', 'OBJETIVO5', 'ID_EMPRESA', 'TIPO_PLAN'], 'required','message' =>'El dato es obligatorio'],
-       		['ALIAS', 'required','message'=>'El campo no puede estar en blanco. '],
-       		['ALIAS','string','min'=>3],
+       		[['TOTAL_HOMBRES','ALIAS','LUGAR_INFORME', 'VIGENCIA_INICIO', 'VIGENCIA_FIN','FECHA_INFO','TOTAL_MUJERES', 'NUMERO_ETAPAS', 'MODALIDAD_CAPACITACION', 'OBJETIVO1', 'OBJETIVO2', 'OBJETIVO3', 'OBJETIVO4', 'OBJETIVO5', 'ID_EMPRESA', 'TIPO_PLAN'], 'required','message' =>'El dato es obligatorio'],
             [['ID_COMISION', 'TOTAL_HOMBRES', 'TOTAL_MUJERES', 'NUMERO_ETAPAS', 'NUMERO_CONSTANCIAS_EXPEDIDAS', 'ESTATUS', 'MODALIDAD_CAPACITACION', 'ACTIVO', 'MODALIDAD', 'OBJETIVO1', 'OBJETIVO2', 'OBJETIVO3', 'OBJETIVO4', 'OBJETIVO5', 'ID_EMPRESA', 'TIPO_PLAN'], 'integer'],
             [['VIGENCIA_INICIO', 'VIGENCIA_FIN', 'FECHA_CONSTITUCION', 'FECHA_AGREGO', 'FECHA_INFO'], 'safe'],
             [['ALIAS'], 'string', 'max' => 50],
             [['DOCUMENTO_APROBATORIO'], 'string', 'max' => 2048],
             [['NOMBRE_DOC_APROBATORIO'], 'string', 'max' => 300],
             [['LUGAR_INFORME'], 'string', 'max' => 300],
-            
             [['DESCRIPCION_PLAN'], 'string', 'max' => 200],
         		
             /*own validations*/
@@ -167,15 +164,14 @@ class Plan extends \yii\db\ActiveRecord
             'OBJETIVO4' => 'Objetivo4',
             'OBJETIVO5' => 'Objetivo5',
             'ID_EMPRESA' => 'Id empresa',
-            'FECHA_CONSTITUCION' => 'Fecha constituci�n',
+            'FECHA_CONSTITUCION' => 'Fecha constitución',
             'FECHA_AGREGO' => 'Fecha agrego',
             'DOCUMENTO_APROBATORIO' => 'Documento probatorio',
             'NOMBRE_DOC_APROBATORIO' => 'Nombre documento probatorio',
-            'DESCRIPCION_PLAN' => 'Descripci�n del plan',
+            'DESCRIPCION_PLAN' => 'Descripción del plan',
             'TIPO_PLAN' => 'Incluir todos los puestos de trabajo',
-            'FECHA_INFO' => 'Fecha elaboraci�n del informe',
-            'LUGAR_INFORME' => 'Lugar elaboraci�n del informe ',
-            
+            'FECHA_INFO' => 'Fecha elaboración del informe',
+            'LUGAR_INFORME' => 'Lugar elaboración del informe ',
         ];
     }
 
@@ -259,7 +255,27 @@ class Plan extends \yii\db\ActiveRecord
         return $this->hasMany(TrabajadorCurso::className(), ['ID_PLAN' => 'ID_PLAN']);
     }
     
+   
+    /**
+     * returns  plan's status of particular model
+     */
+    public function  getCurrentStatus(){
     
+    
+    	if(! $this->isVigente())
+    		return Plan::STATUS_CONCLUIDO;
+    
+    
+    	if ($this->DOCUMENTO_APROBATORIO === null) return Plan::STATUS_CREADO;
+    	else return Plan::STATUS_VALIDADO;
+    
+    }
+    
+    
+    
+    /**
+     * returns  plan's status of particular model
+     */
     public function  getStatus(){
     
     	 
