@@ -71,7 +71,7 @@ foreach ($model->iDPLAN->planEstablecimientos as $establecimiento){
 			'label' =>'<i class="fa fa-university">
 							 </i> ID ' .$establecimiento->ID_EMPRESA .'- ' . $establecimiento->NOMBRE_COMERCIAL .'',
 			
-            'url' => ['/constancias/view-course-instructor', 'id'=>$model->ID_CURSO, 'id_est'=>$establecimiento->ID_EMPRESA, '#'=>'constancias'],
+            'url' => ['/constancias/course-by-instructor', 'id'=>$model->ID_CURSO, 'id_est'=>$establecimiento->ID_EMPRESA, '#'=>'constancias'],
             'linkOptions' => [],
         ]; 
 	
@@ -82,7 +82,7 @@ $tabs[]=[
 'label' =>'<i class="fa fa-building">
 							 </i> Mi empresa',
 							 	
-							 'url' => ['/constancias/view-course-instructor', 'id'=>$model->ID_CURSO,'is_company'=>true, '#'=>'constancias'],
+							 'url' => ['/constancias/course-by-instructor', 'id'=>$model->ID_CURSO,'is_company'=>true, '#'=>'constancias'],
 							 'linkOptions' => [],
 							 ];
 
