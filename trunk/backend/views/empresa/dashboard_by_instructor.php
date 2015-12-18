@@ -259,7 +259,7 @@ foreach ( $model->cursos as $curso ) {
 									        ?>
 									 </td>
                            <td>
-                            <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/view-course-instructor', 'id'=>$ci->ID_CURSO],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
+                            <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/course-by-instructor', 'id'=>$ci->ID_CURSO],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
                            </td>
 						</tr>
 				         	<?php }?>      																		
@@ -424,7 +424,7 @@ foreach ( $model->cursos as $curso ) {
 						    			  echo  isset($modalidades[$cf->MODALIDAD_CAPACITACION])?$modalidades[$cf->MODALIDAD_CAPACITACION]:'no asignado'; 
 									        ?>
 									 </td>
-                           <td> <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/view-course-constancia', 'id'=>$cf->ID_CURSO],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
+                           <td> <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/course-by-instructor', 'id'=>$cf->ID_CURSO],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
                             </td>                                            	
 
 						</tr>
