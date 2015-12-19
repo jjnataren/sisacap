@@ -201,6 +201,31 @@ class TrabajadorController extends Controller
     }
     
     
+    /**
+     * Lists all Trabajador todos los tranbajadores.
+     * @return mixed
+     */
+    public function actionIndexallworkers(){
+    	 
+    	 
+    	$model = EmpresaUsuario::getMyCompany();
+    	 
+    	 
+    	$companyModel = $model->iDEMPRESA;
+    	 
+    	 
+    	 
+    	if ($companyModel === null || $model === null)  throw new NotFoundHttpException('The requested page does not exist.');
+    	 
+    	$searchModel = new TrabajadorSearch();
+    	$dataProvider = $searchModel->searchRepresentanteTrabajadores(Yii::$app->request->queryParams,$companyModel->ID_EMPRESA);
+    
+    	return $this->render('index_all_workers', [
+    			'searchModel' => $searchModel,
+    			'dataProvider' => $dataProvider,
+    			'id_company'=>$companyModel->ID_EMPRESA
+    			]);
+    }
     
     /**
      *Load workers througt file
@@ -788,6 +813,27 @@ class TrabajadorController extends Controller
     			'model'=>$trabajadorModel		]);
     }
     
+    
+    /**
+     * Displays a single Trabajador model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionViewbyall($id){
+    
+    	$model = EmpresaUsuario::getMyCompany();
+    	 
+    	$trabajadorModel = $this->findModel($id);
+    	 
+    	if (!($model->ID_EMPRESA === $trabajadorModel->ID_EMPRESA || $model->ID_EMPRESA == $trabajadorModel->iDEMPRESA->ID_EMPRESA_PADRE ))
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    	 
+    	return $this->render('view_by_all', [
+    			'model'=>$trabajadorModel		]);
+    }
+    
+    
+    
     public function actionViewbyinstructor($id){
     
     	$model = EmpresaUsuario::getMyCompany();
@@ -1253,6 +1299,43 @@ class TrabajadorController extends Controller
     				]);
     	
     }
+    
+    
+    
+    /**
+     * Updates an existing Empresa model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionUpdatebyall($id)
+    {
+    	$model = $this->findModel($id);
+    	$companyModel = EmpresaUsuario::getMyCompany();
+    	 
+    	 
+    
+    	if ($model->load(Yii::$app->request->post())) {
+    
+    		$tmpdate = \DateTime::createFromFormat('d/m/Y', $model->FECHA_EMISION_CERTIFICADO);
+    		$model->FECHA_EMISION_CERTIFICADO = ($tmpdate === false)? null : $tmpdate->format('Y-m-d') ;
+    		 
+    
+    		 
+    		if ( $model->save()) {
+    			Yii::$app->session->setFlash('alert', [
+    			'options'=>['class'=>'alert-success'],
+    
+    			'body'=> '<i class="fa fa-check fa-lg"></i> Trabajador actualizado correctamente.',
+    			]);
+    			return $this->redirect(['viewbyall', 'id' => $model->ID_TRABAJADOR]);
+    		}
+    	}
+    	return $this->render('update_all', [
+    			'model' => $model,
+    			]);
+    	 
+    }
     /**
      * Deletes an existing Trabajador model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -1295,6 +1378,38 @@ class TrabajadorController extends Controller
     	return $this->redirect(['indexcompany']);
     }
     
+    
+    public function actionDeletebyall($id)
+    {
+    	$model = $this->findModel($id);
+    	$companyModel = EmpresaUsuario::getMyCompany();
+    
+    	if (!($model->ID_EMPRESA === $companyModel->ID_EMPRESA || $model->iDEMPRESA->ID_EMPRESA_PADRE === $companyModel->ID_EMPRESA))
+    		
+    		//($model->ID_EMPRESA === $trabajadorModel->ID_EMPRESA || $model->ID_EMPRESA == $trabajadorModel->iDEMPRESA->ID_EMPRESA_PADRE )
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    
+    
+    	$model->ACTIVO=0;
+    	
+    
+    	if ($model->delete()){
+    		 
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-success'],
+    		'body'=> '<i class="fa fa-check fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Se ha eliminado  el trabajador correctamente</a>',
+    		]);
+    
+    	}else{
+    
+    		Yii::$app->session->setFlash('alert', [
+    		'options'=>['class'=>'alert-warning'],
+    		'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>No se ha podido eliminar el trabajador <a href=\'#\' class=\'alert-link\'></a>',
+    		]);
+    		 
+    	}
+    	return $this->redirect(['indexallworkers']);
+    }
     
     /**
      * eliminar trabajador de establecimiento 
