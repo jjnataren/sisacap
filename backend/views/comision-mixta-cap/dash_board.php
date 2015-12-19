@@ -13,6 +13,7 @@ use yii\bootstrap\Tabs;
 use kartik\file\FileInput;
 use yii\base\Model;
 use backend\models\Empresa;
+use yii\helpers\ArrayHelper;
 
 
 
@@ -771,10 +772,11 @@ $planItems[]= 	[
 											        'dataProvider' => $dataproviderTrabajadores,
 											        'filterModel' => $trabajadorSearch,
 											        'columns' => [
-											            ['class' => 'yii\grid\SerialColumn'],
+											           
 											
 											            //'ID_EMPRESA',
 											            //'ID_REPRESENTANTE_LEGAL',
+											            'ID_TRABAJADOR',	
 											            'NOMBRE',
 											            //'NOMBRE_CENTRO_TRABAJO',
 											            //'NOMBRE_RAZON_SOCIAL',
@@ -796,6 +798,18 @@ $planItems[]= 	[
 											            // 'FAX',
 											            // 'CORREO_ELECTRONICO',
 											            // 'ACTIVO',
+											            [
+															'attribute'=>'ID_EMPRESA',
+															'content'=>function($data){
+															
+																$tmpModel = Empresa::findOne(['ID_EMPRESA'=>$data->ID_EMPRESA]);
+															
+																return isset($tmpModel)?$tmpModel->NOMBRE_COMERCIAL: $data->NOMBRE_COMERCIAL;
+															
+															},
+															'filter'=>ArrayHelper::map(Empresa::findBySql('select * from tbl_empresa where id_empresa = (select ID_EMPRESA from tbl_empresa_usuario where id_usuario  = '.Yii::$app->user->id.' )  OR id_empresa_padre = (select id_empresa from tbl_empresa_usuario where id_usuario = '.Yii::$app->user->id.' )' )->all(), 'ID_EMPRESA','NOMBRE_COMERCIAL'),
+															],
+											            
 											            
 													[
 														'label'=>'',
