@@ -99,7 +99,7 @@ $usuario = Yii::$app->user->getIdentity();
 ?>
 
 
-    <?php $form = ActiveForm::begin([
+    <?php $form = ActiveForm::begin ([
     		
     		'options'=>['enctype'=>'multipart/form-data']
     ]); ?>
@@ -150,7 +150,7 @@ $usuario = Yii::$app->user->getIdentity();
 	                </div>
 	                <div class="panel-body">
 			    
-				     <?= $form->field($model, 'TIPO_INSTRUCTOR')->dropDownList(Instructor::getTypeInstructor(),['prompt'=>'-- Seleccione  --','maxlength' => 300, 'id'=>'drop_instructor']) ?>
+				     <?= $form->field($model, 'TIPO_INSTRUCTOR')->dropDownList(Instructor::getTypeInstructor(),['prompt'=>'-- Seleccione  --','maxlength' => 300, 'id'=>'drop_instructor', 'onclick'=>"muestra_oculta();",]) ?>
 				 
 					 				
 			
@@ -188,11 +188,17 @@ $usuario = Yii::$app->user->getIdentity();
 				  </div>
     		</div>
     		</div>
-    		<div id='oculto'>
+    		<div >
     		
-    		<script type="text/javascript">
-				function mostrar(){
-				document.getElementById('oculto').style.display = 'block';}
+    		<script language="JavaScript">
+				function muestra_oculta(){
+					if (model.getTypeInstructor()){
+						document.getElementById('oculto').style.display='block';
+						
+						 
+					}
+				}
+				
 				</script>
     		  <div class="panel">
 	                <div class="panel-heading text-info">
@@ -205,7 +211,7 @@ $usuario = Yii::$app->user->getIdentity();
 	                    	
 	                    </h3>
 	                </div>
-	                <div class="panel-body">
+	                <div class="panel-body" id="oculto" style="display:none;">
 			 
 			 
 			 	<?php 
@@ -256,7 +262,7 @@ $usuario = Yii::$app->user->getIdentity();
                   	</div>
                   	</div>
     			</div>
-    			<input type="button" value="Ocultar" onclick="ocultar()">
+    			<p><a style='cursor: pointer;' onclick="muestra_oculta('oculto')" title="">Mostrar / Ocultar</a></p>
     		</div>
     		
     		</div>
