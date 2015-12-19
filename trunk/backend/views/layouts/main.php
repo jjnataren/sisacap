@@ -741,11 +741,11 @@ use backend\models\Plan;
 									  'url'=>['empresa/updatebyuser'],
 								'icon'=>'<i class="fa fa-angle-double-right"></i>'],
 
-								['label'=>Yii::t('backend', 'Trabajadores empresa matriz'),
+								['label'=>Yii::t('backend', 'Trabajadores empresa'),
 								'url'=>['/trabajador/indexcompany'],
 								'icon'=>'<i class="fa fa-angle-double-right"></i>'],
 
-							['label'=>Yii::t('backend', 'Total trabajadores'),
+							['label'=>Yii::t('backend', 'Trabajadores totales'),
 							'icon'=>'<span class="fa fa-users ">
 							 </span>',
 							 'url'=>['/trabajador/indexallworkers'],
