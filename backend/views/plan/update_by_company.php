@@ -11,9 +11,10 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
 							   </span>';
 
 $this->title = 'Actualizar plan de capacitación: Id  ' . ' ' . $model->ID_PLAN;
-$this->params['breadcrumbs'][] = ['label' => 'Plans', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->ID_PLAN, 'url' => ['view', 'id' => $model->ID_PLAN]];
-$this->params['breadcrumbs'][] = 'Update';
+
+$this->params['breadcrumbs'][] = ['label' => 'Comisión ID '.$model->ID_COMISION, 'url'=>['comision-mixta-cap/dashboard', 'id'=>$model->ID_COMISION]];
+//$this->params['breadcrumbs'][] = ['label' =>'Actualizar plan'.'ID' . $model->ID_PLAN, 'url' => ['view', 'id' => $model->ID_PLAN]];
+$this->params['breadcrumbs'][] = 'Actualizar plan ' .'Id '. $model->ID_PLAN;
 ?>
 <div class="plan-update">
 
