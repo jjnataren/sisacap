@@ -63,7 +63,8 @@ class TrabajadorSearch extends Trabajador
     	$query->where(['in', 'ID_EMPRESA', (new Query())->select('ID_EMPRESA')->from('tbl_empresa')->where(['or', ['ID_EMPRESA_PADRE' => $id_company], ['ID_EMPRESA'=>$id_company] ])]);
     	
     	$query->andFilterWhere([
-    			'ID_TRABAJADOR' => $this->ID_TRABAJADOR,    			
+    			'ID_TRABAJADOR' => $this->ID_TRABAJADOR,    
+    			'ID_EMPRESA' => $this->ID_EMPRESA,
     			'ROL' => $this->ROL,
     			'FECHA_AGREGO' => $this->FECHA_AGREGO,
     			'ACTIVO' => 1,
