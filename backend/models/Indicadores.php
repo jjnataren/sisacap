@@ -468,7 +468,7 @@ public static function setIndicadorCurso($curso){
 									
 				$modelIndicador->FECHA_FIN_VIGENCIA = $fechaTerminoCurso->modify('+60 day')->format('Y-m-d');
 					
-				$modelIndicador->TITULO =  'Curso  terminar';
+				$modelIndicador->TITULO =  'Curso finalizado';
 					
 				$modelIndicador->CLAVE="CUR0005";
 					
