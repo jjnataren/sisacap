@@ -160,7 +160,7 @@ class Constancia extends \yii\db\ActiveRecord
 			case self::STATUS_ASIGNADA:
 			
 				$avaliableStatuses = 	[Constancia::STATUS_ASIGNADA =>'Asignada',
-				Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firmar representante',
+				
 				];
 			
 				break;
