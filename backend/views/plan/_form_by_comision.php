@@ -8,7 +8,6 @@ use kartik\widgets\DepDrop;
 use yii\helpers\Url;
 use backend\models\PuestoEmpresa;
 use yii\data\ActiveDataProvider;
-
 use yii\grid\GridView;
 use Codeception\Step\Action;
 use Symfony\Component\Console\Input\Input;
@@ -20,10 +19,11 @@ use kartik\checkbox\CheckboxX;
 
 $id_empresa = $model->iDCOMISION->ID_EMPRESA;
 
+
+
+
+
 $courses =  Catalogo::findAll ( ['CATEGORIA' => 11, 'ACTIVO'=> 1]);
-
-
-
 $dataListOcupacion = ArrayHelper::map ( PuestoEmpresa::findBySql ( 'SELECT ID_PUESTO,NOMBRE_PUESTO,ID_EMPRESA
 FROM tbl_puesto_empresa where activo=1 AND ID_EMPRESA = ' . $id_empresa )->all (), 'ID_PUESTO', 'NOMBRE_PUESTO' );
 
@@ -35,6 +35,7 @@ $this->registerJs ( "$('#help3').popover('hide');", View::POS_END, 'my-options3'
 $this->registerJs ( "$('#help4').popover('hide');", View::POS_END, 'my-options4' );
 $this->registerJs ( "$('#help5').popover('hide');", View::POS_END, 'my-options5' );
 $this->registerJs ( "$('#help6').popover('hide');", View::POS_END, 'my-options6' );
+$this->registerJs ( "$('#helpCursos').popover('hide');", View::POS_END, 'my-optionscursos' );
 $this->registerJs ( "$('#helpAyuda').popover('hide');", View::POS_END, 'my-options6' );
 
 $this->registerJs ( "$('#empresaButton').click(function() {
@@ -317,28 +318,31 @@ Es requerido evaluar el objetivo del plan. Dando [clic] la flecha. Seleccione de
 								<i class="fa fa-newspaper-o"></i>
 						<?= Yii::t('backend', ' Seleccione los cursos que desea impartir.') ?> </h4>
 
-
-				
-  
  					 <?php $i= 0; foreach ($courses as $curso) : ?>
  
+             <table class ="table">
+<tr> 
 
-							<input type="checkbox" name="check[<?=$i++?>]" value="<?=$curso->ID_ELEMENTO ?>">
-							<label><?= $curso->NOMBRE; ?></label>
-							<br />
+	<td><label><?= $curso->NOMBRE; ?></label></td> <br />
+
+    <td><input type="checkbox" name="check[<?=$i++?>]" value="<?=$curso->ID_ELEMENTO ?>"></td>
+				
+</tr>
+
+							
+</table>							
+						
 
 					<?php endforeach;?>
 
-
-
-
+                   
 						</div>
 
 						<div class="panel-footer">
-							<button id="help2" data-placement="top" tabindex="0"
+							<button id="helpCursos" data-placement="top" tabindex="0"
 								type="button" class="btn btn-info btn-sm" data-toggle="popover"
 								title="Ayuda"
-								data-content="<?=Yii::t('backend', 'Es requerido seleccionar la modalidad del plan. Dando [clic] en el circulo. ') ?>">
+								data-content="<?=Yii::t('backend', 'Seleccione la(s) casilla(s) si desea crear cursos automaticamente.') ?>">
 								<i class="fa fa-question-circle"></i>
 							</button>
 						</div>
