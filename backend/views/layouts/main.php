@@ -995,6 +995,7 @@ use backend\models\Plan;
 								['label'=>Yii::t('backend', 'Giros'), 'url'=>['/catalogo/giro'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
 								['label'=>Yii::t('backend', 'NTCL'), 'url'=>['/catalogo/ntcl'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
 								['label'=>Yii::t('backend', 'Area tematica'), 'url'=>['/catalogo/area'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
+                				['label'=>Yii::t('backend', 'Cursos predeterminados'), 'url'=>['/catalogo/curso'], 'icon'=>'<i class="fa fa-angle-double-right"></i>'],
 
                 		]
                 		],
