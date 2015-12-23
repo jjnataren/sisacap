@@ -190,16 +190,9 @@ $usuario = Yii::$app->user->getIdentity();
     		</div>
     		<div >
     		
-    		<script language="JavaScript">
-				function muestra_oculta(){
-					if (model.getTypeInstructor()){
-						document.getElementById('oculto').style.display='block';
-						
-						 
-					}
-				}
+    
 				
-				</script>
+				
     		  <div class="panel">
 	                <div class="panel-heading text-info">
 	                  
@@ -211,7 +204,7 @@ $usuario = Yii::$app->user->getIdentity();
 	                    	
 	                    </h3>
 	                </div>
-	                <div class="panel-body" id="oculto" style="display:none;">
+	                <div class="panel-body" >
 			 
 			 
 			 	<?php 
@@ -262,7 +255,7 @@ $usuario = Yii::$app->user->getIdentity();
                   	</div>
                   	</div>
     			</div>
-    			<p><a style='cursor: pointer;' onclick="muestra_oculta('oculto')" title="">Mostrar / Ocultar</a></p>
+    		
     		</div>
     		
     		</div>
