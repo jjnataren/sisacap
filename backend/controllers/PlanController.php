@@ -8,6 +8,7 @@ use backend\models\PlanSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use backend\models\EmpresaUsuario;
 use backend\models\ComisionMixtaCap;
 use backend\models\EmpresaSearch;
@@ -21,6 +22,7 @@ use trntv\filekit\actions\UploadAction;
 use yii\web\UploadedFile;
 use yii\helpers\Json;
 use backend\models\Indicadores;
+use backend\models\Catalogo;
 /**
  * PlanController implements the CRUD actions for Plan model.
  */
@@ -253,11 +255,10 @@ class PlanController extends Controller
     			echo $numTrab;
     		}
     		
-    		
-    		
-    		
+
     		$planModel->ACTIVO = 1;
-    	
+    		
+    	    	
 		if ( $planModel->save()){		
 
 			
@@ -265,11 +266,39 @@ class PlanController extends Controller
 			'options'=>['class'=>'alert-success'],
 			'body'=> '<i class="fa fa-check"></i> Plan creado correctamente',
 			]);
-			
+	
 			Indicadores::setIndicadorPlan($planModel);
+
 			
-			return $this->redirect(['comision-mixta-cap/dashboard', 'id' => $id]);
+		$cursos_pre = $_POST['check'];
 		
+	
+		
+		foreach ($cursos_pre as $k => $v) {
+			
+
+			
+		$listCurso = Catalogo::findOne($v);
+		
+        
+		if($listCurso !== null){
+		
+		$model = new Curso();
+		
+		
+    	$model->ID_PLAN = $planModel->ID_PLAN ;
+    	
+    	$model->NOMBRE = $listCurso->NOMBRE ;
+    	
+    	$model->DESCRIPCION =$listCurso->DESCRIPCION;
+        	
+    	$model->save(false);
+		
+		}
+		
+		
+    }     return $this->redirect(['comision-mixta-cap/dashboard', 'id' => $id]);
+    
 		}else{
 			
 			Yii::$app->session->setFlash('alert', [
@@ -278,14 +307,8 @@ class PlanController extends Controller
 			]);
 			
 		}			
-		
-		
-
-		  
-		
 		}
-		
-			
+	
 			$empresa = $model->iDEMPRESA;
 			$query = $empresa->getEmpresas();
 			
