@@ -51,14 +51,9 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
 <div class="panel-body">
 
 
-		<div class=" col-xs-12 col-sm-12 col-md-6">
-    
-    		<div class="row">
-			<div class="col-sm-12 col-md-12 col-xs-12">
-			
-				<div class="callout callout-info">
+
+    		<div class="callout callout-info">
 					<h4><i class="fa fa-info-circle"></i> Información adicional</h4>
-					<p> 
 					
 						<ol>
 							<li>Seleccione la imagen de la firma. Archivos validos <strong> jpeg, png, gif </strong> </li>
@@ -66,18 +61,13 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
 							<li>Clic en guardar para proceder</li>
 						</ol>
 						   
-						   
-					</p>
+	
 					
 				
 				</div>
-				
-			</div>
-			</div>
-    
-    
+	 
 			<div class="row">
-					<div class="col-xs-12 col-md-6">
+					<div class="col-xs-12 col-md-12 col-sm-12">
 			   			
 						  
 						
@@ -104,20 +94,12 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
 						  
 			   		 </div>
 			   		 
-			   		 <div class="col-xs-12 col-md-6">
-			   			
-						  
-						
-                          
-             
-						  
-						  
-			   		 </div>
+
 					</div>
 					
 					
 					<div class="row">
-					<div class="col-xs-12 col-md-7">
+					<div class="col-xs-12 col-md-12 col-sm-12">
 			   			<?=  $form->field($model, 'SIGN_PASSWD')->widget(
 							    PasswordInput::classname()
 							); ?>
@@ -125,7 +107,7 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
 			   		 </div>
 					</div>
 
-		</div>
+
 
 
 
