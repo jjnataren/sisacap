@@ -15,11 +15,11 @@ $this->registerJs("$('#help_popup_rol').popover('hide');", View::POS_END, 'my-op
 
    
 	
-				<table class="table">
+				<table class="table table-condensed table-hover">
 				
 					<thead>
 						<tr>
-						<th style="text-align: left;"><h3><i class="fa fa-th"></i> Datos del plan ID <?=$model->ID_PLAN?></h3></th>
+						<th style="text-align: left;"><h2><i class="fa fa-calendar fa-lg"></i>&nbsp;Plan Id <?=$model->ID_PLAN?></h2></th>
 						<th style="text-align: right;">
 						    <?= Html::a('<i class="fa fa-cogs"></i>	Administrar plan', ['plan/dashboard', 'id' => $model->ID_PLAN], ['class' => 'btn btn-primary']) ?>
 					         &nbsp;
@@ -33,13 +33,14 @@ $this->registerJs("$('#help_popup_rol').popover('hide');", View::POS_END, 'my-op
 						</tr>
 					</thead>
 		
+				<tbody>	
 					<tr>
-						<td style="vertical-align:middle;"><strong>ALIAS</strong></td>
-						<td><h4><?= $model->ALIAS?></h4></td>		  
+						<td style="vertical-align:middle;" class="text text-primary">Alias</td>
+						<td><?= $model->ALIAS?></td>		  
 						
 				    </tr>
 				    <tr>
-						<td><strong>Modalidad</strong></td>
+						<td>Modalidad de la capacitación</td>
 						<td><?php if ($model->MODALIDAD_CAPACITACION=== 1)
 										echo "Plan y programas específicos de la empresa";
 									elseif ($model->MODALIDAD_CAPACITACION=== 2)
@@ -49,19 +50,19 @@ $this->registerJs("$('#help_popup_rol').popover('hide');", View::POS_END, 'my-op
 					</tr>
 				
 					<tr>
-						<td><strong>Total Hombres</strong></td>
+						<td>Total trabajadores hombres</td>
 						<td><?= $model->TOTAL_HOMBRES?></td>
 					</tr>
-						<tr>
-						<td><strong>Total Mujeres</strong></td>
+					<tr>
+						<td>Total trabajadores mujeres</td>
 						<td><?= $model->TOTAL_MUJERES?></td>
 					</tr>
 					<tr>
-						<td>Fecha de inicio</td>
+						<td>Fecha inicio del plan</td>
 						<td><?= $model->VIGENCIA_INICIO?></td>
 					</tr>
 					<tr>
-						<td>Fecha fin </td>
+						<td>Fecha fin del plan </td>
 						<td><?= $model->VIGENCIA_FIN?></td>
 					</tr>
 				
@@ -72,19 +73,19 @@ $this->registerJs("$('#help_popup_rol').popover('hide');", View::POS_END, 'my-op
 					
 				
 					
-		
+			</tbody>
 				
 			</table>
 		
 			
-			 <h3>
+			 <h4>
 			 	<i class="fa fa-line-chart"></i>
 				Resultados de la evaluación de los objetivos del plan de capacitación.<br />
 				<small> Señalado del 1 al 5 en donde 1 es el más importante</small>
-			</h3>
+			</h4>
 			
 		
-			<table class="table">
+			<table class="table table-bordered table-condensed table-hover">
 			
 				<thead>
 					<tr>
@@ -129,13 +130,13 @@ $this->registerJs("$('#help_popup_rol').popover('hide');", View::POS_END, 'my-op
 
 		
 
-			    <h3>
+			    <h4>
 			    		<i class="fa fa-laptop"></i>
 						<?= Yii::t('backend', 'Cursos') ?>
 						<br /><small> Que seran impartidos dentro de este plan  </small>
-				</h3>
+				</h4>
 			
-			<table class="table">
+			<table class="table table-bordered table-condensed table-hover">
 				<thead>
 					<tr>
 						<th>Id</th>
