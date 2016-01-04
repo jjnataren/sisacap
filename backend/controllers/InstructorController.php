@@ -11,6 +11,8 @@ use yii\filters\VerbFilter;
 use backend\models\EmpresaUsuario;
 use yii\base\Model;
 use yii\web\UploadedFile;
+use backend\models\UserForm;
+use yii\base\Object;
 
 /**
  * InstructorController implements the CRUD actions for Instructor model.
@@ -225,17 +227,75 @@ public function actionViewbycompany($id){
     	
 
     	$companyUserModel = EmpresaUsuario::getMyCompany();
-    	
+    	$ROL_INSTRUCTOR  = 7 ;
     	$model = new Instructor();
+    	
+    	$userModel   =  new UserForm();
     	
     	$model->ID_EMPRESA = $companyUserModel->ID_EMPRESA;
     	$model->ACTIVO = 1;
     
-    	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		return $this->redirect(['view-by-instructor', 'id' => $model->ID_INSTRUCTOR]);
+    	if ($model->load(Yii::$app->request->post())) {
+			    		
+    		$userModel->load(Yii::$app->request->post()); 
+    		
+    		$userModel->setScenario('create');
+    		
+    		$userModel->role  = $ROL_INSTRUCTOR;
+				
+    		$connection = Yii::$app->db;
+    		
+    		$transaction =   $connection->beginTransaction();
+    		 
+    			    			 
+    			if (  $userModel->save() &&  $model->validate()   ) {
+    				// do something here after saving
+    				$model->ID_USUARIO = $userModel->getModel()->id;
+    				$modelEmpresaUsuario = new EmpresaUsuario();
+    				$modelEmpresaUsuario->ID_EMPRESA =  $companyUserModel->ID_EMPRESA;
+    				$modelEmpresaUsuario->ID_USUARIO =  $userModel->getModel()->id;
+    				$modelEmpresaUsuario->ACTIVO = 1;
+    				$modelEmpresaUsuario->FECHA_AGREGO = date("Y-m-d H:i:s");
+    				
+	    				if ($model->save(false) && $modelEmpresaUsuario->save(false)){ 
+	    					
+	    						$transaction->commit();
+	    						
+	    						Yii::$app->session->setFlash('alert', [
+	    								'options'=>['class'=>'alert-success'],
+	    								'body'=> '<i class="fa fa-check fa-lg"></i> Instructor creado correctamente.',
+	    						]);
+	    				}
+	    				else{
+	    					
+	    					$transaction->rollback();
+	    					
+	    					return $this->render('create_by_company', [
+	    							'model' => $model,
+	    							'userModel' => $userModel,
+	    					]);
+	    				}
+    		
+    			}else{
+    		
+    					$transaction->rollback();
+    				
+    					return $this->render('create_by_company', [
+    						'model' => $model,
+    						'userModel' => $userModel,
+    				]);
+    		
+    			}
+    		
+    		return $this->redirect(['viewbycompany', 'id' => $model->ID_INSTRUCTOR]);
     	} else {
+    		
+    		
+    
+    		
     		return $this->render('create_by_company', [
     				'model' => $model,
+    				'userModel' => $userModel,
     				]);
     	}
     }
@@ -290,20 +350,86 @@ public function actionViewbycompany($id){
     {
     	$model = $this->findModel($id);
     	$companyModel = EmpresaUsuario::getMyCompany();
+    	$userModel = new UserForm();
     	
     	if ($model->ID_EMPRESA !== $companyModel->ID_EMPRESA)
     	throw new NotFoundHttpException('The requested page does not exist.');
     	    
-    	if ($model->load(Yii::$app->request->post()) && $model->save()) {
-    		Yii::$app->session->setFlash('alert', [
-    		'options'=>['class'=>'alert-success'],
+    	if($model->iDUSUARIO){
+    	
+    		$model->username =  $model->iDUSUARIO->username;
+    		$model->user_form_status =  $model->iDUSUARIO->status;
+    	
+    	}
+    	
+    	if ($model->load(Yii::$app->request->post()) ) {
     		
-    		'body'=> '<i class="fa fa-check"></i> Instructor actualizado correctamente.',
-    		]);
-    		return $this->redirect(['viewbycompany', 'id' => $model->ID_INSTRUCTOR]);
+
+    		
+    		$connection = Yii::$app->db;
+    		
+    		$transaction =   $connection->beginTransaction();
+    		
+    		$userchange = Yii::$app->request->post('userchange');
+    		
+    		if ($userchange){
+    			
+    			$userModel->model = $model->iDUSUARIO;
+    			
+    			$userModel->load(Yii::$app->request->post());
+    			
+    			if(!$userModel->save()) {
+    				
+    				return $this->render('update_by_company', [
+    						'model' => $model,
+    						'userModel'=>$userModel
+    				]);
+    				
+    			}
+    			
+    			
+    			$model->CORREO_ELECTRONICO = $userModel->email;
+    			
+    			
+    		}
+    		
+    		
+    		if( $model->save() ){
+    			
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-success'],
+    			
+    					'body'=> '<i class="fa fa-check"></i> Instructor actualizado correctamente.',
+    			]);
+    			
+    			
+    			$transaction->commit();
+    			
+    			return $this->redirect(['viewbycompany', 'id' => $model->ID_INSTRUCTOR]);
+    			
+    		}else{
+    			
+    			//$userModel->model =  $model->iDUSUARIO;
+    			
+    			$transaction->rollBack();
+    			
+    			return $this->render('update_by_company', [
+    					'model' => $model,
+    					'userModel'=>$userModel
+    			]);
+    			
+    		}
+    		
     	} else {
+    		
+    		
+    		$userModel->model  = $model->iDUSUARIO;
+    		$model->scenario =	'nouserchange';
+    		
+    	
     		return $this->render('update_by_company', [
     				'model' => $model,
+    				'userModel'=>$userModel
     				]);
     	}
     }
