@@ -34,14 +34,16 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
 
 ?>
 
-<div class="row">
-
-  <div class=" col-xs-12 col-sm-12 col-md-12">
-  
     <?php $form = ActiveForm::begin([
     		'options'=>['enctype'=>'multipart/form-data']
     		
     ]); ?>
+
+<div class="row">
+
+  <div class=" col-xs-12 col-sm-12 col-md-12">
+  
+
 				<div class="panel panel-warning">
 					<div class="panel-heading">
 						<h3><i class="fa fa-pencil"></i>
@@ -50,13 +52,8 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
 						</div>
 <div class="panel-body">
 
-
-		<div class=" col-xs-12 col-sm-12 col-md-6">
-    
-    		<div class="row">
-			<div class="col-sm-12 col-md-12 col-xs-12">
-			
-				<div class="callout callout-info">
+ 
+    			<div class="callout callout-info">
 					<h4><i class="fa fa-info-circle"></i> Información adicional</h4>
 					
 						<ol>
@@ -64,19 +61,11 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
 							<li>Proporcione una contraseña para encriptarr la imagen</li>
 							<li>Clic en guardar para proceder</li>
 						</ol>
-						   
-						   
-					
-					
-				
 				</div>
-				
-			</div>
-			</div>
-    
+		
     
 			<div class="row">
-					<div class="col-xs-12 col-md-6">
+					<div class="col-xs-12 col-md-4 col-sm-12">
 			   			
 						  
 						
@@ -95,28 +84,13 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
                 		);
 						  ?>
                   		
-                  		
-       
-                   
-             
-						  
-						  
-			   		 </div>
-			   		 
-			   		 <div class="col-xs-12 col-md-6">
-			   			
-						  
-						
-                          
-             
-						  
-						  
-			   		 </div>
+   			   		 </div>
+			   		
 					</div>
 					
 					
 					<div class="row">
-					<div class="col-xs-12 col-md-7">
+					<div class="col-xs-12 col-md-5 col-sm-12">
 			   			<?=  $form->field($model, 'SIGN_PASSWD')->widget(
 							    PasswordInput::classname()
 							); ?>
@@ -124,7 +98,6 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
 			   		 </div>
 					</div>
 
-		</div>
 
 
 
@@ -140,6 +113,9 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
     
    
 </div>
+
+</div>
+</div>
+
+
   <?php ActiveForm::end(); ?>
-</div>
-</div>
