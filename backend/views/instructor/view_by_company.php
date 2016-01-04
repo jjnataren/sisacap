@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Instructor */
 
-$this->title = 'Mis datos:  ' . $model->NOMBRE. ' ' .$model->APP  . ' ' .$model->APM;
+$this->title = 'Ver instructor:  Id ' . $model->ID_INSTRUCTOR;
 $this->params ['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
   								<i class="fa fa-graduation-cap -lg  fa-stack-1x"></i>
@@ -27,12 +27,12 @@ $this->params ['breadcrumbs'] [] = $this->title;
 			<div class="panel-heading">
 				<h3>
 					<i class="fa fa-eye"></i>
-						<?= Yii::t('backend', 'Detalles') ?> <small>Instructor</small>
+						<?= Yii::t('backend', 'Detalles') ?> <small>de Instructor / capacitador</small>
 				</h3>
 			</div>
 
 		<div class="panel-body">
-			<div class=" col-xs-12 col-sm-12 col-md-6">
+					<div class=" col-xs-12 col-sm-12 col-md-6">
 				
 						<h3>
 						
@@ -87,9 +87,44 @@ $this->params ['breadcrumbs'] [] = $this->title;
 				             </div>
 		
 						</div>	
+						
+						
+						<?php if(isset($model->iDUSUARIO)) :?>
+						
+						
+						 <div class=" col-xs-12 col-sm-12 col-md-6">
+				   			 <h3><i class="fa fa-user"></i> <?= Yii::t('backend', 'Datos de acceso al sistema') ?></h3>
+				   			 
+				   			 <div class="panel">
+								
+				               
+				                <div class="panel-body">
+				                	<?=DetailView::widget ( [ 'model' => $model->iDUSUARIO,'attributes' => 
+				                			[ 
+				                			 ['label'=>'Nombre de usuario',
+				                			 	'value'=>$model->iDUSUARIO->username	
+				                				],
+				                			'email',
+				                			['label'=>'Activo',
+				                				'value'=>($model->iDUSUARIO->status)?'SI':'NO'	
+				                					
+				                			] ] ] )?>				
+				                
+				                </div>
+				                
+				            
+				             </div>
+		
+						</div>	
+						
+						<?php endif;?>
 				
 				</div>
-
+				
+								<div class="panel-footer">
+					    				 <?= Html::a('<i class="fa fa-pencil"></i> Actualizar', ['updatebycompany', 'id' => $model->ID_INSTRUCTOR], ['class' => 'btn btn-primary']) ?>
+		        	        
+		                 			 </div>
 			</div>
 		</div>
 
