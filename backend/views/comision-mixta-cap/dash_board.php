@@ -42,7 +42,7 @@ $i = 0;
 foreach ($model->plans as $planModel){
 	
 $planItems[]= 	[
-	'label' => ($planModel->ALIAS===null)?'Plan #'.$planModel->ID_PLAN:$planModel->ALIAS,
+	'label' => 'Id '.$planModel->ID_PLAN,
 	'content' => \Yii::$app->view->renderFile('@app/views/plan/_plan_detail.php',
 			 ['id'=>1, 'model'=>$planModel,'searchPlanEstablecimientoModel'=>$searchPlanEstablecimientoModel,
 			'dataproviderPlanEstablecimiento'=>$dataproviderPlanEstablecimiento]),
@@ -197,7 +197,7 @@ $planItems[]= 	[
                     
                 </div><!-- /.box-body -->
                  <div class="box-footer">
-			    	<?= Html::a('<i class="fa fa-pencil-square-o"></i>Actualizar comision', ['comision-mixta-cap/updatebyuser','id'=>$model->ID_COMISION_MIXTA], ['class' => 'btn btn-primary']) ?>
+			    	<?= Html::a('<i class="fa fa-pencil"></i>&nbsp;Actualizar comision', ['comision-mixta-cap/updatebyuser','id'=>$model->ID_COMISION_MIXTA], ['class' => 'btn btn-primary']) ?>
         	         <?= Html::a('<i class="fa fa-print" ></i> Generar reporte DC-1', ['comision-mixta-cap/reportpdf','id'=>$model->ID_COMISION_MIXTA], ['class' => 'btn btn-default', 'target'=>'_blank']) ?>
                   </div>
                 
@@ -432,10 +432,11 @@ $planItems[]= 	[
         </div>  
      </div>        
        </div>
-       <h4 class="page-header" id="anchor_trabajadores">
-          Trabajadores en la comisión
-   		
-   </h4>   
+       
+       <h2 class="page-header" id="anchor_trabajadores">
+          Trabajadores  que seran capacitados en esta comisión
+   		<small>trabajadores dentro de la empresa matriz y establecimientos</small>
+   		</h2>   
       <div class="row"> 
        
             <div class="col-md-6  col-sm-12 col-xs-12">
@@ -450,7 +451,7 @@ $planItems[]= 	[
            
            <table class="table table-hover" >
             <thead> 
-            <tr> 	<td colspan="3"  style="text-align: center;" >Empresa</td></tr>
+            <tr> 	<td colspan="3"  style="text-align: center; " >Empresa</td></tr>
 	         <tr>
 		         <th>Nombre empresa matriz</th>  
 		         <th>Numero de trabajadores</th>		         
@@ -515,11 +516,12 @@ $planItems[]= 	[
           </div><!-- /.box-body -->
                 
                   <div class="box-footer">
-                  	  <td><h5>total de trabajadores   <span class="badge bg-yellow">
-                          
-                       <?php echo  $trajaEstab;?>  </span>
+                  	  <h5>total de trabajadores   
+	                  	  <span class="badge bg-blue">
+	                          
+	                       <?= $trajaEstab;?>  
+	                       </span>
                        	</h5>
-                       </td>
                
                   </div>
           
@@ -542,19 +544,21 @@ $planItems[]= 	[
             		<?php if (isset($model->iDREPRESENTANTETRABAJADORES)):?>
             		
             		<dl class="dl-horizontal">
-                        <dt><?= Yii::t('backend', 'Nombre') ?></dt>
-                        <dd><?= $model->iDREPRESENTANTETRABAJADORES->NOMBRE ?></dd>
+            		
+            			 <dt><?= Yii::t('backend', 'Id') ?></dt>
+                        <dd><?= $model->iDREPRESENTANTETRABAJADORES->ID_TRABAJADOR ?></dd>
                      
-                        <dt><?= Yii::t('backend', 'Apellido paterno') ?></dt>
-                        <dd><?= $model->iDREPRESENTANTETRABAJADORES->APP ?></dd>
-            		
-                        <dt><?= Yii::t('backend', 'Apellido materno') ?></dt>
-                        <dd><?= $model->iDREPRESENTANTETRABAJADORES->APM ?></dd>
-            		
+                        <dt><?= Yii::t('backend', 'Nombre') ?></dt>
+                        <dd><?= $model->iDREPRESENTANTETRABAJADORES->NOMBRE . ' '. $model->iDREPRESENTANTETRABAJADORES->APP .  '  '. $model->iDREPRESENTANTETRABAJADORES->APM ?></dd>
+                     
+                     
                         <dt><?= Yii::t('backend', 'RFC') ?></dt>
                         <dd><?= $model->iDREPRESENTANTETRABAJADORES->RFC ?></dd>
                      
-                        <dt><?= Yii::t('backend', 'Empresa origen') ?></dt>
+                     	 <dt><?= Yii::t('backend', 'CURP') ?></dt>
+                        <dd><?= $model->iDREPRESENTANTETRABAJADORES->CURP ?></dd>
+                     	
+                        <dt><?= Yii::t('backend', 'Establecimiento origen') ?></dt>
                         <dd><?= isset($model->iDREPRESENTANTETRABAJADORES->iDEMPRESA)? $model->iDREPRESENTANTETRABAJADORES->iDEMPRESA->NOMBRE_COMERCIAL : '' ?></dd>
                      </dl>
             		
@@ -567,9 +571,33 @@ $planItems[]= 	[
         		</div>
         		
         	    <div class="box-footer">
-    	              	  <a href="#" class="btn btn-default" data-toggle="modal" data-target="#mod_trabajadores" id="userButton">
-							<i class="fa fa-check-square-o"></i>&nbsp;<?= Yii::t('backend', 'Seleccionar')?>
-				   		 </a>
+        	    
+        	    		<table>	
+        	    		<tr>
+        	    			<td>
+		    	              	  <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#mod_trabajadores" id="userButton">
+									<i class="fa fa-check-square-o"></i>&nbsp;<?= Yii::t('backend', 'Seleccionar')?>
+						   		 </a>
+						   	 
+				   		 	</td>
+				   		 	
+				   		 		<?php if (isset($model->iDREPRESENTANTETRABAJADORES)):?>
+				   		 		<td>&nbsp;</td>
+				   		 		<td>
+						   			
+						   		 <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#mod_trabajadores" id="userButton">
+									<i class="fa fa-pencil-square-o"></i>&nbsp;<?= Yii::t('backend', 'Firma digitalizada')?>
+						   		 </a>
+						   		
+						   		</td>
+						   		<?php endif;?>	
+				   		 	
+				   		 	<td style="vertical-align: bottom; text-align: right;" class="text text-muted">
+				   		 		&nbsp;Esta información es opcional para empresas com menos de 50 trabajadores
+				   		 	</td>
+				   		 </tr>
+				   		 </table>
+				   		 
                 </div>	
        </div>
       </div>  
@@ -578,7 +606,8 @@ $planItems[]= 	[
         
 <h4 class="page-header" id="anchor_planes">
           
-   		Planes
+   		Planes de trabajo
+   		<small>planes de trabajo que seran llevados acabo dentro de esta comisión</small>
    </h4> 
    <div class="row">
         
@@ -587,8 +616,8 @@ $planItems[]= 	[
                 <div class="box-header">
                        
                            <i class="fa fa-calendar"></i>
-                      <h3 class="box-title"><?= Yii::t('backend', 'Resumen de planes en esta comisión') ?>
-                      <span class="badge bg-yellow">
+                      <h3 class="box-title"><?= Yii::t('backend', 'Resumen de todos los planes de trabajo en esta comisión') ?>
+                      <span class="badge bg-blue">
                             <?= count($model->plans)?:0 ?>
                         </span>
                         </h3>
@@ -605,12 +634,13 @@ $planItems[]= 	[
          
          <thead> 
          	<tr>
-	         	<th>Id plan </th>  
-	         	<th>N°etapas</th> 
-	         	<th>Alias</th>
-	         	<th> Total hombres</th> 
-	         	<th> Total mujeres</th> 
-	         	<th>cursos</th> 
+	         	<th>Id</th>  
+	         	 	<th>Alias</th>
+	         	<th>No. etapas</th> 
+	        
+	         	<th>Total hombres</th> 
+	         	<th>Total mujeres</th> 
+	         	<th>Cursos</th> 
 	         	<th> <i><?= Yii::t('backend', 'Estatus') ?></i></th> 
          	</tr>
          </thead>
@@ -620,8 +650,9 @@ $planItems[]= 	[
               	<?php $i = 0; foreach ($model->plans as $plan){?>  	
          	<tr>
                 <td><?= $plan->ID_PLAN?></td>
+                    <td><?= $plan->ALIAS?>
          		<td><?= $plan->NUMERO_ETAPAS?></td>
-         	    <td><?= $plan->ALIAS?>
+         	
          		<td><?= $plan->TOTAL_HOMBRES?></td>
          		<td><?= $plan->TOTAL_MUJERES?></td>
          		<td><?= count($plan->cursos)?:0 ?></td>
@@ -652,7 +683,7 @@ $planItems[]= 	[
  	<div class="box box-primary">
 			  <div class="box-header">
 						    <i class="fa fa-calendar"></i>
-						<h3 class="box-title"><?= Yii::t('backend', 'Planes y programas de capacitación') ?>  <small>relacionados a la comisión</small>  
+						<h3 class="box-title"><?= Yii::t('backend', 'Detalle por plan y programa de capacitación') ?>  <small>que seran llevados acabo dentro de la comisión</small>  
 						
 						</h3>	
 						<div class="box-tools pull-right">
