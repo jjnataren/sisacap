@@ -3,6 +3,10 @@
 namespace backend\models;
 
 use Yii;
+use yii\base\Object;
+use backend\models\UserForm;
+use common\models\User;
+use kartik\password\StrengthValidator;
 
 /**
  * This is the model class for table "tbl_instructor".
@@ -33,9 +37,19 @@ use Yii;
  * @property Curso[] $cursos
  * @property Empresa $iDEMPRESA
  * @property User $iDUSUARIO
+ * 
  */
 class Instructor extends \yii\db\ActiveRecord
 {
+	
+	/**Aux variables  to get form data value*/
+	public $username;
+	public $email;
+	public $user_form_status;
+	public $user_form_password;
+	
+
+	
 	/**
 	 * Tipos de instructores
 	 * @var unknown
@@ -67,14 +81,33 @@ class Instructor extends \yii\db\ActiveRecord
     {
     	return [
     			[['ID_EMPRESA', 'LOGOTIPO', 'NUM_REGISTRO_AGENTE_EXTERNO', 'TIPO_INSTRUCTOR', 'ACTIVO', 'ID_USUARIO'], 'integer'],
+    			[['user_form_status'], 'integer'],
     			[['SIGN_CREATED_AT'], 'safe'],
     			[['NOMBRE_AGENTE_EXTERNO', 'NOMBRE', 'APP', 'APM', 'TELEFONO', 'SIGN_PIC_EXTENSION'], 'string', 'max' => 100],
     			[['DOMICILIO', 'CORREO_ELECTRONICO'], 'string', 'max' => 300],
-    			[['COMENTARIOS'], 'string', 'max' => 200],
+    			//[['email'], 'email'],
+    			[[ 'NOMBRE'], 'required'],
     			[['RFC'], 'string', 'max' => 13],
-    			[['SIGN_PIC', 'SIGN_PASSWD'], 'string', 'max' => 2048]
+    			//[['username', 'user_form_password','email', 'NOMBRE'], 'required'],
+    			//[['user_form_password'], StrengthValidator::className(), 'preset'=>'normal', 'userAttribute'=>'username'],
+    			[['SIGN_PIC', 'SIGN_PASSWD'], 'string', 'max' => 2048],
+    			//['username', 'unique', 'targetClass'=>'\common\models\User'],
+    			//['email', 'unique', 'targetClass'=> '\common\models\User'],
+    			 
+    			
     	];
     }
+    
+    /**
+     * (non-PHPdoc)
+     * @see \yii\base\Model::scenarios()
+     */
+    public function scenarios()   {
+    	$scenarios = parent::scenarios();
+    	$scenarios['nouserchange'] = ['NOMBRE'];//Scenario Values Only Accepted
+    	return $scenarios;
+    }
+    
     /**
      * @inheritdoc
      */
@@ -99,6 +132,12 @@ class Instructor extends \yii\db\ActiveRecord
     			'SIGN_PICTURE' => 'Imagen firma',
     			'SIGN_PASSWD' => 'Constraseña encriptación',
     			'SIGN_KEY' => 'Sign  Key',
+    			'username'=>'Nombre  de usuario',
+    			'user_form_password' => 'Contraseña',
+    			'user_form_status' => 'Activo',
+    			'email' => 'Correo electrónico'
+    			
+    			
     	];
     }
 
