@@ -655,7 +655,7 @@ class EmpresaController extends Controller
     					$instructor->ID_USUARIO = $id_u;
     					$instructor->COMENTARIOS = 'Instructor nuevo';
     					$instructor->CORREO_ELECTRONICO = $usuario->email;
-    					$instructor->save();
+    					$instructor->save(false);
     				}
     				
     			}
