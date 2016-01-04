@@ -68,13 +68,13 @@ $this->params['breadcrumbs'][] = $this->title;
     		 
             ['class' => 'yii\grid\ActionColumn',
 			
-    		'template' => ' {view} ', // Template de los botones. Aqui se indica que botones apareceran y el orden en el que apareceran
+    		'template' => ' {view}   {update}   {delete}', // Template de los botones. Aqui se indica que botones apareceran y el orden en el que apareceran
 			
     		'buttons' => [ // Aqui se indica  que icono tendran los botones y/o texto si asi se desea
 				
-    			//'update' => function ($url, $model, $id) { //Boton actualizar
-					//return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, ['title' => Yii::t('app', 'Actualizar')]);
-				//},
+    			'update' => function ($url, $model, $id) { //Boton actualizar
+					return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, ['title' => Yii::t('app', 'Actualizar')]);
+				},
 				
 				'view' => function ($url, $model, $id) {//Boton Ver
 					return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, ['title' => Yii::t('app', 'Ver')]);
@@ -88,10 +88,10 @@ $this->params['breadcrumbs'][] = $this->title;
 								
 				/*En esta seccion se definen las acciones que tendran los botones*/
 				'urlCreator' => function ($action, $model, $key, $index) {
-				//	if ($action === 'update') {
-					//	return Yii::$app->urlManager->createUrl(['/instructor/updatebycompany', 'id' => $key]); // Aqui es donde se crean las urls con las acciones personalizadas
+					if ($action === 'update') {
+						return Yii::$app->urlManager->createUrl(['/instructor/updatebycompany', 'id' => $key]); // Aqui es donde se crean las urls con las acciones personalizadas
 						
-					//}
+					}
 					
 					if ($action === 'view') {
 						return Yii::$app->urlManager->createUrl(['/instructor/viewbycompany', 'id' => $key]); // Aqui es donde se crean las urls con las acciones personalizadas

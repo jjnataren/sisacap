@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="instructor-create">
 
     <?= $this->render('_form_by_company', [
+    		'userModel' => $userModel,
         'model' => $model,
     ]) ?>
 
