@@ -308,7 +308,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
          <table class="table table-hover" >
          
          <thead> 
-	         <tr>
+	        <tr>
 		         <th>Nombre completo</th>
 		         		         
 		         <th>No. registro de agente externo</th>
@@ -320,8 +320,18 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
          
          <tbody>
          	
-         	<?php $instructor = $model->iDINSTRUCTOR;{?>
+         	<?php $instructor = $model->iDINSTRUCTOR;
+         	
+         		if ($instructor !== null ){
+         			
+         			
+       		
+         		?>
          	<tr>
+         		
+         		
+       
+         		
          		
          		<td><?= $instructor->NOMBRE. ' '.$instructor->APP. ' ' .$instructor->APM?></td>
          		
@@ -330,10 +340,15 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
          		<td><?= $instructor->CORREO_ELECTRONICO?></td>
          		
          	  
-         	
+      
          	</tr>
          	
          	
+         	<?php }else{?>
+         	
+         		<tr>
+         			<td colspan="4" class="text text-muted">No se ha asignado instructor </td>
+         	</tr>
          	<?php }?>
          </tbody>
         
