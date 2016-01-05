@@ -23,8 +23,8 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
   								<i class="fa fa-laptop fa-stack-1x"></i>
 							   </span>';
-$this->title = 'Curso  Id '.$model->ID_CURSO. ' - '.$model->NOMBRE;//-  Plan( '.$model->iDPLAN->ALIAS.' ), Curso ('.$model->NOMBRE.')';
-
+//$this->title = 'Curso  Id '.$model->ID_CURSO. ' - '.$model->NOMBRE;//-  Plan( '.$model->iDPLAN->ALIAS.' ), Curso ('.$model->NOMBRE.')';
+$this->title='Curso Id'.'-'.$model->ID_CURSO. '-'. substr("$model->NOMBRE", 0,40).'...';
 
 
 $this->params['breadcrumbs'][] = ['label' => 'Comisión ID '.$model->iDPLAN->ID_COMISION, 'url'=>['comision-mixta-cap/dashboard', 'id'=>$model->iDPLAN->ID_COMISION]];
