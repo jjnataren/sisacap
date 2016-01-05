@@ -58,12 +58,13 @@ $this->registerJs("$('#help_popup_rol').popover('hide');", View::POS_END, 'my-op
 						<td><?= $model->TOTAL_MUJERES?></td>
 					</tr>
 					<tr>
-						<td>Fecha inicio del plan</td>
-						<td><?= $model->VIGENCIA_INICIO?></td>
+						<td>Fecha inicio del plan</td>										
+                        <td><?=($model->VIGENCIA_INICIO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->VIGENCIA_INICIO)) ;?></td>
 					</tr>
 					<tr>
 						<td>Fecha fin del plan </td>
-						<td><?= $model->VIGENCIA_FIN?></td>
+						<td><?=($model->VIGENCIA_FIN === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($model->VIGENCIA_FIN)) ;?></td>
+						
 					</tr>
 				
 					<tr>
@@ -133,7 +134,7 @@ $this->registerJs("$('#help_popup_rol').popover('hide');", View::POS_END, 'my-op
 			    <h4>
 			    		<i class="fa fa-laptop"></i>
 						<?= Yii::t('backend', 'Cursos') ?>
-						<br /><small> Que seran impartidos dentro de este plan  </small>
+						<br /><small> Que serán impartidos dentro de este plan  </small>
 				</h4>
 			
 			<table class="table table-bordered table-condensed table-hover">
@@ -141,7 +142,7 @@ $this->registerJs("$('#help_popup_rol').popover('hide');", View::POS_END, 'my-op
 					<tr>
 						<th>Id</th>
 						<th>Nombre</th>
-						<th>Area tematica</th>
+						<th>Area temática</th>
 						<th>Fecha de inicio</th>
 						<th>Fecha de fin</th>
 					
@@ -159,9 +160,12 @@ $this->registerJs("$('#help_popup_rol').popover('hide');", View::POS_END, 'my-op
 						$cur = \backend\models\Catalogo:: findone(['ID_ELEMENTO'=>$curso-> AREA_TEMATICA, 'CATEGORIA'=>6, 'ACTIVO'=>1]);
          			echo isset($cur)?$cur->NOMBRE: 'no asignado'; ?>
 						</td>
-						<td><?= $curso->FECHA_INICIO ?></td>
-						<td><?= $curso->FECHA_TERMINO ?></td>
-					
+			
+					    <td><?=($curso->FECHA_INICIO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($curso->FECHA_INICIO)) ;?></td>
+						
+						<td><?=($curso->FECHA_TERMINO === null)?'<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($curso->FECHA_TERMINO)) ;?></td>
+						
+						
 					</tr>
 				<?php endforeach;?>	
 				</tbody>
