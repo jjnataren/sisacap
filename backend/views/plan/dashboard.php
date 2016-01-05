@@ -179,7 +179,7 @@ $planItems[]= 	[
                     <i class="glyphicon glyphicon-list-alt"></i>
                 </div>
                   <a class="small-box-footer" href="#anchor_cons">
-                  Reportre de constancias DC-4 <i class="fa fa-arrow-circle-right"></i>
+                  Reporte de constancias DC-4 <i class="fa fa-arrow-circle-right"></i>
                 </a>
               
             </div>
@@ -329,7 +329,7 @@ $planItems[]= 	[
             <div class="box box-primary">
                 <div class="box-header">
                    <i class="glyphicon glyphicon-copyright-mark"></i>
-                    <h3 class="box-title"><?= Yii::t('backend', 'Datos de la comisión mixta de capacitación') ?><small> &nbsp;La cual rige y revisa este plan y programa</small></h3>
+                    <h3 class="box-title"><?= Yii::t('backend', 'Datos de la comisión mixta de capacitación. ') ?><small> &nbsp; La cual rige y revisa este plan y programa</small></h3>
                
                <div class="box-tools pull-right">
             <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
@@ -384,7 +384,7 @@ $planItems[]= 	[
             <div class="box box-primary">
                 <div class="box-header">
                    <i class="fa fa-check-square"></i>
-                    <h2 class="box-title"><?= Yii::t('backend', 'Documento probatorio') ?><br /><small>foramto DC2 en archivo <strong>.pdf</strong> firmado por el representante legal de la empresa </small></h2>
+                    <h2 class="box-title"><?= Yii::t('backend', 'Documento probatorio') ?><br /><small>formato DC2 en archivo <strong> .pdf</strong> firmado por el representante legal de la empresa </small></h2>
                
                <div class="box-tools pull-right">
             <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
@@ -455,7 +455,7 @@ $planItems[]= 	[
       </div>
 	
 	<h4 class="page-header" id="anchor_trabajadores">
-     Información de los trabajadores que serán considerados en este plan
+     Información de los trabajadores que serán considerados en este plan. 
    		<small>Puestos de trabajo que considera este plan y detalle de los trabajadores</small>
    </h4>     
         
@@ -466,7 +466,7 @@ $planItems[]= 	[
             <div class="box box-primary">
                 <div class="box-header">
                   <i class="fa fa-user-secret"></i>
-              <h2 class="box-title"><?= Yii::t('backend', 'Puestos  de trabajo') ?>  <small> a los que estara dirigido este plan</small> </h2>
+              <h2 class="box-title"><?= Yii::t('backend', 'Puestos  de trabajo') ?>  <small> a los que estará dirigido este plan</small> </h2>
               
               <div class="box-tools pull-right">
             <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
@@ -519,7 +519,7 @@ $planItems[]= 	[
             <?php if(!$i):?>
             	&nbsp;&nbsp;<span class='text text-warning'><i class='fa fa-info-circle'></i> Ningún puesto de trabajo seleccionado</span>
             <?php endif;?>
-            <?php }else echo "<h4 class='text text-success'><i class='fa fa-info-circle'></i> Todos los puestos de trabajo seran considerados en este plan</h4>"?>
+            <?php }else echo "<h4 class='text text-success'><i class='fa fa-info-circle'></i> Todos los puestos de trabajo serán considerados en este plan</h4>"?>
                   </div>
             </div>
         </div>      
@@ -717,8 +717,8 @@ $planItems[]= 	[
 
   
  <h4 class="page-header" id="anchor_curso">
-     Información de los cursos que se brindaran a  los trabajadores
-   		<small>Capacitación que podran recibir los trabajadores dentro de la empresa</small>
+     Información de los cursos que se brindaran a  los trabajadores.
+   		<small>Capacitación que podrán recibir los trabajadores dentro de la empresa</small>
  </h4>     
   
          
@@ -741,7 +741,7 @@ $planItems[]= 	[
 			    	
 			    	 <h3 class="box-title">   
 							
-							<?= Yii::t('backend', 'Cursos') ?><small> que seran  impartidos  en  este plan</small> 
+							<?= Yii::t('backend', 'Cursos') ?><small> que serán  impartidos  en  este plan</small> 
 							
 							
 							
@@ -848,7 +848,7 @@ $planItems[]= 	[
 
   
  <h4 class="page-header" id="anchor_cons">
-     	Resumen de los reportes DC4 que seran  emitidos a la STPS
+     	Resumen de los reportes DC4 que serán  emitidos a la STPS.
    		<small>Reporte de constancias emitidas a  los trabajadores</small>
  </h4>     
   
