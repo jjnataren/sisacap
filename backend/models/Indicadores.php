@@ -97,7 +97,7 @@ así lo requiera la información sobre el informe anual de las actividades reali
 
 			$modelIndicador->TITULO = 'Generar reporte DC-1';
 			
-			$modelIndicador->DESCRIPCION = " La empresa deberá mantener en sus registros internos y presentar a la Secretaría, cuando ésta así lo requiera, la información de la constitucion de la comisión mixta de capacitación, adiestramiento y productividad, para ello se debera generar, imprimir, firmar y adjuntar 
+			$modelIndicador->DESCRIPCION = " La empresa deberá mantener en sus registros internos y presentar a la Secretaría, cuando ésta así lo requiera, la información de la constitución de la comisión mixta de capacitación, adiestramiento y productividad, para ello se deberá generar, imprimir, firmar y adjuntar 
 					el Formato DC-1 INFORME SOBRE LA CONSTITUCIÓN DE LA COMISIÓN MIXTA DE CAPACITACIÓN, ADIESTRAMIENTO Y PRODUCTIVIDAD.   "	;
 				
 			$modelIndicador->DATA = "Es necesario generar el reporte DC-1 y adjuntarlo a la comisión mixta de capacitación.";
@@ -253,7 +253,7 @@ public static function setIndicadorPlan($plan){
 			
 		$indicadorInicio->TITULO = ' El plan '. $plan->ALIAS.' iniciara en 5 días ';
 			
-		$indicadorInicio->DATA = 'Plan ID '. $plan->ID_PLAN.'  '.'<br />  La empresa deberá crear cursos para impartilos durante su plan';
+		$indicadorInicio->DATA = 'Plan ID '. $plan->ID_PLAN.'  '.'<br />  La empresa deberá crear cursos para impartirlos durante su plan';
 		
 		$indicadorInicio->FECHA_CREACION = date("Y-m-d H:i:s");
 		$indicadorInicio->CLAVE="PLAN0001";
@@ -356,7 +356,7 @@ public static function setIndicadorCurso($curso){
 					
 				$modelIndicador->CLAVE="CUR0002";
 
-				$modelIndicador->DATA = 'Curso por concluir,  debe enviar las constancias de capacitación a  los trabajadores 20  dias despues  del termino del mismo.';
+				$modelIndicador->DATA = 'Curso por concluir, debe enviar las constancias de capacitación a  los trabajadores 20  días después  del termino del mismo.';
 
 				$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
 
@@ -384,7 +384,7 @@ public static function setIndicadorCurso($curso){
 					
 				$modelIndicador->TITULO = 'Curso por  Iniciar';
 					
-				$modelIndicador->DATA = 'El curso esta por iniciar deberá calificar a los trabajadores.';
+				$modelIndicador->DATA = 'El curso esta por iniciar, deberá calificar a los trabajadores.';
 				$modelIndicador->CLAVE="CUR0002";
 				$modelIndicador->ID_USUARIO  = $companyModel->ID_USUARIO;
 					
@@ -579,7 +579,7 @@ public static function setIndicadorConstancia($constancia){
 		
 				$indicador->ACTIVO = 1;
 		
-				$indicador->DATA = 'El instructor  encontro algun inpedimento para generar esta constancia, debera comentar el motivo por el cual la rechazo.';
+				$indicador->DATA = 'El instructor  encontró algún impedimento para generar esta constancia, deberá comentar el motivo por el cual la rechazo.';
 		
 				$indicador->FECHA_CREACION = date("Y-m-d H:i:s");
 		
@@ -619,7 +619,7 @@ public static function setIndicadorConstancia($constancia){
 		
 				$indicador->ACTIVO = 1;
 		
-				$indicador->DATA = 'El manager encontro una anomalia en la constancia, favor de hacer las correcciones nesesarias para esta constancia.';
+				$indicador->DATA = 'El manager encontró una anomalía en la constancia, favor de hacer las correcciones necesarias para esta constancia.';
 		
 				$indicador->FECHA_CREACION = date("Y-m-d H:i:s");
 		
@@ -655,7 +655,7 @@ public static function setIndicadorConstancia($constancia){
 		
 				$indicador->ACTIVO = 1;
 		
-				$indicador->DATA = 'El manager ha asignado una constancia para usted, favor de  hacer la evaluacion correspondiente.';
+				$indicador->DATA = 'El manager ha asignado una constancia para usted, favor de hacer la evaluación correspondiente.';
 		
 				$indicador->FECHA_CREACION = date("Y-m-d H:i:s");
 		
