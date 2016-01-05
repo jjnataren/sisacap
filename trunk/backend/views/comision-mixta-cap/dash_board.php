@@ -208,7 +208,7 @@ $planItems[]= 	[
             <div class="box box-primary">
                 <div class="box-header">
               <i class="fa fa-university"></i>	
-                    <h2 class="box-title"><?= Yii::t('backend', 'Establecimientos') ?><small> que seran regidos por esta comisión</small></h2>
+                    <h2 class="box-title"><?= Yii::t('backend', 'Establecimientos') ?><small> que serán regidos por esta comisión</small></h2>
                     <div class="box-tools pull-right">
             <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
             <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
@@ -364,7 +364,7 @@ $planItems[]= 	[
                  <i class="fa fa-building"></i>
                 
                 
-                    <h3 class="box-title"><?= Yii::t('backend', 'Datos de la empresa') ?> <small> que apareceran en el reporte DC-1</small></h3>
+                    <h3 class="box-title"><?= Yii::t('backend', 'Datos de la empresa') ?> <small> que aparecerán en el reporte DC-1</small></h3>
                 <div class="box-tools pull-right">
             <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
             <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
@@ -434,7 +434,7 @@ $planItems[]= 	[
        </div>
        
        <h2 class="page-header" id="anchor_trabajadores">
-          Trabajadores  que seran capacitados en esta comisión
+          Trabajadores  que serán capacitados en esta comisión
    		<small>trabajadores dentro de la empresa matriz y establecimientos</small>
    		</h2>   
       <div class="row"> 
@@ -606,8 +606,8 @@ $planItems[]= 	[
         
 <h4 class="page-header" id="anchor_planes">
           
-   		Planes de trabajo
-   		<small>planes de trabajo que seran llevados acabo dentro de esta comisión</small>
+   		Planes de trabajo.
+   		<small>planes de trabajo que serán llevados a cabo dentro de esta comisión</small>
    </h4> 
    <div class="row">
         
