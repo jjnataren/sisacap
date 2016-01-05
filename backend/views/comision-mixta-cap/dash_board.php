@@ -593,7 +593,7 @@ $planItems[]= 	[
 						   		<?php endif;?>	
 				   		 	
 				   		 	<td style="vertical-align: bottom; text-align: right;" class="text text-muted">
-				   		 		&nbsp;Esta información es opcional para empresas com menos de 50 trabajadores
+				   		 		&nbsp;Esta información es opcional para empresas con menos de 50 trabajadores
 				   		 	</td>
 				   		 </tr>
 				   		 </table>
@@ -683,7 +683,7 @@ $planItems[]= 	[
  	<div class="box box-primary">
 			  <div class="box-header">
 						    <i class="fa fa-calendar"></i>
-						<h3 class="box-title"><?= Yii::t('backend', 'Detalle por plan y programa de capacitación') ?>  <small>que seran llevados acabo dentro de la comisión</small>  
+						<h3 class="box-title"><?= Yii::t('backend', 'Detalle por plan y programa de capacitación') ?>  <small>que serán llevados a cabo dentro de la comisión</small>  
 						
 						</h3>	
 						<div class="box-tools pull-right">
