@@ -19,6 +19,7 @@ use backend\models\Catalogo;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use backend\models\PuestoEmpresa;
+use backend\models\ComisionMixtaCap;
 
 
 /**
@@ -73,16 +74,22 @@ class TrabajadorController extends Controller
      * @throws NotFoundHttpException
      * @return \yii\web\Response|string
      */
-    public function actionViewSignPic($id){
+    public function actionViewSignPic($id, $id_comision){
     		
     	$modelEmpresa = EmpresaUsuario::getMyCompany();
     	 
     	$trabajadorModel = $this->findModel($id);
     	
+    	$comisionModel = ComisionMixtaCap::findOne($id_comision);
     	
     	if ($trabajadorModel->ID_EMPRESA !== $modelEmpresa->ID_EMPRESA   &&  $trabajadorModel->iDEMPRESA->ID_EMPRESA_PADRE !== $modelEmpresa->ID_EMPRESA  ){
     		throw new NotFoundHttpException('The requested page does not exist.');
     	}
+    	
+    	if ($comisionModel  === null   ||   $comisionModel->ID_EMPRESA !== $modelEmpresa->ID_EMPRESA  ){
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    	}
+    	
     		
     	 
     	$image64Data = null;
@@ -129,9 +136,7 @@ class TrabajadorController extends Controller
     
     	}
     	 
-    	 
-    	 
-    	return $this->render('view_sign_pic',['model'=>$trabajadorModel, 'SIGN_IMAGE'=> base64_encode($image64Data)]);
+    	return $this->render('view_sign_pic',['model'=>$trabajadorModel, 'SIGN_IMAGE'=> base64_encode($image64Data),  'comisionModel'=>$comisionModel]);
     	 
     }
     
@@ -140,13 +145,27 @@ class TrabajadorController extends Controller
      * @throws NotFoundHttpException
      * @return \yii\web\Response|string
      */
-    public function actionManageSignPic($id){
+    public function actionManageSignPic($id,$id_comision){
     
     	$model = EmpresaUsuario::getMyCompany();
+    	
+    	$comisionModel = ComisionMixtaCap::findOne($id_comision);
+    	 
+    	 
+    	
 
     	$company= $model->iDEMPRESA;
     
     	$trabajadorModel = $this->findModel($id);
+    	
+    	
+    	if ($trabajadorModel->ID_EMPRESA !== $model->ID_EMPRESA   &&  $trabajadorModel->iDEMPRESA->ID_EMPRESA_PADRE !== $model->ID_EMPRESA  ){
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    	}
+    	 
+    	if ($comisionModel  === null   ||   $comisionModel->ID_EMPRESA !== $model->ID_EMPRESA  ){
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    	}
     	 
     	$image64Data = null;
     	 
@@ -215,7 +234,7 @@ class TrabajadorController extends Controller
     
     	}
     
-    	return $this->render('manage_sign_pic',['model'=>$trabajadorModel, 'SIGN_IMAGE'=> base64_encode($image64Data)]);
+    	return $this->render('manage_sign_pic',['model'=>$trabajadorModel, 'SIGN_IMAGE'=> base64_encode($image64Data), 'comisionModel'=>$comisionModel]);
     
     }
     

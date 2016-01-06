@@ -584,7 +584,7 @@ $planItems[]= 	[
 				   		 		<td>&nbsp;</td>
 				   		 		<td>
 						   		
-						   		<?= Html::a('<i class="fa fa-pencil-square-o"></i> Firma digitalizada', ['trabajador/view-sign-pic','id'=>$model->iDREPRESENTANTETRABAJADORES->ID_TRABAJADOR], ['class' => 'btn btn-primary']) ?>
+						   		<?= Html::a('<i class="fa fa-pencil-square-o"></i> Firma digitalizada', ['trabajador/view-sign-pic','id'=>$model->iDREPRESENTANTETRABAJADORES->ID_TRABAJADOR,  'id_comision'=>$model->ID_COMISION_MIXTA], ['class' => 'btn btn-primary']) ?>
 						   		
 						   		</td>
 						   		<?php endif;?>	
