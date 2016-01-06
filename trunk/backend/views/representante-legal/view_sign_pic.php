@@ -71,13 +71,13 @@ $this->params['breadcrumbs'][] = $this->title;
 								       
 								       <?php else:?>
 								       
-								    		<img  src="<?='/img/sure-538718_640.jpg' ?>">
+								    		<img  src="<?='/img/sure-538718_640.jpg' ?>" style="height: 200px; width: 400px">
 								       
 								       <?php endif;?>
 							       		
 							       	<?php else:?>	
 							       				
-							       		<img  src="<?='/img/cross-27168_640.png' ?>">		
+							       		<img  src="<?='/img/cross-27168_640.png' ?>" style="height: 200px; width: 400px">		
 							       				  
 							       <?php endif;?>				  
 							       				  
@@ -109,7 +109,7 @@ $this->params['breadcrumbs'][] = $this->title;
 							  
 							  
 			   			<?=  $form->field($model, 'SIGN_PASSWD')->widget(
-							    PasswordInput::classname()
+							    PasswordInput::classname(),[ 'pluginOptions' => ['showMeter' => false], 'options'=>['value'=>''] ]
 							); ?>
 							
 					<?php endif;?>		
