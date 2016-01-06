@@ -22,58 +22,51 @@ use yii\helpers\Url;
 $this->title = 'Firma digitalizada, editar';
 $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
-  								<i class="fa fa-pencil fa-lg  fa-stack-1x"></i>
+  								<i class="fa fa-pencil-square-o fa-lg  fa-stack-1x"></i>
 							   </span>';
 
-
-$this->params['breadcrumbs'][] = 'Reperesentante legal';
+$this->params['breadcrumbs'][] = 'Representante de los trabajadores';
 $this->params['breadcrumbs'][] = $this->title;
-
 
 $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options');
 
 ?>
 
-<div class="row">
-
-  <div class=" col-xs-12 col-sm-12 col-md-12">
-  
     <?php $form = ActiveForm::begin([
     		'options'=>['enctype'=>'multipart/form-data']
     		
     ]); ?>
+
+<div class="row">
+
+  <div class=" col-xs-12 col-sm-12 col-md-12">
+
 				<div class="panel panel-warning">
 					<div class="panel-heading">
-						<h3><i class="fa fa-pencil"></i>
+						<h3><i class="fa fa-male"></i>
 						
-							<?= Yii::t('backend', 'Firma digitalizada  ') ?> <small> del Instructor.</small> </h3>	
+							<?= Yii::t('backend', 'Firma digitalizada  ') ?> <strong> del Representante de los trabajadores.</strong> </h3>	
 						</div>
 <div class="panel-body">
-
-
-
-    		<div class="callout callout-info">
-					<h4><i class="fa fa-info-circle"></i> Información adicional</h4>
+    			<div class="callout callout-info">
+					<h4><i class="fa fa-info-circle"></i> Información de este tema</h4>
 					
 						<ol>
-						<li>Seleccione el archivo con la firma digitalizada, archivos validos <strong> jpeg, png, gif y jpg </strong> </li>
+							<li>Seleccione el archivo con la firma digitalizada, archivos validos <strong> jpeg, png, gif y jpg </strong> </li>
 							<li>Proporcione una contraseña para encriptarr la imagen</li>
-							<li>Clic en guardar para proceder</li>
+							<li>Clic en [Guardar y encriptar] para proceder  con la encriptación </li>
 						</ol>
-						   
-	
-					
-				
 				</div>
-	 
+		
+    
 			<div class="row">
-					<div class="col-xs-12 col-md-12 col-sm-12">
+					<div class="col-xs-12 col-md-4 col-sm-12">
 			   			
 						  
 						
                    
                 <?= $form->field($model, 'SIGN_PIC')->widget(FileInput::classname(), [
- 							   //'options' => ['accept' => 'image/jpg'],
+ 							   	'options' => ['accept' => 'image/*', ],
                 				'language' => 'es',
                 				'pluginOptions' => [
                 								'showUpload' => false,
@@ -81,25 +74,18 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
                 								'removeLabel' => 'Eliminar',
                 								'allowedFileExtensions'=> ['jpeg','jpg', 'png', 'gif']
 								                ],
+                				
 							]
                 				
                 		);
 						  ?>
                   		
-                  		
-       
-                   
-             
-						  
-						  
-			   		 </div>
-			   		 
-
+   			   		 </div>
+			   		
 					</div>
 					
-					
 					<div class="row">
-					<div class="col-xs-12 col-md-12 col-sm-12">
+					<div class="col-xs-12 col-md-5 col-sm-12">
 			   			<?=  $form->field($model, 'SIGN_PASSWD')->widget(
 							    PasswordInput::classname(), [
 							    		'language' => 'es',
@@ -112,21 +98,18 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
 							    						4 => 'Buena',
 							    						5 => 'Excelente'
 							    				]],
+							    		'options'=>['value'=>'']
 			   			]
 							); ?>
 						  
 			   		 </div>
 					</div>
 
-
-
-
-
 </div>
 
     <div class="panel-footer">
-								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Aqui puedes actualizar los datos del representante legale de tu empresa, es importante que todos los campos esten llenos con sus datos correctos. Presiona el boton [Guardar] y acontinuación se guardaran los datos del representante legal') ?>"><i class="fa fa-question-circle"></i>
-						</button>
+		<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Firma digitalizada') ?>"><i class="fa fa-question-circle"></i>
+		</button>
 						&nbsp;
 						
 	    <?= Html::submitButton( '<i class="fa fa-floppy-o"></i> Guardar y encriptar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
@@ -134,6 +117,7 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
     
    
 </div>
+
+</div>
+</div>
   <?php ActiveForm::end(); ?>
-</div>
-</div>

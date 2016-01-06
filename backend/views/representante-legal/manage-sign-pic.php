@@ -46,9 +46,9 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
 
 				<div class="panel panel-warning">
 					<div class="panel-heading">
-						<h3><i class="fa fa-pencil"></i>
+						<h3><i class="fa fa-suitcase"></i>
 						
-							<?= Yii::t('backend', 'Firma digitalizada  ') ?> <small> del representante legal.</small> </h3>	
+							<?= Yii::t('backend', 'Firma digitalizada  ') ?> <strong> del Representante legal.</strong> </h3>	
 						</div>
 <div class="panel-body">
 
@@ -57,7 +57,7 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
 					<h4><i class="fa fa-info-circle"></i> Información adicional</h4>
 					
 						<ol>
-							<li>Seleccione la imagen de la firma. Archivos validos <strong> jpeg, png, gif </strong> </li>
+							<li>Seleccione el archivo con la firma digitalizada, archivos validos <strong> jpeg, png, gif y jpg </strong> </li>
 							<li>Proporcione una contraseña para encriptarr la imagen</li>
 							<li>Clic en guardar para proceder</li>
 						</ol>
@@ -92,7 +92,18 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
 					<div class="row">
 					<div class="col-xs-12 col-md-5 col-sm-12">
 			   			<?=  $form->field($model, 'SIGN_PASSWD')->widget(
-							    PasswordInput::classname()
+							    PasswordInput::classname(), [
+							    		'language' => 'es',
+							    		'pluginOptions' => [
+							    				'verdictTitles' => [
+							    						0 => 'No establecida',
+							    						1 => 'Muy débil',
+							    						2 => 'Débil',
+							    						3 => 'Normal',
+							    						4 => 'Buena',
+							    						5 => 'Excelente'
+							    				]]
+							    		]
 							); ?>
 						  
 			   		 </div>

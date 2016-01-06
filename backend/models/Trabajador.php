@@ -34,6 +34,10 @@ use Yii;
  * @property integer $DOCUMENTO_PROBATORIO
  * @property string $OTRO_OCUPACION
  * @property string $SECTOR
+ * @property string $SIGN_PIC
+ * @property string $SIGN_PASSWD
+ * @property string $SIGN_PIC_EXTENSION
+ * @property string $SIGN_CREATED_AT
  *
  * @property ComisionMixtaCap[] $comisionMixtaCaps
  * @property Constancia[] $constancias
@@ -100,6 +104,9 @@ class Trabajador extends \yii\db\ActiveRecord
 			self::DOC_OTRO => 'OTRO',
 	];
 	
+    
+    
+    
     /**
      * @inheritdoc
      */
@@ -124,9 +131,8 @@ class Trabajador extends \yii\db\ActiveRecord
             [['CURP'], 'string', 'max' => 18,'message'=>'Este curp no es valido'],
             [['RFC'], 'string', 'max' => 13],
             [['NSS'], 'string', 'max' => 20],
-            [['NTCL', 'SECTOR'], 'string', 'max' => 250],
+            [['NTCL', 'SECTOR', 'SIGN_PASSWD'], 'string', 'max' => 250],
             [['DOMICILIO', 'CORREO_ELECTRONICO'], 'string', 'max' => 300],
-        
             [['SEXO'], 'string', 'max' => 1],
             [['LUGAR_RESIDENCIA', 'OTRO_OCUPACION'], 'string', 'max' => 200],
            [['RFC'], 'unique','message' =>'Ya existe un trabajador con este RFC'],
@@ -139,11 +145,9 @@ class Trabajador extends \yii\db\ActiveRecord
         ];
     }
 
-    
     /**
      * @inheritdoc
      */
- 
  public function attributeLabels()
     {
         return [
@@ -172,7 +176,11 @@ class Trabajador extends \yii\db\ActiveRecord
             'GRADO_ESTUDIO' => 'Nivel máximo de estudios terminados',
             'DOCUMENTO_PROBATORIO' => 'Documento  probatorio',
             'OTRO_OCUPACION'=>'Otro',
-            'NTCL'=>'Norma tecnica de competencia laboral'		
+            'NTCL'=>'Norma tecnica de competencia laboral',
+            'SIGN_PIC' => 'Archivo con la firma digitalizada',
+            'SIGN_PASSWD' => 'Contraseña de encriptación',
+            'SIGN_PIC_EXTENSION' => '',
+            'SIGN_CREATED_AT' => 'Sign  Created  At',
         ];
     }
 
