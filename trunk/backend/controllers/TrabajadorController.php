@@ -67,6 +67,159 @@ class TrabajadorController extends Controller
     }
 
     
+    
+    /**
+     * shows signing picture
+     * @throws NotFoundHttpException
+     * @return \yii\web\Response|string
+     */
+    public function actionViewSignPic($id){
+    		
+    	$modelEmpresa = EmpresaUsuario::getMyCompany();
+    	 
+    	$trabajadorModel = $this->findModel($id);
+    	
+    	
+    	if ($trabajadorModel->ID_EMPRESA !== $modelEmpresa->ID_EMPRESA   &&  $trabajadorModel->iDEMPRESA->ID_EMPRESA_PADRE !== $modelEmpresa->ID_EMPRESA  ){
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    	}
+    		
+    	 
+    	$image64Data = null;
+    	 
+    	$passwordoriginal  = $trabajadorModel->SIGN_PASSWD;
+    	 
+    	if ($trabajadorModel->load(Yii::$app->request->post())) {
+    
+    		$passphrase = md5($trabajadorModel->SIGN_PASSWD);
+    
+    		if($passwordoriginal  !==  $passphrase){
+    			 
+    
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-warning'],
+    					'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <b>La constraseña proporcionada no puede des encriptar la firma </b>',
+    			]);
+    			 
+    		}else{
+    
+    			 
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-success'],
+    
+    					'body'=> '<i class="fa fa-check"></i> Firma des encriptada correctamente.',
+    			]);
+    			 
+    			/* Turn a human readable passphrase
+    			 * into a reproducable iv/key pair
+    			*/
+    			$iv = substr(md5('iv'.$passphrase, true), 0, 8);
+    			$key = substr(md5('pass1'.$passphrase, true) .
+    					md5('pass2'.$passphrase, true), 0, 24);
+    			$opts = array('iv'=>$iv, 'key'=>$key);
+    
+    			$fp = fopen($trabajadorModel->SIGN_PIC, 'r');
+    			stream_filter_append($fp, 'mdecrypt.tripledes', STREAM_FILTER_READ, $opts);
+    			$data = rtrim(stream_get_contents($fp));
+    			fclose($fp);
+    
+    			$image64Data =  $data;
+    
+    		}
+    
+    	}
+    	 
+    	 
+    	 
+    	return $this->render('view_sign_pic',['model'=>$trabajadorModel, 'SIGN_IMAGE'=> base64_encode($image64Data)]);
+    	 
+    }
+    
+    /**
+     * Manages signing picture
+     * @throws NotFoundHttpException
+     * @return \yii\web\Response|string
+     */
+    public function actionManageSignPic($id){
+    
+    	$model = EmpresaUsuario::getMyCompany();
+
+    	$company= $model->iDEMPRESA;
+    
+    	$trabajadorModel = $this->findModel($id);
+    	 
+    	$image64Data = null;
+    	 
+    	if ($trabajadorModel->load(Yii::$app->request->post())) {
+    
+    		$file = UploadedFile::getInstance($trabajadorModel,'SIGN_PIC');
+    
+    		if ($file === null){
+    
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-danger'],
+    
+    					'body'=> '<i class="fa fa-info"></i> Debe seleccionar una imagen',
+    			]);
+    			return $this->render('manage-sign-pic',['model'=>$trabajadorModel, 'SIGN_IMAGE'=> base64_encode($image64Data)]);
+    
+    		}
+    
+    
+    		$passphrase = md5($trabajadorModel->SIGN_PASSWD);
+    
+    
+    
+    		/* Turn a human readable passphrase
+    		 * into a reproducable iv/key pair
+    		*/
+    		$iv = substr(md5('iv'.$passphrase, true), 0, 8);
+    		$key = substr(md5('pass1'.$passphrase, true) .
+    				md5('pass2'.$passphrase, true), 0, 24);
+    		$opts = array('iv'=>$iv, 'key'=>$key);
+    
+    		$fp = fopen($file->tempName, "r");
+    
+    		$fileStream  = stream_get_contents($fp); //  fgets($fp,$file->size);
+    
+    		fclose($fp);
+    
+    		$fpw = fopen($file->tempName, "w");
+    
+    
+    		stream_filter_append($fpw, 'mcrypt.tripledes', STREAM_FILTER_WRITE, $opts);
+    
+    		fwrite($fpw, $fileStream);
+    
+    		fclose($fpw);
+    
+    		$fileReturn = Yii::$app->fileStorage->save($file);
+    
+    		$trabajadorModel->SIGN_PIC = $fileReturn->url;
+    		$trabajadorModel->SIGN_PASSWD = $passphrase;
+    		$trabajadorModel->SIGN_PIC_EXTENSION = $file->extension;
+    		$trabajadorModel->SIGN_CREATED_AT = date("Y-m-d H:i:s");
+    
+    
+    		if($trabajadorModel->save() ) {
+    
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-success'],
+    
+    					'body'=> '<i class="fa fa-check"></i> Firma guardada y encriptada correctamente, ¡ Puede desencriptar la firma  proporcionando la constraseña nuevamente !.',
+    			]);
+    			 
+    			return $this->redirect(['view-sign-pic', 'id'=>$id]);
+    		}
+    
+    
+    	}
+    
+    	return $this->render('manage_sign_pic',['model'=>$trabajadorModel, 'SIGN_IMAGE'=> base64_encode($image64Data)]);
+    
+    }
+    
+    
 
     /**
      * Gets all NTCL
