@@ -1,6 +1,6 @@
 <?php
 /**
- * Author: Eugine Terentev <eugine@terentev.net>
+ * Author: Jesus Nataren
  * @var $this \yii\web\View
  */
 use common\models\User;
@@ -197,7 +197,7 @@ $planItems[]= 	[
                     
                 </div><!-- /.box-body -->
                  <div class="box-footer">
-			    	<?= Html::a('<i class="fa fa-pencil"></i>&nbsp;Actualizar comision', ['comision-mixta-cap/updatebyuser','id'=>$model->ID_COMISION_MIXTA], ['class' => 'btn btn-primary']) ?>
+			    	<?= Html::a('<i class="fa fa-pencil"></i>&nbsp;Actualizar comisión', ['comision-mixta-cap/updatebyuser','id'=>$model->ID_COMISION_MIXTA], ['class' => 'btn btn-primary']) ?>
         	         <?= Html::a('<i class="fa fa-print" ></i> Generar reporte DC-1', ['comision-mixta-cap/reportpdf','id'=>$model->ID_COMISION_MIXTA], ['class' => 'btn btn-default', 'target'=>'_blank']) ?>
                   </div>
                 
@@ -518,8 +518,7 @@ $planItems[]= 	[
                   <div class="box-footer">
                   	  <h5>total de trabajadores   
 	                  	  <span class="badge bg-blue">
-	                          
-	                       <?= $trajaEstab;?>  
+		                       <?= $trajaEstab;?>  
 	                       </span>
                        	</h5>
                
@@ -584,10 +583,8 @@ $planItems[]= 	[
 				   		 		<?php if (isset($model->iDREPRESENTANTETRABAJADORES)):?>
 				   		 		<td>&nbsp;</td>
 				   		 		<td>
-						   			
-						   		 <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#mod_trabajadores" id="userButton">
-									<i class="fa fa-pencil-square-o"></i>&nbsp;<?= Yii::t('backend', 'Firma digitalizada')?>
-						   		 </a>
+						   		
+						   		<?= Html::a('<i class="fa fa-pencil-square-o"></i> Firma digitalizada', ['trabajador/view-sign-pic','id'=>$model->iDREPRESENTANTETRABAJADORES->ID_TRABAJADOR], ['class' => 'btn btn-primary']) ?>
 						   		
 						   		</td>
 						   		<?php endif;?>	
@@ -606,8 +603,8 @@ $planItems[]= 	[
         
 <h4 class="page-header" id="anchor_planes">
           
-   		Planes de trabajo.
-   		<small>planes de trabajo que serán llevados a cabo dentro de esta comisión</small>
+   		Planes de trabajo
+   		<small>planes de trabajo que serán llevados acabo dentro de esta comisión</small>
    </h4> 
    <div class="row">
         
@@ -683,7 +680,7 @@ $planItems[]= 	[
  	<div class="box box-primary">
 			  <div class="box-header">
 						    <i class="fa fa-calendar"></i>
-						<h3 class="box-title"><?= Yii::t('backend', 'Detalle por plan y programa de capacitación') ?>  <small>que serán llevados a cabo dentro de la comisión</small>  
+						<h3 class="box-title"><?= Yii::t('backend', 'Detalle por plan y programa de capacitación') ?>  <small>que serán llevados acabo dentro de la comisión</small>  
 						
 						</h3>	
 						<div class="box-tools pull-right">
