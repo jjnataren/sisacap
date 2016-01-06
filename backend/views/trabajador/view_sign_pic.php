@@ -15,14 +15,18 @@ use Symfony\Component\Console\Output\NullOutput;
 $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options');
 
 
-$this->title = 'Firma digitalizada';
+$this->title = 'Firma digitalizada del representante legal';
 $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
   								<i class="fa fa-pencil-square-o"></i>
 							   </span>';
 
-$this->params['breadcrumbs'][] = 'Representante de los trabajadores';
+$this->params['breadcrumbs'][] = ['label'=>'Comision mixta Id '.$comisionModel->ID_COMISION_MIXTA , 'url'=>['comision-mixta-cap/dashboard','id'=>$comisionModel->ID_COMISION_MIXTA]];
+
+//$this->params['breadcrumbs'][] = ['label' => 'Cursos', 'url' => ['index']];
+
 $this->params['breadcrumbs'][] = $this->title;
+
 
 ?>
 
@@ -153,13 +157,15 @@ $this->params['breadcrumbs'][] = $this->title;
 						
 	  		  <?= Html::submitButton( '<i class="fa fa-cogs"></i> Des encriptar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 	    
-	    	 	<?= Html::a( '<i class="fa fa-floppy-o"></i> Editar firma', ['/trabajador/manage-sign-pic', 'id'=>$model->ID_TRABAJADOR] , ['class' =>  'btn btn-success']) ?>
+	    	 	<?= Html::a( '<i class="fa fa-pencil"></i> Editar firma', ['/trabajador/manage-sign-pic', 'id'=>$model->ID_TRABAJADOR, 'id_comision'=>$comisionModel->ID_COMISION_MIXTA] , ['class' =>  'btn btn-primary']) ?>
 	    	 	
 	    	<?php else:?>
 	    
-	    	<?= Html::a( '<i class="fa fa-floppy-o"></i> Adjuntar firma', ['/trabajador/manage-sign-pic', 'id'=>$model->ID_TRABAJADOR], ['class' =>  'btn btn-success']) ?>
+	    	<?= Html::a( '<i class="fa fa-floppy-o"></i> Adjuntar firma', ['/trabajador/manage-sign-pic', 'id'=>$model->ID_TRABAJADOR,'id_comision'=>$comisionModel->ID_COMISION_MIXTA], ['class' =>  'btn btn-success']) ?>
 	    		
 	    <?php endif;?>
+	    
+	    <?= Html::a('<i class="fa fa-copyright"></i> <strong>Regresar a comisión mixta de cap...</strong>', ['comision-mixta-cap/dashboard','id'=>$comisionModel->ID_COMISION_MIXTA], ['class' => 'btn btn-default']) ?>
        </div>
     
    

@@ -25,7 +25,8 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-pencil-square-o fa-lg  fa-stack-1x"></i>
 							   </span>';
 
-$this->params['breadcrumbs'][] = 'Representante de los trabajadores';
+$this->params['breadcrumbs'][] = ['label'=>'Comision mixta Id '.$comisionModel->ID_COMISION_MIXTA , 'url'=>['comision-mixta-cap/dashboard','id'=>$comisionModel->ID_COMISION_MIXTA]];
+
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options');
@@ -113,6 +114,7 @@ $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options'
 						&nbsp;
 						
 	    <?= Html::submitButton( '<i class="fa fa-floppy-o"></i> Guardar y encriptar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+	        <?= Html::a('<i class="fa fa-copyright"></i> <strong>Regresar a comisión mixta de cap...</strong>', ['comision-mixta-cap/dashboard','id'=>$comisionModel->ID_COMISION_MIXTA], ['class' => 'btn btn-default']) ?>
        </div>
     
    

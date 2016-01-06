@@ -84,9 +84,11 @@ $this->params['breadcrumbs'][] = $this->title;
 			   		 </div>
 			   		 
 			   		<div class="col-xs-12 col-md-6"> 
+			   			
+			   				<h3>Información de la firma</h3>
 			   		   <dl class="dl-horizontal">
                         <dt><?= Yii::t('backend', 'Estatus') ?></dt>
-                        <dd><?= ($model->SIGN_PIC === null)? 'No se ha seleccionado imagen': 'Imagen seleccionada' ?></dd>
+                        <dd><?= ($model->SIGN_PIC === null)? 'No se ha seleccionado archivo con la firma digitalizada': 'Archivo selecccionado' ?></dd>
 
                         <dt><?= Yii::t('backend', 'Fecha de actualización') ?></dt>
                         <dd><?= $model->SIGN_CREATED_AT ?></dd>
@@ -134,7 +136,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						
 	  		  <?= Html::submitButton( '<i class="fa fa-cogs"></i> Des encriptar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 	    
-	    	 	<?= Html::a( '<i class="fa fa-floppy-o"></i> Editar firma', '/instructor/manage-sign-pic' , ['class' =>  'btn btn-success']) ?>
+	    	 	<?= Html::a( '<i class="fa fa-pencil"></i> Editar firma', '/instructor/manage-sign-pic' , ['class' =>  'btn btn-success']) ?>
 	    	<?php else:?>
 	    
 	    	<?= Html::a( '<i class="fa fa-floppy-o"></i> Adjuntar firma', '/instructor/manage-sign-pic' , ['class' =>  'btn btn-success']) ?>
