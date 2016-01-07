@@ -492,7 +492,7 @@ public function actionViewbycompany($id){
     
       
     /**
-     * Deletes an existing Instructor model.
+     * Deletes an existing Instructor .
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -508,12 +508,21 @@ public function actionViewbycompany($id){
     	
     	$model->ACTIVO = 0;
     	
-    	if ($model->save()){
+    	
+    	$connection = Yii::$app->db;
+    	
+    	$transaction =   $connection->beginTransaction();
+    	
+    	$userModel = $model->iDUSUARIO;
+    	 
+    	if ($model->delete() && $userModel->delete()){
     		
     		Yii::$app->session->setFlash('alert', [
     		'options'=>['class'=>'alert-success'],
     		'body'=>Yii::t('frontend', 'Se ha eliminado el instructor correctamente')
     		]);
+    		
+    		$transaction->commit();
     		
     	}else{
     		
@@ -523,6 +532,7 @@ public function actionViewbycompany($id){
     		]);
     		 
     		
+    		$transaction->rollBack();
     	}
     
     	return $this->redirect(['indexbycompany']);

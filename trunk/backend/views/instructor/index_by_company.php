@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h3><i class="fa fa-eye"></i>
-						<?= Yii::t('backend', 'Todos mis instructores') ?> <small></small> </h3>
+						<?= Yii::t('backend', 'Ver todos mis instructores') ?> <small></small> </h3>
 					</div>
 					<div class="panel-body">
 <div class="instructor-index">
@@ -80,9 +80,9 @@ $this->params['breadcrumbs'][] = $this->title;
 					return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, ['title' => Yii::t('app', 'Ver')]);
 				},
 				
-				//'delete' => function ($url, $model, $id) {//Boton borrar
-				//	return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, ['title' => Yii::t('app', 'Eliminar'), 'data' => ['confirm' => '¿Realmente quiere borrar este instructor?','method' => 'post',]]);
-				//},
+				'delete' => function ($url, $model, $id) {//Boton borrar
+					return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, ['title' => Yii::t('app', 'Eliminar'), 'data' => ['confirm' => '¿Realmente quiere borrar este instructor?','method' => 'post',]]);
+				},
 				
 				],
 								
@@ -98,10 +98,10 @@ $this->params['breadcrumbs'][] = $this->title;
 					
 					}
 					
-					//if ($action === 'delete') {
-					//	return Yii::$app->urlManager->createUrl(['/instructor/deletebycompany', 'id' => $key]); // Aqui es donde se crean las urls con las acciones personalizadas
+					if ($action === 'delete') {
+						return Yii::$app->urlManager->createUrl(['/instructor/deletebycompany', 'id' => $key]); // Aqui es donde se crean las urls con las acciones personalizadas
 								
-					//}
+					}
 					
 					
 				}			
