@@ -41,12 +41,12 @@ $this->title = 'Constancias por evaluar ';
 
 ?>
 		
-		<div class="tab-content">
+
 		
 		<?php $form = ActiveForm::begin([ 'options'=>['layout' => 'horizontal',  'id'=>'form2'],]); ?>
 		
 					<div class="table-responsive">		
-						<table id="dataTable1" class="table table-condensed" cellspacing="0" >
+						<table id="dataTable1" class="table table-condensed" >
 							<thead>
 								
 								<tr >

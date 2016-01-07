@@ -226,10 +226,8 @@ $this->registerJs ( "$('#userchange').change(function(){
 				                <div class="box-header">
 				                
 				       				<i class="fa fa-key"></i>
-				                    <h3 class="box-title"><?= Yii::t('backend', 'Datos de acceso ') ?><small> para evaluar constancias</small></h3>
+				                    <h3 class="box-title"><?= Yii::t('backend', 'Datos de acceso al sistema ') ?><small> para este instructor</small></h3>
 				                    <div class="box-tools pull-right">
-				                    	
-				                    	
 				                    	
 				                    	<?php 
 				                    	

@@ -529,7 +529,7 @@ $planItems[]= 	[
             <div class="box box-primary">
                 <div class="box-header">
                   <i class="fa fa-users "></i>
-                    <h2 class="box-title"><?= Yii::t('backend', 'Número total de trabajadores') ?> <br /> <small> que serán capacitados en este plan </small></h2>
+                    <h2 class="box-title"><?= Yii::t('backend', 'Número total de trabajadores') ?> <br /> <small> que podran ser capacitados en este plan </small></h2>
                 <div class="box-tools pull-right">
             <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
             <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
