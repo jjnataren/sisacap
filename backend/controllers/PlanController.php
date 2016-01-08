@@ -262,43 +262,54 @@ class PlanController extends Controller
 		if ( $planModel->save()){		
 
 			
-			Yii::$app->session->setFlash('alert', [
-			'options'=>['class'=>'alert-success'],
-			'body'=> '<i class="fa fa-check"></i> Plan creado correctamente',
-			]);
-	
+			
 			Indicadores::setIndicadorPlan($planModel);
-
+ 
 			
-		$cursos_pre = $_POST['check'];
-		
-	
-		
-		foreach ($cursos_pre as $k => $v) {
+			//$cursos_pre = $_POST['check'];
 			
-
 			
-		$listCurso = Catalogo::findOne($v);
-		
-        
-		if($listCurso !== null){
-		
-		$model = new Curso();
-		
-		
-    	$model->ID_PLAN = $planModel->ID_PLAN ;
-    	
-    	$model->NOMBRE = $listCurso->NOMBRE ;
-    	
-    	$model->DESCRIPCION =$listCurso->DESCRIPCION;
-        	
-    	$model->save(false);
-		
-		}
-		
-		
-		
-    }     return $this->redirect(['comision-mixta-cap/dashboard', 'id' => $id]);
+			$courseCatalogo =  Catalogo::findAll ( ['CATEGORIA' => 11, 'ACTIVO'=> 1]);
+			
+			
+			
+			foreach ($courseCatalogo as $listCurso) {
+					
+				
+				$existeCurso = Yii::$app->request->post('curso_' . $listCurso->ID_ELEMENTO);
+				
+					
+				if($existeCurso){
+				
+			
+			
+			
+					$model = new Curso();
+			
+			
+					$model->ID_PLAN = $planModel->ID_PLAN ;
+					 
+					$model->NOMBRE = $listCurso->NOMBRE ;
+					 
+					$model->DESCRIPCION =$listCurso->DESCRIPCION;
+					 
+					$model->save(false);
+			
+				}
+			
+				
+			
+			
+			}
+			
+			
+			Yii::$app->session->setFlash('alert', [
+					'options'=>['class'=>'alert-success'],
+					'body'=> '<i class="fa fa-check"></i> Plan creado correctamente',
+			]);
+			
+			
+	     return $this->redirect(['comision-mixta-cap/dashboard', 'id' => $id]);
     
 		}else{
 			
@@ -309,7 +320,7 @@ class PlanController extends Controller
 			
 		}			
 		}
-	
+	 
 			$empresa = $model->iDEMPRESA;
 			$query = $empresa->getEmpresas();
 			
