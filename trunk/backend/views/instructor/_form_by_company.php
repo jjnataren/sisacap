@@ -252,8 +252,19 @@ $this->registerJs ( "$('#userchange').change(function(){
 										    <?= $form->field($userModel, 'username')->textInput(['maxlength' => 100,])->label('Nombre de usuario'); ?> 
 											
 				    						<?=  $form->field($userModel, 'password')->widget(
-							 										   PasswordInput::classname()
-																		)->label('Constraseña de acceso'); ?>
+							 										   PasswordInput::classname(),[
+																						    		'language' => 'es',
+																						    		'pluginOptions' => [
+																						    				'verdictTitles' => [
+																						    						0 => 'No establecida',
+																						    						1 => 'Muy débil',
+																						    						2 => 'Débil',
+																						    						3 => 'Normal',
+																						    						4 => 'Buena',
+																						    						5 => 'Excelente'
+																						    				]]
+																						    		]
+																								)->label('Constraseña de acceso'); ?>
 
 											 <?= $form->field($userModel, 'email')->textInput(['maxlength' => 100,]) ?>
 											 
@@ -262,7 +273,17 @@ $this->registerJs ( "$('#userchange').change(function(){
 										<?php else:?>
 											<?= $form->field($userModel, 'username')->textInput(['maxlength' => 100, 'disabled'=>'disabled',  ])->label('Nombre de usuario');?>
 			    							<?=  $form->field($userModel, 'password')->widget(
-							 										   PasswordInput::classname(), ['disabled'=>'disabled',]
+							 										   PasswordInput::classname(), ['disabled'=>'disabled', 
+							 										   								'language' => 'es',
+																						    		'pluginOptions' => [
+																						    				'verdictTitles' => [
+																						    						0 => 'No establecida',
+																						    						1 => 'Muy débil',
+																						    						2 => 'Débil',
+																						    						3 => 'Normal',
+																						    						4 => 'Buena',
+																						    						5 => 'Excelente'
+																						    				]]]
 																		); ?>									
 											 <?= $form->field($userModel, 'email')->textInput(['maxlength' => 100,  'disabled'=>'disabled']) ?>
 											 <?= $form->field($userModel, 'status')->checkbox( [ 'disabled'=>'disabled',   ] ); ?>																		
