@@ -23,6 +23,7 @@ $id_empresa = $model->iDCOMISION->ID_EMPRESA;
 
 
 
+
 $courses =  Catalogo::findAll ( ['CATEGORIA' => 11, 'ACTIVO'=> 1]);
 $dataListOcupacion = ArrayHelper::map ( PuestoEmpresa::findBySql ( 'SELECT ID_PUESTO,NOMBRE_PUESTO,ID_EMPRESA
 FROM tbl_puesto_empresa where activo=1 AND ID_EMPRESA = ' . $id_empresa )->all (), 'ID_PUESTO', 'NOMBRE_PUESTO' );
@@ -84,7 +85,7 @@ $itemsModalidad = [
 			</div>
 
 			<div class="panel-body">
-			  <div class="row">
+
 				<div class=" col-xs-12 col-sm-12 col-md-6">
 
 					<div class="row">
@@ -111,7 +112,7 @@ $itemsModalidad = [
      
       <?= $form->field($model, 'TOTAL_HOMBRES')->textInput()?>
       
-      <?= $form->field($model, 'TIPO_PLAN')->checkbox()?> 
+      <?=  $form->field($model, 'TIPO_PLAN')->widget(CheckboxX::classname(), ['pluginOptions'=>['threeState'=>false, 'size'=>'lg']]);  ?> 
       
       
       
@@ -314,27 +315,58 @@ Es requerido evaluar el objetivo del plan. Dando [clic] la flecha. Seleccione de
 					<div class="panel panel-default">
 						<div class="panel-body">
 
-							<h4>
-								<i class="fa fa-newspaper-o"></i>
-						<?= Yii::t('backend', ' Seleccione los cursos que desea impartir.') ?> </h4>
 
- 					 <?php $i= 0; foreach ($courses as $curso) : ?>
- 
-             <table class ="table">
-<tr> 
 
-	<td><label><?= $curso->NOMBRE; ?></label></td> <br />
 
-    <td><input type="checkbox" name="check[<?=$i++?>]" value="<?=$curso->ID_ELEMENTO ?>"></td>
-				
-</tr>
 
-							
-</table>							
+
+
+
+
+
+
+							<h3>
+								<i class="fa fa-laptop"></i>
+						<?= Yii::t('backend', ' Cursos predeterminados y recomendados por la STPS') ?> <small> que podrán ser impartidos en este plan y programa</small> </h3>
+
+
+
+
+				 <table class ="table table-condensed table-hover">
+
+
+
+				<thead>
+					<tr>
+						<th>Nombre del curso</th>
+						<th>Crear</th>
 						
+					</tr>
+				</thead>
+			
+				<tbody>
+ 					 <?php $i= 0; foreach ($courses as $curso) : ?>
+            
+					<tr> 
+						
+						<td><?= $curso->NOMBRE; ?></td>
+					
+					    <td><?php
+				
+										echo CheckboxX::widget ( [ 
+										'name' =>"curso_".$curso->ID_ELEMENTO,
+												'options' => [ 'id' =>$curso->ID_ELEMENTO, 	'value'=>$curso->ID_ELEMENTO,	],
+												'pluginOptions' => ['threeState' => false ] 
+																		] );
+									?></td>
+									
+					</tr>
 
 					<?php endforeach;?>
+					</tbody>
 
+				</table>			
+				
                    
 						</div>
 
@@ -342,31 +374,42 @@ Es requerido evaluar el objetivo del plan. Dando [clic] la flecha. Seleccione de
 							<button id="helpCursos" data-placement="top" tabindex="0"
 								type="button" class="btn btn-info btn-sm" data-toggle="popover"
 								title="Ayuda"
-								data-content="<?=Yii::t('backend', 'Seleccione la(s) casilla(s) si desea crear cursos automaticamente.') ?>">
+
+								data-content="">
 								<i class="fa fa-question-circle"></i>
 							</button>
 						</div>
 
 					</div>
+					</div>
 
+			 
+
+
+
+			</div>
+			
 					<div class="panel-footer">
 						<button id="helpAyuda" tabindex="0" type="button" class="btn"
 							data-toggle="popover" title="Ayuda"
 							data-content="<?=Yii::t('backend', 'Para guardar el plan es necesario llenar todos los campos, Presiona el boton [Guardar] y acontinuación se guardara el plan de capacitacion') ?>">
 							<i class="fa fa-question-circle"></i>
 						</button>
-             <?= Html::submitButton( '<i class="fa fa-floppy-o"></i> Guardar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])?>
-    </div>
+     			        <?= Html::submitButton( '<i class="fa fa-floppy-o"></i> Guardar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])?>
+
+   				 </div>
+			
+		</div>
+</div>
 
     
     <?php ActiveForm::end(); ?>
 
-	</div>
 
-			</div>
-		</div>
-</div>
-</div>
+
+
+
+
 </div>
 		
 		
