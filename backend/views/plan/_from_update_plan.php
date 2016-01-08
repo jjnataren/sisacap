@@ -309,31 +309,6 @@ Es requerido evaluar el objetivo del plan. Dando [clic] la flecha. Seleccione de
 				</div>
 
 
-				<div class=" col-xs-12 col-sm-12 col-md-12">
-					<div class="panel panel-default">
-						<div class="panel-body">
-
-							<h4>
-								<i class="fa fa-laptop"></i>
-						<?= Yii::t('backend', ' Seleccione los cursos que desea impartir.') ?> </h4>
-
-
-				
-  
- 					 <?php $i= 0; foreach ($courses as $curso) : ?>
- 
-
-							<input type="checkbox" name="check[<?=$i++?>]" value="<?=$curso->ID_ELEMENTO ?>">
-							<label><?= $curso->NOMBRE; ?></label>
-							<br />
-
-					<?php endforeach;?>
-
-
-
-
-						</div>
-
 						<div class="panel-footer">
 							<button id="help2" data-placement="top" tabindex="0"
 								type="button" class="btn btn-info btn-sm" data-toggle="popover"
