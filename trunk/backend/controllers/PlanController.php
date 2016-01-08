@@ -297,6 +297,7 @@ class PlanController extends Controller
 		}
 		
 		
+		
     }     return $this->redirect(['comision-mixta-cap/dashboard', 'id' => $id]);
     
 		}else{
