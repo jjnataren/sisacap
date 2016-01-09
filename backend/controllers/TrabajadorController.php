@@ -178,7 +178,7 @@ class TrabajadorController extends Controller
     			Yii::$app->session->setFlash('alert', [
     					'options'=>['class'=>'alert-danger'],
     
-    					'body'=> '<i class="fa fa-info"></i> Debe seleccionar una imagen',
+    					'body'=> '<i class="fa fa-info"></i> Debe seleccionar un archivo con la firma digitalizada',
     			]);
     			return $this->render('manage-sign-pic',['model'=>$trabajadorModel, 'SIGN_IMAGE'=> base64_encode($image64Data)]);
     
