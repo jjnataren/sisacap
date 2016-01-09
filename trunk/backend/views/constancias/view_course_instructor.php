@@ -330,7 +330,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Relac
 									<th>Estatus</th>
 										<th>Promedio</th>
 									<th>Aprobado</th>
-									<th>Ver constancia</th>
+									<th>evaluar constancia</th>
 								
 																		
 								</tr>
@@ -365,7 +365,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Relac
 								      <td>   	
 								      				
 									<?php if (!$constancia->isNewRecord){?>
-										   <?= Html::a('<i class="fa fa-download"></i>', ['constanciapdf', 'id'=>$constancia->ID_CONSTANCIA],  ['target' => '_blank',  'class' => 'btn btn-success btn-xs' ]) ?>
+										  <!--  <?= Html::a('<i class="fa fa-download"></i>', ['constanciapdf', 'id'=>$constancia->ID_CONSTANCIA],  ['target' => '_blank',  'class' => 'btn btn-success btn-xs' ]) ?> -->
 																	<?= Html::a('<i class="fa fa-eye"></i>', ['constancias/dashboard-by-instructor', 'id'=>$constancia->ID_CONSTANCIA],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
                 									
                 									
