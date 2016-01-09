@@ -726,11 +726,11 @@ class ConstanciasController extends \yii\web\Controller
     					
     				}else{ 
     					
-    					$tmpConstancia->METODO_OBTENCION = $constancia->METODO_OBTENCION;
-    					$tmpConstancia->TIPO_CONSTANCIA = $constancia->TIPO_CONSTANCIA;
+    					//$tmpConstancia->METODO_OBTENCION = $constancia->METODO_OBTENCION;
+    					//$tmpConstancia->TIPO_CONSTANCIA = $constancia->TIPO_CONSTANCIA;
     					$tmpConstancia->ESTATUS = $constancia->ESTATUS;
-    					$tmpConstancia->PROMEDIO = $constancia->PROMEDIO;
-    					$tmpConstancia->APROBADO = $constancia->APROBADO;
+    					//$tmpConstancia->PROMEDIO = $constancia->PROMEDIO;
+    					//$tmpConstancia->APROBADO = $constancia->APROBADO;
     					
     					$constancia = $tmpConstancia;
     				

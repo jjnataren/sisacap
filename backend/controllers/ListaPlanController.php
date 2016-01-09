@@ -599,7 +599,9 @@ class ListaPlanController extends Controller
     	$listaConstanciaModel->ID_LISTA = $id;
     	$listaConstanciaModel->FECHA_AGREGO = date('Y-m-d H:i:s');
     	
-    	if (/*$listaConstanciaModel->load(Yii::$app->request->post()) &&*/ $listaConstanciaModel->save()) {
+    	$constancia->ESTATUS = Constancia::STATUS_IN_REPORT;
+    	
+    	if (/*$listaConstanciaModel->load(Yii::$app->request->post()) &&*/ $listaConstanciaModel->save() && $constancia->save(false)) {
     		
     		Yii::$app->session->setFlash('alert', [
     		'options'=>['class'=>'alert-success'],
