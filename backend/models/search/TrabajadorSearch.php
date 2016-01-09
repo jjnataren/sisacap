@@ -173,7 +173,7 @@ class TrabajadorSearch extends Trabajador
     	
     	
     	
-    	$query->andFilterWhere(['not in', 'id_trabajador', (new Query())->select('id_trabajador')->from('tbl_constancia')->where(['id_curso' => $id_course, 'activo'=>1])]);
+    	$query->andFilterWhere(['not in', 'id_trabajador', (new Query())->select('id_trabajador')->from('tbl_constancia')->where(['id_curso' => $id_course, 'activo'=>1])->andFilterWhere(['not',['ID_TRABAJADOR' => null]])]);
     	
     	
     	if($planModel !== null &&  !$planModel->TIPO_PLAN){
