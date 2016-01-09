@@ -91,6 +91,7 @@ class Constancia extends \yii\db\ActiveRecord
 	const STATUS_ENVIADA=9;
 	const STATUS_RECIBIDA=10;	
 	const STATUS_RECEIVED_WORKER=11;
+	const STATUS_IN_REPORT=12;
 	
 	
 	/**

@@ -31,10 +31,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Reporte constancias ID '.$model->I
 $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json' }});", View::POS_END, 'my-options');
 
 
-$constanciasItems = Constancia::findBySql('select * from tbl_constancia where ID_TRABAJADOR in 
-								(select ID_TRABAJADOR from tbl_trabajador where (ID_EMPRESA IN (SELECT ID_ESTABLECIMIENTO FROM tbl_lista_establecimiento where ID_LISTA = '.$model->ID_LISTA.') OR ID_EMPRESA = '.EmpresaUsuario::getMyCompany()->ID_EMPRESA.' ) AND ACTIVO = 1)
-								AND ID_CONSTANCIA NOT IN (select ID_CONSTANCIA from tbl_lista_constancia where ID_LISTA = '.$model->ID_LISTA.') 
-								AND ESTATUS = 5 OR ESTATUS = 6 OR ESTATUS = 9 OR ESTATUS = 10 OR ESTATUS = 11;')->all();
+$constanciasItems = Constancia::findBySql('select * from tbl_constancia where ID_CONSTANCIA NOT IN (select ID_CONSTANCIA from tbl_lista_constancia where ID_LISTA = '.$model->ID_LISTA.')  AND 
+								ID_TRABAJADOR IN (select ID_TRABAJADOR from tbl_trabajador where (ID_EMPRESA IN (SELECT ID_ESTABLECIMIENTO FROM tbl_lista_establecimiento where ID_LISTA = '.$model->ID_LISTA.') OR ID_EMPRESA = '.EmpresaUsuario::getMyCompany()->ID_EMPRESA.' ) AND ACTIVO = 1)
+								AND ESTATUS IN (5,6,11,9,10)')->all();
 	
 
 $tConstanciasBox = count($model->iDCONSTANCIAs);
@@ -160,13 +159,13 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
                          <dt><?= Yii::t('backend', 'Descripción') ?></dt>
                         <dd><i><?= $model->DESCRIPCION ?></i></dd>
 				                                     
-                         <dt><?= Yii::t('backend', 'N° constancias hombres') ?></dt>
+                         <dt><?= Yii::t('backend', 'No. constancias hombres') ?></dt>
                         <dd><?= $model->CONSTANCIAS_HOMBRES ?></dd>
                         
-                         <dt><?= Yii::t('backend', 'N° constancias mujeres') ?></dt>
+                         <dt><?= Yii::t('backend', 'No. constancias mujeres') ?></dt>
                         <dd><?= $model->CONSTANCIAS_MUJERES ?></dd>
                         
-                        <dt><?= Yii::t('backend', 'N° total constancias') ?></dt>
+                        <dt><?= Yii::t('backend', 'No. total constancias') ?></dt>
                         <dd><?= $model->CONSTANCIAS_MUJERES +  $model->CONSTANCIAS_HOMBRES ?></dd>
                         
                         <dt><?= Yii::t('backend', 'Lugar elaboración informe') ?></dt>
@@ -637,7 +636,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 							<?php $worker = $constancia->iDTRABAJADOR;?>
 							
 								<tr>
-									<td><?= $constancia->ID_CONSTANCIA; ?></td>
+									<td><?= $constancia->ID_TRABAJADOR; ?></td>
 									<td><?= $constancia->iDTRABAJADOR->NOMBRE . ' '. $constancia->iDTRABAJADOR->APP;?></td>
 									<td><?= $constancia->iDTRABAJADOR->CURP;?></td>
 									<td>
@@ -663,7 +662,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 									?>
 									<td><?= isset(Constancia::getAllContanciasType()[$constancia->TIPO_CONSTANCIA])?Constancia::getAllContanciasType()[$constancia->TIPO_CONSTANCIA]: '<i class="text text-muted">no establecido</i>' ?></td>
 									
-									<td><span class="<?=$labelType ?>"><?= isset(Constancia::getAllEstatusType()[$constancia->ESTATUS])? Constancia::getAllEstatusType()[$constancia->ESTATUS]: '<i class="text text-muted">no establecido</i>' ?></span></td>
+									<td><?= isset(Constancia::getAllEstatusType()[$constancia->ESTATUS])? Constancia::getAllEstatusType()[$constancia->ESTATUS]: '<i class="text text-muted">no establecido</i>' ?></td>
 									<td><?= $constancia->FECHA_EMISION_CERTIFICADO?></td>
 																	
 									
@@ -759,7 +758,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 							<?php $worker = $constancia->iDTRABAJADOR;?>
 							
 								<tr>
-									<td><?= $constancia->ID_CONSTANCIA; ?></td>
+									<td><?= $constancia->ID_TRABAJADOR; ?></td>
 										<td><?= $constancia->iDTRABAJADOR->NOMBRE;?></td>
 									<td><?= $constancia->iDTRABAJADOR->APP;?></td>
 									<td><?= $constancia->iDTRABAJADOR->CURP;?></td>
