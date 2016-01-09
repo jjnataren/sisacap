@@ -105,6 +105,8 @@ class RepresentanteLegal extends \yii\db\ActiveRecord
     	
     	if($this->SIGN_PICTURE !== null){
     
+    	try {
+    		
     	
     	$passphrase  =  $this->SIGN_PASSWD;
     	
@@ -113,13 +115,22 @@ class RepresentanteLegal extends \yii\db\ActiveRecord
     			md5('pass2'.$passphrase, true), 0, 24);
     	$opts = array('iv'=>$iv, 'key'=>$key);
     	
-    	$fp = fopen($this->SIGN_PICTURE, 'r');
+    	$fp = @fopen($this->SIGN_PICTURE, 'rb');
+    	
+    	if (!$fp) {
+    		
+    		return null;
+    	}
     	stream_filter_append($fp, 'mdecrypt.tripledes', STREAM_FILTER_READ, $opts);
     	$data = rtrim(stream_get_contents($fp));
     	fclose($fp);
     	
     	$image64Data =  $data;
     	
+    	} catch (Exception $e) {
+    		
+    		return null;
+    	}
     	}
     	
     	return base64_encode($image64Data);

@@ -250,7 +250,7 @@ $planItems[]= 	[
                 </div><!-- /.box-body -->
                 
                    <div class="box-footer">
-			    	<?= Html::a(' <i class="fa fa-pencil-square-o"	></i> Actualizar plan y programa', ['plan/updatebycompany','id'=>$model->ID_PLAN], ['class' => 'btn btn-primary']) ?>
+			    	<?= Html::a(' <i class="fa fa-pencil"	></i> Editar plan y programa', ['plan/updatebycompany','id'=>$model->ID_PLAN], ['class' => 'btn btn-primary']) ?>
         	         <?= Html::a('<i class="fa fa-print" ></i> Generar reporte DC-2', ['plan/reportpdf','id'=>$model->ID_PLAN], ['class' => 'btn btn-default', 'target'=>'_blank']) ?>
                   </div>
             </div>
@@ -618,7 +618,7 @@ $planItems[]= 	[
 				      <th>RFC</th>
 				      <th>Correo e</th>
 				      <th>Puesto</th>
-				      <th>No. constancias</th>				      
+				     <!--  <th>No. constancias</th> -->				      
 			         </tr>
 			         </thead>
 			          <tbody>
@@ -645,7 +645,7 @@ $planItems[]= 	[
 								<td><?= $myTrabajador->RFC;?></td>
 								<td><?= $myTrabajador->CORREO_ELECTRONICO;?></td>
 								<td><?= isset( $myTrabajador->pUESTO)?$myTrabajador->pUESTO->NOMBRE_PUESTO : '<i>no asignado</i>' ;?></td>
-								<td><?= count( $myTrabajador->constancias) ;?></td>
+							<!-- 	<td><?= count( $myTrabajador->constancias) ;?></td> -->
 							</tr>
 				            	
 				      <?php endforeach;?>      	
@@ -668,7 +668,7 @@ $planItems[]= 	[
 				      <th>RFC</th>
 				      <th>Correo e</th>
 				      <th>Puesto</th>
-				      <th>No. constancias</th>				      
+				     <!--  <th>No. constancias</th> -->				      
 			         </tr>
 			         </thead>
 			          <tbody>
@@ -692,7 +692,7 @@ $planItems[]= 	[
 								<td><?= $myTrabajador->RFC;?></td>
 								<td><?= $myTrabajador->CORREO_ELECTRONICO;?></td>
 								<td><?= isset( $myTrabajador->pUESTO)?$myTrabajador->pUESTO->NOMBRE_PUESTO : '<i>no asignado</i>' ;?></td>
-								<td><?= count( $myTrabajador->constancias) ;?></td>
+							<!-- 	<td><?= count( $myTrabajador->constancias) ;?></td> -->
 							</tr>
 				            	
 				      <?php endforeach;?>      	

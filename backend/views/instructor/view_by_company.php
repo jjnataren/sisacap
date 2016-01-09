@@ -122,7 +122,7 @@ $this->params ['breadcrumbs'] [] = $this->title;
 				</div>
 				
 								<div class="panel-footer">
-					    				 <?= Html::a('<i class="fa fa-pencil"></i> Actualizar', ['updatebycompany', 'id' => $model->ID_INSTRUCTOR], ['class' => 'btn btn-primary']) ?>
+					    				 <?= Html::a('<i class="fa fa-pencil"></i> Editar', ['updatebycompany', 'id' => $model->ID_INSTRUCTOR], ['class' => 'btn btn-warning']) ?>
 		        	        
 		                 			 </div>
 			</div>
