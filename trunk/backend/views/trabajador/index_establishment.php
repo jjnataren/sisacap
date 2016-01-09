@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+use backend\models\PuestoEmpresa;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\TrabajadorSearch */
@@ -14,7 +16,13 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
 							   </span>';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="trabajador-index">
+<div class=" col-xs-12 col-sm-12 col-md-12">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3><i class="fa fa-eye"></i>
+						<?= Yii::t('backend', 'Trabajadores en el establecimiento') ?> <small></small> </h3>
+					</div>
+					<div class="panel-body">
 
    	
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -43,6 +51,20 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'CORREO_ELECTRONICO',
             // 'TELEFONO',
             // 'PUESTO',
+    		[
+    		'attribute'=>'PUESTO',
+    		'content'=>function($data){
+    		
+    			$tmpModel = PuestoEmpresa::findOne(['ID_PUESTO'=>$data->PUESTO, 'ACTIVO'=>1]);
+    		
+    			return isset($tmpModel)?$tmpModel->NOMBRE_PUESTO: $data->PUESTO;
+    		
+    		},
+    		'filter'=>ArrayHelper::map(PuestoEmpresa::findAll([ 'ACTIVO'=>1]), 'ID_PUESTO','NOMBRE_PUESTO'),
+    		],
+    		
+    		
+    		
             // 'OCUPACION_ESPECIFICA',
             // 'FECHA_AGREGO',
             // 'ACTIVO',
@@ -83,3 +105,6 @@ $this->params['breadcrumbs'][] = $this->title;
 				    		    ]]); ?>
 				    		
 				    		</div>
+				    		</div>
+				    		</div>
+				    		
