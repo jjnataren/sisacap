@@ -320,7 +320,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
    			 	
    			 <br />
    			 	
-    			<?= $form->field($model, "ESTATUS")->dropDownList($estatus)->label('Cambie el estatus') ?>
+    			<?= $form->field($model, "ESTATUS")->dropDownList($estatus)->label('Estatus de la constancia') ?>
                     
 <!--  -->		<?=  $form->field($model, 'COMENTARIO')->textArea(Constancia:: getAllEstatusType(), ['id'=>'drop_coment']) ?>  							
 

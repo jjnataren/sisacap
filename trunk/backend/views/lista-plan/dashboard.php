@@ -31,8 +31,10 @@ $this->params['breadcrumbs'][] = ['label' => 'Reporte constancias ID '.$model->I
 $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json' }});", View::POS_END, 'my-options');
 
 
-$constanciasItems = Constancia::findBySql('select * from tbl_constancia where ID_TRABAJADOR in (select ID_TRABAJADOR from tbl_trabajador where (ID_EMPRESA IN (SELECT ID_ESTABLECIMIENTO FROM tbl_lista_establecimiento where ID_LISTA = '.$model->ID_LISTA.') OR ID_EMPRESA = '.EmpresaUsuario::getMyCompany()->ID_EMPRESA.' ) AND ACTIVO = 1)
-								AND ID_CONSTANCIA NOT IN (select ID_CONSTANCIA from tbl_lista_constancia where ID_LISTA = '.$model->ID_LISTA.') AND ESTATUS = 5 OR ESTATUS = 6;')->all();
+$constanciasItems = Constancia::findBySql('select * from tbl_constancia where ID_TRABAJADOR in 
+								(select ID_TRABAJADOR from tbl_trabajador where (ID_EMPRESA IN (SELECT ID_ESTABLECIMIENTO FROM tbl_lista_establecimiento where ID_LISTA = '.$model->ID_LISTA.') OR ID_EMPRESA = '.EmpresaUsuario::getMyCompany()->ID_EMPRESA.' ) AND ACTIVO = 1)
+								AND ID_CONSTANCIA NOT IN (select ID_CONSTANCIA from tbl_lista_constancia where ID_LISTA = '.$model->ID_LISTA.') 
+								AND ESTATUS = 5 OR ESTATUS = 6 OR ESTATUS = 9 OR ESTATUS = 10 OR ESTATUS = 11;')->all();
 	
 
 $tConstanciasBox = count($model->iDCONSTANCIAs);
