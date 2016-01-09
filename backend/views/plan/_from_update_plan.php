@@ -118,7 +118,7 @@ $itemsModalidad = [
 									<button id="helpEtapas" data-placement="top" tabindex="0"
 										type="button" class="btn btn-info btn-sm"
 										data-toggle="popoverEtapas" title="Ayuda"
-										data-content="Precisar el número de etapas durante las cuales se impartirán;">
+										data-content="Precisar el número de etapas durante las cuales se impartirán">
 										<i class="fa fa-question-circle"></i>
 									</button>
 								</div>
@@ -158,7 +158,7 @@ $itemsModalidad = [
 									<button id="helpFInfo" data-placement="top" tabindex="0"
 										type="button" class="btn btn-info btn-sm"
 										data-toggle="popover" title="Ayuda"
-										data-content="'La empresas deberán mantener a disposición de la Secretaría, la información sobre las actividades realizadas durante el último año ">
+										data-content="'Aquí podrás colocar la fecha de elaboración del formato DC-2  ">
 										<i class="fa fa-question-circle"></i>
 									</button>
 								</div>
@@ -184,10 +184,10 @@ $itemsModalidad = [
 
 								<thead>
 									<tr>
-										<th colspan="2"><h4>
-												<i class="fa fa-university"></i>&nbsp;Establecimiento que
-												presentara el plan <span class="label label-warning"><?php ?></span>
-											</h4>
+										<th colspan="2">
+										<h3>	<i class="fa fa-university"></i>
+						<?= Yii::t('backend', ' Establecimiento') ?> <small>que presentara el plan</small> </h3>
+							
 										
 										<th>
 									
@@ -257,10 +257,10 @@ $itemsModalidad = [
 					<div class="panel panel-default">
 						<div class="panel-body">
 
-							<h4>
+							<h3>
 								<i class="fa fa-newspaper-o"></i>
-						<?= Yii::t('backend', ' Seleccione modalidad de la capacitación  correspondiente.') ?> </h4>
-
+						<?= Yii::t('backend', ' Seleccione modalidad') ?> <small> de la capacitación  correspondiente.</small> </h3>
+						
 
 						</div>
 
@@ -291,9 +291,9 @@ $itemsModalidad = [
 					<div class="panel panel-default">
 						<div class="panel-body">
 
-							<h4>
+								<h3>
 								<i class="fa fa-line-chart"></i>
-	<?= Yii::t('backend', '') ?> Objetivos del plan de capacitación Señalar del 1 al 5 en donde 1 es el más importante </h4>
+	<?= Yii::t('backend', '') ?> Objetivos del plan de capacitación <small> Señalar del 1 al 5 en donde 1 es el más importante </small></h3>
 						</div>
 
 						<div class="panel-body">
