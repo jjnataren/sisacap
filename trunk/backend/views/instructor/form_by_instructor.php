@@ -106,7 +106,7 @@ $usuario = Yii::$app->user->getIdentity();
 <div class="row">  
     
  <div class="col-md-12 col-xs-12 col-sm-12">   
-    <div class="panel <?=  ($model->isNewRecord) ? 'panel-primary': 'panel-primary'  ?>">
+    <div class="panel <?=  ($model->isNewRecord) ? 'panel-primary': 'panel-warning'  ?>">
 			<div class="panel-heading">
 						<h3><i class="glyphicon glyphicon-plus"></i>
 						<?= Yii::t('backend', 'Mis datos') ?> </h3>	
@@ -198,7 +198,7 @@ $usuario = Yii::$app->user->getIdentity();
 	                  
 	                    <h3 class="panel-title">
 	                     <i class="fa fa-exclamation-circle fa-lg"></i>
-	                     Documento probatorio para agentes capacitadores externos, para capacitadores internos  o proveedores adjuntar Curriculum Vitae en formato. <br /><br />
+	                     Documento probatorio para agentes capacitadores externos, para capacitadores internos  o proveedores adjuntar Curriculum Vitae en formato indicado. <br /><br />
 	                    Archivo permitidos: <strong>JPG, GIF, PDF, PNG, JPEG</strong>
 	                    
 	                    	
