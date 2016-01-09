@@ -80,14 +80,14 @@ foreach ($model->iDPLAN->planEstablecimientos as $establecimiento){
 
 $tabs[]=[
 'label' =>'<i class="fa fa-building">
-							 </i> Mi empresa',
+							 </i> Empresa matriz',
 							 	
 							 'url' => ['/constancias/course-by-instructor', 'id'=>$model->ID_CURSO,'is_company'=>true, '#'=>'constancias'],
 							 'linkOptions' => [],
 							 ];
 
 
-$tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Constancias calificadas</li>'; 
+$tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Relación de constancias </li>'; 
 
 
 
@@ -285,8 +285,8 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 
 
  			<h4 class="page-header">
-          Constancias de los trabajadores
-                        <small>  del curso finalizado </small>
+          				Información de constancias de los trabajadores
+                        <small>  del curso seleccionado </small>
           </h4>   
 <a name="constancias"></a>
  
@@ -348,27 +348,25 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 							<?php $avaliableStatus = Constancia::getAvaliableStatusByRol($constancia->ESTATUS, 7); ?>
 								<tr>
 									<td ><?= $worker->ID_TRABAJADOR?><?= $form->field($constancia, "[$i]ID_TRABAJADOR")->hiddenInput(['id'=>'hid_id_instructor'])->label(false) ?></td>
-									<td><?= $worker->NOMBRE.' '. $worker->APP ?></td>
+									<td><?= $worker->NOMBRE.' '. $worker->APP . ' ' .$worker->APM ?></td>
 									<td><?= $worker->CURP?></td>
 									<td><?= isset($worker->pUESTO)?$worker->pUESTO->NOMBRE_PUESTO: ''?></td>
-									<td><?= $form->field($constancia, "[$i]METODO_OBTENCION")->dropDownList(Constancia::getAllMetodosType(),['prompt'=>'- Seleccione -','style' => 'width: 170px;'])->label(false) ?></td> 
-									<td><?= $form->field($constancia, "[$i]TIPO_CONSTANCIA")->dropDownList(Constancia::getAllContanciasType(),['prompt'=>'- Seleccione -','style' => 'width: 130px;'])->label(false) ?></td> 
-									<td><?= $form->field($constancia, "[$i]ESTATUS")->dropDownList($avaliableStatus,['style' => 'width: 180px;'])->label(false) ?></td>
+									<td><?= isset(Constancia::getAllMetodosType()[$constancia->METODO_OBTENCION])? Constancia::getAllMetodosType()[ $constancia->METODO_OBTENCION] : '<i>no asignado</i>'; ?></td> 
+									<td><?= isset(Constancia::getAllContanciasType()[$constancia->TIPO_CONSTANCIA])? Constancia::getAllContanciasType()[ $constancia->TIPO_CONSTANCIA] : '<i>no asignado</i>'; ?></td>
+									<td><?= isset(Constancia::getAllEstatusType()[$constancia->ESTATUS])? Constancia::getAllEstatusType()[ $constancia->ESTATUS] : '<i>no asignado</i>'; ?></td>
                                  
                                   <td>
-	                                                                    
-	                                    <?= $form->field($constancia, "[$i]PROMEDIO")->textInput(['maxlength' => 50, 'style' => 'width: 50px;'])->label(false)?>
-	                                    
+	                                    <?= $constancia->PROMEDIO;?>
                                     </td>  
 						  		    <td>	
-								    <?= $form->field($constancia, "[$i]APROBADO")->widget(CheckboxX::classname(), ['options'=>['id'=>'chk_pass'.$constancia->ID_CONSTANCIA],'pluginOptions'=>['threeState'=>false]])->label(false); ?>
+								      	<?= ($constancia->APROBADO)?'SI':'NO';?>
 								    </td>
 								   
 								      <td>   	
 								      				
 									<?php if (!$constancia->isNewRecord){?>
 										   <?= Html::a('<i class="fa fa-download"></i>', ['constanciapdf', 'id'=>$constancia->ID_CONSTANCIA],  ['target' => '_blank',  'class' => 'btn btn-success btn-xs' ]) ?>
-																	<?= Html::a('<i class="fa fa-eye"></i>', ['constancias/dashboard-instructor-constancia', 'id'=>$constancia->ID_CONSTANCIA],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
+																	<?= Html::a('<i class="fa fa-eye"></i>', ['constancias/dashboard-by-instructor', 'id'=>$constancia->ID_CONSTANCIA],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>
                 									
                 									
 									<?php }else{?>

@@ -80,7 +80,7 @@ foreach ($model->iDPLAN->planEstablecimientos as $establecimiento){
 
 $tabs[]=[
 'label' =>'<i class="fa fa-building">
-							 </i> Mi empresa',
+							 </i> Empresa matriz',
 							 	
 							 'url' => ['/constancias/course-by-instructor', 'id'=>$model->ID_CURSO,'is_company'=>true, '#'=>'constancias'],
 							 'linkOptions' => [],
