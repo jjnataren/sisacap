@@ -155,7 +155,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
  
  <h4 class="page-header">
           Datos de la constancia
-                        <small>Datos relevantes para la constancia</small>
+                        <small></small>
  </h4>
  
  <div class="row">
@@ -181,14 +181,11 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
 						<?= $form->field($model, 'TIPO_CONSTANCIA')->dropDownList(Constancia::getAllContanciasType(),['prompt'=>'-- Seleccione  --','maxlength' => 300]); ?>
 						<?=  $form->field($model, 'PROMEDIO')->textInput();  ?>
 						<?= $form->field($model, 'APROBADO')->widget(CheckboxX::classname(), ['options'=>['id'=>'chk_aprobado'],'pluginOptions'=>['threeState'=>false]]); ?>
-						
 												 									
- 
+ 						<?php $avaliableStatus = Constancia::getAvaliableStatusByRol($model->ESTATUS, 7); ?>
 			
-    <?= $form->field($model, 'ESTATUS')->dropDownList(Constancia::getAllEstatusTypeInstructor(),['prompt'=>'-- Seleccione  --',]); ?>
-		<?=  $form->field($model, 'COMENTARIO')->textArea(Constancia:: getAllEstatusType(), ['id'=>'drop_coment']) ?>  							
-
-				 						
+					    	<?= $form->field($model, 'ESTATUS')->dropDownList($avaliableStatus,['prompt'=>'-- Seleccione  --',]); ?>
+							<?=  $form->field($model, 'COMENTARIO')->textArea(Constancia:: getAllEstatusType(), ['id'=>'drop_coment']) ?>  							
 								
                 </div>
                 <div class="box-footer">

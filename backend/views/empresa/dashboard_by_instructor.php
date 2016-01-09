@@ -13,9 +13,8 @@ use frontend\models\ContactForm;
 use yii\captcha\Captcha;
 use backend\models\Curso;
 
-$this->title = "Bienvenido instructor " . ($model->NOMBRE == null) ? Yii::$app->user->identity->username : strtoupper ( $model->NOMBRE . ' ' . $model->APP . ' ' . $model->APM );
+$this->title = 'Bienvenido instructor:  '  . $model->NOMBRE . ' ' .$model->APP . ' '.$model->APM;//. ($model->NOMBRE == null) ? Yii::$app->user->identity->username : strtoupper ( $model->NOMBRE . ' ' . $model->APP . ' ' . $model->APM );
 
-$this->params ['subtitle'] = 'Bienvenido';
 
 $this->params ['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
@@ -146,7 +145,7 @@ foreach ( $model->cursos as $curso ) {
 		<div class="small-box bg-red">
 			<div class="inner">
 				<h3>
-					<i class="glyphicon glyphicon-warning-sign""></i>
+					<i class="glyphicon glyphicon-warning-sign"></i>
 					
 					
                                     
@@ -409,7 +408,7 @@ foreach ( $model->cursos as $curso ) {
 												         																
 							<?php $i = 0; foreach ($cursosFinalizados as $cf) {?>
 							<tr>
-							<td><a href="#"><i class="fa fa-arrow-right"></i><strong> <?= $cf->ID_CURSO?> </strong> </a></td>
+							<td> <?= $cf->ID_CURSO?> </td>
 							<td><?= $cf->NOMBRE?></td>
 							<td><?=($cf->FECHA_INICIO === null )? '<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($cf->FECHA_INICIO));?></td>
 							<td><?=($cf->FECHA_TERMINO=== null )? '<i class="text-muted">no establecido</i>':date("d/m/Y",strtotime($cf->FECHA_TERMINO));?></td>
@@ -451,7 +450,7 @@ foreach ( $model->cursos as $curso ) {
 
 <h4 class="page-header" id="anchor_constancias">
 
-<h1 >
+<h1>
 Información  de constancias  
 	<small> asignadas al instructor</small>
 </h1></h4>
@@ -482,8 +481,7 @@ Información  de constancias
 	</div>
 	<div class="box-body table-responsive">
 
-		<table id="dataTable1" class="table table-condensed" cellspacing="0"
-			width="100%">
+		<table id="dataTable1" class="table table-condensed" cellspacing="0" width="100%">
 			<thead>
 
 				<tr>
@@ -499,7 +497,6 @@ Información  de constancias
 									<th><?=Yii::t('backend', 'Establecimiento')?></th>
 									<th>Id constancia</th>
 									<th>Curso</th>
-									<th></th>
 									
 																			
 				</tr>
@@ -571,7 +568,7 @@ Información  de constancias
 			<thead>
 
 				<tr>
-					<td colspan=5"><i class="fa fa-user"></i> Datos trabajador</td>
+					<td colspan="5"><i class="fa fa-user"></i> Datos trabajador</td>
 					<td colspan="8"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
 				</tr>
 

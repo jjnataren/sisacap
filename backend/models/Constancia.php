@@ -113,11 +113,11 @@ class Constancia extends \yii\db\ActiveRecord
 	public static function getAllEstatusType(){
 	
 		return [Constancia::STATUS_ALREADY => 'Editando',
-				Constancia::STATUS_ASIGNADA =>'Asignada',
-				//Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firma instructor',
+				Constancia::STATUS_ASIGNADA =>'Asignada a instructor',
+				Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firma instructor',
 				Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firma representante legal',
 				Constancia::STATUS_DELIVERED =>'Enviada',
-				//Constancia::STATUS_REJECTED =>'Rechazada por instructor',						
+				Constancia::STATUS_REJECTED =>'Rechazada por instructor',						
 				Constancia::STATUS_RECHAZADA_MANAGER =>'Rechazada por manager',
 				constancia::STATUS_RECEIVED_WORKER=>'Recibida por trabajador'
 		];
@@ -126,7 +126,7 @@ class Constancia extends \yii\db\ActiveRecord
 	
 	public static function getAllEstatusTypeInstructor(){
 	
-		return [Constancia::STATUS_ASIGNADA =>'Asignada',
+		return [Constancia::STATUS_ASIGNADA =>'Asignada a instructor',
 		Constancia::STATUS_REJECTED =>'Rechazada instructor',
 		Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firma instructor',
 		constancia::STATUS_ENVIADA =>'Enviada E-mail',
@@ -150,7 +150,7 @@ class Constancia extends \yii\db\ActiveRecord
 			
 			case self::STATUS_ALREADY:
 				
-				$avaliableStatuses = 	[Constancia::STATUS_ASIGNADA =>'Asignada',
+				$avaliableStatuses = 	[Constancia::STATUS_ASIGNADA =>'Asignada a instructor',
 				Constancia::STATUS_ALREADY =>'Editando',
 				];
 				
@@ -159,7 +159,7 @@ class Constancia extends \yii\db\ActiveRecord
 
 			case self::STATUS_ASIGNADA:
 			
-				$avaliableStatuses = 	[Constancia::STATUS_ASIGNADA =>'Asignada',
+				$avaliableStatuses = 	[Constancia::STATUS_ASIGNADA =>'Asignada a instructor',
 				
 				];
 			
@@ -169,8 +169,8 @@ class Constancia extends \yii\db\ActiveRecord
 				case self::STATUS_SIGNED_INSTRUCTOR:
 						
 					$avaliableStatuses = 	[Constancia::STATUS_RECHAZADA_MANAGER =>'Rechazada por manager',
-					Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firmada instructor',
-					Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firmar representante',
+					Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firmada por  instructor',
+					Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firmada por  representante',
 					];
 						
 				break;
@@ -178,7 +178,7 @@ class Constancia extends \yii\db\ActiveRecord
 				
 					$avaliableStatuses = 	[
 					
-					Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firmar representante',
+					Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firmada por  representante',
 					
 						
 					Constancia::STATUS_DELIVERED =>'Enviada',
@@ -232,9 +232,9 @@ class Constancia extends \yii\db\ActiveRecord
 				
 			case self::STATUS_ASIGNADA:
 		
-				$avaliableStatuses = 	[Constancia::STATUS_ASIGNADA =>'Asignada',
+				$avaliableStatuses = 	[Constancia::STATUS_ASIGNADA =>'Asignada a instructor',
 				Constancia::STATUS_REJECTED =>'Rechazada por instructor',
-				Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firmada instructor',
+				Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firmada por instructor',
 				];
 		
 		
@@ -251,7 +251,7 @@ class Constancia extends \yii\db\ActiveRecord
 			case self::STATUS_SIGNED_INSTRUCTOR:
 		
 				$avaliableStatuses = 	[
-				Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firmar instructor',
+				Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firmada por  instructor',
 				];
 		
 				break;
