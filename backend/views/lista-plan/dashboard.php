@@ -575,8 +575,8 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 
 
  <h4 class="page-header" id="anchor_constancias_por_incluir">
-          Constancias emitidas en los establecimientos
-   		<small>Estas constancias pueden ser presentadas en el reporte</small>
+          Constancias emitidas a los trabajadores
+   		<small>Estas constancias pueden ser presentadas en el reporte DC4</small>
    </h4>     
     
  <div class="row">
@@ -642,7 +642,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 									<?php $ocupacionEspecifica = Catalogo::findOne($constancia->iDTRABAJADOR->OCUPACION_ESPECIFICA);?>
 									<?= isset($ocupacionEspecifica)?$ocupacionEspecifica->NOMBRE: '<i class="text text-muted">no establecido</i>';?>
 									</td>
-									<td><?= $constancia->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>	
+									<td><?= ($constancia->iDTRABAJADOR->iDEMPRESA->ID_EMPRESA_PADRE === null )? 'Empresa matriz' : $constancia->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
 									<td><?= $constancia->iDCURSO->NOMBRE;?></td>
 									<td><?= isset( Constancia::getAllMetodosType()[$constancia->METODO_OBTENCION] )? Constancia::getAllMetodosType()[$constancia->METODO_OBTENCION]: '<i class="text text-muted">no establecido</i>' ?></td>	
 									<?php
@@ -693,7 +693,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
     
     
     <h4 class="page-header" id="anchor_constancias_incluidas">
-          Constancias incluidas
+         Reporte de constancias emitidas a los trabajadores
    		<small>Estas constancias estan incluidas en el reporte</small>
    </h4>     
     
@@ -765,7 +765,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 									<?php $ocupacionEspecifica = Catalogo::findOne($constancia->iDTRABAJADOR->OCUPACION_ESPECIFICA);?>
 									<?= isset($ocupacionEspecifica)?$ocupacionEspecifica->NOMBRE: '<i class="text text-muted">no establecido</i>';?>
 									</td>
-									<td><?= $constancia->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
+										<td><?= ($constancia->iDTRABAJADOR->iDEMPRESA->ID_EMPRESA_PADRE === null )? 'Empresa matriz' : $constancia->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
 									
 									
 									<td><?= $constancia->iDCURSO->NOMBRE;?></td>

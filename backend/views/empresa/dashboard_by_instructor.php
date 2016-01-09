@@ -54,8 +54,9 @@ foreach ( $model->cursos as $curso ) {
 	
 	foreach ($curso->constancias as $constancia){
 		
-		if ($constancia->ESTATUS === Constancia::STATUS_ASIGNADA)
+		if ($constancia->ESTATUS === Constancia::STATUS_ASIGNADA && $curso->getCurrentStatus () === Curso::STATUS_CONCLUIDO)
 			$constanciasAsignadas[] = $constancia;
+		
 			elseif  ($constancia->ESTATUS === Constancia::STATUS_RECHAZADA_MANAGER || $constancia->ESTATUS === Constancia::STATUS_REJECTED	)
 			
 		//	if($constanciasEnRevision === $cursosFinalizados -> STATUS_CONCLUIDO){
@@ -669,7 +670,7 @@ Información  de constancias
 
 				<tr>
 					<td colspan="5"><i class="fa fa-user"></i> Datos trabajador</td>
-					<td colspan="7"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
+					<td colspan="8"><i class="fa fa-file-pdf-o"></i> Datos constancia</td>
 				</tr>
 
 				<tr>
@@ -681,6 +682,7 @@ Información  de constancias
 									<th>Id constancia</th>
 									<th>Curso</th>
 									<th>Aprobado</th>
+									<th>Promedio</th>
 									<th>Tipo</th>
 									<th colspan="2">Último comentario</th>
 									<th>Ver </th>
@@ -698,10 +700,11 @@ Información  de constancias
 				         		<td><?= $cof->iDTRABAJADOR->NOMBRE . ' ' . $cof->iDTRABAJADOR->APP. ' ' . $cof->iDTRABAJADOR->APM;?></td>
 					         	<td><?= $cof->iDTRABAJADOR->CURP;?></td>
 					         	<td><?=  ($cof->iDTRABAJADOR->pUESTO)?$cof->iDTRABAJADOR->pUESTO->NOMBRE_PUESTO : 'no asignado';?></td>
-					         	<td><?= $cof->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
+					         	<td><?= ($cof->iDTRABAJADOR->iDEMPRESA->ID_EMPRESA_PADRE === null )? 'Empresa matriz' : $cof->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
 					         	<td><?= $cof->ID_CONSTANCIA?></td>
 					         	<td><?= $cof->iDCURSO->NOMBRE?></td> 
 					         	<td><?= ($cof->APROBADO==1) ? 'Aprobado' : 'Reprobado'?></td>
+					       		  <td><?= $cof->PROMEDIO;?></td>
 					         	<td><?= ($cof->TIPO_CONSTANCIA ==1)?'Certificada':'Comprobante'?></td>
 					         	<td colspan="2"><?= $cof->COMENTARIO?></td>
 					         	<td>  <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/constancia-firmada', 'id'=>$cof->ID_CONSTANCIA],  [ 'class' => 'btn btn-info btn-xs' ] ) ?></td>
@@ -715,7 +718,7 @@ Información  de constancias
 			</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="12" style="text-align: right;">
+							<td colspan="13" style="text-align: right;">
 								Total <span class="badge bg-blue"><?= count($constanciasFirmadas); ?></span>
 							</td>
 						</tr>
