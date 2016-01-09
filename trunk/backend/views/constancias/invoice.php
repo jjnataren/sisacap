@@ -338,7 +338,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
               
               
               
-                <div class="col-xs-12 col-sm-12 col-md-6">
+                <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="box box-primary">
                 <div class="box-header">
                    <i class="fa fa-file-pdf-o"></i>
@@ -394,7 +394,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
                </div>
            </div> 
               
-              
+              </div>
               
  </div>
        
