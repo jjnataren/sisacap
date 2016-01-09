@@ -205,7 +205,12 @@ class Instructor extends \yii\db\ActiveRecord
     				md5('pass2'.$passphrase, true), 0, 24);
     		$opts = array('iv'=>$iv, 'key'=>$key);
     		 
-    		$fp = fopen($this->SIGN_PIC, 'r');
+    		$fp = @fopen($this->SIGN_PIC, 'rb');
+    			 
+    			if (!$fp) {
+    
+    				return null;
+    			}
     		stream_filter_append($fp, 'mdecrypt.tripledes', STREAM_FILTER_READ, $opts);
     		$data = rtrim(stream_get_contents($fp));
     		fclose($fp);

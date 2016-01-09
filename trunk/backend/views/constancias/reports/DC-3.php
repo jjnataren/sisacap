@@ -1,6 +1,7 @@
 <?php
  use backend\models\Catalogo;
 use backend\models\EmpresaUsuario;
+use backend\models\Constancia;
 ?>
 <head profile="http://dublincore.org/documents/dcmi-terms/">
 		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
@@ -729,7 +730,7 @@ use backend\models\EmpresaUsuario;
 			</tr>
 			<tr class="Tabla41">
 				<td colspan="7" style="text-align:left;width:0.40cm; " class="Tabla4_A2">
-					<p class="P22"> </p>
+					
 				</td>
 			</tr>
 			<tr class="Tabla41">
@@ -773,31 +774,33 @@ use backend\models\EmpresaUsuario;
 			<tr class="Tabla45">
 				<td style="text-align:left;width:0.318cm; " class="Tabla4_A5">
 					<p class="P13"> </p>
+					<p class="P13"> </p>
+					<p class="P13"> </p>
 				</td>
 				<td style="text-align:center;width:5.08cm; " class="Tabla4_B5">
 						
-						<span class="T28"><?php 
+						<span class="T28">		</span><?php 
 						
-                    $instructor=$model->iDCURSO-> iDINSTRUCTOR;		
+                    $instructor=$model->iDCURSO->iDINSTRUCTOR;		
                     
-                     if ($instructor->SIGN_PIC !== NULL && $instructor->SIGN_PASSWD !== NULL)?>
+                     if (isset($instructor) &&  $instructor->SIGN_PIC !== NULL && $instructor->getSigningBinary() !== null && $instructor->SIGN_PASSWD !== NULL && $model->ESTATUS >= Constancia::STATUS_SIGNED_INSTRUCTOR): ?>
 
-					<table>
-					<tr>
-					<td><img  src="<?='data:image/' . 'gif' . ';base64,'.$instructor->getSigningBinary(); ?>" style="height:1.4cm;width:3cm;"></td>
-					</tr>
-					</table>
-					<?php 
-					if (isset($model->iDCURSO->iDINSTRUCTOR))
-						
-						if($instructor !== null)
+							<table>
+							<tr>
+							<td><img  src="<?='data:image/' . 'gif' . ';base64,'.$instructor->getSigningBinary(); ?>" style="height:1.4cm;width:3cm;"></td>
+							</tr>
+							</table>
 							
-						echo $model->iDCURSO->iDINSTRUCTOR->NOMBRE. '&nbsp;' .$model->iDCURSO->iDINSTRUCTOR->APP. '&nbsp;'.$model->iDCURSO->iDINSTRUCTOR->APM; 
+					<?php endif;?>	
+						
+							<?php if($instructor !== null) : ?>
+							
+								<span class="T28"><?=$instructor->NOMBRE ?>&nbsp;<?=$instructor->APP ?>&nbsp;<?=$instructor->APM ?></span>
 					
-							else
-								echo '&nbsp;';
-						?>
-					</span>
+							<?php else:?>
+								<span class="T28">&nbsp;</span>
+						<?php endif;?>
+			
 				</td>
 				<td style="text-align:left;width:0.953cm; " class="Tabla4_C5">
 					<p class="P26">&nbsp;</p>
@@ -811,7 +814,7 @@ use backend\models\EmpresaUsuario;
 						$empresaUsuarioModel = EmpresaUsuario::getMyCompany();
 					  $representante = $empresaUsuarioModel->iDEMPRESA->iDREPRESENTANTELEGAL;
 					  
-					  if ($representante->SIGN_PICTURE !== NULL && $representante->SIGN_PASSWD !== NULL  ): ?>
+					  if ($representante->SIGN_PICTURE !== NULL && $representante->SIGN_PASSWD !== NULL && $representante->getSigningBinary() !== null && $model->ESTATUS == Constancia::STATUS_SIGNED_REPRESENTATIVE ): ?>
 					  
 					  
 					  <table>
@@ -840,11 +843,23 @@ use backend\models\EmpresaUsuario;
 						
 						$representanteTrabajadores = $comisionModel->iDREPRESENTANTETRABAJADORES;
 						
-						if ($representanteTrabajadores !==  null)
-							echo $representanteTrabajadores->NOMBRE .' ' . $representanteTrabajadores->APP . ' ' . $representanteTrabajadores->APM;
-						else 
-							echo '&nbsp;';
-					?>
+						if (isset($representanteTrabajadores) &&  $representanteTrabajadores->SIGN_PIC !== NULL && $representanteTrabajadores->SIGN_PASSWD !== NULL && $representanteTrabajadores->getSigningBinary() !== null ): 
+												
+						?>
+						
+						<table>
+						  <tr>
+						  	<td><img  src="<?='data:image/' . 'gif' . ';base64,'.$representanteTrabajadores->getSigningBinary(); ?>" style="height:1.4cm;width:3cm;"></td>
+						   </tr>
+						 </table>
+						<?php endif;?>
+						<?php
+						if ($representanteTrabajadores !==  null):?> 
+						
+							<span class="T28"><?=$representanteTrabajadores->NOMBRE; ?>&nbsp;<?=$representanteTrabajadores->APP ?>&nbsp;<?=$representanteTrabajadores->APM ?></span>
+						<?php else:?>
+							<span class="T28">&nbsp;</span>
+						<?php endif;?>
 						</span>
 				</td>
 				<td style="text-align:left;width:0.653cm; " class="Tabla4_G5">
@@ -931,10 +946,7 @@ use backend\models\EmpresaUsuario;
 			</p>
 			
 		
-		<div class="" style="position: relative; width: 100%; height: 50px;">
-			<!-- Padding -->		
-		</div>
-		
+
 		
 		
 		<div class="" style="position: relative; width: 100%; height: 50px;">

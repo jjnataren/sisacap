@@ -190,9 +190,9 @@ use backend\models\Catalogo; ?>
 	.Tabla3_A12 { vertical-align:top; padding-left:0.123cm; padding-right:0.123cm; padding-top:0cm; padding-bottom:0cm; border-left-width:0.0176cm; border-left-style:solid; border-left-color:#000000; border-right-style:none; border-top-style:none; border-bottom-width:0.0176cm; border-bottom-style:solid; border-bottom-color:#000000; writing-mode:lr-tb; }
 	.Tabla3_A22 { vertical-align:top; padding-left:0.123cm; padding-right:0.123cm; padding-top:0cm; padding-bottom:0cm; border-left-width:0.0176cm; border-left-style:solid; border-left-color:#000000; border-right-style:none; border-top-style:none; border-bottom-width:0.0176cm; border-bottom-style:solid; border-bottom-color:#000000; writing-mode:lr-tb; }
 	.Tabla3_A13 { vertical-align:middle; padding-left:0.123cm; padding-right:0.123cm; padding-top:0cm; padding-bottom:0cm; border-left-width:0.0176cm; border-left-style:solid; border-left-color:#000000; border-right-width:0.0176cm; border-right-style:solid; border-right-color:#000000; border-top-style:none; border-bottom-style:none; writing-mode:lr-tb; }
-	.Tabla3_A14 { vertical-align:middle; padding-left:0.123cm; padding-right:0.123cm; padding-top:0cm; padding-bottom:0cm; border-left-width:0.0176cm; border-left-style:solid; border-left-color:#000000; border-right-width:0.0176cm; border-right-style:solid; border-right-color:#000000; border-top-style:none; border-bottom-style:none; writing-mode:lr-tb; }
+	.Tabla3_A14 { vertical-align:middle; padding-left:0.123cm; padding-right:0.123cm; padding-top:0.1cm; padding-bottom:0cm; border-left-width:0.0176cm; border-left-style:solid; border-left-color:#000000; border-right-width:0.0176cm; border-right-style:solid; border-right-color:#000000; border-top-style:none; border-bottom-style:none; writing-mode:lr-tb; }
 	.Tabla3_A15 { vertical-align:middle; padding-left:0.123cm; padding-right:0.123cm; padding-top:0cm; padding-bottom:0cm; border-left-width:0.0176cm; border-left-style:solid; border-left-color:#000000; border-right-width:0.0176cm; border-right-style:solid; border-right-color:#000000; border-top-style:none; border-bottom-style:none; writing-mode:lr-tb; }
-	.Tabla3_A16 { vertical-align:middle; padding-left:0.123cm; padding-right:0.123cm; padding-top:0.7cm; padding-bottom:0.3cm; border-left-width:0.0176cm; border-left-style:solid; border-left-color:#000000; border-right-width:0.0176cm; border-right-style:solid; border-right-color:#000000; border-top-style:none; border-bottom-style:none; writing-mode:lr-tb; }
+	.Tabla3_A16 { vertical-align:middle; padding-left:0.123cm; padding-right:0.123cm; padding-top:0.0cm; padding-bottom:0.1cm; border-left-width:0.0176cm; border-left-style:solid; border-left-color:#000000; border-right-width:0.0176cm; border-right-style:solid; border-right-color:#000000; border-top-style:none; border-bottom-style:none; writing-mode:lr-tb; }
 	.Tabla3_A17 { vertical-align:top; padding-left:0.123cm; padding-right:0.123cm; padding-top:0cm; padding-bottom:0cm; border-left-width:0.0176cm; border-left-style:solid; border-left-color:#000000; border-right-style:none; border-top-style:none; border-bottom-style:none; writing-mode:lr-tb; }
 	.Tabla3_A2 { vertical-align:middle; padding-left:0.123cm; padding-right:0.123cm; padding-top:0cm; padding-bottom:0cm; border-left-width:0.0176cm; border-left-style:solid; border-left-color:#000000; border-right-style:none; border-top-width:0.0176cm; border-top-style:solid; border-top-color:#000000; border-bottom-width:0.0176cm; border-bottom-style:solid; border-bottom-color:#000000; writing-mode:lr-tb; }
 	.Tabla3_A20 { vertical-align:top; padding-left:0.123cm; padding-right:0.123cm; padding-top:0cm; padding-bottom:0cm; border-left-width:0.0176cm; border-left-style:solid; border-left-color:#000000; border-right-style:none; border-top-style:none; border-bottom-style:none; writing-mode:lr-tb; }
@@ -1312,7 +1312,7 @@ use backend\models\Catalogo; ?>
 			</tr>
 			<tr class="Tabla32">
 				<td colspan="41" style="text-align:left;width:3.466cm; " class="Tabla3_A13">
-					<p class="P22"> </p>
+					
 				</td>
 			</tr>
 			<tr class="Tabla32">
@@ -1328,30 +1328,49 @@ use backend\models\Catalogo; ?>
 			<tr class="Tabla316">
 				<td colspan="41" style="text-align:center;width:3.466cm; " class="Tabla3_A16">
 					
-						
-				
-					<?php 
+					
+						  <?php 
 					  
 					  $representante = $model->iDEMPRESA->iDREPRESENTANTELEGAL;
 					  
 					  if ($representante->SIGN_PICTURE !== NULL && $representante->SIGN_PASSWD !== NULL  ): ?>
 					  
-					  
-					  <table>
-						  <tr>
-						  	<td><img  src="<?='data:image/' . 'gif' . ';base64,'.$representante->getSigningBinary(); ?>" style="height:1.4cm;width:3cm;"></td>
-						  	 </tr>
-					  </table>
-					  	<p class="P16"> </p>
-					  	<p class="P7 text-center"><span class="T28"><?=$representante->NOMBRE ?>&nbsp;<?=$representante->APP ?>&nbsp;<?=$representante->APM ?></span></p>
-					  <?php endif;?>		
+						  <?php $imageBinary  = $representante->getSigningBinary(); 
+						  
+						  		if ($imageBinary) :
+						  ?>
+								  <table>
+									  <tr>
+									  	<td><img  src="<?='data:image/' . 'gif' . ';base64,'.$imageBinary; ?>" style="height:1.4cm;width:3cm;"></td>
+									 
+									  </tr>
+								  </table>
+								  
+							<?php else:?>	  
+						  
+						    <p class="P16"> </p>  
+						    
+					<p class="P16"> </p>  
+						    <p class="P16"> </p>  			    
+						  
+						  <?php endif;?>
 					
+					<?php else:?>	  
+						  
+						    <p class="P16"> </p>  
+						   <p class="P16"> </p>  
+						    <p class="P16"> </p>  
+					 <?php endif;?>
+						
+					
+					
+					<p class="P7 text-center"><span class="T28"><?=$representante->NOMBRE ?>&nbsp;<?=$representante->APP ?>&nbsp;<?=$representante->APM ?></span></p>
 
 				</td>
 			</tr>
 			<tr class="Tabla32">
 				<td colspan="3" rowspan="3" style="text-align:center;width:3.466cm; " class="Tabla3_A17">
-					<p class="P9"> </p>
+					
 				</td>
 				<td colspan="24" style="text-align:center;width:0.092cm; " class="Tabla3_D17">
 					<p class="P57">Nombre y firma del patrón o representante legal de la empresa</p>
@@ -1362,11 +1381,10 @@ use backend\models\Catalogo; ?>
 			</tr>
 			<tr class="Tabla318">
 				<td colspan="24" style="text-align:left;width:0.092cm; " class="Tabla3_D18">
-					<p class="P31">
-					</p>
+					
 				</td>
 				<td colspan="14" style="text-align:left;width:0.081cm; " class="Tabla3_b18">
-					<p class="P31"> </p>
+					
 				</td>
 			</tr>
 			<tr class="Tabla32">

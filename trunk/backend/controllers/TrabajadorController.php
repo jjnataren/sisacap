@@ -228,13 +228,13 @@ class TrabajadorController extends Controller
     					'body'=> '<i class="fa fa-check"></i> Firma guardada y encriptada correctamente, Puede desencriptar la firma  proporcionando la constraseña nuevamente.',
     			]);
     			 
-    			return $this->redirect(['view-sign-pic', 'id'=>$id]);
+    			return $this->redirect(['view-sign-pic', 'id'=>$id,'id_comision'=>$id_comision]);
     		}
     
     
     	}
     
-    	return $this->render('manage_sign_pic',['model'=>$trabajadorModel, 'SIGN_IMAGE'=> base64_encode($image64Data), 'comisionModel'=>$comisionModel]);
+    	return $this->render('manage_sign_pic',['model'=>$trabajadorModel, 'SIGN_IMAGE'=> base64_encode($image64Data), 'comisionModel'=>$comisionModel,]);
     
     }
     
