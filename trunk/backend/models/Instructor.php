@@ -88,7 +88,12 @@ class Instructor extends \yii\db\ActiveRecord
     			//[['email'], 'email'],
     			[[ 'NOMBRE'], 'required'],
     			[['RFC'], 'string', 'max' => 13],
-    			//[['username', 'user_form_password','email', 'NOMBRE'], 'required'],
+    			['DOCUMENTO_PROBATORIO', 'required', 'when' => function($model) {
+							        return $model->TIPO_INSTRUCTOR == $this::TIPO_AGENTE_ACREDITACION  ||  $model->TIPO_INSTRUCTOR == $this::TIPO_AGENTE_EXT_IND;
+							    }, 'whenClient' => "function (attribute, value) {
+									        return $('#TIPO_INSTRUCTOR').val() == '".$this::TIPO_AGENTE_ACREDITACION."' || $('#TIPO_INSTRUCTOR').val() == '".$this::TIPO_AGENTE_EXT_IND."';
+									   }", 'message'=>'Es necesario adjuntar el documento de acreditación para el tipo de instructor seleccionado'],
+				//[['username', 'user_form_password','email', 'NOMBRE'], 'required'],
     			//[['user_form_password'], StrengthValidator::className(), 'preset'=>'normal', 'userAttribute'=>'username'],
     			[['SIGN_PIC', 'SIGN_PASSWD'], 'string', 'max' => 2048],
     			//['username', 'unique', 'targetClass'=>'\common\models\User'],
