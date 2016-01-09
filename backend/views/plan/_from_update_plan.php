@@ -8,7 +8,6 @@ use kartik\widgets\DepDrop;
 use yii\helpers\Url;
 use backend\models\PuestoEmpresa;
 use yii\data\ActiveDataProvider;
-
 use yii\grid\GridView;
 use Codeception\Step\Action;
 use Symfony\Component\Console\Input\Input;
@@ -20,10 +19,12 @@ use kartik\checkbox\CheckboxX;
 
 $id_empresa = $model->iDCOMISION->ID_EMPRESA;
 
+
+
+
+
+
 $courses =  Catalogo::findAll ( ['CATEGORIA' => 11, 'ACTIVO'=> 1]);
-
-
-
 $dataListOcupacion = ArrayHelper::map ( PuestoEmpresa::findBySql ( 'SELECT ID_PUESTO,NOMBRE_PUESTO,ID_EMPRESA
 FROM tbl_puesto_empresa where activo=1 AND ID_EMPRESA = ' . $id_empresa )->all (), 'ID_PUESTO', 'NOMBRE_PUESTO' );
 
@@ -35,7 +36,10 @@ $this->registerJs ( "$('#help3').popover('hide');", View::POS_END, 'my-options3'
 $this->registerJs ( "$('#help4').popover('hide');", View::POS_END, 'my-options4' );
 $this->registerJs ( "$('#help5').popover('hide');", View::POS_END, 'my-options5' );
 $this->registerJs ( "$('#help6').popover('hide');", View::POS_END, 'my-options6' );
+$this->registerJs ( "$('#helpCursos').popover('hide');", View::POS_END, 'my-optionscursos' );
 $this->registerJs ( "$('#helpAyuda').popover('hide');", View::POS_END, 'my-options6' );
+$this->registerJs ( "$('#helpEtapas').popover('hide');", View::POS_END, 'my-options7' );
+$this->registerJs ( "$('#helpFInfo').popover('hide');", View::POS_END, 'my-options8' );
 
 $this->registerJs ( "$('#empresaButton').click(function() {
 
@@ -79,11 +83,11 @@ $itemsModalidad = [
 				<h3>
 					<i class="fa fa-plus-square"></i>
 						
-						<?= Yii::t('backend', 'Actualizar plan') ?>  </h3>
+						<?= Yii::t('backend', 'Actualizar plan y programa de capacitación, adiestramiento y productividad') ?>  </h3>
 			</div>
 
 			<div class="panel-body">
-			  <div class="row">
+
 				<div class=" col-xs-12 col-sm-12 col-md-6">
 
 					<div class="row">
@@ -104,13 +108,28 @@ $itemsModalidad = [
 								</div>
 							</div>
     
-    <?= $form->field($model, 'NUMERO_ETAPAS')->textInput()?>
+  
+    	<div class="row">
+								<div class="col-xs-10 col-md-10">
+          <?= $form->field($model, 'NUMERO_ETAPAS')->textInput()?>
+         </div>
+								<div class="col-xs-2 col-md-2">
+
+									<button id="helpEtapas" data-placement="top" tabindex="0"
+										type="button" class="btn btn-info btn-sm"
+										data-toggle="popoverEtapas" title="Ayuda"
+										data-content="Precisar el número de etapas durante las cuales se impartirán;">
+										<i class="fa fa-question-circle"></i>
+									</button>
+								</div>
+							</div>
+    
     
      <?= $form->field($model, 'TOTAL_MUJERES')->textInput()?>
      
       <?= $form->field($model, 'TOTAL_HOMBRES')->textInput()?>
       
-      <?= $form->field($model, 'TIPO_PLAN')->checkbox()?> 
+      <?=  $form->field($model, 'TIPO_PLAN')->widget(CheckboxX::classname(), ['pluginOptions'=>['threeState'=>false, 'size'=>'lg']]);  ?> 
       
       
       
@@ -128,7 +147,24 @@ $itemsModalidad = [
 		    
 		<?= $form->field($model, 'VIGENCIA_FIN')->widget('trntv\yii\datetimepicker\DatetimepickerWidget', ['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]])?>
 		
+		     
+		     <div class="row">
+								<div class="col-xs-10 col-md-10">
 		<?= $form->field($model, 'FECHA_INFO')->widget('trntv\yii\datetimepicker\DatetimepickerWidget', ['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]])?>
+								
+								</div>
+								<div class="col-xs-2 col-md-2">
+
+									<button id="helpFInfo" data-placement="top" tabindex="0"
+										type="button" class="btn btn-info btn-sm"
+										data-toggle="popover" title="Ayuda"
+										data-content="'La empresas deberán mantener a disposición de la Secretaría, la información sobre las actividades realizadas durante el último año ">
+										<i class="fa fa-question-circle"></i>
+									</button>
+								</div>
+							</div>
+    
+		     
 		     
 		<?= $form->field($model, 'LUGAR_INFORME')->textInput()?>
 		     
@@ -149,7 +185,7 @@ $itemsModalidad = [
 								<thead>
 									<tr>
 										<th colspan="2"><h4>
-												<i class="fa fa-building-o"></i>&nbsp;Establecimiento que
+												<i class="fa fa-university"></i>&nbsp;Establecimiento que
 												presentara el plan <span class="label label-warning"><?php ?></span>
 											</h4>
 										
@@ -309,35 +345,29 @@ Es requerido evaluar el objetivo del plan. Dando [clic] la flecha. Seleccione de
 				</div>
 
 
-						<div class="panel-footer">
-							<button id="help2" data-placement="top" tabindex="0"
-								type="button" class="btn btn-info btn-sm" data-toggle="popover"
-								title="Ayuda"
-								data-content="<?=Yii::t('backend', 'Es requerido seleccionar la modalidad del plan. Dando [clic] en el circulo. ') ?>">
-								<i class="fa fa-question-circle"></i>
-							</button>
-						</div>
-
-					</div>
-
+			</div>
+			
 					<div class="panel-footer">
 						<button id="helpAyuda" tabindex="0" type="button" class="btn"
 							data-toggle="popover" title="Ayuda"
 							data-content="<?=Yii::t('backend', 'Para guardar el plan es necesario llenar todos los campos, Presiona el boton [Guardar] y acontinuación se guardara el plan de capacitacion') ?>">
 							<i class="fa fa-question-circle"></i>
 						</button>
-             <?= Html::submitButton( '<i class="fa fa-floppy-o"></i> Guardar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])?>
-    </div>
+     			        <?= Html::submitButton( '<i class="fa fa-floppy-o"></i> Guardar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])?>
+
+   				 </div>
+			
+		</div>
+</div>
 
     
     <?php ActiveForm::end(); ?>
 
-	</div>
 
-			</div>
-		</div>
-</div>
-</div>
+
+
+
+
 </div>
 		
 		
