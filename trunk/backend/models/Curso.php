@@ -211,9 +211,11 @@ Curso::STATUS_CERRADO =>'Cerrado',
             [['MODALIDAD_CAPACITACION'], 'required'],
             [['NOMBRE'], 'string', 'max' => 300],
 
-            [['OBJETIVO_CAPACITACION', 'MODALIDAD_CAPACITACION', 'DESCRIPCION'], 'string', 'max' => 200],
+            [['OBJETIVO_CAPACITACION', 'MODALIDAD_CAPACITACION'], 'string', 'max' => 200],
+            [['DESCRIPCION'], 'string', 'max' => 1024],
             
-             [['MODALIDAD_CAPACITACION', 'DESCRIPCION'], 'string', 'max' => 200],
+            
+             [['MODALIDAD_CAPACITACION'], 'string', 'max' => 200],
             [['OBJETIVO_CAPACITACION'], 'string', 'max' => 45],
             
             /*own validations*/
