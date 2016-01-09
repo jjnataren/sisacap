@@ -114,9 +114,9 @@ class Constancia extends \yii\db\ActiveRecord
 	
 		return [Constancia::STATUS_ALREADY => 'Editando',
 				Constancia::STATUS_ASIGNADA =>'Asignada a instructor',
-				Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firma instructor',
-				Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firma representante legal',
-				Constancia::STATUS_DELIVERED =>'Enviada',
+				Constancia::STATUS_SIGNED_INSTRUCTOR =>'Firmada por  instructor',
+				Constancia::STATUS_SIGNED_REPRESENTATIVE =>'Firmada por  representante legal',
+				Constancia::STATUS_DELIVERED =>'Enviada al trabajador',
 				Constancia::STATUS_REJECTED =>'Rechazada por instructor',						
 				Constancia::STATUS_RECHAZADA_MANAGER =>'Rechazada por manager',
 				constancia::STATUS_RECEIVED_WORKER=>'Recibida por trabajador'

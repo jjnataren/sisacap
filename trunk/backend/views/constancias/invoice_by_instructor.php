@@ -166,7 +166,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
             <div class="box box-primary">
                 <div class="box-header">
                    <i class="fa fa-file-pdf-o"></i>
-                    <h2 class="box-title"><?= Yii::t('backend', 'Datos de la constancia') ?></h2>
+                    <h2 class="box-title"><?= Yii::t('backend', 'Datos  de evaluación para  la  constancia') ?></h2>
                
                 <div class="box-tools pull-right">
             <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>

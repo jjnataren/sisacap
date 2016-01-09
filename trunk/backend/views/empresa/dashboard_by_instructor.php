@@ -497,7 +497,7 @@ Información  de constancias
 									<th><?=Yii::t('backend', 'Establecimiento')?></th>
 									<th>Id constancia</th>
 									<th>Curso</th>
-									
+									<th></th>
 																			
 				</tr>
 							</thead>
@@ -515,7 +515,7 @@ Información  de constancias
 					         	<td><?= $coa->iDTRABAJADOR->iDEMPRESA->NOMBRE_COMERCIAL;?></td>
 					         	<td><?= $coa->ID_CONSTANCIA?></td>
 					         	<td><?= $coa->iDCURSO->NOMBRE?></td>
-					      <!--  	<td>   <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/dashboard-by-instructor', 'id'=>$coa->ID_CONSTANCIA],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>   --> </td>
+					      		<td>   <?= Html::a('<i class="fa fa-eye"></i>', ['constancias/dashboard-by-instructor', 'id'=>$coa->ID_CONSTANCIA],  [ 'class' => 'btn btn-info btn-xs' ] ) ?>  </td>
 				         	</tr>
 								
 						<?php } ?>
