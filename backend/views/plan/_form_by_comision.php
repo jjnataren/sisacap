@@ -38,6 +38,9 @@ $this->registerJs ( "$('#help5').popover('hide');", View::POS_END, 'my-options5'
 $this->registerJs ( "$('#help6').popover('hide');", View::POS_END, 'my-options6' );
 $this->registerJs ( "$('#helpCursos').popover('hide');", View::POS_END, 'my-optionscursos' );
 $this->registerJs ( "$('#helpAyuda').popover('hide');", View::POS_END, 'my-options6' );
+$this->registerJs ( "$('#helpEtapas').popover('hide');", View::POS_END, 'my-options7' );
+$this->registerJs ( "$('#helpFInfo').popover('hide');", View::POS_END, 'my-options8' );
+
 
 $this->registerJs ( "$('#empresaButton').click(function() {
 
@@ -81,7 +84,7 @@ $itemsModalidad = [
 				<h3>
 					<i class="fa fa-plus-square"></i>
 						
-						<?= Yii::t('backend', 'Crear nuevo plan') ?>  </h3>
+						<?= Yii::t('backend', 'Crear nuevo plan y programa de capacitación, adiestramiento y productividad') ?>  </h3>
 			</div>
 
 			<div class="panel-body">
@@ -106,8 +109,23 @@ $itemsModalidad = [
 								</div>
 							</div>
     
-    <?= $form->field($model, 'NUMERO_ETAPAS')->textInput()?>
+
+    	<div class="row">
+								<div class="col-xs-10 col-md-10">
+          <?= $form->field($model, 'NUMERO_ETAPAS')->textInput()?>
+         </div>
+								<div class="col-xs-2 col-md-2">
+
+									<button id="helpEtapas" data-placement="top" tabindex="0"
+										type="button" class="btn btn-info btn-sm"
+										data-toggle="popoverEtapas" title="Ayuda"
+										data-content="Precisar el número de etapas durante las cuales se impartirán;">
+										<i class="fa fa-question-circle"></i>
+									</button>
+								</div>
+							</div>
     
+        
      <?= $form->field($model, 'TOTAL_MUJERES')->textInput()?>
      
       <?= $form->field($model, 'TOTAL_HOMBRES')->textInput()?>
@@ -130,8 +148,23 @@ $itemsModalidad = [
 		    
 		<?= $form->field($model, 'VIGENCIA_FIN')->widget('trntv\yii\datetimepicker\DatetimepickerWidget', ['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]])?>
 		
-		<?= $form->field($model, 'FECHA_INFO')->widget('trntv\yii\datetimepicker\DatetimepickerWidget', ['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]])?>
+
 		     
+		     <div class="row">
+								<div class="col-xs-10 col-md-10">
+		<?= $form->field($model, 'FECHA_INFO')->widget('trntv\yii\datetimepicker\DatetimepickerWidget', ['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]])?>
+								
+								</div>
+								<div class="col-xs-2 col-md-2">
+
+									<button id="helpFInfo" data-placement="top" tabindex="0"
+										type="button" class="btn btn-info btn-sm"
+										data-toggle="popover" title="Ayuda"
+										data-content="'La empresas deberán mantener a disposición de la Secretaría, la información sobre las actividades realizadas durante el último año ">
+										<i class="fa fa-question-circle"></i>
+									</button>
+								</div>
+							</div>		     
 		<?= $form->field($model, 'LUGAR_INFORME')->textInput()?>
 		     
 		<?= $form->field($model, 'DESCRIPCION_PLAN')->textArea()?>
@@ -150,12 +183,13 @@ $itemsModalidad = [
 
 								<thead>
 									<tr>
-										<th colspan="2"><h4>
-												<i class="fa fa-building-o"></i>&nbsp;Establecimiento que
-												presentara el plan <span class="label label-warning"><?php ?></span>
-											</h4>
-										
-										<th>
+										<th colspan="2">
+												
+													<h3>
+								<i class="fa fa-university"></i>
+						<?= Yii::t('backend', ' Establecimiento') ?> <small>que presentara el plan</small> </h3>
+							
+									<th>
 									
 									</tr>
 								</thead>
@@ -223,10 +257,12 @@ $itemsModalidad = [
 					<div class="panel panel-default">
 						<div class="panel-body">
 
-							<h4>
+							<h3>
 								<i class="fa fa-newspaper-o"></i>
-						<?= Yii::t('backend', ' Seleccione modalidad de la capacitación  correspondiente.') ?> </h4>
+						<?= Yii::t('backend', ' Seleccione modalidad') ?> <small> de la capacitación  correspondiente.</small> </h3>
 
+						
+						
 
 						</div>
 
@@ -257,11 +293,13 @@ $itemsModalidad = [
 					<div class="panel panel-default">
 						<div class="panel-body">
 
-							<h4>
+							<h3>
 								<i class="fa fa-line-chart"></i>
-	<?= Yii::t('backend', '') ?> Objetivos del plan de capacitación Señalar del 1 al 5 en donde 1 es el más importante </h4>
+	<?= Yii::t('backend', '') ?> Objetivos del plan de capacitación <small> Señalar del 1 al 5 en donde 1 es el más importante </small></h3>
 						</div>
 
+						
+						
 						<div class="panel-body">
 
 
@@ -375,7 +413,7 @@ Es requerido evaluar el objetivo del plan. Dando [clic] la flecha. Seleccione de
 								type="button" class="btn btn-info btn-sm" data-toggle="popover"
 								title="Ayuda"
 
-								data-content="">
+								data-content="Estos cursos son predeterminados y aprobados por la STPS. ">
 								<i class="fa fa-question-circle"></i>
 							</button>
 						</div>
@@ -390,11 +428,13 @@ Es requerido evaluar el objetivo del plan. Dando [clic] la flecha. Seleccione de
 			</div>
 			
 					<div class="panel-footer">
-						<button id="helpAyuda" tabindex="0" type="button" class="btn"
-							data-toggle="popover" title="Ayuda"
-							data-content="<?=Yii::t('backend', 'Para guardar el plan es necesario llenar todos los campos, Presiona el boton [Guardar] y acontinuación se guardara el plan de capacitacion') ?>">
-							<i class="fa fa-question-circle"></i>
-						</button>
+					
+						<button id="helpAyuda" data-placement="top" tabindex="0"
+									type="button" class="btn btn-info btn-sm" data-toggle="popover"
+									title="Ayuda"
+									data-content="<?=Yii::t ( 'backend', '' )?>">
+									<i class="fa fa-question-circle"></i>
+								</button>
      			        <?= Html::submitButton( '<i class="fa fa-floppy-o"></i> Guardar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])?>
 
    				 </div>
