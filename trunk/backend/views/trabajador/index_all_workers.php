@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use backend\models\PuestoEmpresa;
 use yii\helpers\ArrayHelper;
 use backend\models\Empresa;
+use backend\models\EmpresaUsuario;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\TrabajadorSearch */
@@ -71,8 +72,8 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
     			return isset($tmpModel)?$tmpModel->NOMBRE_PUESTO: $data->PUESTO;
     			 
     		},
-    		'filter'=>ArrayHelper::map(PuestoEmpresa::findAll([ 'ACTIVO'=>1]), 'ID_PUESTO','NOMBRE_PUESTO'),
-    		],
+    		'filter'=>ArrayHelper::map(PuestoEmpresa::findAll([ 'ACTIVO'=>1, 'ID_EMPRESA'=>EmpresaUsuario::getMyCompany()->ID_EMPRESA]), 'ID_PUESTO','NOMBRE_PUESTO'),
+			],
     		
     	
     		
