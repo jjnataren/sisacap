@@ -415,12 +415,12 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Relac
 			   					
 			   				<?php endif;?>	
 						       
-						          <?php if (isset($constancias) && count($constancias)>0) :?>
+						       <!-- 						          <?php if (isset($constancias) && count($constancias)>0) :?>
 							        <?= Html::submitButton('<i class="fa fa-floppy-o"></i>' 
 				  		.'&nbsp;'.Yii::t('backend', 'Guardar cambios'),
 					  		 ['class' => 'btn btn-success', 'name'=>'proccess' ]) ?>
 						        <?php endif;?>   
-						       
+						       -->
 						     
 						</div>
 			
