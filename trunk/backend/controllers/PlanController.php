@@ -282,16 +282,15 @@ class PlanController extends Controller
 				if($existeCurso){
 				
 			
-			
-			
 					$model = new Curso();
-			
 			
 					$model->ID_PLAN = $planModel->ID_PLAN ;
 					 
 					$model->NOMBRE = $listCurso->NOMBRE ;
 					 
 					$model->DESCRIPCION =$listCurso->DESCRIPCION;
+					
+					$model->ESTATUS = Curso::STATUS_CREADO;
 					 
 					$model->save(false);
 			

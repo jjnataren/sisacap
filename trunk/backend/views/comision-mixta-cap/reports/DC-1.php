@@ -1007,7 +1007,7 @@ use backend\models\Catalogo; ?>
 					<p class="P21">
 						<span class="T17">aquél que no se conduce con verdad.</span>
 					</p>
-					<p class="P24"> </p>
+					
 				</td>
 			</tr>
 			<tr class="Tabla37">
@@ -1023,17 +1023,39 @@ use backend\models\Catalogo; ?>
 					  
 					  if ($representante->SIGN_PICTURE !== NULL && $representante->SIGN_PASSWD !== NULL  ): ?>
 					  
-					  
-					  <table>
-						  <tr>
-						  	<td><img  src="<?='data:image/' . 'gif' . ';base64,'.$representante->getSigningBinary(); ?>" style="height:1.4cm;width:3cm;"></td>
-						  </tr>
-					  </table>
-					  
-					  	<p class="P16"> </p>
-					  	<p class="P7 text-center"><span class="T28"><?=$representante->NOMBRE ?>&nbsp;<?=$representante->APP ?>&nbsp;<?=$representante->APM ?></span></p>
-					  <?php endif;?>
+						  <?php $imageBinary  = $representante->getSigningBinary(); 
+						  
+						  		if ($imageBinary) :
+						  ?>
+						  
+					
+						  
+								  <table>
+									  <tr>
+									  	<td><img  src="<?='data:image/' . 'gif' . ';base64,'.$imageBinary; ?>" style="height:1.4cm;width:3cm;"></td>
+									 
+									  </tr>
+								  </table>
+								  
+							<?php else:?>	  
+						  
+						  <p class="P18"> </p>
+						  <p class="P18"> </p>
+						  <p class="P18"> </p>  
+						  
+						  <?php endif;?>
+					
+					<?php else:?>	  
+						  
+						  <p class="P18"> </p>
+						  <p class="P18"> </p>
+						  <p class="P18"> </p>  
+						  
+					 <?php endif;?>
 						
+					  	
+					  	<p class="P7 text-center"><span class="T28"><?=$representante->NOMBRE ?>&nbsp;<?=$representante->APP ?>&nbsp;<?=$representante->APM ?></span></p>
+				
 					
 				</td>
 				<td colspan="9" style="text-align:left;width:0.644cm; " class="Tabla3_W7">
@@ -1166,7 +1188,6 @@ use backend\models\Catalogo; ?>
 			
 			<span class="T24">NOTAS E INSTRUCCIONES</span><br />
 		
-			<span class="T26">   </span>
 			
 			<span class="T25"><small>1</small> Asentar en el reverso de esta forma el domicilio completo, R.F.C. y registro del I.M.S.S., de los establecimientos adicionales en donde rige la comisión. Si el reverso del formato no es <br /> 
 			suficiente para relacionar los establecimientos, puede reproducirlo cuantas veces sea necesario. <br/>

@@ -83,7 +83,7 @@ foreach ($model->iDPLAN->planEstablecimientos as $establecimiento){
 
 $tabs[]=[
 'label' =>'<i class="fa fa-building">
-							 </i> Mi empresa',
+							 </i> Empresa matriz',
 							 	
 							 'url' => ['/constancias/createbycourse', 'id'=>$model->ID_CURSO,'is_company'=>true, '#'=>'constancias'],
 							 'linkOptions' => [],
@@ -158,7 +158,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
           
       	<div class= "box-footer">
 				          
-		  <?= Html::a('<i class="fa fa-pencil-square-o"></i>  Editar curso', ['curso/updatebyplan', 'id_plan' => $model->ID_PLAN,'id'=>$model->ID_CURSO], ['class' => 'btn btn-primary']) ?>
+		  <?= Html::a('<i class="fa fa-pencil"></i>  Editar curso', ['curso/updatebyplan', 'id_plan' => $model->ID_PLAN,'id'=>$model->ID_CURSO], ['class' => 'btn btn-warning']) ?>
     	</div>
 </div><!-- /.box -->
 </div>
@@ -310,7 +310,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
          <thead> 
 	        <tr>
 		         <th>Nombre completo</th>
-		         		         
+		         <th>RFC</th>		         
 		         <th>No. registro de agente externo</th>
 		         <th>Telefono</th>
 		         <th>Correo electronico</th>
@@ -333,11 +333,11 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
        
          		
          		
-         		<td><?= $instructor->NOMBRE. ' '.$instructor->APP. ' ' .$instructor->APM?></td>
-         		
-         		<td><?= $instructor->NUM_REGISTRO_AGENTE_EXTERNO?></td>
-         		<td><?= $instructor->TELEFONO?></td>
-         		<td><?= $instructor->CORREO_ELECTRONICO?></td>
+         		<td><?= $instructor->NOMBRE. ' '.$instructor->APP. ' ' .$instructor->APM;?></td>
+         		<td><?= $instructor->RFC;?></td>
+         		<td><?= $instructor->NUM_REGISTRO_AGENTE_EXTERNO;?></td>
+         		<td><?= $instructor->TELEFONO;?></td>
+         		<td><?= $instructor->CORREO_ELECTRONICO;?></td>
          		
          	  
       
@@ -401,7 +401,8 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 								</tr>
 								<tr >
 									<th>Id</th>
-									<th><?=Yii::t('backend', 'Nombre')?></th>									
+									<th><?=Yii::t('backend', 'Nombre')?></th>
+									<th><?=Yii::t('backend', 'RFC')?></th>									
 									<th><?=Yii::t('backend', 'CURP')?></th>
 									<th><?=Yii::t('backend', 'Puesto')?></th>
 								<!-- 	<th>Obtención</th>
@@ -436,8 +437,9 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 								
 								<tr>
 									<td ><?= $worker->ID_TRABAJADOR?><?= $form->field($constancia, "[$i]ID_TRABAJADOR")->hiddenInput(['id'=>'hid_id_instructor'])->label(false) ?></td>
-									<td><?= $worker->NOMBRE.' '. $worker->APP ?></td>
-									<td><?= $worker->CURP?></td>
+									<td><?= $worker->NOMBRE.' '. $worker->APP; ?></td>
+									<td><?= $worker->CURP;?></td>
+									<td><?= $worker->RFC;?></td>
 									<td><?= isset($worker->pUESTO)?$worker->pUESTO->NOMBRE_PUESTO: ''?></td>
 						<!-- 			<td><?= $form->field($constancia, "[$i]METODO_OBTENCION")->dropDownList(Constancia::getAllMetodosType(),['prompt'=>'- Seleccione -','style' => 'width: 170px;'])->label(false) ?></td> -->	
 						<!-- 			<td><?= $form->field($constancia, "[$i]TIPO_CONSTANCIA")->dropDownList(Constancia::getAllContanciasType(),['prompt'=>'- Seleccione -','style' => 'width: 130px;'])->label(false) ?></td> -->

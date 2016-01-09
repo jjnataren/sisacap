@@ -121,7 +121,7 @@ $itemsObjetivo = [1=>'Actualizar y perfeccionar conocimientos y habilidades y pr
 		    		<thead>
 		    		
 		    		
-		    			<tr><th colspan="2"><h4><i class="fa fa-graduation-cap"></i>&nbsp;Instructor<small> del curso</small></h4><th></tr>
+		    			<tr><th colspan="2"><h4><i class="fa fa-graduation-cap"></i>&nbsp;Instructor<small> que impartira el curso</small></h4><th></tr>
 		    		</thead>
 		    		
 		    	
@@ -141,7 +141,16 @@ $itemsObjetivo = [1=>'Actualizar y perfeccionar conocimientos y habilidades y pr
 		    			<td>Nombre</td>
 		    			<td><label id="lbl_nombre_instructor" > 
 		    			<?php if (isset($model->iDINSTRUCTOR)){?>	
-		    			 <?= $model->iDINSTRUCTOR->NOMBRE?>
+		    			 <?= $model->iDINSTRUCTOR->NOMBRE. ' '. $model->iDINSTRUCTOR->APP . ' ' .$model->iDINSTRUCTOR->APM; ?>
+		    			 <?php }?>
+		    			 </label></td>
+		    		</tr>
+		    		
+		    		<tr>
+		    			<td>RFC</td>
+		    			<td><label id="lbl_rfc_instructor" > 
+		    			<?php if (isset($model->iDINSTRUCTOR)){?>	
+		    				 <?= $model->iDINSTRUCTOR->RFC; ?>
 		    			 <?php }?>
 		    			 </label></td>
 		    		</tr>
@@ -234,8 +243,11 @@ $itemsObjetivo = [1=>'Actualizar y perfeccionar conocimientos y habilidades y pr
 										
 										            'ID_INSTRUCTOR',
 										            'NOMBRE',
+										        	 'APP',
+										        	'APM',
+										        	'RFC',	
 										            'NUM_REGISTRO_AGENTE_EXTERNO',
-										            // 'APM',
+										            
 										            // 'DOMICILIO',
 										            // 'TELEFONO',
 										            // 'CORREO_ELECTRONICO',
@@ -254,7 +266,8 @@ $itemsObjetivo = [1=>'Actualizar y perfeccionar conocimientos y habilidades y pr
 																	'onclick'=>"
 																	$('#user_$data->ID_EMPRESA').fadeIn(300);
 																	$('#lbl_id_instructor').text('$data->ID_INSTRUCTOR');
-																	$('#lbl_nombre_instructor').text('$data->NOMBRE');
+																	$('#lbl_nombre_instructor').text('$data->NOMBRE  $data->APP  $data->APM ');
+																	$('#lbl_rfc_instructor').text('$data->RFC ');		
 																	$('#lbl_correo_electronico').text('$data->CORREO_ELECTRONICO');
 																	$('#lbl_telefono').text('$data->TELEFONO');
 																	$('#lbl_num_registro_agente_externo').text('$data->NUM_REGISTRO_AGENTE_EXTERNO');

@@ -682,7 +682,7 @@ public function actionViewbycompany($id){
     			Yii::$app->session->setFlash('alert', [
     					'options'=>['class'=>'alert-success'],
     
-    					'body'=> '<i class="fa fa-check"></i> Firma guardada y encriptada correctamente, ¡ Puede desencriptar la firma  proporcionando la constraseña nuevamente !.',
+    					'body'=> '<i class="fa fa-check"></i> Firma guardada y encriptada correctamente, puede desencriptar la firma  proporcionando la constraseña nuevamente.',
     			]);
     			 
     			return $this->redirect(['view-sign-pic']);

@@ -157,7 +157,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						
 	  		  <?= Html::submitButton( '<i class="fa fa-cogs"></i> Des encriptar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 	    
-	    	 	<?= Html::a( '<i class="fa fa-pencil"></i> Editar firma', ['/trabajador/manage-sign-pic', 'id'=>$model->ID_TRABAJADOR, 'id_comision'=>$comisionModel->ID_COMISION_MIXTA] , ['class' =>  'btn btn-primary']) ?>
+	    	 	<?= Html::a( '<i class="fa fa-pencil"></i> Editar firma', ['/trabajador/manage-sign-pic', 'id'=>$model->ID_TRABAJADOR, 'id_comision'=>$comisionModel->ID_COMISION_MIXTA] , ['class' =>  'btn btn-warning']) ?>
 	    	 	
 	    	<?php else:?>
 	    
