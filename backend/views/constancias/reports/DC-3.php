@@ -814,7 +814,7 @@ use backend\models\Constancia;
 						$empresaUsuarioModel = EmpresaUsuario::getMyCompany();
 					  $representante = $empresaUsuarioModel->iDEMPRESA->iDREPRESENTANTELEGAL;
 					  
-					  if ($representante->SIGN_PICTURE !== NULL && $representante->SIGN_PASSWD !== NULL && $representante->getSigningBinary() !== null && $model->ESTATUS == Constancia::STATUS_SIGNED_REPRESENTATIVE ): ?>
+					  if ($representante->SIGN_PICTURE !== NULL && $representante->SIGN_PASSWD !== NULL && $representante->getSigningBinary() !== null && $model->ESTATUS >= Constancia::STATUS_SIGNED_REPRESENTATIVE ): ?>
 					  
 					  
 					  <table>
