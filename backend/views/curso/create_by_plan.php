@@ -11,7 +11,10 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
 							   </span>';
 
 $this->title = 'Crear curso del plan';
-$this->params['breadcrumbs'][] = ['label' => 'Curso', 'url' => ['index']];
+//$this->params['breadcrumbs'][] = ['label' => 'Comisión ID '.$model->iD_PLAN->ID_COMISION, 'url'=>['comision-mixta-cap/dashboard', 'id'=>$model->iD_PLAN->ID_COMISION]];
+
+$this->params['breadcrumbs'][] = ['label' => 'Plan ID '.$model->ID_PLAN, 'url'=>['plan/dashboard', 'id'=>$model->ID_PLAN]];
+
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="plan-create">
