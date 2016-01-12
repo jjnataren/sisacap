@@ -38,6 +38,9 @@ use Yii;
  * @property string $SIGN_PASSWD
  * @property string $SIGN_PIC_EXTENSION
  * @property string $SIGN_CREATED_AT
+ * @property string $NUMERO_EXTERIOR
+ * @property string $NUMERO_INTERIOR
+ * @property string $COLONIA
  *
  * @property ComisionMixtaCap[] $comisionMixtaCaps
  * @property Constancia[] $constancias
@@ -47,6 +50,7 @@ use Yii;
  */
 class Trabajador extends \yii\db\ActiveRecord
 {
+	
 	//itemsexo
 	const SEX_HOMBRE=2;
 	const SEX_MUJER=1;
@@ -104,9 +108,7 @@ class Trabajador extends \yii\db\ActiveRecord
 			self::DOC_OTRO => 'OTRO',
 	];
 	
-    
-    
-    
+	
     /**
      * @inheritdoc
      */
@@ -115,7 +117,7 @@ class Trabajador extends \yii\db\ActiveRecord
         return 'tbl_trabajador';
     }
 
-    /**
+	 /**
      * @inheritdoc
      */
     public function rules()
@@ -145,7 +147,7 @@ class Trabajador extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
+      /**
      * @inheritdoc
      */
  public function attributeLabels()
@@ -224,34 +226,32 @@ class Trabajador extends \yii\db\ActiveRecord
         return $this->hasMany(TrabajadorCurso::className(), ['ID_TRABAJADOR' => 'ID_TRABAJADOR']);
     }
     
-    
-    
     /**
      * Gets  singning image binary base64
      */
     public function getSigningBinary(){
-    	 
+    
     	/*
     	 * into a reproducable iv/key pair
     	 */
-    	 
+    
     	$image64Data = null;
-    	 
-    	 
+    
+    
     	if($this->SIGN_PIC !== null){
     
     		try {
     
-    			 
+    
     			$passphrase  =  $this->SIGN_PASSWD;
-    			 
+    
     			$iv = substr(md5('iv'.$passphrase, true), 0, 8);
     			$key = substr(md5('pass1'.$passphrase, true) .
     					md5('pass2'.$passphrase, true), 0, 24);
     			$opts = array('iv'=>$iv, 'key'=>$key);
-    			 
+    
     			$fp = @fopen($this->SIGN_PIC, 'rb');
-    			 
+    
     			if (!$fp) {
     
     				return null;
@@ -259,16 +259,16 @@ class Trabajador extends \yii\db\ActiveRecord
     			stream_filter_append($fp, 'mdecrypt.tripledes', STREAM_FILTER_READ, $opts);
     			$data = rtrim(stream_get_contents($fp));
     			fclose($fp);
-    			 
+    
     			$image64Data =  $data;
-    			 
+    
     		} catch (Exception $e) {
     
     			return null;
     		}
     	}
-    	 
+    
     	return base64_encode($image64Data);
-    	 
+    
     }
 }
