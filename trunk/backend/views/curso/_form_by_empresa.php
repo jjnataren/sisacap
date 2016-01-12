@@ -16,6 +16,7 @@ use yii\base\Model;
 /* @var $form yii\widgets\ActiveForm */
 
 $dataListAreaTematica=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>6,'ACTIVO'=>1]), 'ID_ELEMENTO', 'NOMBRE');
+$dataListCourse=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>11,'ACTIVO'=>1]), 'ID_ELEMENTO', 'NOMBRE');
 
 
 $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options');
@@ -46,7 +47,8 @@ $itemsObjetivo = [1=>'Actualizar y perfeccionar conocimientos y habilidades y pr
 			<div class=" col-xs-12 col-sm-12 col-md-6">
 				<div class="panel panel-default">
 			 		<div class="panel-body">	
-						<?= $form->field($model, 'NOMBRE')->textInput() ?>
+			 		
+	<?= $form->field($model, 'NOMBRE')->dropDownList($dataListCourse, ['prompt'=>'--Seleccione---']) ->label(false) ?>
 						
 						
 						
