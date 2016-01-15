@@ -30,6 +30,8 @@ use Yii;
 class Curso extends \yii\db\ActiveRecord
 {
 
+	public $OTRO_NOMBRE;
+	
 	const  STATUS_INICIADO = 1;
 	const  STATUS_CREADO = 2;  //POR INICIAR
 	const  STATUS_CONCLUIDO = 3;
