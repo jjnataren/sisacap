@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $ID_CURSO
  * @property integer $ID_PLAN
+ * @property string $ALIAS
  * @property integer $ID_INSTRUCTOR
  * @property string $NOMBRE
  * @property integer $DURACION_HORAS
@@ -28,7 +29,7 @@ use Yii;
  */
 class Curso extends \yii\db\ActiveRecord
 {
-    
+
 	const  STATUS_INICIADO = 1;
 	const  STATUS_CREADO = 2;  //POR INICIAR
 	const  STATUS_CONCLUIDO = 3;
@@ -50,11 +51,11 @@ class Curso extends \yii\db\ActiveRecord
 	const obj_vacantes = 5;
 	
 	
-	 
+	
 	public static function  getModalidad(){
 		return [Curso::mod_presencial=>'Presencial',
-				self:: mod_online=> 'En linea',
-				self::mod_mixta=>'Mixta',
+		self:: mod_online=> 'En linea',
+		self::mod_mixta=>'Mixta',
 	
 		];
 	
@@ -62,33 +63,34 @@ class Curso extends \yii\db\ActiveRecord
 	
 	
 	public static function  getObjetivos(){
-		 
+			
 		return [Curso::obj_habilidades=>'Actualizar y perfeccionar conocimientos y habilidades y proporcionar información de nuevas tecnologías',
-				self::obj_riesgos=>'Prevenir riesgos de trabajo',
-				self::obj_productividad=>'Incrementar la productividad',
-				self::obj_niveEducativo=>'Nivel educativo',
-				self::obj_vacantes=>'Preparar para ocupar vacantes o puestos de nueva creación',
+		self::obj_riesgos=>'Prevenir riesgos de trabajo',
+		self::obj_productividad=>'Incrementar la productividad',
+		self::obj_niveEducativo=>'Nivel educativo',
+		self::obj_vacantes=>'Preparar para ocupar vacantes o puestos de nueva creación',
 		];
 	}
 	
 	
-public  static  function statusDescription(){
+	public  static  function statusDescription(){
 	
-	return [
-0=>'unknow',
-Curso::STATUS_INICIADO =>'Iniciado',
-Curso::STATUS_CREADO =>'Creado',
-Curso::STATUS_CONCLUIDO => 'Concluido',
-Curso::STATUS_CERRADO =>'Cerrado',
-
-
-];
-}
-
-
-
-
-
+		return [
+		0=>'unknow',
+		Curso::STATUS_INICIADO =>'Iniciado',
+		Curso::STATUS_CREADO =>'Creado',
+		Curso::STATUS_CONCLUIDO => 'Concluido',
+		Curso::STATUS_CERRADO =>'Cerrado',
+	
+	
+		];
+	}
+	
+	
+	
+	
+	
+	
     /**
      * @inheritdoc
      */
@@ -97,17 +99,17 @@ Curso::STATUS_CERRADO =>'Cerrado',
         return 'tbl_curso';
     }
 
-      
     
-    						
+    
+    
     /**
      * Own validation
      * @param unknown $attribute
      * @param unknown $params
-     * 
+     *
      * */
     
-  
+    
     
     
     public function  validateVigenciaInicioPlan($attribute, $params){
@@ -197,7 +199,7 @@ Curso::STATUS_CERRADO =>'Cerrado',
     
     }
     
-     /**
+   /**
      * @inheritdoc
      */
     public function rules()
@@ -228,24 +230,25 @@ Curso::STATUS_CERRADO =>'Cerrado',
         ];
     }
 
-        /**
+    /**
      * @inheritdoc
      */
     public function attributeLabels()
     {
         return [
-            'ID_CURSO' => 'Id del Curso',
-            'ID_PLAN' => 'Id del Plan',
+            'ID_CURSO' => 'Id de curso',
+            'ID_PLAN' => 'Id del plan',
+            'ALIAS' => 'Alias',
             'ID_INSTRUCTOR' => 'Id del Instructor',
             'NOMBRE' => 'Nombre',
+            'DURACION_HORAS' => 'Duracion  Horas',
+            'FECHA_INICIO' => 'Fecha  Inicio',
+            'FECHA_TERMINO' => 'Fecha  Termino',
+            'AREA_TEMATICA' => 'Area  Tematica',
+            'MODALIDAD_CAPACITACION' => 'Modalidad  Capacitacion',
+            'DESCRIPCION' => 'Descripcion',
+            'OBJETIVO_CAPACITACION' => 'Objetivo  Capacitacion',
             'ESTATUS' => 'Estatus',
-            'DURACION_HORAS' => 'Duración horas',
-            'FECHA_INICIO' => 'Fecha de inicio',
-            'FECHA_TERMINO' => 'Fecha de termino',
-            'AREA_TEMATICA' => 'Área temática',
-            'MODALIDAD_CAPACITACION' => 'Modalidad de capacitación',
-            'DESCRIPCION' => 'Descripción',
-            'OBJETIVO_CAPACITACION' => 'Objetivo de Capacitación',
         ];
     }
 
@@ -281,7 +284,8 @@ Curso::STATUS_CERRADO =>'Cerrado',
         return $this->hasMany(IndicadorCurso::className(), ['ID_CURSO' => 'ID_CURSO']);
     }
 
-    /**
+  
+  /**
      * @return \yii\db\ActiveQuery
      */
     public function getTrabajadorCursos()
@@ -349,3 +353,4 @@ Curso::STATUS_CERRADO =>'Cerrado',
    
     
 }
+    
