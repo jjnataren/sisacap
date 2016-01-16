@@ -24,13 +24,18 @@ $this->registerJs("$('#empresaButton').click(function() {
     <?php $form = ActiveForm::begin(); ?>
     
     
+<div class="row">    
  <div class=" col-xs-12 col-sm-12 col-md-8">
 				
-	<div class="panel panel-warning">
+	<div class="panel <?= ($model->isNewRecord)? 'panel-primary':'panel-warning'?> ">
 					
 		<div class="panel-heading">
 						
-			<h3> <i class="fa fa-plus-square"></i>
+			<h3> <?php if($model->isNewRecord):?> <i class="fa fa-plus-square"></i>
+					
+					<?php else:?>
+						<i class="fa fa-pencil"></i>
+					<?php endif;?>
 						
 				<?= Yii::t('backend', ' Lista de constancias formato(DC-4)') ?> <small></small> </h3>	
 		</div>
@@ -90,12 +95,29 @@ Aquí podrás expedir las constancias para los trabajadores de sexo (Femenino).
 												
 				<?= $form->field($model, 'DESCRIPCION')->textarea(['rows' => 5]) ?>
 				
-				<?= $form->field($model, 'FECHA_INFORME')->widget('trntv\yii\datetimepicker\DatetimepickerWidget', ['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]]) ?>
+				<?= $form->field($model, 'FECHA_ELABORACION')->widget('trntv\yii\datetimepicker\DatetimepickerWidget', ['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]]) ?>
 						
 			
 				</div>
 				
+			</div>
+			
+			  
+		 <div class="row">
+	     <div class=" col-xs-12 col-sm-12 col-md-8">
+						
+				
+				<?= $form->field($model, 'EXPEDIENTE')->textInput() ?>						
+												
+				<?= $form->field($model, 'FECHA_P_DOF')->widget('trntv\yii\datetimepicker\DatetimepickerWidget', ['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]]) ?>
+				
+				<?= $form->field($model, 'FECHA_SOLICITUD')->widget('trntv\yii\datetimepicker\DatetimepickerWidget', ['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]]) ?>
+						
+			
 				</div>
+				
+			</div>
+		
 		
 			
 			    <div class="form-group">
@@ -107,4 +129,7 @@ Aquí podrás expedir las constancias para los trabajadores de sexo (Femenino).
 			    <?php ActiveForm::end(); ?>
 			
 			</div>
+	</div>
+</div>			
 
+</div>
