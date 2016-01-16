@@ -482,12 +482,12 @@ class TrabajadorController extends Controller
     						$worker->NUMERO_INTERIOR = $line[18];
     						$worker->NUMERO_EXTERIOR = $line[19];
     						$worker->COLONIA = $line[20];
-    						//$worker->C = $line[17];
+    						$worker->CODIGO_POSTAL = $line[21];
     						    						
-    						$worker->GRADO_ESTUDIO = $line[14];
-    						$worker->INSTITUCION_EDUCATIVA = $line[15];
-    						$worker->FECHA_EMISION_CERTIFICADO = $line[16];
-    						$worker->DOCUMENTO_PROBATORIO = $line[17];
+    						$worker->GRADO_ESTUDIO = $line[23];
+    						$worker->INSTITUCION_EDUCATIVA = $line[25];
+    						
+    						$worker->DOCUMENTO_PROBATORIO = $line[27];
     					//	$worker->OTRO_OCUPACION = $line[18];
     							
     							
@@ -515,9 +515,9 @@ class TrabajadorController extends Controller
     						
     						$columnas = count($line);
     						
-    						if ($columnas !== 18  || (strtoupper( trim($line[0]).trim($line[1]).trim($line[2]).trim($line[3]).trim($line[4]).trim($line[5]).trim($line[6]).
-    								trim($line[7]).trim($line[8]).trim($line[9]).trim($line[10]).trim($line[11]).trim($line[12]).trim($line[13]).trim($line[14]).trim($line[15]).trim($line[16]).
-    								trim($line[17]) ) !== self::HEADER_DOC )) {
+    						if ($columnas !== 28  || (strtoupper( trim($line[0]).trim($line[1]).trim($line[2]).trim($line[3]).trim($line[4]).trim($line[5]).trim($line[6]).
+    								trim($line[7]).trim($line[8]).trim($line[10]).trim($line[12]).trim($line[14]).trim($line[16]).trim($line[17]).trim($line[18]).trim($line[19]).trim($line[20]).
+    								trim($line[21]).trim($line[23]).trim($line[25]).trim($line[27]) ) !== self::HEADER_DOC )) {
     							
     						
     							Yii::$app->session->setFlash('alert', [
@@ -638,25 +638,30 @@ class TrabajadorController extends Controller
     						$tmp_puesto = PuestoEmpresa::findOne(['CLAVE_PUESTO'=> $line[8], 'ID_EMPRESA'=>$model->ID_EMPRESA ]);
     						$worker->PUESTO = isset($tmp_puesto) ? $tmp_puesto->ID_PUESTO: null ;
     						
-    						$tmp_ocupacion = Catalogo::findOne(['CLAVE'=>$line[9],  'CATEGORIA'=>Catalogo::CATEGORIA_OCUPACION]);
+    						$tmp_ocupacion = Catalogo::findOne(['CLAVE'=>$line[10],  'CATEGORIA'=>Catalogo::CATEGORIA_OCUPACION]);
     						$worker->OCUPACION_ESPECIFICA = isset($tmp_ocupacion)?$tmp_ocupacion->ID_ELEMENTO : null;
     						
-    						$worker->SEXO = $line[10];
+    						$worker->SEXO = $line[12];
     						
-    						$tmp_federativa = Catalogo::findOne(['CLAVE'=>$line[11],  'CATEGORIA'=>Catalogo::CATEGORIA_ENTIDADES_FEDERATIVAS]);
+    						$tmp_federativa = Catalogo::findOne(['CLAVE'=>$line[14],  'CATEGORIA'=>Catalogo::CATEGORIA_ENTIDADES_FEDERATIVAS]);
     						$worker->ENTIDAD_FEDERATIVA = isset($tmp_federativa)?$tmp_federativa->ID_ELEMENTO : null;
     						
     						
     						
-    						$tmp_municipio = Catalogo::findOne(['CLAVE'=>$line[12],  'CATEGORIA'=>Catalogo::CATEGORIA_MUNICIPIOS, 'ELEMENTO_PADRE'=>$worker->ENTIDAD_FEDERATIVA]);
+    						$tmp_municipio = Catalogo::findOne(['CLAVE'=>$line[16],  'CATEGORIA'=>Catalogo::CATEGORIA_MUNICIPIOS, 'ELEMENTO_PADRE'=>$worker->ENTIDAD_FEDERATIVA]);
     						$worker->MUNICIPIO_DELEGACION =  isset($tmp_municipio)?$tmp_municipio->ID_ELEMENTO : null;
     						
     						
-    						$worker->LUGAR_RESIDENCIA = $line[13];
-    						$worker->GRADO_ESTUDIO = $line[14];
-    						$worker->INSTITUCION_EDUCATIVA = $line[15];
-    						$worker->FECHA_EMISION_CERTIFICADO = $line[16];
-    						$worker->DOCUMENTO_PROBATORIO = $line[17];
+    						$worker->CALLE = $line[17];
+    						$worker->NUMERO_INTERIOR = $line[18];
+    						$worker->NUMERO_EXTERIOR = $line[19];
+    						$worker->COLONIA = $line[20];
+    						$worker->CODIGO_POSTAL = $line[21];
+    						    						
+    						$worker->GRADO_ESTUDIO = $line[23];
+    						$worker->INSTITUCION_EDUCATIVA = $line[25];
+    						
+    						$worker->DOCUMENTO_PROBATORIO = $line[27];
     		
     					
     					
@@ -687,9 +692,9 @@ class TrabajadorController extends Controller
     						
     						$columnas = count($line);
     						
-    						if ($columnas !== 18  || (strtoupper( trim($line[0]).trim($line[1]).trim($line[2]).trim($line[3]).trim($line[4]).trim($line[5]).trim($line[6]).
-    								trim($line[7]).trim($line[8]).trim($line[9]).trim($line[10]).trim($line[11]).trim($line[12]).trim($line[13]).trim($line[14]).trim($line[15]).trim($line[16]).
-    								trim($line[17]) ) !== self::HEADER_DOC )) {
+    						if ($columnas !== 28  || (strtoupper( trim($line[0]).trim($line[1]).trim($line[2]).trim($line[3]).trim($line[4]).trim($line[5]).trim($line[6]).
+    								trim($line[7]).trim($line[8]).trim($line[10]).trim($line[12]).trim($line[14]).trim($line[16]).trim($line[17]).trim($line[18]).trim($line[19]).trim($line[20]).
+    								trim($line[21]).trim($line[23]).trim($line[25]).trim($line[27]) ) !== self::HEADER_DOC )) {
     							
     						
     							Yii::$app->session->setFlash('alert', [
