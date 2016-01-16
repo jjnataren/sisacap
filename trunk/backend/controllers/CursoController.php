@@ -13,12 +13,14 @@ use backend\models\search\InstructorSearch;
 use backend\models\Plan;
 use backend\models\Indicadores;
 use backend\models\Instructor;
+use backend\models\Catalogo;
 
 /**
  * CursoController implements the CRUD actions for Curso model.
  */
 class CursoController extends Controller
 {
+	
 	
 	
 	public function beforeAction($action) {
@@ -193,17 +195,40 @@ class CursoController extends Controller
     		return $this->redirect(['comision-mixta-cap/dashboard', 'id' => $id]);
     	}
     	*/
+    	
+   
+  
+    	    		   	
     	$model = new Curso();
+    	
     	$model->ID_PLAN = $id_plan;
     
+			
+
+    	//$model->NOMBRE = $listCurso->NOMBRE ;
+    	    	
     	if ($model->load(Yii::$app->request->post())){
     		$tmpdate = \DateTime::createFromFormat('d/m/Y', $model->FECHA_INICIO);
     		$model->FECHA_INICIO = ($tmpdate === false)? null : $tmpdate->format('Y-m-d') ;
     	
     		$tmpdate = \DateTime::createFromFormat('d/m/Y', $model->FECHA_TERMINO);
     		$model->FECHA_TERMINO = ($tmpdate === false)? null: $tmpdate ->format('Y-m-d') ;
+    	
+   
+    		$nombretmp  = $model->NOMBRE;
     		
-    	if ($model->save()) {
+    		if ($model->OTRO_NOMBRE !== Curso::CURSO_PERSONALIZADO && $model->NOMBRE === ''){
+    			
+    				$catalogoModel = Catalogo::findOne($model->OTRO_NOMBRE);
+    			
+    				$model->NOMBRE = $catalogoModel->NOMBRE;
+    				
+    				
+    				//id add
+    		}
+    		
+    		
+    	if ($model->save()) {	
     		
     		Yii::$app->session->setFlash('alert', [
     				'options'=>['class'=>'alert-success'],
@@ -219,6 +244,8 @@ class CursoController extends Controller
     				'options'=>['class'=>'alert-danger'],
     				'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'>Ha ocurrido un error, por favor revise los campos<a href=\'#\' class=\'alert-link\'></a>',
     		]);
+    		
+    		$model->NOMBRE = $nombretmp;		
     		
     	}
     	
