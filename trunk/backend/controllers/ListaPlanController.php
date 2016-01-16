@@ -321,23 +321,42 @@ class ListaPlanController extends Controller
     	
     	$model->ACTIVO = 1;
     	
-    	$model->FECHA_AGREGO = date('Y-m-d H:i');
+
     	
-    	if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    	if ($model->load(Yii::$app->request->post()) ) {
     		
     		$tmpdate = \DateTime::createFromFormat('d/m/Y', $model->FECHA_ELABORACION);
     		$model->FECHA_ELABORACION = ($tmpdate === false)? null : $tmpdate ->format('Y-m-d') ;
     		
     	
-    		$tmpdate = \DateTime::createFromFormat('d/m/Y', $model->FECHA_INFORME);
-    		$model->FECHA_INFORME = ($tmpdate === false)? null : $tmpdate ->format('Y-m-d') ;
+    		$tmpdate = \DateTime::createFromFormat('d/m/Y', $model->FECHA_SOLICITUD);
+    		$model->FECHA_SOLICITUD = ($tmpdate === false)? null : $tmpdate ->format('Y-m-d') ;
     		
-    		Yii::$app->session->setFlash('alert', [
-    		'options'=>['class'=>'alert-success'],
-    		'body'=> '<i class="fa fa-check fa-lg"></i> Lista creada correctamente',
-    		]);
+    		 
+
+    		$tmpdate = \DateTime::createFromFormat('d/m/Y', $model->FECHA_P_DOF);
+    		$model->FECHA_P_DOF = ($tmpdate === false)? null : $tmpdate ->format('Y-m-d') ;
     		
-    		return $this->redirect(['plan/dashboard', 'id' => $id_plan]);
+    		$model->FECHA_AGREGO = date('Y-m-d H:i');
+    		
+    		if ($model->save()){
+    			
+    			Yii::$app->session->setFlash('alert', [
+    					'options'=>['class'=>'alert-success'],
+    					'body'=> '<i class="fa fa-check fa-lg"></i> Lista creada correctamente',
+    			]);
+    			
+    			return $this->redirect(['plan/dashboard', 'id' => $id_plan]);
+    			
+    		}else {
+    		return $this->render('create_by_plan', [
+    				'model' => $model,
+    				'id_plan'=>$id_plan
+    				]);
+    	}
+    		
+    		
+    		
     	} else {
     		return $this->render('create_by_plan', [
     				'model' => $model,
@@ -409,7 +428,7 @@ class ListaPlanController extends Controller
     	//'format' => [210, 297], // Legal page size in mm
     	'orientation' => 'Landscape', // This value will be used when 'format' is an array only. Skipped when 'format' is empty or is a string
     	'marginLeft' => 7.5, // Optional
-    	'marginRight' => 10.8, // Optional
+    	'marginRight' => 10.5, // Optional
     	'marginTop' => 8, // Optional
     
     	'beforeRender' => function($mpdf, $data) {},
@@ -515,15 +534,18 @@ class ListaPlanController extends Controller
     	if ($model->load(Yii::$app->request->post())) {
     		
     	
-    		
+    		 
     		$tmpdate = \DateTime::createFromFormat('d/m/Y', $model->FECHA_ELABORACION);
+    		$model->FECHA_ELABORACION = ($tmpdate === false)? null : $tmpdate ->format('Y-m-d') ;
     		
-    		$model->FECHA_ELABORACION = ($tmpdate ===false)? null : $tmpdate->format('Y-m-d') ;
     		
-    		$tmpdate = \DateTime::createFromFormat('d/m/Y', $model->FECHA_INFORME);
+    		$tmpdate = \DateTime::createFromFormat('d/m/Y', $model->FECHA_SOLICITUD);
+    		$model->FECHA_SOLICITUD = ($tmpdate === false)? null : $tmpdate ->format('Y-m-d') ;
     		
-    		$model->FECHA_INFORME = ($tmpdate ===false)? null : $tmpdate->format('Y-m-d') ;
+    		 
     		
+    		$tmpdate = \DateTime::createFromFormat('d/m/Y', $model->FECHA_P_DOF);
+    		$model->FECHA_P_DOF = ($tmpdate === false)? null : $tmpdate ->format('Y-m-d') ;
     		
     		$model->FECHA_AGREGO = date('Y-m-d H:i');
     		
@@ -532,6 +554,11 @@ class ListaPlanController extends Controller
     		'options'=>['class'=>'alert-success'],
     		'body'=> '<i class="fa fa-check"></i> Se ha guardado correctamente el reporte.',
     		]);
+    		}else{
+    			return $this->render('update_by_plan', [
+    					'model' => $model,
+    			]);
+    			
     		}
     		
     		
