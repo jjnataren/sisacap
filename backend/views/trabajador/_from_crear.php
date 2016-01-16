@@ -38,6 +38,7 @@ from tbl_cat_catalogo tcc where categoria=7 AND tcc.ELEMENTO_PADRE IN (select id
  ')->all(), 'ID_ELEMENTO', 'NOMBRE');
 
 
+$dataListMunicipiosEmpresa=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>2,'ACTIVO'=>1, 'ELEMENTO_PADRE'=>$model->iDEMPRESA->ENTIDAD_FEDERATIVA]), 'ID_ELEMENTO', 'NOMBRE');
 
 $dataListSectores=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>9,'ACTIVO'=>1]), 'ID_ELEMENTO', 'NOMBRE');
 
@@ -89,6 +90,55 @@ $this->registerJs("$('#drop_ocup').change(function(){
 });", View::POS_END, 'noneoptions_drop_functions');
 
 
+$this->registerJs ( "$('#userchange').change(function(){
+
+		var ischecked = true;
+
+		if(this.value == 1) ischecked = false;
+
+
+
+		if(!ischecked){
+
+			$('#userform-password').val('');
+
+		
+
+			$('#cat-id').val($('#companyEntidad').val( ));
+
+			//$( '#cat-id' ).trigger( 'change' );
+		
+			var options = $(\"#companyMp > option\").clone();
+
+			$('#subcat-id').append(options);
+
+			$('#trabajador-codigo_postal').val($('#companyCP').val( ));
+
+			$('#trabajador-colonia').val($('#companyColonia').val( ));
+
+			$('#trabajador-numero_interior').val($('#companyNI').val( ));
+
+			$('#trabajador-numero_exterior').val($('#companyNE').val( ));
+
+			$('#trabajador-calle').val($('#companyCalle').val( ));
+
+		
+		}else{
+
+			$('#trabajador-codigo_postal').val('');
+
+			$('#trabajador-colonia').val('');
+
+			$('#trabajador-numero_interior').val('');
+
+			$('#trabajador-numero_exterior').val('');
+
+			$('#trabajador-calle').val('');
+
+
+			}
+
+});", View::POS_END, 'userchange' );
 
 ?>
 <div class="row">
@@ -271,20 +321,37 @@ $this->registerJs("$('#drop_ocup').change(function(){
    
 
     
-	 <div class="col-md-6 col-xs-12">
-            <div class="panel">
-                <div class="panel-heading text-primary">
-                    
-                    <h3 class="panel-title"><?= Yii::t('backend', 'Domicilio') ?></h3>
-                </div>
-                <div class="panel-body">				
+		 <div class="col-md-6 col-xs-12">
+             <div class="box box-default">
+				                <div class="box-header">
+				                
+				       				
+				                    <h3 class="box-title text-primary"><?= Yii::t('backend', 'Domicilio  ') ?></h3>
+				                    <div class="box-tools pull-right">
+				                    	
+				                    	<?php 
+				                    	
+				                    	
+					                    	echo '<label class="cbx-label" for="userchange"><strong>Tomar domicilio de la empresa</strong></label>';
+					                    	
+					                    	echo CheckboxX::widget([
+											    'name'=>'userchange',
+											    'options'=>['id'=>'userchange'],
+											    'pluginOptions'=>['threeState'=>false, 'size'=>'lg'],
+											]);  
+				                    	
+				                    	?>
+							         </div><!-- /.box-tools -->
+				                </div><!-- /.box-header -->
+				                <div class="box-body">
+				                						
 
 
-    <!--  <?= $form->field($model, 'DOMICILIO')->textArea(['maxlength' => 300]) ?> -->
+    <!--  <?= $form->field($model, 'DOMICILIO')->textArea(['maxlength' => 300]); ?> -->
    
      <?= $form->field($model, 'ENTIDAD_FEDERATIVA')->dropDownList($dataListEntidad,['prompt'=>'-- Seleccione  --','id' => 'cat-id']) ?>
      
-    
+    <?= Html::hiddenInput('companyEntidad',$model->iDEMPRESA->ENTIDAD_FEDERATIVA, ['id'=>'companyEntidad']);?>
 
  <?= $form->field($model, 'MUNICIPIO_DELEGACION')->widget(DepDrop::classname(), [
     'options' => ['id' => 'subcat-id'],
@@ -295,10 +362,30 @@ $this->registerJs("$('#drop_ocup').change(function(){
     ]
 ]); ?>
 
+	<?= Html::hiddenInput('companyMpio',$model->iDEMPRESA->MUNICIPIO_DELEGACION, ['id'=>'companyMpio']);?>
+	<?= Html::dropDownList('companyMp',$model->iDEMPRESA->MUNICIPIO_DELEGACION,$dataListMunicipiosEmpresa, ['id'=>'companyMp','style'=>'visibility: hidden;']);?>
      
-      
+     
+     
+     <?= $form->field($model, 'CODIGO_POSTAL')->textInput(['maxlength' => 6]) ?> 
+     	<?= Html::hiddenInput('companyCP',$model->iDEMPRESA->CODIGO_POSTAL, ['id'=>'companyCP']);?>
+    
+    <?= $form->field($model, 'COLONIA')->textInput(['maxlength' => 300]) ?>
+    		<?= Html::hiddenInput('companyColonia',$model->iDEMPRESA->COLONIA, ['id'=>'companyColonia']);?>
     
     <?= $form->field($model, 'LUGAR_RESIDENCIA')->textInput(['maxlength' => 200]) ?>
+    
+     <?= $form->field($model, 'NUMERO_INTERIOR')->textInput(['maxlength' => 100]) ?>
+    	<?= Html::hiddenInput('companyNI',$model->iDEMPRESA->NUMERO_INTERIOR, ['id'=>'companyNI']);?>
+    	
+    <?= $form->field($model, 'NUMERO_EXTERIOR')->textInput(['maxlength' => 100]) ?>
+    	<?= Html::hiddenInput('companyNE',$model->iDEMPRESA->NUMERO_EXTERIOR, ['id'=>'companyNE']);?>
+    
+    <?= $form->field($model, 'CALLE')->textInput(['maxlength' => 300]) ?>
+    	<?= Html::hiddenInput('companyCalle',$model->iDEMPRESA->CALLE, ['id'=>'companyCalle']);?>
+    
+    
+    
     </div>
     </div>
     </div>
