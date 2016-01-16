@@ -9,7 +9,6 @@ use Yii;
  *
  * @property integer $ID_CURSO
  * @property integer $ID_PLAN
- * @property string $ALIAS
  * @property integer $ID_INSTRUCTOR
  * @property string $NOMBRE
  * @property integer $DURACION_HORAS
@@ -20,6 +19,9 @@ use Yii;
  * @property string $DESCRIPCION
  * @property string $OBJETIVO_CAPACITACION
  * @property integer $ESTATUS
+ * @property string $DOCUMENTO_PROBATORIO
+ * @property string $NOMBRE_DOCUMENTO_PROBATORIO
+ * @property string $FECHA_DOCUMENTO_PROBATORIO
  *
  * @property Constancia[] $constancias
  * @property Instructor $iDINSTRUCTOR
@@ -29,7 +31,6 @@ use Yii;
  */
 class Curso extends \yii\db\ActiveRecord
 {
-
 	public $OTRO_NOMBRE;
 	
 	const  STATUS_INICIADO = 1;
@@ -255,6 +256,7 @@ class Curso extends \yii\db\ActiveRecord
             'OTRO_NOMBRE'=>'Cursos predeterminados',
         ];
     }
+	
 
     /**
      * @return \yii\db\ActiveQuery
@@ -288,8 +290,7 @@ class Curso extends \yii\db\ActiveRecord
         return $this->hasMany(IndicadorCurso::className(), ['ID_CURSO' => 'ID_CURSO']);
     }
 
-  
-  /**
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getTrabajadorCursos()
@@ -297,64 +298,60 @@ class Curso extends \yii\db\ActiveRecord
         return $this->hasMany(TrabajadorCurso::className(), ['ID_CURSO' => 'ID_CURSO']);
     }
     
-    
-    
+
     /**
      * returns course's current status
      * @return string
      */
     public function  getCurrentStatus(){
+    
     	 
-    	
-    /*	
-    	
-    	
-    	
-    	
-       	if ($plan->getCurrentStatus() < Plan::STATUS_VALIDADO && $fechaInfo !== false){
-    	
-    	
-    		$modelIndicador = new IndicadorPlan();
-    	
-    		$modelIndicador->ACTIVO = 1;
-    	
-    		$modelIndicador->FECHA_INICIO_VIGENCIA= $fechaInfo->modify('-5 day')->format('Y-m-d');
-    	
-    		$modelIndicador->FECHA_FIN_VIGENCIA = $fechaInfo->modify('+10 day')->format('Y-m-d');*/
-    	
-    	
+    	/*
+    	  
+    	 
+    	 
+    	 
+    	if ($plan->getCurrentStatus() < Plan::STATUS_VALIDADO && $fechaInfo !== false){
+    	 
+    	 
+    	$modelIndicador = new IndicadorPlan();
+    	 
+    	$modelIndicador->ACTIVO = 1;
+    	 
+    	$modelIndicador->FECHA_INICIO_VIGENCIA= $fechaInfo->modify('-5 day')->format('Y-m-d');
+    	 
+    	$modelIndicador->FECHA_FIN_VIGENCIA = $fechaInfo->modify('+10 day')->format('Y-m-d');*/
+    	 
+    	 
     	$v_inicio = strtotime($this->FECHA_INICIO);
     	$v_fin = strtotime($this->FECHA_TERMINO);
-    	
+    	 
     	if (!$v_fin  || !$v_inicio){
-    		
+    
     		RETURN 0;
     	}
-    	
-    	
+    	 
+    	 
     	$fechaFin60Dias = new \DateTime($this->FECHA_TERMINO);
     	$fechaFin60Dias->modify('+60 day');
-    	
+    	 
     	$currentTime = time();
-    	
+    	 
     	if ($v_inicio > $currentTime ){
-    		
+    
     		RETURN self::STATUS_CREADO;
-    	
+    		 
     	}
     	if ($v_inicio <= $currentTime && $v_fin >= $currentTime ){
-    		
+    
     		RETURN self::STATUS_INICIADO;
-    		
+    
     	}elseif($v_fin < $currentTime ){
     
     		return  self::STATUS_CONCLUIDO;
     	}
-    	
-    	
-    	return 0; 
+    	 
+    	 
+    	return 0;
     }
-   
-    
 }
-    
