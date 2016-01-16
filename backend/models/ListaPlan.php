@@ -62,8 +62,8 @@ class ListaPlan extends \yii\db\ActiveRecord
         [['CONSTANCIAS_HOMBRES', 'CONSTANCIAS_MUJERES','ALIAS','LUGAR_INFORME','FECHA_ELABORACION'], 'required','message' =>'El dato es obligatorio'],
         
             [['ID_PLAN', 'ESTATUS', 'ACTIVO', 'ID_EMPRESA', 'CONSTANCIAS_HOMBRES', 'CONSTANCIAS_MUJERES'], 'integer'],
-            [['FECHA_AGREGO', 'FECHA_INFORME'], 'safe'],
-            [['FECHA_ELABORACION'], 'string', 'max' => 45],
+            [['FECHA_AGREGO', 'FECHA_INFORME','FECHA_SOLICITUD', 'FECHA_P_DOF'], 'safe'],
+            [['FECHA_ELABORACION','EXPEDIENTE'], 'string', 'max' => 45],
             [['DOCUMENTO_PROBATORIO'], 'string', 'max' => 2048],
             [['NOMBRE_DOC_PROB', 'DESCRIPCION'], 'string', 'max' => 300],
             [['ALIAS', 'LUGAR_INFORME'], 'string', 'max' => 100]
@@ -127,7 +127,7 @@ class ListaPlan extends \yii\db\ActiveRecord
      */
     public function getIDESTABLECIMIENTOs()
     {
-        return $this->hasMany(PlanEstablecimiento::className(), ['ID_ESTABLECIMIENTO' => 'ID_ESTABLECIMIENTO'])->viaTable('tbl_lista_establecimiento', ['ID_LISTA' => 'ID_LISTA']);
+    	return $this->hasMany(Empresa::className(), ['ID_EMPRESA' => 'ID_ESTABLECIMIENTO'])->viaTable('tbl_lista_establecimiento', ['ID_LISTA' => 'ID_LISTA']);
     }
 
     /**
