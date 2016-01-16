@@ -10,7 +10,7 @@ use Codeception\Lib\Console\Message;
  *
  * @property integer $ID_LISTA
  * @property integer $ID_PLAN
-
+ * @property string $FECHA_CREACION
  * @property string $FECHA_ELABORACION
  * @property integer $ESTATUS
  * @property integer $ACTIVO
@@ -21,13 +21,18 @@ use Codeception\Lib\Console\Message;
  * @property string $DESCRIPCION
  * @property integer $CONSTANCIAS_HOMBRES
  * @property integer $CONSTANCIAS_MUJERES
+ * @property string $FECHA_INFO
  * @property string $FECHA_AGREGO
  * @property string $FECHA_INFORME
  * @property string $LUGAR_INFORME
+ * @property string $FECHA_SOLICITUD
+ * @property string $FECHA_P_DOF
+ * @property string $EXPEDIENTE
  *
  * @property ListaConstancia[] $listaConstancias
  * @property Constancia[] $iDCONSTANCIAs
  * @property ListaEstablecimiento[] $listaEstablecimientos
+ * @property PlanEstablecimiento[] $iDESTABLECIMIENTOs
  * @property Plan $iDPLAN
  */
 class ListaPlan extends \yii\db\ActiveRecord
@@ -82,11 +87,14 @@ class ListaPlan extends \yii\db\ActiveRecord
             'ID_EMPRESA' => 'Id  Empresa',
             'ALIAS' => 'Alias',
             'DESCRIPCION' => 'Descripción',
-            'CONSTANCIAS_HOMBRES' => 'N° de constancias  hombres',
-            'CONSTANCIAS_MUJERES' => 'N° de constancias  mujeres',
+            'CONSTANCIAS_HOMBRES' => 'No. de constancias  hombres',
+            'CONSTANCIAS_MUJERES' => 'No. de constancias  mujeres',
             'FECHA_AGREGO' => 'Fecha  agregó',
             'FECHA_INFORME' => 'Fecha elaboración informe',
-            'LUGAR_INFORME' => 'Lugar elaboración informe',
+            'EXPEDIENTE' => 'Expediente',
+       		'FECHA_SOLICITUD' => 'Fecha en que se realiza la solicitud',
+       		'FECHA_P_DOF' => 'Fecha de publicación del formato en el DOF',
+       		'LUGAR_INFORME' => 'Lugar elaboración informe',        		
         ];
     }
 
@@ -113,16 +121,15 @@ class ListaPlan extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ListaEstablecimiento::className(), ['ID_LISTA' => 'ID_LISTA']);
     }
-    
+
     /**
-     * @return 
+     * @return \yii\db\ActiveQuery
      */
-    
     public function getIDESTABLECIMIENTOs()
     {
-    	return $this->hasMany(Empresa::className(), ['ID_EMPRESA' => 'ID_ESTABLECIMIENTO'])->viaTable('tbl_lista_establecimiento', ['ID_LISTA' => 'ID_LISTA']);
+        return $this->hasMany(PlanEstablecimiento::className(), ['ID_ESTABLECIMIENTO' => 'ID_ESTABLECIMIENTO'])->viaTable('tbl_lista_establecimiento', ['ID_LISTA' => 'ID_LISTA']);
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -130,11 +137,10 @@ class ListaPlan extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Plan::className(), ['ID_PLAN' => 'ID_PLAN']);
     }
-    
     public  function  getStatus(){
-    	 
+    
     	if ($this->DOCUMENTO_PROBATORIO === null) return $this->statusDescription[ListaPlan::STATUS_CREADO];
     	else return $this->statusDescription[ListaPlan::STATUS_NOTIFICADO];
-    	 
+    
     }
 }
