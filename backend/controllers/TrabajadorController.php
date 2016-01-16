@@ -1051,11 +1051,11 @@ class TrabajadorController extends Controller
     	
 
     	$trabajadorModel = new Trabajador();
-    	
+
     	$model = EmpresaUsuario::getMyCompany();
 
     	$companyModel = $model->iDEMPRESA;
-    	
+    	$trabajadorModel->ID_EMPRESA = $model->ID_EMPRESA;
     	
     	if($model === null || $companyModel === null) throw new NotFoundHttpException('The requested page does not exist.');
 
@@ -1071,7 +1071,7 @@ class TrabajadorController extends Controller
     		
     	}
     	
-    	$trabajadorModel->ID_EMPRESA = $model->ID_EMPRESA;
+    	
     	$trabajadorModel->ACTIVO = 1;
     	
     
