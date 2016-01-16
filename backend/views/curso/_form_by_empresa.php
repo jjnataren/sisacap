@@ -18,11 +18,46 @@ use yii\base\Model;
 $dataListAreaTematica=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>6,'ACTIVO'=>1]), 'ID_ELEMENTO', 'NOMBRE');
 $dataListCourse=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>11,'ACTIVO'=>1]), 'ID_ELEMENTO', 'NOMBRE');
 
+$dataListCourse [66666] = '--Personalizado--';
+
 
 $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options');
 $this->registerJs("$('#help_instructor').popover('hide');", View::POS_END, 'my-options3');
 $this->registerJs("$('#helpmodalidad').popover('hide');", View::POS_END, 'my-options1');
 $this->registerJs("$('#helpObjetivo').popover('hide');", View::POS_END, 'my-options2');
+
+$this->registerJs("
+ 
+				var personalizado = $('#drop_giro').val();
+				if( personalizado == 66666){
+		
+				//activacion
+				$('#txt_giro_otro').removeAttr('disabled');
+		}else{
+					$('#txt_giro_otro').val('');
+   				    $('#txt_giro_otro').attr('disabled','true');
+
+		}
+
+         ", View::POS_READY, 'my_lod');
+
+$this->registerJs("$('#drop_giro').change(function(){
+
+		if(this.value == 66666){
+		
+				//activacion
+				$('#txt_giro_otro').removeAttr('disabled');
+		}else{
+					$('#txt_giro_otro').val('');
+   				    $('#txt_giro_otro').attr('disabled','true');
+
+		}
+
+
+});", View::POS_END, 'noneoptions_drop_functions');
+
+
+
 
 $itemsModalidad = [1=>'Presencial',2=>'En linea',3=>'Mixta'];
 $itemsObjetivo = [1=>'Actualizar y perfeccionar conocimientos y habilidades y proporcionar información de nuevas tecnologías'
@@ -47,11 +82,16 @@ $itemsObjetivo = [1=>'Actualizar y perfeccionar conocimientos y habilidades y pr
 			<div class=" col-xs-12 col-sm-12 col-md-6">
 				<div class="panel panel-default">
 			 		<div class="panel-body">	
+			 								
 			 		
-	<?= $form->field($model, 'NOMBRE')->dropDownList($dataListCourse, ['prompt'=>'--Seleccione---']) ->label(false) ?>
-						
-						
-						
+ <?= $form->field($model, 'OTRO_NOMBRE')->dropDownList($dataListCourse,['prompt'=>'-- Seleccione  --','maxlength' => 300, 'id'=>'drop_giro']) ?>
+	
+		   
+ <?= $form->field($model, 'NOMBRE')->textInput(['maxlength' => 200,'id'=>'txt_giro_otro']) ?>
+  
+  
+  		
+    					
 <td><b>Modalidad de capacitación
 	</b></td>
        <td><?= $form->field($model, 'MODALIDAD_CAPACITACION')->dropDownList($itemsModalidad,  ['prompt'=>'-- Seleccione--']) ->label(false) ?></td>
@@ -62,16 +102,14 @@ $itemsObjetivo = [1=>'Actualizar y perfeccionar conocimientos y habilidades y pr
        <td><?= $form->field($model, 'OBJETIVO_CAPACITACION')->dropDownList($itemsObjetivo,  ['prompt'=>'-- Seleccione--']) ->label(false) ?></td>
   
   <td><?= $form->field($model, 'AREA_TEMATICA')->dropDownList($dataListAreaTematica,['prompt'=>'-- Seleccione  --','' => '']) ?> </td>
-				
-								
 											
-						<?= $form->field($model, 'DURACION_HORAS')->textInput() ?>
+	<?= $form->field($model, 'DURACION_HORAS')->textInput() ?>
 						
-                        <?= $form->field($model, 'FECHA_INICIO')->widget('trntv\yii\datetimepicker\DatetimepickerWidget',['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]]) ?>
+    <?= $form->field($model, 'FECHA_INICIO')->widget('trntv\yii\datetimepicker\DatetimepickerWidget',['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]]) ?>
                         
-                        <?= $form->field($model, 'FECHA_TERMINO')->widget('trntv\yii\datetimepicker\DatetimepickerWidget',['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]]) ?>
+   <?= $form->field($model, 'FECHA_TERMINO')->widget('trntv\yii\datetimepicker\DatetimepickerWidget',['clientOptions'=>['format' => 'DD/MM/YYYY', 'locale'=>'es','showClear'=>true, 'keepOpen'=>false]]) ?>
                                             
-          	           <?= $form->field($model, 'DESCRIPCION')->textArea() ?>						  					
+   <?= $form->field($model, 'DESCRIPCION')->textArea() ?>						  					
 						
 				<!--		<div class="row">
 	   
