@@ -464,21 +464,26 @@ class TrabajadorController extends Controller
     						$tmp_puesto = PuestoEmpresa::findOne(['CLAVE_PUESTO'=> $line[8], 'ID_EMPRESA'=>$model->ID_EMPRESA ]);
     						$worker->PUESTO = isset($tmp_puesto) ? $tmp_puesto->ID_PUESTO: null ;
     						
-    						$tmp_ocupacion = Catalogo::findOne(['CLAVE'=>$line[9],  'CATEGORIA'=>Catalogo::CATEGORIA_OCUPACION]);
+    						$tmp_ocupacion = Catalogo::findOne(['CLAVE'=>$line[10],  'CATEGORIA'=>Catalogo::CATEGORIA_OCUPACION]);
     						$worker->OCUPACION_ESPECIFICA = isset($tmp_ocupacion)?$tmp_ocupacion->ID_ELEMENTO : null;
     						
-    						$worker->SEXO = $line[10];
+    						$worker->SEXO = $line[12];
     						
-    						$tmp_federativa = Catalogo::findOne(['CLAVE'=>$line[11],  'CATEGORIA'=>Catalogo::CATEGORIA_ENTIDADES_FEDERATIVAS]);
+    						$tmp_federativa = Catalogo::findOne(['CLAVE'=>$line[14],  'CATEGORIA'=>Catalogo::CATEGORIA_ENTIDADES_FEDERATIVAS]);
     						$worker->ENTIDAD_FEDERATIVA = isset($tmp_federativa)?$tmp_federativa->ID_ELEMENTO : null;
     						
     						
     						
-    						$tmp_municipio = Catalogo::findOne(['CLAVE'=>$line[12],  'CATEGORIA'=>Catalogo::CATEGORIA_MUNICIPIOS, 'ELEMENTO_PADRE'=>$worker->ENTIDAD_FEDERATIVA]);
+    						$tmp_municipio = Catalogo::findOne(['CLAVE'=>$line[16],  'CATEGORIA'=>Catalogo::CATEGORIA_MUNICIPIOS, 'ELEMENTO_PADRE'=>$worker->ENTIDAD_FEDERATIVA]);
     						$worker->MUNICIPIO_DELEGACION =  isset($tmp_municipio)?$tmp_municipio->ID_ELEMENTO : null;
     						
     						
-    						$worker->LUGAR_RESIDENCIA = $line[13];
+    						$worker->CALLE = $line[17];
+    						$worker->NUMERO_INTERIOR = $line[18];
+    						$worker->NUMERO_EXTERIOR = $line[19];
+    						$worker->COLONIA = $line[20];
+    						//$worker->C = $line[17];
+    						    						
     						$worker->GRADO_ESTUDIO = $line[14];
     						$worker->INSTITUCION_EDUCATIVA = $line[15];
     						$worker->FECHA_EMISION_CERTIFICADO = $line[16];
