@@ -52,6 +52,7 @@ class Curso extends \yii\db\ActiveRecord
 	const obj_niveEducativo = 4;
 	const obj_vacantes = 5;
 	
+	const CURSO_PERSONALIZADO = 66666;
 	
 	
 	public static function  getModalidad(){
@@ -210,7 +211,7 @@ class Curso extends \yii\db\ActiveRecord
         
            [[ 'DURACION_HORAS','NOMBRE','AREA_TEMATICA','MODALIDAD_CAPACITACION','OBJETIVO_CAPACITACION','FECHA_INICIO','FECHA_TERMINO'], 'required','message' =>'El dato es requerido'],
         
-            [['ID_PLAN', 'ID_INSTRUCTOR', 'ESTATUS', 'DURACION_HORAS', 'AREA_TEMATICA'], 'integer'],
+            [['ID_PLAN','OTRO_NOMBRE', 'ID_INSTRUCTOR', 'ESTATUS', 'DURACION_HORAS', 'AREA_TEMATICA'], 'integer'],
             [['FECHA_INICIO', 'FECHA_TERMINO'], 'safe'],
             [['MODALIDAD_CAPACITACION'], 'required'],
             [['NOMBRE'], 'string', 'max' => 300],
@@ -251,6 +252,7 @@ class Curso extends \yii\db\ActiveRecord
             'DESCRIPCION' => 'Descripcion',
             'OBJETIVO_CAPACITACION' => 'Objetivo  Capacitacion',
             'ESTATUS' => 'Estatus',
+            'OTRO_NOMBRE'=>'Cursos predeterminados',
         ];
     }
 
