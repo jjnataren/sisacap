@@ -92,16 +92,18 @@ $itemsObjetivo = [1=>'Actualizar y perfeccionar conocimientos y habilidades y pr
   
   		
     					
-<td><b>Modalidad de capacitación
-	</b></td>
-       <td><?= $form->field($model, 'MODALIDAD_CAPACITACION')->dropDownList($itemsModalidad,  ['prompt'=>'-- Seleccione--']) ->label(false) ?></td>
+<b>Modalidad de capacitación
+	</b>
+	
+ <?= $form->field($model, 'MODALIDAD_CAPACITACION')->dropDownList($itemsModalidad,  ['prompt'=>'-- Seleccione--']) ->label(false) ?>
   
 				
-	<td><b>Objetivo de capacitación
-	</b></td>
-       <td><?= $form->field($model, 'OBJETIVO_CAPACITACION')->dropDownList($itemsObjetivo,  ['prompt'=>'-- Seleccione--']) ->label(false) ?></td>
+	<b>Objetivo de capacitación
+	</b>
+	
+      <?= $form->field($model, 'OBJETIVO_CAPACITACION')->dropDownList($itemsObjetivo,  ['prompt'=>'-- Seleccione--']) ->label(false) ?>
   
-  <td><?= $form->field($model, 'AREA_TEMATICA')->dropDownList($dataListAreaTematica,['prompt'=>'-- Seleccione  --','' => '']) ?> </td>
+  <?= $form->field($model, 'AREA_TEMATICA')->dropDownList($dataListAreaTematica,['prompt'=>'-- Seleccione  --','' => '']) ?> 
 											
 	<?= $form->field($model, 'DURACION_HORAS')->textInput() ?>
 						
