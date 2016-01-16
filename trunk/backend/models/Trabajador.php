@@ -41,6 +41,8 @@ use Yii;
  * @property string $NUMERO_EXTERIOR
  * @property string $NUMERO_INTERIOR
  * @property string $COLONIA
+ * @property string $CALLE
+ * @property string $CODIGO_POSTAL
  *
  * @property ComisionMixtaCap[] $comisionMixtaCaps
  * @property Constancia[] $constancias
@@ -50,8 +52,7 @@ use Yii;
  */
 class Trabajador extends \yii\db\ActiveRecord
 {
-	
-	//itemsexo
+//itemsexo
 	const SEX_HOMBRE=2;
 	const SEX_MUJER=1;
 	
@@ -129,12 +130,13 @@ class Trabajador extends \yii\db\ActiveRecord
             [['OCUPACION_ESPECIFICA','ID_EMPRESA', 'ROL', 'PUESTO', 'INSTITUCION_EDUCATIVA', 'MUNICIPIO_DELEGACION', 'ENTIDAD_FEDERATIVA', 'ACTIVO', 'GRADO_ESTUDIO', 'DOCUMENTO_PROBATORIO'], 'integer'],
             [['FECHA_AGREGO', 'FECHA_EMISION_CERTIFICADO'], 'safe'],
            // [['SECTOR'], 'required'],
-            [['NOMBRE', 'APP', 'APM', 'TELEFONO'], 'string', 'max' => 100],
+            [['NOMBRE', 'APP', 'APM', 'TELEFONO','NUMERO_INTERIOR', 'NUMERO_EXTERIOR'], 'string', 'max' => 100],
             [['CURP'], 'string', 'max' => 18,'message'=>'Este curp no es valido'],
             [['RFC'], 'string', 'max' => 13],
             [['NSS'], 'string', 'max' => 20],
-            [['NTCL', 'SECTOR', 'SIGN_PASSWD'], 'string', 'max' => 250],
-            [['DOMICILIO', 'CORREO_ELECTRONICO'], 'string', 'max' => 300],
+       		[['CODIGO_POSTAL'], 'string', 'max' => 6],
+            [['NTCL', 'SECTOR', 'SIGN_PASSWD','COLONIA'], 'string', 'max' => 250],
+            [['DOMICILIO', 'CORREO_ELECTRONICO','CALLE','COLONIA'], 'string', 'max' => 300],
             [['SEXO'], 'string', 'max' => 1],
             [['LUGAR_RESIDENCIA', 'OTRO_OCUPACION'], 'string', 'max' => 200],
            [['RFC'], 'unique','message' =>'Ya existe un trabajador con este RFC'],
@@ -183,6 +185,12 @@ class Trabajador extends \yii\db\ActiveRecord
             'SIGN_PASSWD' => 'Contraseña de encriptación',
             'SIGN_PIC_EXTENSION' => '',
             'SIGN_CREATED_AT' => 'Sign  Created  At',
+        		'CALLE' => 'Calle',
+        		'NUMERO_EXTERIOR' => 'Número exterior',
+        		'NUMERO_INTERIOR' => 'Número interior',
+        		'CODIGO_POSTAL'=>'Codigo postal',
+        		'COLONIA'=>'Colonia'
+        		
         ];
     }
 
@@ -225,7 +233,6 @@ class Trabajador extends \yii\db\ActiveRecord
     {
         return $this->hasMany(TrabajadorCurso::className(), ['ID_TRABAJADOR' => 'ID_TRABAJADOR']);
     }
-    
     /**
      * Gets  singning image binary base64
      */
