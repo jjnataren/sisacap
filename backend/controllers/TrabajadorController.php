@@ -663,7 +663,7 @@ class TrabajadorController extends Controller
     						
     						$worker->DOCUMENTO_PROBATORIO = $line[27];
     		
-    					
+    					   
     					
     					//$worker->OCUPACION_ESPECIFICA = $line[11];
     					
