@@ -30,7 +30,7 @@ class TrabajadorController extends Controller
 {
 	
 
-	const  HEADER_DOC='NOMBRE(S)APELLIDO PATERNOAPELLIDO MATERNOCURPRFCNSSCORREO ELECTRONICOTELEFONOPUESTOCLAVE DE OCUPACION ESPECIFICASEXOENTIDAD FEDERATIVAMUNICIPIO O DELEGACIONLUGAR DE RESIDENCIAGRADO DE ESTUDIOSINSTITUCION EDUCATIVAFECHA EMISION DE CERTIFICADODOCUMENTO PROBATORIO';
+	//const  HEADER_DOC='NOMBRE(S)APELLIDO PATERNOAPELLIDO MATERNOCURPRFCNSSCORREO ELECTRONICOTELEFONOPUESTOCLAVE DE OCUPACION ESPECIFICASEXOENTIDAD FEDERATIVAMUNICIPIO O DELEGACIONLUGAR DE RESIDENCIAGRADO DE ESTUDIOSINSTITUCION EDUCATIVAFECHA EMISION DE CERTIFICADODOCUMENTO PROBATORIO';
 	
 	
 	public function beforeAction($action) {
@@ -692,14 +692,12 @@ class TrabajadorController extends Controller
     						
     						$columnas = count($line);
     						
-    						if ($columnas !== 28  || (strtoupper( trim($line[0]).trim($line[1]).trim($line[2]).trim($line[3]).trim($line[4]).trim($line[5]).trim($line[6]).
-    								trim($line[7]).trim($line[8]).trim($line[10]).trim($line[12]).trim($line[14]).trim($line[16]).trim($line[17]).trim($line[18]).trim($line[19]).trim($line[20]).
-    								trim($line[21]).trim($line[23]).trim($line[25]).trim($line[27]) ) !== self::HEADER_DOC )) {
+    						if ($columnas !== 28    ) {
     							
     						
     							Yii::$app->session->setFlash('alert', [
     									'options'=>['class'=>'alert-danger'],
-    									'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'> Arvhivo no valido, por favor revise el formato.<a href=\'#\' class=\'alert-link\'>'.$columnas.'</a>',
+    									'body'=> '<i class="fa fa-exclamation-triangle fa-lg"></i> <a href=\'#\' class=\'alert-link\'> El número de columnas no coincide con las requeridas por el formato. <a href=\'#\' class=\'alert-link\'>'.$columnas.'</a>',
     							]);
     								
     							
