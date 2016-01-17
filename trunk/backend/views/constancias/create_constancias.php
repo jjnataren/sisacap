@@ -14,6 +14,8 @@ use yii\grid\GridView;
 use kartik\checkbox\CheckboxX;
 use backend\models\EmpresaUsuario;
 use backend\models\Curso;
+use yii\helpers\Url;
+use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\ComisionMixtaCap */
@@ -111,12 +113,12 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 <div class="row">
 
 
-<div class="col-md-6 col-xs-12 col-sm-12">
+<div class="col-md-4 col-xs-12 col-sm-12">
 
 <div class="box box-success">
         <div class="box-header with-border">
 	        <i class="fa fa-laptop"></i>
-          <h3 class="box-title">Detalles del curso</h3>
+          <h3 class="box-title">Detalles del curso  </h3>
           <div class="box-tools pull-right">
             <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
             <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
@@ -163,7 +165,68 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 </div><!-- /.box -->
 </div>
 
-<div class="col-md-6 col-xs-12 col-sm-12">
+<div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                      <i class="fa fa-graduation-cap"></i>
+                    <h2 class="box-title"><?= Yii::t('backend', 'Instructor ') ?> <small>que impartira el curso</small></h2>
+                    
+                    <div class="box-tools pull-right">
+            <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
+            <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
+          </div><!-- /.box-tools -->
+                    
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                   
+    
+        
+        <?php $instructor = $model->iDINSTRUCTOR;
+         	
+         		if ($instructor !== null ){
+         			
+         			
+       		
+         		?>
+        
+        <dl class="dl-horizontal">
+                        <dt><?= Yii::t('backend', 'Id') ?></dt>
+                        <dd><?= $instructor->ID_INSTRUCTOR; ?></dd>
+                        
+                        <dt><?= Yii::t('backend', 'Nombre') ?></dt>
+                        <dd><?= $instructor->NOMBRE; ?></dd>
+                        
+                        <dt><?= Yii::t('backend', 'RFC') ?></dt>
+                        <dd><?= $instructor->RFC; ?></dd>
+          
+                        <dt><?= Yii::t('backend', 'No. reg. agente') ?></dt>
+                        <dd><?= $instructor->NUM_REGISTRO_AGENTE_EXTERNO;?></dd>
+                        
+                          <dt><?= Yii::t('backend', 'Telefono'); ?></dt>
+                        <dd><?= $instructor->TELEFONO; ?></dd>
+                        
+                         <dt><?= Yii::t('backend', 'Telefono'); ?></dt>
+                        <dd><?= $instructor->CORREO_ELECTRONICO; ?></dd>
+                                                             
+                   </dl>
+        
+        
+        		<?php }else{?>
+         	
+         			<span  class="text text-muted">No se ha asignado instructor </span>
+         	<?php }?>
+        
+                </div><!-- /.box-body -->
+                
+                	<div class= "box-footer">
+				          
+						<span class="text text-muted">- Para asignar otro instructor, edite el curso.</span>
+    				</div>
+                
+            </div>
+        </div>   
+
+<div class="col-md-4 col-xs-12 col-sm-12">
 
 <div class="box box-primary">
         <div class="box-header with-border">
@@ -236,6 +299,71 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
 
 </div>
 
+<div class="col-md-6 col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                  <i class="fa fa-check-square"></i>
+                    <h2 class="box-title"><?= Yii::t('backend', 'Documento probatorio') ?><small> que permita conocer el resultado de la capacitación</small> <br /> <small>Formato  <strong> .pdf</strong> de las (lista de asistencia, resultados de evaluación, etc... ) </small></h2>
+                <div class="box-tools pull-right">
+            <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
+            <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
+          </div><!-- /.box-tools -->
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                   
+                  <?php 
+                  
+                  		$pluginOptions = [];
+                  		
+                  		
+                  		if ($model->DOCUMENTO_PROBATORIO !== null){
+                  			
+							$pluginOptions['initialPreview'] = ['  
+											<object data="'.$model->DOCUMENTO_PROBATORIO.'" type="application/pdf" width="300px" height="160px">
+											 <param name="movie" value="{caption}" />
+													<div class="file-preview-other">
+														<i class="glyphicon glyphicon-file"></i>
+													</div>
+											 </object>
+											 <div class="file-thumbnail-footer">
+											    <div class="file-caption-name">'.$model->NOMBRE_DOCUMENTO_PROBATORIO.'</div>
+											    <div class="file-actions">
+											</div>
+											</div>
+									'];
+
+							$pluginOptions['initialPreviewConfig'] =[['url'=>Url::to(['curso/deletedocument','id'=>$model->ID_CURSO, 'document'=>1])]];
+							
+							
+                  		}
+                  		
+                  		
+                  		$pluginOptions['uploadUrl'] = Url::to(['curso/uploaddocument','id'=>$model->ID_CURSO, 'document'=>1]);
+                  		
+                  ?> 
+                   
+                 <?= FileInput::widget([
+					  	 		
+					  	 		'name' => 'DOCUMENTO_PROBATORIO',
+								'options'=>[
+								],
+								'pluginOptions' => $pluginOptions
+								
+						]); ?>
+    
+        
+                </div><!-- /.box-body -->
+                
+                 
+                <?php if ($model->DOCUMENTO_PROBATORIO !== null):?>
+                 <div class="box-footer">
+			    		<a href="<?= $model->DOCUMENTO_PROBATORIO ?>" target="_blank" class="btn btn-default"><i class="fa fa-download"> </i> Descargar documento</a>
+        	        
+                  </div>
+              <?php endif;?>
+            </div>
+        </div>     
+
   <div class="col-md-6 col-sm-12 col-xs-12">
             <div class="box box-primary">
                 <div class="box-header">
@@ -290,76 +418,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
         </div>   
         
         
-         <div class="col-md-6 col-sm-12 col-xs-12">
-            <div class="box box-primary">
-                <div class="box-header">
-                      <i class="fa fa-graduation-cap"></i>
-                    <h2 class="box-title"><?= Yii::t('backend', 'Instructor ') ?> <small>que impartira el curso</small></h2>
-                    
-                    <div class="box-tools pull-right">
-            <button title="ocultar/mostrar" data-toggle="tooltip" data-widget="collapse" class="btn btn-default btn-xs" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
-            <button title="" data-toggle="tooltip" data-widget="remove" class="btn btn-default btn-xs" data-original-title="Remove"><i class="fa fa-times"></i></button>
-          </div><!-- /.box-tools -->
-                    
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                   
-                <div class="box-body table-responsive">
-         <table class="table table-hover" >
          
-         <thead> 
-	        <tr>
-		         <th>Nombre completo</th>
-		         <th>RFC</th>		         
-		         <th>No. registro de agente externo</th>
-		         <th>Telefono</th>
-		         <th>Correo electronico</th>
-		         
-	         </tr>
-         </thead>
-         
-         <tbody>
-         	
-         	<?php $instructor = $model->iDINSTRUCTOR;
-         	
-         		if ($instructor !== null ){
-         			
-         			
-       		
-         		?>
-         	<tr>
-         		
-         		
-       
-         		
-         		
-         		<td><?= $instructor->NOMBRE. ' '.$instructor->APP. ' ' .$instructor->APM;?></td>
-         		<td><?= $instructor->RFC;?></td>
-         		<td><?= $instructor->NUM_REGISTRO_AGENTE_EXTERNO;?></td>
-         		<td><?= $instructor->TELEFONO;?></td>
-         		<td><?= $instructor->CORREO_ELECTRONICO;?></td>
-         		
-         	  
-      
-         	</tr>
-         	
-         	
-         	<?php }else{?>
-         	
-         		<tr>
-         			<td colspan="4" class="text text-muted">No se ha asignado instructor </td>
-         	</tr>
-         	<?php }?>
-         </tbody>
-        
-        </table>
-        </div>
-        
-                </div><!-- /.box-body -->
-                
-                
-            </div>
-        </div>   
 
 </div>
 
@@ -368,10 +427,8 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
           Constancias de los trabajadores
                         <small>  que pueden ser emitidas en los establecimientos</small>
           </h4>   
-<a name="constancias"></a>
+
  
-          
-          
           
 <div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
