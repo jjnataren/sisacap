@@ -166,7 +166,11 @@ $dataListEntidad=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>1,'ACTIVO'=>1]
 									<th><?=Yii::t('backend', 'Sexo')?></th>									
 									<th><?=Yii::t('backend', 'Entidad Federativa')?></th>
 									<th><?=Yii::t('backend', 'Municipio')?></th>	
-									<th><?=Yii::t('backend', 'Lugar de recidencia')?></th>
+									<th><?=Yii::t('backend', 'Calle')?></th>		
+									<th><?=Yii::t('backend', 'Num. Interior')?></th>		
+									<th><?=Yii::t('backend', 'Num. Exterior')?></th>
+									<th><?=Yii::t('backend', 'Colonia')?></th>				
+									<th><?=Yii::t('backend', 'Código postal')?></th>
 									<th><?=Yii::t('backend', 'Grado de estudios')?></th>			
 									<th><?=Yii::t('backend', 'Institución eduativa')?></th>	
 									<th><?=Yii::t('backend', 'Documento probatorio')?></th>		
@@ -221,7 +225,12 @@ $dataListEntidad=ArrayHelper::map(Catalogo::findAll(['CATEGORIA'=>1,'ACTIVO'=>1]
 									        'url' => Url::to(['empresa/getmunicipios'])
 									    ]
 									])->label(false); ?></td>
-									<td><?=$form->field($worker, "[$i]LUGAR_RESIDENCIA")->textInput()->label(false)   ?></td>
+								
+										<td><?=$form->field($worker, "[$i]CALLE")->textInput()->label(false)   ?></td>
+										<td><?=$form->field($worker, "[$i]NUMERO_INTERIOR")->textInput()->label(false)   ?></td>
+										<td><?=$form->field($worker, "[$i]NUMERO_EXTERIOR")->textInput()->label(false)   ?></td>
+											<td><?=$form->field($worker, "[$i]COLONIA")->textInput()->label(false)   ?></td>
+												<td><?=$form->field($worker, "[$i]CODIGO_POSTAL")->textInput()->label(false)   ?></td>
 									<td><?php  $trabajador = new Trabajador();?>
 									<?= $form->field($worker, "[$i]GRADO_ESTUDIO")->dropDownList($trabajador->GRADO_TIPO,['prompt'=>'-- No establecido  --','id' => 'grado_tipo'.$i])->label(false); ?>
 									</td>
