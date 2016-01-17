@@ -903,15 +903,14 @@ $this->title = 'Reporte Id '.$model->ID_LISTA.'   DC4 parte 1 ';
                             	<label>Nombre y firma solicitante o representante legal</label>
                             </td>
                           
-                            <td colspan="4" class="cell_white_b TextoIndicativo"  align="center">
+                            <td colspan="5" class="cell_white_b TextoIndicativo"  align="center">
                             	<label>Lugar y fecha de elaboración de este informe</label>
                             </td>
                              
                             <td colspan="4" class="cell_white_b TextoIndicativo"  align="center">
                             	<label>Fecha de la solicitud</label>
                             </td>
-                            <td  class="TextoIndicativo cell_white_b"  align="center">
-                           	</td>
+                           
                             <td  class="cell_white_rb TextoIndicativo"  align="center">
                            	</td>
                             
