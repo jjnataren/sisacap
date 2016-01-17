@@ -14,6 +14,8 @@ use backend\models\Plan;
 use backend\models\Indicadores;
 use backend\models\Instructor;
 use backend\models\Catalogo;
+use yii\web\UploadedFile;
+use yii\helpers\Json;
 
 /**
  * CursoController implements the CRUD actions for Curso model.
@@ -40,6 +42,71 @@ class CursoController extends Controller
         ];
     }
 
+    
+    /**
+     * Upload a single document
+     * @param unknown $id
+     * @param unknown $document
+     */
+    public function actionUploaddocument($id,$document){
+    
+    	$model = $this->findModel($id);
+    
+    	switch ($document){
+    			
+    		case 1:
+    			$file = UploadedFile::getInstanceByName('DOCUMENTO_PROBATORIO');
+    			$fileReturn = Yii::$app->fileStorage->save($file);
+    
+    			$model->DOCUMENTO_PROBATORIO = $fileReturn->url;
+    			$model->NOMBRE_DOCUMENTO_PROBATORIO = $file->name;
+    	
+    			$model->FECHA_DOCUMENTO_PROBATORIO = Date('Y m d');		
+    			$model->save(false);
+    
+    			Indicadores::setIndicadorCurso($model);
+    
+    			break;
+    		case 2:
+    			break;
+    
+    	}
+    
+    	echo Json::encode(['message'=>'OK']);
+    	return;
+    }
+    
+    
+    /**
+     *
+     * @param unknown $id
+     * @param unknown $document
+     */
+    public function actionDeletedocument($id,$document){
+    
+    	$model = $this->findModel($id);
+    
+    	switch ($document){
+    
+    		case 1:
+    
+    			$model->DOCUMENTO_PROBATORIO = NULL;
+    			$model->NOMBRE_DOCUMENTO_PROBATORIO = NULL;
+    			$model->FECHA_DOCUMENTO_PROBATORIO = NULL;
+    			$model->save();
+    
+    			Indicadores::setIndicadorCurso($model);
+    			break;
+    		case 2:
+    			break;
+    
+    	}
+    
+    	echo Json::encode(['message'=>'OK']);
+    	return;
+    }
+    
+    
     /**
      * Lists all Curso models.
      * @return mixed
