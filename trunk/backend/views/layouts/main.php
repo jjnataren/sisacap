@@ -9,6 +9,8 @@ use backend\models\EmpresaUsuario;
 use backend\models\Instructor;
 use backend\models\Empresa;
 use backend\models\Plan;
+use backend\models\Catalogo;
+use backend\models\Curso;
 ?>
 
   <?php 
@@ -192,7 +194,7 @@ use backend\models\Plan;
 							
 							$courses[] = [
 								
-								'label'=>'Cursos',
+								'label'=>'Cursos Id',
 								'options'=>['class'=>'header'],
 								//'items'=>$empresaItemsMenu
 								
@@ -201,7 +203,9 @@ use backend\models\Plan;
 							foreach ($plan->cursos as $course ){
 
 								$courses[]  = [
-								'label'=>$course->NOMBRE,
+								'label'=>$course->ID_CURSO.'-' . substr("$course->NOMBRE", 0,20). '...',
+								
+								//$this->title=''.  substr("$model->NOMBRE_RAZON_SOCIAL", 0,40).'...';
 								'icon'=>'<i class="fa fa-laptop"></i>',
 								'url'=>['/constancias/createbycourse', 'id'=>$course->ID_CURSO]
 								//'options'=>['class'=>'treeview'],
