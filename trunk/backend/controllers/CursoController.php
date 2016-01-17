@@ -217,14 +217,17 @@ class CursoController extends Controller
    
     		$nombretmp  = $model->NOMBRE;
     		
-    		if ($model->OTRO_NOMBRE !== Curso::CURSO_PERSONALIZADO && $model->NOMBRE === ''){
+    		if ($model->OTRO_NOMBRE !== Curso::CURSO_PERSONALIZADO && $model->NOMBRE === NULL){
     			
     				$catalogoModel = Catalogo::findOne($model->OTRO_NOMBRE);
     			
     				$model->NOMBRE = $catalogoModel->NOMBRE;
     				
+    				$model->OBJETIVO_CAPACITACION = 2;
+
+    				$model->AREA_TEMATICA = 2625;
     				
-    				//id add
+    				
     		}
     		
     		
