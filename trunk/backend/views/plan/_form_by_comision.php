@@ -19,11 +19,6 @@ use kartik\checkbox\CheckboxX;
 
 $id_empresa = $model->iDCOMISION->ID_EMPRESA;
 
-
-
-
-
-
 $courses =  Catalogo::findAll ( ['CATEGORIA' => 11, 'ACTIVO'=> 1]);
 $dataListOcupacion = ArrayHelper::map ( PuestoEmpresa::findBySql ( 'SELECT ID_PUESTO,NOMBRE_PUESTO,ID_EMPRESA
 FROM tbl_puesto_empresa where activo=1 AND ID_EMPRESA = ' . $id_empresa )->all (), 'ID_PUESTO', 'NOMBRE_PUESTO' );
