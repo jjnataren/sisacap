@@ -30,7 +30,7 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
 					<div class="panel-body">
 <div class="trabajador-index">
     <p>
-        <?= Html::a('<i class="fa fa-plus-square"></i> Crear Trabajador', ['createworkerbycompany'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('<i class="fa fa-plus-square"></i> Crear trabajador', ['createworkerbycompany'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('<i class="fa fa-file-excel-o"></i> Cargar por archivo', ['load',], ['class' => 'btn btn-primary']) ?>
     </p>
   
