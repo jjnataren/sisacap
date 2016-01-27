@@ -128,7 +128,7 @@ $this->registerJs("$('#chk_moral').change(function(){
          </div>
           <div class="col-xs-2 col-md-2">
           <br />
-                <button id="help_popup_telefono" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="Se requiere intoducir lada. ejemplo (55) 26-32-37-16"><i class="fa fa-question-circle"></i>
+                <button id="help_popup_telefono" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="Incluir clave lada. Ejemplo (55) 26-32-32-12"><i class="fa fa-question-circle"></i>
 	</button>
 	</div>
 	</div>
@@ -220,9 +220,9 @@ $this->registerJs("$('#chk_moral').change(function(){
 	
 
 	     <div class="panel-footer">
-								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', ' Para crear un establecimiento es necesario llenar todos los campos,Presiona el boton [Crear] para guardar sus datos') ?>"><i class="fa fa-question-circle"></i>
+								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Aquí puedes crear un establecimiento, es importante introducir los datos correctamente en todos los campos. Presiona el botón [Guardar] y a continuación se guardaran los datos del establecimiento.') ?>"><i class="fa fa-question-circle"></i>
 						</button>
-             <?= Html::submitButton( '<i class="fa fa-floppy-o"></i> Crear', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+             <?= Html::submitButton( '<i class="fa fa-floppy-o"></i> Guardar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 </div>
   <?php ActiveForm::end(); ?>
   </div>
