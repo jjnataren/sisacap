@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\PlanSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Mis puestos';
+$this->title = 'Ver mis puestos de trabajo';
 $this->params['breadcrumbs'][] = $this->title;
 $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
@@ -20,7 +20,7 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h3><i class="fa fa-eye"></i>
-						<?= Yii::t('backend', 'Todos mis puestos') ?> <small></small> </h3>
+						<?= Yii::t('backend', 'Detalles') ?> <small>de mis puestos de trabajo.</small> </h3>
 					</div>
 					<div class="panel-body">
 <div class="puesto-index">
@@ -29,7 +29,7 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('<i class="fa fa-plus-square"></i> Crear Puesto', ['createbycompany'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('<i class="fa fa-plus-square"></i> Crear puesto', ['createbycompany'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
