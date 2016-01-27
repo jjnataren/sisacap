@@ -36,7 +36,7 @@ if ($model->GIRO_PRINCIPAL === 66666){
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h3><i class="fa fa-eye"></i>
-						<?= Yii::t('backend', 'Detalles') ?> <small>Empresa</small> </h3>
+						<?= Yii::t('backend', 'Detalles') ?> <small>de mi empresa</small> </h3>
 					</div>
 					<div class="panel-body">
 					<div class="col-md-6 col-xs-12">
