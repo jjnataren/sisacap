@@ -9,7 +9,7 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel backend\models\EmpresaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Establecimientos de la empresa';
+$this->title = 'Ver mis establecimientos';
 $this->params['subtitle'] = '';
 
 $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
@@ -25,7 +25,7 @@ Establecimientos
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h3><i class="fa fa-eye"></i>
-						<?= Yii::t('backend', 'Todos mis establecimientos') ?> <small></small> </h3>
+						<?= Yii::t('backend', 'Detalles') ?> <small>de mis establecimientos</small> </h3>
 					</div>
 					<div class="panel-body">
 <div class="empresa-index">
