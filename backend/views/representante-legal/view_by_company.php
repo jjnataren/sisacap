@@ -1,7 +1,7 @@
 <?php
 use yii\widgets\DetailView;
 
-$this->title = 'Ver representante legal ';
+$this->title = 'Ver mi representante legal ';
 $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
   								<i class="fa fa-suitcase -lg  fa-stack-1x"></i>
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h3><i class="fa fa-eye"></i>
-						<?= Yii::t('backend', 'Detalles') ?> <small>Representante legal</small> </h3>
+						<?= Yii::t('backend', 'Detalles') ?> <small>de mi representante legal</small> </h3>
 					</div>
 					<div class="panel-body">
 <?= DetailView::widget([
