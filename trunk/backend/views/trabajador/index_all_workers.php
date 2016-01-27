@@ -11,7 +11,7 @@ use backend\models\EmpresaUsuario;
 /* @var $searchModel backend\models\search\TrabajadorSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Todos los trabajadores. ';
+$this->title = 'Todos mis trabajadores. ';
 $this->params['breadcrumbs'][] = $this->title;
 $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
@@ -26,7 +26,7 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h3><i class="fa fa-eye"></i>
-						<?= Yii::t('backend', 'Todos los trabajadores. Empresa/establecimientos') ?> <small></small> </h3>
+						<?= Yii::t('backend', 'Todos mis trabajadores ') ?> <small>Empresa/Establecimientos</small> </h3>
 					</div>
 					<div class="panel-body">
 <div class="trabajador-index">
