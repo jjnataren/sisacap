@@ -57,7 +57,7 @@ $this->registerJs("$('#helppop1').popover('hide');
 					<div class="panel-heading">
 						<h3>
 						
-						<?= ($model->isNewRecord)? '<i class="fa fa-plus"></i> Crear nueva' : '<i class="fa fa-pencil-square-o"></i> Actualizar comisión mixta  de capacitación, adiestramiento y productividad'   ?> </h3>
+						<?= ($model->isNewRecord)? '<i class="fa fa-plus"></i>Nueva comisión mixta' : '<i class="fa fa-pencil-square-o"></i> Actualizar comisión mixta  de capacitación, adiestramiento y productividad'   ?> </h3>
 						
 					</div>
 					<div class="panel-body">
@@ -71,7 +71,7 @@ $this->registerJs("$('#helppop1').popover('hide');
     <div class="col-xs-3 col-md-3">
     	<br />
     	
-    	<button id="help_popup_alias" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="Un nombre, que permitira identificar esta comisión, Ej.[Comisión 2015]"><i class="fa fa-question-circle"></i>
+    	<button id="help_popup_alias" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="Incluir un nombre, el cual  permitirá identificar esta comisión mixta, Ej. [Comisión seguridad e higiene]"><i class="fa fa-question-circle"></i>
 	</button>
     </div>
     </div>
@@ -84,7 +84,7 @@ $this->registerJs("$('#helppop1').popover('hide');
      
     <div class="col-xs-3 col-md-6">
 		<br />
-		<button id="help_popup_numero_integrantes" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Número de individuos que pertenecerán a la comisión mixta de capacitación, adiestramiento y productividad. ') ?>"><i class="fa fa-question-circle"></i>
+		<button id="help_popup_numero_integrantes" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Incluir el número de individuos que integraran la comisión mixta.') ?>"><i class="fa fa-question-circle"></i>
 	</button>
     		
      </div>
@@ -96,7 +96,7 @@ $this->registerJs("$('#helppop1').popover('hide');
 		       </div>
          <div class="col-xs-3 col-md-6">
 			<br />
-			<button id="help_popup_numero_fecha_const" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Fecha en la que la comisión será constituida') ?>"><i class="fa fa-question-circle"></i>
+			<button id="help_popup_numero_fecha_const" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Incluir la fecha en la que la comisión mixta será constituida') ?>"><i class="fa fa-question-circle"></i>
 		</button>
   	 </div>
    </div>
@@ -107,7 +107,7 @@ $this->registerJs("$('#helppop1').popover('hide');
 	
 	<div class="col-xs-3 col-md-6">
 			<br />
-		<button id="help_popup_numero_fecha_elab" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Fecha en la que la comisión mixta de capacitación será elaborada') ?>"><i class="fa fa-question-circle"></i>
+		<button id="help_popup_numero_fecha_elab" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Incluir la fecha en la que la comisión mixta será elaborada') ?>"><i class="fa fa-question-circle"></i>
 		</button>
   	 </div>
 		</div>
@@ -119,7 +119,7 @@ $this->registerJs("$('#helppop1').popover('hide');
 	
 	<div class="col-xs-3 col-md-6">
 			<br />
-		<button id="help_popup_lugar_elab" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Lugar donde la comision mixta de capacitación sera elaborada') ?>"><i class="fa fa-question-circle"></i>
+		<button id="help_popup_lugar_elab" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Incluir lugar donde la comisión mixta será elaborada') ?>"><i class="fa fa-question-circle"></i>
 		</button>
   	 </div>
 		</div>
@@ -131,7 +131,7 @@ $this->registerJs("$('#helppop1').popover('hide');
 	
 	<div class="col-xs-3 col-md-3">
 			<br />
-		<button id="help_popup_descrip" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Agregar una descripción para identificar la comisión mixta. ') ?>"><i class="fa fa-question-circle"></i>
+		<button id="help_popup_descrip" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Incluir una breve descripción de la comisión mixta para identificar su objetivo.') ?>"><i class="fa fa-question-circle"></i>
 		</button>
   	 </div>
 		</div>
@@ -139,11 +139,11 @@ $this->registerJs("$('#helppop1').popover('hide');
     
    			   
   	<div class="panel-footer">
-								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Presiona el boton [Guardar] para salvar sus datos') ?>"><i class="fa fa-question-circle"></i>
+								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Aquí puedes crear una comisión mixta, es importante introducir los datos correctamente en todos los campos. Presiona el botón [Guardar] y a continuación se guardaran los datos de la comisión mixta.') ?>"><i class="fa fa-question-circle"></i>
 						</button>
 						&nbsp;
 			
-			 	<button type="submit" id="btn_success" <?= ($model->isNewRecord)? ' class="btn btn-success"':' class="btn btn-primary"' ?> > <?= '<i class="fa fa-floppy-o"></i> '.Yii::t('backend', ($model->isNewRecord)?'Crear comisión':'Guardar')?></button>
+			 	<button type="submit" id="btn_success" <?= ($model->isNewRecord)? ' class="btn btn-success"':' class="btn btn-primary"' ?> > <?= '<i class="fa fa-floppy-o"></i> '.Yii::t('backend', ($model->isNewRecord)?'Guardar':'Guardar')?></button>
                         
     </div>
 
