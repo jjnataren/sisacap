@@ -202,7 +202,7 @@ class Empresa extends \yii\db\ActiveRecord
             'PICTURE' => 'Picture',
             'NOMBRE_CENTRO_TRABAJO' => 'Nombre del centro de trabajo',
             'ESQUEMA_SEGURIDAD_SOCIAL' => 'Esquema de seguridad social',
-            'NOMBRE_COMERCIAL' => 'Nombre Comercial',
+            'NOMBRE_COMERCIAL' => 'Nombre comercial',
             'ACTIVO' => 'Activo',
             'FECHA_INICIO_OPERACIONES' => 'Fecha inicio de operaciones',
             'CORREO_ELECTRONICO_EMPRESA' => 'Correo electrónico',
