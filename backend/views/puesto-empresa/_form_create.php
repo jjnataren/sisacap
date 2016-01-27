@@ -11,6 +11,7 @@ use yii\grid\GridView;
 
 //$this->registerJs("$('#help_popup_alias').popover('hide');", View::POS_END, 'my-options');
 //$this->registerJs("$('#help_popup_registro_externo').popover('hide');", View::POS_END, 'my-options1');
+$this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options');
 
 $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
@@ -45,6 +46,8 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
 				    
 				 	
 				 <div class="panel-footer">
+				 <button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Aquí puedes crear un puesto para los trabajadores, es importante introducir los datos correctamente en todos los campos. Presiona el botón [Guardar] y a continuación se guardaran los datos del puesto de trabajo') ?>"><i class="fa fa-question-circle"></i>
+						</button>
 
  		 				<?= Html::submitButton($model->isNewRecord ? '<i class="fa fa-floppy-o"></i> Guardar' : '<i class="fa fa-floppy-o"></i> Guardar ', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
    				</div>
