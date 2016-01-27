@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('<i class="fa fa-plus-square"></i> Crear comision', ['createbycompany'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('<i class="fa fa-plus-square"></i> Crear comisión', ['createbycompany'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -71,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
     		},
     			
     		'delete' => function ($url, $model, $id) {//Boton borrar
-    		return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, ['title' => Yii::t('app', 'Eliminar'), 'data' => ['confirm' => '¿Realmente quiere borrar esta comisión?','method' => 'post',]]);
+    		return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, ['title' => Yii::t('app', 'Eliminar'), 'data' => ['confirm' => 'Â¿Realmente quiere borrar esta comisiÃ³n?','method' => 'post',]]);
     		},
     		],
     		'urlCreator' => function ($action, $model, $key, $index) {
