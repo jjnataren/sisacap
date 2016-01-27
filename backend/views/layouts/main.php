@@ -762,7 +762,7 @@ use backend\models\Curso;
 				
 					[
 						'visible'=>(!Yii::$app->user->can('administrator') &&   Yii::$app->user->can('manager')),
-						'label'=>Yii::t('backend', 'Representante legal'),
+						'label'=>Yii::t('backend', 'Mi representante legal'),
 						'options'=>['class'=>'treeview'],
 						'icon'=>'<i class="fa fa-suitcase"></i>',
 						
@@ -815,14 +815,14 @@ use backend\models\Curso;
 					['label'=>Yii::t('backend', 'Comisión mixta'),
 					
             		'visible'=>(!Yii::$app->user->can('administrator')&&   Yii::$app->user->can('manager')),
-					'label'=>Yii::t('backend', 'Comisión mixta'),
+					'label'=>Yii::t('backend', 'Mis comisiones mixtas'),
 					 'icon'=>'<span class="glyphicon glyphicon-copyright-mark ">
 							 </span>',
 					'options'=>['class'=>'treeview'],
 						
 					'url'=>['/comision-mixta-cap/index'],
 					'items'=>[
-					        ['label'=>Yii::t('backend', 'Mis comisiones'),
+					        ['label'=>Yii::t('backend', 'Ver comisiones'),
 							'url'=>['comision-mixta-cap/indexbycompany'],
 							'icon'=>'<i class="fa fa-angle-double-right"></i>'],
 							['label'=>Yii::t('backend', 'Crear comisión mixta '),
@@ -872,7 +872,7 @@ use backend\models\Curso;
 						
 							//],
             				[	'visible'=>(!Yii::$app->user->can('administrator')&&   Yii::$app->user->can('manager')),
-			            		'label'=>Yii::t('backend', 'Instructores'),
+			            		'label'=>Yii::t('backend', 'Mis instructores'),
 			            		'options'=>['class'=>'treeview'],
                                 'icon'=>'<span class="fa fa-graduation-cap">
 							 </span>',
@@ -891,7 +891,7 @@ use backend\models\Curso;
 			
             		
             		[	'visible'=>(!Yii::$app->user->can('administrator')&&   Yii::$app->user->can('manager')),
-            		'label'=>Yii::t('backend', 'Puestos de trabajo'),
+            		'label'=>Yii::t('backend', 'Mis puestos de trabajo'),
             		'options'=>['class'=>'treeview'],
          		
             		'icon'=>'<span class="fa fa-user-secret">
