@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\EmpresaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Comisiones en mi empresa';
+$this->title = 'Ver mis comisiones';
 $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
   								<i class="glyphicon glyphicon-copyright-mark -lg  fa-stack-1x"></i>
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h3><i class="fa fa-eye"></i>
-						<?= Yii::t('backend', 'Todas mis comisiones') ?> <small></small> </h3>
+						<?= Yii::t('backend', 'Detalles') ?> <small>de mis comisiones</small> </h3>
 					</div>
 					<div class="panel-body">
 <div class="empresa-index">
