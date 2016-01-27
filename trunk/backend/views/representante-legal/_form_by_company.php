@@ -28,7 +28,7 @@ $itemsAct = [1=>'Activo',0=>'No activo'];
 					<div class="panel-heading">
 						<h3><i class="fa fa-pencil"></i>
 						
-							<?= Yii::t('backend', 'Editar datos ') ?> <small>formulario de actualización</small> </h3>	
+							<?= Yii::t('backend', 'Editar datos') ?> <small>de mi representante legal</small> </h3>	
 						</div>
 <div class="panel-body">
 		<div class=" col-xs-12 col-sm-12 col-md-6">
@@ -85,7 +85,7 @@ $itemsAct = [1=>'Activo',0=>'No activo'];
 </div>
 
     <div class="panel-footer">
-								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Aqui puedes actualizar los datos del representante legale de tu empresa, es importante que todos los campos esten llenos con sus datos correctos. Presiona el boton [Guardar] y acontinuación se guardaran los datos del representante legal') ?>"><i class="fa fa-question-circle"></i>
+								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Aquí puedes actualizar los datos del representante legal de tu empresa, es importante introducir los datos correctamente en todos los campos. Presiona el botón [Guardar] y a continuación se guardaran los datos del representante legal') ?>"><i class="fa fa-question-circle"></i>
 						</button>
 						&nbsp;
 						
