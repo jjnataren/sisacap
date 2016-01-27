@@ -9,7 +9,7 @@ use backend\models\Instructor;
 /* @var $searchModel backend\models\InstructorSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Mis instructores';
+$this->title = 'Ver mis instructores';
 $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
   								<i class="fa fa-graduation-cap -lg  fa-stack-1x"></i>
@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h3><i class="fa fa-eye"></i>
-						<?= Yii::t('backend', 'Ver todos mis instructores') ?> <small></small> </h3>
+						<?= Yii::t('backend', 'Detalles') ?> <small>de mis instructores</small> </h3>
 					</div>
 					<div class="panel-body">
 <div class="instructor-index">
