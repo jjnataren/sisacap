@@ -14,6 +14,8 @@ use yii\captcha\Captcha;
 
 $this->title = 'Bienvenido ' .strtoupper($model->NOMBRE_RAZON_SOCIAL);
 
+$this->registerJs("$('#help1').popover('hide');", View::POS_END, 'my-options1');
+$this->registerJs("$('#help2').popover('hide');", View::POS_END, 'my-options2');
 
 $this->params['subtitle'] = '';
 
@@ -116,8 +118,9 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
 
                     
           <h4 class="page-header" id="anchor_comision">
+        <?= Yii::t('backend', 'Comisiones mixtas') ?> <small>de capacitación, adiestramiento y productividad</small> </h3>	
           
-                        <small>Comisiones mixtas de capacitación y adiestramiento</small>
+                       
           </h4>          
                     
                <div class="row">     
@@ -159,6 +162,10 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                                     </dl> 
                                     
                                     <p class="text-right">
+                                    <button id="help1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', '
+Aquí puedes ver los detalles de las últimas comisiones existentes en la empresa, Presione el botón [Administrar] y a continuación podrás acceder a la comisión mixta seleccionada.
+                                    		') ?>"><i class="fa fa-question-circle"></i>
+						             </button>
                                     <?= Html::a('<i class="fa fa-cogs"></i> Administrar', ['comision-mixta-cap/dashboard','id'=>$comision->ID_COMISION_MIXTA], ['class' => 'btn btn-info btn-flat btn-sm']) ?>
                                     </p>   
                                      </div><!-- /.tab-pane -->
@@ -251,8 +258,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                     </div>
                     
   <h4 class="page-header" id="anchor_plan">
-          Planes 
-   		<small>Planes y programas de capacitación, adiestramiento y productividad</small>
+        <?= Yii::t('backend', 'Planes y programas') ?> <small>de capacitación, adiestramiento y productividad</small> </h3>	
    </h4>                     
                     
                     <div class="row">
@@ -333,6 +339,9 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                                         <dd><span class="label label-success"><?= 'cualquiera' ?></span></dd>
                                     </dl>  
                                     <p class="text-right">
+                                     <button id="help2" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Aquí puedes ver los detalles de los últimos planes existentes en la comisión, Presione el botón [Administrar] y a continuación podrás acceder directamente al  plan y programa de  capacitación seleccionado.
+                                     		 ') ?>"><i class="fa fa-question-circle"></i>
+						             </button>
                                     	<?= Html::a('<i class="fa fa-cogs"></i> Administrar', ['plan/dashboard','id'=>$plan->ID_PLAN], ['class' => 'btn btn-info btn-flat btn-sm']) ?>
                                     </p>     
                                      </div><!-- /.tab-pane -->
@@ -764,7 +773,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                                                 <h4 class="box-title">
                                                     <a href="#collapseOne" data-parent="#accordion" data-toggle="collapse">
                                                                                                    
-                                                     <h3>  <b> DC-1 Comisiones Mixtas de Capacitacion y Adiestramiento</b></h3>
+                                                     <h3>  <b> DC-1 Comisiones Mixtas de Capacitación, Adiestramiento y Productividad</b></h3>
                                                   
                                                     </a>
                                                 </h4>
