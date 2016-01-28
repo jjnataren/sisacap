@@ -250,8 +250,8 @@ $planItems[]= 	[
                 </div><!-- /.box-body -->
                 
                    <div class="box-footer">
-			    	<?= Html::a(' <i class="fa fa-pencil"	></i> Editar plan y programa', ['plan/updatebycompany','id'=>$model->ID_PLAN], ['class' => 'btn btn-warning']) ?>
-        	         <?= Html::a('<i class="fa fa-print" ></i> Generar reporte DC-2', ['plan/reportpdf','id'=>$model->ID_PLAN], ['class' => 'btn btn-default', 'target'=>'_blank']) ?>
+			    	<?= Html::a(' <i class="fa fa-pencil"	></i> Editar plan y programa', ['plan/updatebycompany','id'=>$model->ID_PLAN], ['class' => 'btn btn-primary']) ?>
+        	         <?= Html::a('<i class="fa fa-print" ></i> Generar reporte DC-2', ['plan/reportpdf','id'=>$model->ID_PLAN], ['class' => 'btn btn-warning', 'target'=>'_blank']) ?>
                   </div>
             </div>
         </div>      
