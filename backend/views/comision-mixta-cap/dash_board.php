@@ -197,8 +197,8 @@ $planItems[]= 	[
                     
                 </div><!-- /.box-body -->
                  <div class="box-footer">
-			    	<?= Html::a('<i class="fa fa-pencil"></i>&nbsp;Actualizar comisión', ['comision-mixta-cap/updatebyuser','id'=>$model->ID_COMISION_MIXTA], ['class' => 'btn btn-primary']) ?>
-        	         <?= Html::a('<i class="fa fa-print" ></i> Generar reporte DC-1', ['comision-mixta-cap/reportpdf','id'=>$model->ID_COMISION_MIXTA], ['class' => 'btn btn-default', 'target'=>'_blank']) ?>
+			    	<?= Html::a('<i class="fa fa-pencil"></i>&nbsp;Editar comisión', ['comision-mixta-cap/updatebyuser','id'=>$model->ID_COMISION_MIXTA], ['class' => 'btn btn-primary']) ?>
+        	         <?= Html::a('<i class="fa fa-print" ></i> Generar reporte DC-1', ['comision-mixta-cap/reportpdf','id'=>$model->ID_COMISION_MIXTA], ['class' => 'btn btn-warning', 'target'=>'_blank']) ?>
                   </div>
                 
             </div>
