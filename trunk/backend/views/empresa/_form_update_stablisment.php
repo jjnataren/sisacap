@@ -110,7 +110,7 @@ $this->registerJs("$('#drop_giro').change(function(){
 					<div class="panel-heading">
 						<h3><i class="fa fa-pencil-square-o"></i>
 						
-						<?= Yii::t('backend', 'Editar datos') ?> <small> formulario de actualización</small> </h3>	
+						<?= Yii::t('backend', 'Editar datos') ?> <small>de mi establecimiento</small> </h3>	
 					</div>
 					<div class="panel-body">
 		
@@ -162,7 +162,9 @@ $this->registerJs("$('#drop_giro').change(function(){
     <div class="col-xs-2 col-md-2">
     	<br />
     	
-    <button id="help_popup_telefono" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content=" Número telefónico para el contacto, favor de introducir lada ejemplo: 01 (55) 26323716. "><i class="fa fa-question-circle"></i>
+    <button id="help_popup_telefono" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content=" 
+Aquí deberás incluir la clave lada. Ej. (55) 26-32-32-12.
+     "><i class="fa fa-question-circle"></i>
 	  </button>
     </div>
  </div>
@@ -174,7 +176,7 @@ $this->registerJs("$('#drop_giro').change(function(){
     	<br />
     	<div class="col-xs-2 col-md-2">
     	
-    	<button id="help_popup_correo" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="correo electronico para contacto (ejemplo@)gmail.com) "><i class="fa fa-question-circle"></i>
+    	<button id="help_popup_correo" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="Aquí deberás incluir el E-mail del contacto "><i class="fa fa-question-circle"></i>
 	  </button>
 	</div>
     	</div>
@@ -267,7 +269,7 @@ $this->registerJs("$('#drop_giro').change(function(){
 	
 
 	     <div class="panel-footer">
-								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Presione el botón [Guardar] para salvar los cambios, cerciore que todos los campos estén perfectamente llenos. ') ?>"><i class="fa fa-question-circle"></i>
+								<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend','Aquí puedes actualizar los datos del establecimiento de tu empresa, es importante introducir los datos correctamente en todos los campos. Presiona el botón [Guardar] y a continuación se guardaran los datos del establecimiento.') ?>"><i class="fa fa-question-circle"></i>
 						</button>
              <?= Html::submitButton( '<i class="fa fa-floppy-o"></i> Guardar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 </div>
