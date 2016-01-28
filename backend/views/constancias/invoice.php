@@ -35,8 +35,6 @@ use Openbuildings\Swiftmailer\CssInlinerPlugin;
 $this->params['breadcrumbs'][] = ['label' => 'Comisión Id '.$model->iDCURSO->iDPLAN->ID_COMISION, 'url'=>['comision-mixta-cap/dashboard', 'id'=>$model->iDCURSO->iDPLAN->ID_COMISION]];
 $this->params['breadcrumbs'][] = ['label' => 'Plan Id '.$model->iDCURSO->ID_PLAN, 'url'=>['plan/dashboard', 'id'=>$model->iDCURSO->ID_PLAN]];
 $this->params['breadcrumbs'][] = ['label' => 'Curso Id '.$model->ID_CURSO ,'url'=>['constancias/createbycourse','id'=>$model->ID_CURSO ] ];
-$this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTANCIA ];
-
 
 
 ?>
@@ -142,9 +140,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
                     <div class="row no-print">
                         <div class="col-xs-12">
                         
-                        	<?= Html::a('<i class="fa fa-download"></i> Descargar en comprobante', ['constancia-comprobante-pdf', 'id'=>$model->ID_CONSTANCIA],  ['target' => '_blank', 'class'=>"btn btn-primary" ]) ?>
+                        	<?= Html::a('<i class="fa fa-download"></i> Descargar en comprobante', ['constancia-comprobante-pdf', 'id'=>$model->ID_CONSTANCIA],  ['target' => '_blank', 'class'=>"btn btn-warning" ]) ?>
                             
-                            <?= Html::a('<i class="fa fa-download"></i> Descargar en formato DC-3', ['constanciapdf', 'id'=>$model->ID_CONSTANCIA],  ['target' => '_blank', 'class'=>"btn btn-primary" ]) ?>
+                            <?= Html::a('<i class="fa fa-download"></i> Descargar en formato DC-3', ['constanciapdf', 'id'=>$model->ID_CONSTANCIA],  ['target' => '_blank', 'class'=>"btn btn-warning" ]) ?>
                             
                             <?= Html::a('<i class="fa fa-trash"></i> Eliminar', ['delete-constancia', 'id'=>$model->ID_CONSTANCIA],  [ 'class'=>"btn btn-danger", 'data'=>['confirm' => '¿Realmente quiere borrar esta constancia?',
                 												  'method' => 'post',] ]) ?>
@@ -330,7 +328,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Constancia Id '.$model->ID_CONSTAN
                 <div class="box-footer">
                 		<button id="help_popup_boton" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Presiona el boton [Guardar] para actualizar los datos de la constancia') ?>"><i class="fa fa-question-circle"></i>
 						</button>
-          					<?= Html::submitButton(Yii::t('backend', 'Guardar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+          					<?= Html::submitButton('<i class="fa fa-floppy-o"></i>' .'&nbsp;'.Yii::t('backend', 'Guardar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
                 </div>
                </div>
            </div>     
