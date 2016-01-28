@@ -26,7 +26,7 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-laptop fa-stack-1x"></i>
 							   </span>';
 //$this->title = 'Curso  Id '.$model->ID_CURSO. ' - '.$model->NOMBRE;//-  Plan( '.$model->iDPLAN->ALIAS.' ), Curso ('.$model->NOMBRE.')';
-$this->title='Curso Id'.'-'.$model->ID_CURSO. '-'. substr("$model->NOMBRE", 0,40).'...';
+$this->title='Curso de capacitación.'.' '. 'ID'.'-'.$model->ID_CURSO. ' '. substr("$model->NOMBRE", 0,40).'...';
 
 
 $this->params['breadcrumbs'][] = ['label' => 'Comisión ID '.$model->iDPLAN->ID_COMISION, 'url'=>['comision-mixta-cap/dashboard', 'id'=>$model->iDPLAN->ID_COMISION]];
@@ -160,7 +160,7 @@ $tabs[] =    '<li class="pull-left header"><i class="fa fa-file-pdf-o"></i>Const
           
       	<div class= "box-footer">
 				          
-		  <?= Html::a('<i class="fa fa-pencil"></i>  Editar curso', ['curso/updatebyplan', 'id_plan' => $model->ID_PLAN,'id'=>$model->ID_CURSO], ['class' => 'btn btn-warning']) ?>
+		  <?= Html::a('<i class="fa fa-pencil"></i>  Editar curso', ['curso/updatebyplan', 'id_plan' => $model->ID_PLAN,'id'=>$model->ID_CURSO], ['class' => 'btn btn-primary']) ?>
     	</div>
 </div><!-- /.box -->
 </div>
