@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Empresa */
 
-$this->title = 'Actualizar establecimiento'; //$model->ID_EMPRESA;
+$this->title = 'Actualizar mi  establecimiento'; //$model->ID_EMPRESA;
 $this->params['subtitle'] = '';
 
 $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
