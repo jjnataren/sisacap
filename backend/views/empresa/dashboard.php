@@ -159,7 +159,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                                     </dl> 
                                     
                                     <p class="text-right">
-                                    <?= Html::a('<i class="fa fa-cogs"></i> Administrar', ['comision-mixta-cap/dashboard','id'=>$comision->ID_COMISION_MIXTA], ['class' => 'btn btn-primary btn-flat btn-sm']) ?>
+                                    <?= Html::a('<i class="fa fa-cogs"></i> Administrar', ['comision-mixta-cap/dashboard','id'=>$comision->ID_COMISION_MIXTA], ['class' => 'btn btn-info btn-flat btn-sm']) ?>
                                     </p>   
                                      </div><!-- /.tab-pane -->
                                      <?php endforeach;?>
@@ -333,7 +333,7 @@ $this->registerJs("$('#dataTable1').dataTable( {'language': {'url': '//cdn.datat
                                         <dd><span class="label label-success"><?= 'cualquiera' ?></span></dd>
                                     </dl>  
                                     <p class="text-right">
-                                    	<?= Html::a('<i class="fa fa-cogs"></i> Administrar', ['plan/dashboard','id'=>$plan->ID_PLAN], ['class' => 'btn btn-primary btn-flat btn-sm']) ?>
+                                    	<?= Html::a('<i class="fa fa-cogs"></i> Administrar', ['plan/dashboard','id'=>$plan->ID_PLAN], ['class' => 'btn btn-info btn-flat btn-sm']) ?>
                                     </p>     
                                      </div><!-- /.tab-pane -->
                                      <?php endforeach;?>
