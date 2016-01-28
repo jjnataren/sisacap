@@ -22,7 +22,7 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="glyphicon glyphicon-list-alt fa-stack-1x"></i>
 							   </span>';
 
-$this->title = 'Reporte de constancias emitidas: Id '.$model->ID_LISTA;
+$this->title = 'Reporte de constancias emitidas.'.' '.'ID'.'-' . $model->ID_LISTA;
 $this->params['breadcrumbs'][] = ['label' => 'Comisión ID '.$model->iDPLAN->ID_COMISION, 'url'=>['comision-mixta-cap/dashboard', 'id'=>$model->iDPLAN->ID_COMISION]];
 $this->params['breadcrumbs'][] = ['label' => 'Plan ID '.$model->ID_PLAN, 'url'=>['plan/dashboard', 'id'=>$model->ID_PLAN]];
 $this->params['breadcrumbs'][] = ['label' => 'Reporte constancias ID '.$model->ID_LISTA];
