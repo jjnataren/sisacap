@@ -13,7 +13,6 @@ $this->registerJs("$('#help_popup_rol').popover('hide');", View::POS_END, 'my-op
 
 	
 
-   
 	
 				<table class="table table-condensed table-hover">
 				
@@ -21,7 +20,7 @@ $this->registerJs("$('#help_popup_rol').popover('hide');", View::POS_END, 'my-op
 						<tr>
 						<th style="text-align: left;"><h2><i class="fa fa-calendar fa-lg"></i>&nbsp;Plan Id <?=$model->ID_PLAN?></h2></th>
 						<th style="text-align: right;">
-						    <?= Html::a('<i class="fa fa-cogs"></i>	Administrar plan', ['plan/dashboard', 'id' => $model->ID_PLAN], ['class' => 'btn btn-primary']) ?>
+						    <?= Html::a('<i class="fa fa-cogs"></i>	Administrar plan', ['plan/dashboard', 'id' => $model->ID_PLAN], ['class' => 'btn btn-info']) ?>
 					         &nbsp;
 					        <?= Html::a('<i class="fa fa-trash"></i> Borrar', ['plan/deletebycomisiones', 'id' => $model->ID_PLAN], [
 					                     'class' => 'btn btn-danger',
