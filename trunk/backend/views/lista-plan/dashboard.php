@@ -198,8 +198,8 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
                 </div><!-- /.box-body -->
                 <div class="box-footer">
 			   		 
-			   		 <?= Html::a('<i class="fa fa-pencil"></i> '.Yii::t('backend', 'Editar lista de constancias'), ['lista-plan/update-by-plan','id'=>$model->ID_LISTA], ['class' => 'btn btn-warning']) ?>
-			   		 <?= Html::a('<i class="fa fa-print"></i> '.Yii::t('backend', 'Generar reporte DC4 (parte 1)'), ['lista-plan/report-pdf-4','id'=>$model->ID_LISTA], ['class' => 'btn btn-default','target'=>'_blank']) ?>
+			   		 <?= Html::a('<i class="fa fa-pencil"></i> '.Yii::t('backend', 'Editar lista de constancias'), ['lista-plan/update-by-plan','id'=>$model->ID_LISTA], ['class' => 'btn btn-primary']) ?>
+			   		 <?= Html::a('<i class="fa fa-print"></i> '.Yii::t('backend', 'Generar reporte DC4 (parte 1)'), ['lista-plan/report-pdf-4','id'=>$model->ID_LISTA], ['class' => 'btn btn-warning','target'=>'_blank']) ?>
 			   		 
 			   		 
                   </div>
