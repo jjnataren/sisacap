@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Instructor */
 
-$this->title = 'Ver instructor:  Id ' . $model->ID_INSTRUCTOR;
+$this->title = 'Ver instructor.'.' '.'ID'.'-' . $model->ID_INSTRUCTOR;
 $this->params ['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-square-o fa-stack-2x"></i>
   								<i class="fa fa-graduation-cap -lg  fa-stack-1x"></i>
@@ -27,7 +27,7 @@ $this->params ['breadcrumbs'] [] = $this->title;
 			<div class="panel-heading">
 				<h3>
 					<i class="fa fa-eye"></i>
-						<?= Yii::t('backend', 'Detalles') ?> <small>de Instructor / capacitador</small>
+						<?= Yii::t('backend', 'Detalles') ?> <small>de mi instructor / capacitador</small>
 				</h3>
 			</div>
 
@@ -122,7 +122,7 @@ $this->params ['breadcrumbs'] [] = $this->title;
 				</div>
 				
 								<div class="panel-footer">
-					    				 <?= Html::a('<i class="fa fa-pencil"></i> Editar', ['updatebycompany', 'id' => $model->ID_INSTRUCTOR], ['class' => 'btn btn-warning']) ?>
+					    				 <?= Html::a('<i class="fa fa-pencil"></i> Editar', ['updatebycompany', 'id' => $model->ID_INSTRUCTOR], ['class' => 'btn btn-primary']) ?>
 		        	        
 		                 			 </div>
 			</div>
