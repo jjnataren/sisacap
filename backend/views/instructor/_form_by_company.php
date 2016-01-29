@@ -11,7 +11,7 @@ use kartik\password\PasswordInput;
 /* @var $model backend\models\Instructor */
 /* @var $form yii\widgets\ActiveForm */
 
-$this->registerJs ( "$('#help_popup_alias').popover('hide');", View::POS_END, 'my-options' );
+$this->registerJs ( "$('#help_popup_alias').popover('hide');", View::POS_END, 'my-options2' );
 $this->registerJs ( "$('#help_popup_registro_externo').popover('hide');", View::POS_END, 'my-options1' );
 $this->registerJs("$('#helppop1').popover('hide');", View::POS_END, 'my-options');
 
@@ -134,7 +134,7 @@ $this->registerJs ( "$('#userchange').change(function(){
 					<?php else: ?>
 						<i class="fa fa-pencil-square-o"></i>
 					<?php endif;?>
-						<?= Yii::t('backend', 'Nuevo instructor') ?> </h3>
+						<?= Yii::t('backend', 'Instructor/Capacitador') ?>  </h3>
 			</div>
 
 			<div class="panel-body">
@@ -186,7 +186,7 @@ $this->registerJs ( "$('#userchange').change(function(){
 										<button id="help_popup_alias" data-placement="top"
 											tabindex="0" type="button" class="btn btn-info btn-sm"
 											data-toggle="popover" title="Ayuda"
-											data-content="Incluir  nombre de personas físicas o morales tales como instituciones especializadas en impartir capacitación. ">
+											data-content="Aquí debes incluir el nombre de personas físicas o morales tales como instituciones especializadas en impartir capacitación. ">
 											<i class="fa fa-question-circle"></i>
 										</button>
 									</div>
@@ -205,7 +205,7 @@ $this->registerJs ( "$('#userchange').change(function(){
 										<button id="help_popup_registro_externo" data-placement="top"
 											tabindex="0" type="button" class="btn btn-info btn-sm"
 											data-toggle="popover" title="Ayuda"
-											data-content="Incluir identificador que asigna la (STPS)Secretaría del Trabajo y  Previsíon Social a las instituciones, escuelas para que puedan impartir cursos. Ej. (CIS8803057Z6-0013). ">
+											data-content="Aquí debes ncluir  un identificador, el cual es  asignado por la (STPS)Secretaría del Trabajo y  Previsíon Social a las instituciones y escuelas para que puedan impartir cursos. Ej. (CIS8803057Z6-0013). ">
 											<i class="fa fa-question-circle"></i>
 										</button>
 
@@ -305,7 +305,7 @@ $this->registerJs ( "$('#userchange').change(function(){
 
 			<button id="helppop1" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Aquí puedes crear un instructor para los cursos, es importante introducir los datos correctamente en todos los campos. Presiona el botón [Guardar] y a continuación se guardaran los datos del instructor') ?>"><i class="fa fa-question-circle"></i>
 						</button>
-             <?= Html::submitButton( '<i class="fa fa-floppy-o"></i> Guardar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])?>
+             <?= Html::submitButton( '<i class="fa fa-floppy-o"></i> Guardar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success'])?>
 		</div>
 		</div>
 
