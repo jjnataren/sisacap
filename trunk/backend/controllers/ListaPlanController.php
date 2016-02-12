@@ -19,6 +19,7 @@ use backend\models\ListaEstablecimiento;
 use backend\models\EmpresaUsuarioSearch;
 use backend\models\Constancia;
 use backend\models\ListaConstancia;
+use kartik\mpdf\Pdf;
 
 /**
  * ListaPlanController implements the CRUD actions for ListaPlan model.
@@ -47,6 +48,64 @@ class ListaPlanController extends Controller
         ];
     }*/
 
+	
+	/**
+	 * retrieves a particular report  of DC4 part 1
+	 * @param unknown $id
+	 * @return mixed
+	 */
+	public function actionReportdc4($id) {
+		// get your HTML raw content without any layouts or scripts
+		
+		$model = $this->findModel($id);
+		
+		$this->layout = '//_print';
+		 
+		
+		
+		$content =  $this->renderPartial('reports/DC-4',['model'=>$model, ]);
+	
+		$header =  $this->renderPartial('reports/header');
+		
+		$footer =  $this->renderPartial('reports/footer');
+		
+		
+		// setup kartik\mpdf\Pdf component
+		$pdf = new Pdf([
+				// set to use core fonts only
+				//'mode' => Pdf::MODE_CORE,
+				// A4 paper format
+				'format' => Pdf::FORMAT_A4,
+				// portrait orientation
+				'orientation' => Pdf::ORIENT_PORTRAIT,
+				// stream to browser inline
+				'destination' => Pdf::DEST_BROWSER,
+				// your html content input
+				'content' => $content,
+				'marginLeft' => 7.5, // Optional
+				'marginRight' => 10.5, // Optional
+				'marginTop' => 35, // Optional
+				
+				// format content from your own css file if needed or use the
+				// enhanced bootstrap css built by Krajee for mPDF formatting
+				'cssFile' => '@backend/web/css/lista-reporte.css',
+				// any css to be embedded if required
+				'cssInline' => '.kv-heading-1{font-size:18px}',
+				// set mPDF properties on the fly
+				'options' => ['title' => 'Lista de constancias DC-4'],
+				// call mPDF methods on the fly
+				'methods' => [
+						'SetHeader'=>[$header],
+						'SetFooter'=>[$footer],
+				]
+		]);
+	
+		// return the pdf output as per the destination setting
+		return $pdf->render();
+	}
+	
+	
+	
     /**
      * Lists all ListaPlan models.
      * @return mixed
@@ -395,8 +454,13 @@ class ListaPlanController extends Controller
 		'marginRight' => 10.8, // Optional
 		'marginTop' => 7, // Optional
 		'marginBottom' => 3, // Optional
-		
-		'beforeRender' => function($mpdf, $data) {},
+		//'Header'=>['Krajee Report Header'],
+				
+		'beforeRender' => function($mpdf, $data) {
+
+			$mpdf->SetHTMLFooter("TESTSSSSSSS");
+			
+		},
 		]); 
 	
 		$this->layout = '//_print';
@@ -431,7 +495,11 @@ class ListaPlanController extends Controller
     	'marginRight' => 10.5, // Optional
     	'marginTop' => 8, // Optional
     
-    	'beforeRender' => function($mpdf, $data) {},
+    	'beforeRender' => function($mpdf, $data) {
+    		
+    		$mpdf->SetHeader('tst');
+    		
+    	},
     	]);
  
     	$this->layout = '//_print';
