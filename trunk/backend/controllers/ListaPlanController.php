@@ -175,7 +175,7 @@ class ListaPlanController extends Controller
 	 * @param unknown $id
 	 * @return mixed
 	 */
-	public function actionReportdc4All($id,$paquete) {
+	public function actionReportPdfAll($id,$paquete) {
 		// get your HTML raw content without any layouts or scripts
 	
 		$model = $this->findModel($id);
@@ -652,7 +652,7 @@ class ListaPlanController extends Controller
      * @param Number $id
      * @return Ambigous <string, string>
      */
-    public function actionReportPdfAll($id,$paquete){
+    public function actionReportPdfAlll($id,$paquete){
     
     	$model = $this->findModel($id);
     
