@@ -22,7 +22,7 @@ $this->params['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="glyphicon glyphicon-list-alt fa-stack-1x"></i>
 							   </span>';
 
-$this->title = 'Reporte de constancias emitidas.'.' '.'ID'.'-' . $model->ID_LISTA;
+$this->title = 'Reporte de constancias emitidas: Id '.$model->ID_LISTA;
 $this->params['breadcrumbs'][] = ['label' => 'Comisión ID '.$model->iDPLAN->ID_COMISION, 'url'=>['comision-mixta-cap/dashboard', 'id'=>$model->iDPLAN->ID_COMISION]];
 $this->params['breadcrumbs'][] = ['label' => 'Plan ID '.$model->ID_PLAN, 'url'=>['plan/dashboard', 'id'=>$model->ID_PLAN]];
 $this->params['breadcrumbs'][] = ['label' => 'Reporte constancias ID '.$model->ID_LISTA];
@@ -198,8 +198,8 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
                 </div><!-- /.box-body -->
                 <div class="box-footer">
 			   		 
-			   		 <?= Html::a('<i class="fa fa-pencil"></i> '.Yii::t('backend', 'Editar lista de constancias'), ['lista-plan/update-by-plan','id'=>$model->ID_LISTA], ['class' => 'btn btn-primary']) ?>
-			   		 <?= Html::a('<i class="fa fa-print"></i> '.Yii::t('backend', 'Generar reporte DC4 (parte 1)'), ['lista-plan/report-pdf-4','id'=>$model->ID_LISTA], ['class' => 'btn btn-warning','target'=>'_blank']) ?>
+			   		 <?= Html::a('<i class="fa fa-pencil"></i> '.Yii::t('backend', 'Editar lista de constancias'), ['lista-plan/update-by-plan','id'=>$model->ID_LISTA], ['class' => 'btn btn-warning']) ?>
+			   		 <?= Html::a('<i class="fa fa-print"></i> '.Yii::t('backend', 'Generar reporte DC4 (parte 1)'), ['lista-plan/reportdc4','id'=>$model->ID_LISTA], ['class' => 'btn btn-default','target'=>'_blank']) ?>
 			   		 
 			   		 
                   </div>
@@ -780,7 +780,7 @@ $tPaquetesBox = floor( $tConstanciasBox / 30 );
 									
 									<td>
 									
-										<?= Html::a('<i class="fa fa-file-pdf-o"></i>', ['lista-plan/report-pdf-part2','id'=>$model->ID_LISTA,'id_const'=>$constancia->ID_CONSTANCIA], 
+										<?= Html::a('<i class="fa fa-file-pdf-o"></i>', ['lista-plan/reportdc4-part2','id'=>$model->ID_LISTA,'id_const'=>$constancia->ID_CONSTANCIA], 
 				         				['class' => 'btn btn-primary btn-xs',
 				            				'target'=>'_blank',
 										 'data' => [				           				 	
