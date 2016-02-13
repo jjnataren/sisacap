@@ -339,7 +339,21 @@ $this->registerJs ( "$('#userchange').change(function(){
 
     <!--  <?= $form->field($model, 'DOMICILIO')->textArea(['maxlength' => 300]); ?> -->
    
-     <?= $form->field($model, 'ENTIDAD_FEDERATIVA')->dropDownList($dataListEntidad,['prompt'=>'-- Seleccione  --','id' => 'cat-id']) ?>
+
+
+	  <?= $form->field($model, 'CALLE')->textInput(['maxlength' => 300]) ?>
+    	<?= Html::hiddenInput('companyCalle',$model->iDEMPRESA->CALLE, ['id'=>'companyCalle']);?>
+    
+      <?= $form->field($model, 'NUMERO_EXTERIOR')->textInput(['maxlength' => 100]) ?>
+    	<?= Html::hiddenInput('companyNE',$model->iDEMPRESA->NUMERO_EXTERIOR, ['id'=>'companyNE']);?>
+    	
+    	     <?= $form->field($model, 'NUMERO_INTERIOR')->textInput(['maxlength' => 100]) ?>
+    	<?= Html::hiddenInput('companyNI',$model->iDEMPRESA->NUMERO_INTERIOR, ['id'=>'companyNI']);?>
+    	
+    	    <?= $form->field($model, 'COLONIA')->textInput(['maxlength' => 300]) ?>
+    		<?= Html::hiddenInput('companyColonia',$model->iDEMPRESA->COLONIA, ['id'=>'companyColonia']);?>
+    		
+         <?= $form->field($model, 'ENTIDAD_FEDERATIVA')->dropDownList($dataListEntidad,['prompt'=>'-- Seleccione  --','id' => 'cat-id']) ?>
      
     <?= Html::hiddenInput('companyEntidad',$model->iDEMPRESA->ENTIDAD_FEDERATIVA, ['id'=>'companyEntidad']);?>
 
@@ -350,7 +364,7 @@ $this->registerJs ( "$('#userchange').change(function(){
         'placeholder' => 'Seleccione ...',		
         'url' => Url::to(['empresa/getmunicipios'])
     ]
-]); ?>
+]); ?>		
 
 	<?= Html::hiddenInput('companyMpio',$model->iDEMPRESA->MUNICIPIO_DELEGACION, ['id'=>'companyMpio']);?>
 	<?= Html::dropDownList('companyMp',$model->iDEMPRESA->MUNICIPIO_DELEGACION,$dataListMunicipiosEmpresa, ['id'=>'companyMp','style'=>'visibility: hidden;']);?>
@@ -360,20 +374,15 @@ $this->registerJs ( "$('#userchange').change(function(){
      <?= $form->field($model, 'CODIGO_POSTAL')->textInput(['maxlength' => 6]) ?> 
      	<?= Html::hiddenInput('companyCP',$model->iDEMPRESA->CODIGO_POSTAL, ['id'=>'companyCP']);?>
     
-    <?= $form->field($model, 'COLONIA')->textInput(['maxlength' => 300]) ?>
-    		<?= Html::hiddenInput('companyColonia',$model->iDEMPRESA->COLONIA, ['id'=>'companyColonia']);?>
+
     
     <?= $form->field($model, 'LUGAR_RESIDENCIA')->textInput(['maxlength' => 200]) ?>
     
-     <?= $form->field($model, 'NUMERO_INTERIOR')->textInput(['maxlength' => 100]) ?>
-    	<?= Html::hiddenInput('companyNI',$model->iDEMPRESA->NUMERO_INTERIOR, ['id'=>'companyNI']);?>
+
     	
-    <?= $form->field($model, 'NUMERO_EXTERIOR')->textInput(['maxlength' => 100]) ?>
-    	<?= Html::hiddenInput('companyNE',$model->iDEMPRESA->NUMERO_EXTERIOR, ['id'=>'companyNE']);?>
+  
     
-    <?= $form->field($model, 'CALLE')->textInput(['maxlength' => 300]) ?>
-    	<?= Html::hiddenInput('companyCalle',$model->iDEMPRESA->CALLE, ['id'=>'companyCalle']);?>
-    
+  
     
     
     </div>
