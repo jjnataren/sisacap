@@ -105,6 +105,139 @@ class ListaPlanController extends Controller
 	}
 	
 	
+	/**
+	 * retrieves a particular report  of DC4 part 2
+	 * @param unknown $id
+	 * @return mixed
+	 */
+	public function actionReportdc4Part2($id,  $id_const) {
+		// get your HTML raw content without any layouts or scripts
+	
+	$companyModel = EmpresaUsuario::getMyCompany();
+    	
+    	$model = $this->findModel($id);
+    
+    	$constanciaModel = Constancia::findOne(['ID_CONSTANCIA'=>$id_const, 'ACTIVO'=>'1' ]);
+    	
+    	if($constanciaModel === null || $constanciaModel->iDCURSO->ID_PLAN !== $model->ID_PLAN || $model->iDPLAN->iDCOMISION->ID_EMPRESA !== $companyModel->ID_EMPRESA )
+    		throw new NotFoundHttpException('The requested page does not exist.');
+   
+		
+    	$this->layout = '//_print';
+    	
+	
+	
+		$content =  $this->renderPartial('reports/DC-4_',['model'=>$model, 'constancia'=>$constanciaModel]);
+	
+		$header =  $this->renderPartial('reports/header');
+	
+		$footer =  $this->renderPartial('reports/footer');
+	
+	
+		// setup kartik\mpdf\Pdf component
+		$pdf = new Pdf([
+				// set to use core fonts only
+				//'mode' => Pdf::MODE_CORE,
+				// A4 paper format
+				'format' => Pdf::FORMAT_A4,
+				// portrait orientation
+				'orientation' => Pdf::ORIENT_PORTRAIT,
+				// stream to browser inline
+				'destination' => Pdf::DEST_BROWSER,
+				// your html content input
+				'content' => $content,
+				'marginLeft' => 7.5, // Optional
+				'marginRight' => 10.5, // Optional
+				'marginTop' => 35, // Optional
+	
+				// format content from your own css file if needed or use the
+				// enhanced bootstrap css built by Krajee for mPDF formatting
+				'cssFile' => '@backend/web/css/lista-reporte-part2.css',
+				// any css to be embedded if required
+				'cssInline' => '.kv-heading-1{font-size:18px}',
+				// set mPDF properties on the fly
+				'options' => ['title' => 'Lista de constancias DC-4 parte 2'],
+				// call mPDF methods on the fly
+				'methods' => [
+						'SetHeader'=>[$header],
+						'SetFooter'=>[$footer],
+				]
+		]);
+	
+		// return the pdf output as per the destination setting
+		return $pdf->render();
+	}
+	
+	
+	
+	/**
+	 * retrieves a particular report  of DC4 part All
+	 * @param unknown $id
+	 * @return mixed
+	 */
+	public function actionReportdc4All($id,$paquete) {
+		// get your HTML raw content without any layouts or scripts
+	
+		$model = $this->findModel($id);
+    
+    	
+    	if (count($model->iDCONSTANCIAs) > ($paquete-1) * $this->no_constancias){
+    		
+    		
+    		$inicio =  (($paquete - 1) * $this->no_constancias) +1 ; // ($paquete*$this->no_constancias) - ($this->no_constancias - 1);
+    		
+    	}else 
+    		
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    	
+		 
+	
+		    	$this->layout = '//_print';
+    	 
+ 
+	
+	
+		$content =  $this->renderPartial('reports/DC-4_ALL',['model'=>$model, 'inicio'=>$inicio, 'no_constancias'=>$this->no_constancias]);
+	
+		$header =  $this->renderPartial('reports/header');
+	
+		$footer =  $this->renderPartial('reports/footer');
+	
+	
+		// setup kartik\mpdf\Pdf component
+		$pdf = new Pdf([
+				// set to use core fonts only
+				//'mode' => Pdf::MODE_CORE,
+				// A4 paper format
+				'format' => Pdf::FORMAT_A4,
+				// portrait orientation
+				'orientation' => Pdf::ORIENT_PORTRAIT,
+				// stream to browser inline
+				'destination' => Pdf::DEST_BROWSER,
+				// your html content input
+				'content' => $content,
+				'marginLeft' => 7.5, // Optional
+				'marginRight' => 10.5, // Optional
+				'marginTop' => 35, // Optional
+	
+				// format content from your own css file if needed or use the
+				// enhanced bootstrap css built by Krajee for mPDF formatting
+				'cssFile' => '@backend/web/css/lista-reporte-part2.css',
+				// any css to be embedded if required
+				'cssInline' => '.kv-heading-1{font-size:18px}',
+				// set mPDF properties on the fly
+				'options' => ['title' => 'Lista de constancias DC-4 parte 2'],
+				// call mPDF methods on the fly
+				'methods' => [
+						'SetHeader'=>[$header],
+						'SetFooter'=>[$footer],
+				]
+		]);
+	
+		// return the pdf output as per the destination setting
+		return $pdf->render();
+	}
+	
 	
     /**
      * Lists all ListaPlan models.
@@ -537,7 +670,7 @@ class ListaPlanController extends Controller
     	// Rotate the page
     	// Rotate the page
     
-    	Yii::$app->response->format = 'pdf';
+    	//Yii::$app->response->format = 'pdf';
     
     
     
