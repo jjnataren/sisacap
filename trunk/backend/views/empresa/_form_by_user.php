@@ -114,7 +114,7 @@ $this->registerJs("$('#chk_moral').change(function(){
 					<div class="panel-heading">
 						<h3><i class="fa fa-pencil-square-o"></i>
 						
-						<?= Yii::t('backend', 'Editar datos') ?> <small> de mi empresa</small> </h3>
+						<?= Yii::t('backend', 'Editar datos') ?> <small> formulario de actualización</small> </h3>
 						
 					</div>
 	<div class="panel-body">
@@ -208,8 +208,8 @@ $this->registerJs("$('#chk_moral').change(function(){
     <?= $form->field($model, 'NUMERO_INTERIOR')->textInput(['maxlength' => 100]) ?>
 
  	<!-- <?= $form->field($model, 'DOMICILIO')->textArea(['maxlength' => 100]) ?> -->
-       <?= $form->field($model, 'CODIGO_POSTAL')->textInput() ?>   
-     
+  
+       <?= $form->field($model, 'COLONIA')->textInput(['maxlength' => 300]) ?>
      
      <?= $form->field($model, 'ENTIDAD_FEDERATIVA')->dropDownList($dataListEntidad,['prompt'=>'-- Seleccione  --','id' => 'cat-id']) ?>
 
@@ -227,7 +227,9 @@ $this->registerJs("$('#chk_moral').change(function(){
 
    <!--  <?= $form->field($model, 'LOCALIDAD')->textInput(['maxlength' => 100]) ?> -->
     
-        <?= $form->field($model, 'COLONIA')->textInput(['maxlength' => 300]) ?>
+      
+        
+             <?= $form->field($model, 'CODIGO_POSTAL')->textInput() ?>   
         </div>
         </div>
         </div>
@@ -254,7 +256,7 @@ $this->registerJs("$('#chk_moral').change(function(){
     <div class="col-xs-2 col-md-2">
     	<br />
     	
-    	<button id="help_popup_telefono" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="Incluir clave lada. Ejemplo (55) 26-32-37-16"><i class="fa fa-question-circle"></i>
+    	<button id="help_popup_telefono" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="Se requiere intoducir lada. ejemplo (55) 26-32-37-16"><i class="fa fa-question-circle"></i>
 	</button>
     </div>
  </div>
@@ -266,7 +268,7 @@ $this->registerJs("$('#chk_moral').change(function(){
 		    	<br />
 		    	<div class="col-xs-2 col-md-2">
 		    	
-		    	<button id="help_popup_correo" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="Incluir E-mail del contacto "><i class="fa fa-question-circle"></i>
+		    	<button id="help_popup_correo" data-placement="top" tabindex="0" type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Ayuda" data-content="correo electronico para contacto "><i class="fa fa-question-circle"></i>
 			  </button>
 			</div>
     	</div>
@@ -284,7 +286,7 @@ $this->registerJs("$('#chk_moral').change(function(){
     <?php ActiveForm::end(); ?>
 	<div class="panel-footer">
     
-						<button id="help_popup_carnera" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Aquí puedes actualizar los datos la empresa, es importante introducir los datos correctamente en todos los campos. Presiona el botón [Guardar] y a continuación se guardaran los datos la empresa') ?>"><i class="fa fa-question-circle"></i>
+						<button id="help_popup_carnera" tabindex="0" type="button" class="btn" data-toggle="popover" title="Ayuda" data-content="<?=Yii::t('backend', 'Presiona el botón [Guardar] para salvar los cambios ') ?>"><i class="fa fa-question-circle"></i>
 						</button>
         <?= Html::submitButton(Yii::t('backend', '<i class="fa fa-floppy-o" ></i>  Guardar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
