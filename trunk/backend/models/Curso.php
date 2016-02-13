@@ -210,19 +210,19 @@ class Curso extends \yii\db\ActiveRecord
     {
         return [
         
-           [[ 'DURACION_HORAS','NOMBRE','AREA_TEMATICA','MODALIDAD_CAPACITACION','OBJETIVO_CAPACITACION','FECHA_INICIO','FECHA_TERMINO'], 'required','message' =>'El dato es requerido'],
+           [[ 'DURACION_HORAS','NOMBRE','AREA_TEMATICA','MODALIDAD_CAPACITACION','FECHA_INICIO','FECHA_TERMINO'], 'required','message' =>'El dato es requerido'],
         
             [['ID_PLAN','OTRO_NOMBRE', 'ID_INSTRUCTOR', 'ESTATUS', 'DURACION_HORAS', 'AREA_TEMATICA'], 'integer'],
             [['FECHA_INICIO', 'FECHA_TERMINO'], 'safe'],
             [['MODALIDAD_CAPACITACION'], 'required'],
             [['NOMBRE'], 'string', 'max' => 300],
 
-            [['OBJETIVO_CAPACITACION', 'MODALIDAD_CAPACITACION'], 'string', 'max' => 200],
+            [['MODALIDAD_CAPACITACION'], 'string', 'max' => 200],
             [['DESCRIPCION'], 'string', 'max' => 1024],
             
             
              [['MODALIDAD_CAPACITACION'], 'string', 'max' => 200],
-            [['OBJETIVO_CAPACITACION'], 'string', 'max' => 45],
+            
             
             /*own validations*/
             ['FECHA_INICIO', 'validateVigencia','params'=>['max'=>730]],
