@@ -18,6 +18,11 @@ $this->params ['breadcrumbs'] [] = $this->title;
 <p class="text text-info">Si ya  recibiste  un correo con la
 	notificación de  una constancia por favor ingresa tu RFC y
 	el código de la constancia que se encuentra en el correo.</p>
+	
+
+		
+
+
 
 <div class="row">
 	<div class="col-md-6 col-xs-12 col-sm-12">
@@ -33,8 +38,30 @@ $this->params ['breadcrumbs'] [] = $this->title;
             <?php ActiveForm::end(); ?>
         </div>
 
-	<div class="col-md-6 col-xs-12 col-sm-12">
 
+
+	<div class="col-md-6 col-xs-12 col-sm-12">
+	
+		<?php if($model->constancia_document !== null) :?>
+		<div class="panel panel-success">
+
+			<div class="panel-heading">
+			<h4>
+				<span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>&nbsp;
+				Constancia emitida
+			</h4>	
+			</div>
+			<div class="panel-body" align="center" >
+
+					<a href="<?= $model->constancia_document?>" target="_blank">
+						 <img alt="64x64" data-src="holder.js/64x64" class="media-object" style="width: 64px; height: 64px;" src="/img/filetype_pdf.png" data-holder-rendered="true">
+						<strong> Su constancia </strong>
+					</a>
+
+			</div>
+		</div>
+
+			<?php endif;?>
 		<div class="panel panel-info">
 
 			<div class="panel-heading">
@@ -101,34 +128,4 @@ $this->params ['breadcrumbs'] [] = $this->title;
 
 </div>
 
-<div class="row">
-	<div class= "col-md-6">
-	
-	</div>
-	
-	<?php if($model->constancia_document !== null) :?>
-	
-	<div class= "col-md-6">
-	
-	<div class="panel panel-success">
 
-			<div class="panel-heading">
-			<h4>
-				<span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>&nbsp;
-				Constancia emitida
-			</h4>	
-			</div>
-			<div class="panel-body" >
-
-					<a href="<?= $model->constancia_document?>" target="_blank">
-						 <img alt="64x64" data-src="holder.js/64x64" class="media-object" style="width: 64px; height: 64px;" src="/img/filetype_pdf.png" data-holder-rendered="true">
-						 Constancia
-					</a>
-
-			</div>
-		</div>
-	
-	</div>
-	
-	<?php endif;?>
-</div>
