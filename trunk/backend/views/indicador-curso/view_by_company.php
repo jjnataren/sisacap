@@ -9,7 +9,18 @@ $this->params ['titleIcon'] = '<span class="fa-stack fa-lg">
   								<i class="fa fa-bell fa-stack-1x"></i>
 							   </span>';
 
-$this->title = 'Notificación Curso: Id ' . $model->iDCURSO->ID_CURSO . ' - ' . $model->iDCURSO->NOMBRE;
+
+
+
+
+$this->title = 'Notificación Curso: Id ' . $model->iDCURSO->ID_CURSO . ' - ' .substr($model->iDCURSO->NOMBRE,0,50);
+
+if (strlen($model->iDCURSO->NOMBRE) > 50){
+	
+	$this->title = $this->title . '...';
+	
+}
+
 $this->params ['breadcrumbs'] [] = [ 
 		'label' => 'Notificaciones Curso',
 		'url' => [ 
