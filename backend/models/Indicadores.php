@@ -485,15 +485,6 @@ public static function setIndicadorCurso($curso){
 	}
 
 
-
-
-
-
-
-
-
-
-
 }
 
 
@@ -505,7 +496,7 @@ public static function setIndicadorCurso($curso){
  */
 public static function setIndicadorConstancia($constancia){
 	
-	$companyModel = EmpresaUsuario::getMyCompany();
+	//$companyModel = EmpresaUsuario::getMyCompany();
 
 
 
